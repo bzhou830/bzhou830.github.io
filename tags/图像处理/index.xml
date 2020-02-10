@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>图像处理 on 十面埋伏的博客</title>
+    <link>https://bzhou830.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</link>
+    <description>Recent content in 图像处理 on 十面埋伏的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 24 Mar 2015 09:29:11 +0800</lastBuildDate>
+    
+	<atom:link href="https://bzhou830.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>图像插值运算总结</title>
+      <link>https://bzhou830.github.io/posts/20150324%E5%9B%BE%E5%83%8F%E6%8F%92%E5%80%BC%E8%BF%90%E7%AE%97%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Tue, 24 Mar 2015 09:29:11 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20150324%E5%9B%BE%E5%83%8F%E6%8F%92%E5%80%BC%E8%BF%90%E7%AE%97%E6%80%BB%E7%BB%93/</guid>
+      <description>&lt;p&gt;图像插值就是利用已知邻近像素点的灰度值（或RGB图像中的三色值）来产生未知像素点的灰度值，以便由原始图像再生出具有更高分辨率的图像。图像插值常常用在图像的放缩，旋转等变换中。常用的插值运算有三种：最邻近插值、双线性插值和立方卷积插值（cubic运算）。假设变换（放缩，旋转等等）前的图像为S，变换后的图像为T。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

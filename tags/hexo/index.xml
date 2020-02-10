@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hexo on 十面埋伏的博客</title>
+    <link>https://bzhou830.github.io/tags/hexo/</link>
+    <description>Recent content in hexo on 十面埋伏的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 01 Jan 2019 09:16:34 +0800</lastBuildDate>
+    
+	<atom:link href="https://bzhou830.github.io/tags/hexo/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hexo博客搭建</title>
+      <link>https://bzhou830.github.io/posts/20190101Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</link>
+      <pubDate>Tue, 01 Jan 2019 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20190101Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</guid>
+      <description>&lt;p&gt;本文用来记录我使用Hexo进行静态博客搭建的过程，博客是托管在Github Page上的。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

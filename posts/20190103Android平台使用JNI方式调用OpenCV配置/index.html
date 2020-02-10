@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Android平台使用JNI方式调用OpenCV配置 | 十面埋伏的博客</title>
+    <meta property="og:title" content="Android平台使用JNI方式调用OpenCV配置 - 十面埋伏的博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2019-01-03T09:16:34&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2019-01-03T09:16:34&#43;08:00'>
+        
+    <meta name="Keywords" content="C/C&#43;&#43;，OpenCV，图像处理，Windows驱动开发">
+    <meta name="description" content="Android平台使用JNI方式调用OpenCV配置">
+        
+    <meta name="author" content="十面埋伏">
+    <meta property="og:url" content="https://bzhou830.github.io/posts/20190103Android%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8JNI%E6%96%B9%E5%BC%8F%E8%B0%83%E7%94%A8OpenCV%E9%85%8D%E7%BD%AE/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4031353640611810",
+        enable_page_level_ads: true
+    });
+    </script>
+    
+
+
+    
+    
+        <link rel="stylesheet" href='/css/douban.css'>
+    
+        <link rel="stylesheet" href='/css/other.css'>
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://bzhou830.github.io/">
+                        十面埋伏的博客
+                    </a>
+                
+                <p class="description">专注于C/C&#43;&#43;, OpenCV, 图像处理, Windows驱动开发</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="https://bzhou830.github.io/">首页</a>
+                    
+                    <a  href="https://bzhou830.github.io/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://bzhou830.github.io/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    <style type="text/css">
+    .post-toc {
+        position: fixed;
+        width: 200px;
+        margin-left: -210px;
+        padding: 5px 10px;
+        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+        font-size: 12px;
+        border: 1px solid rgba(0, 0, 0, .07);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.98);
+        background-clip: padding-box;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        word-wrap: break-word;
+        white-space: nowrap;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 999;
+        cursor: pointer;
+        max-height: 70%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .post-toc .post-toc-title {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .post-toc .post-toc-content {
+        font-size: 15px;
+    }
+
+    .post-toc .post-toc-content>nav>ul {
+        margin: 10px 0;
+    }
+
+    .post-toc .post-toc-content ul {
+        padding-left: 20px;
+        list-style: square;
+        margin: 0.5em;
+        line-height: 1.8em;
+    }
+
+    .post-toc .post-toc-content ul ul {
+        padding-left: 15px;
+        display: none;
+    }
+
+    @media print,
+    screen and (max-width:1057px) {
+        .post-toc {
+            display: none;
+        }
+    }
+</style>
+<div class="post-toc" style="position: absolute; top: 188px;">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-准备">1. 准备</a></li>
+    <li><a href="#2-添加opencv库文件">2. 添加OpenCV库文件</a></li>
+    <li><a href="#3-在project中引入opencv">3. 在project中引入opencv</a></li>
+    <li><a href="#4-在project中使用opencv">4. 在project中使用opencv</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postToc = $(".post-toc");
+        if (postToc.length) {
+            var leftPos = $("#main").offset().left;
+            if(leftPos<220){
+                postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})
+            }
+
+            var t = postToc.offset().top - 20,
+                a = {
+                    start: {
+                        position: "absolute",
+                        top: t
+                    },
+                    process: {
+                        position: "fixed",
+                        top: 20
+                    },
+                };
+            $(window).scroll(function () {
+                var e = $(window).scrollTop();
+                e < t ? postToc.css(a.start) : postToc.css(a.process)
+            })
+        }
+    })
+</script>
+    <article class="post">
+        <header>
+            <h1 class="post-title">Android平台使用JNI方式调用OpenCV配置</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2019年1月3日
+        </date>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <p>本文主要介绍 OpenCV3.4.2 在 android studio2.3 中的配置，并使用 JNI 方式调用 OpenCV 中 C/C++ 层函数。</p>
+<p>Android Studio在2.2版本更新之后加入了CMAKE方式配置NDK的方法，这大大简化了之前通过Android.mk和Application.mk两个本地配置文件进行NDK开发的方式。这种方法在后续更新的版本中不断增强，越来越好用，越来越不会出问题。本文主要介绍OpenCV3.4.2在android studio2.3中的配置，并使用JNI方式调用OpenCV中C/C++层函数。并使用配置的环境创建一个Android应用Demo。</p>
+<h2 id="1-准备">1. 准备</h2>
+<p>本文使用的环境如下：</p>
+<ul>
+<li>Windows 10 Enterprise 64bit</li>
+<li>Android Studio 2.3</li>
+<li>OpenCV for Android 3.4.2</li>
+<li>Android NDK 18</li>
+<li>CMAKE</li>
+</ul>
+<p>首先需要到OpenCV官网下载opencv-3.4.2-android-sdk.zip文件，这个压缩包是编译好的，里面包含有可在Android平台上使用的动态库文件和静态库文件。
+在android studio中新建一个工程，创建的时候选中支持C++.  如下图所示，这里我选择了使用C++11，因为OpenCV中有很有C++11的新特性的使用。
+<img src="https://upload-images.jianshu.io/upload_images/15711810-fbeeeacf01f253ed.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1.创建带C++的Android项目"></p>
+<h2 id="2-添加opencv库文件">2. 添加OpenCV库文件</h2>
+<p>解压下载好的opencv-3.4.2-android-sdk.zip。将.\opencv-3.4.1-android-sdk\OpenCV-android-sdk\sdk\native\jni\include 这个文件夹拷贝到cpp目录下，如下图所示。
+<img src="https://upload-images.jianshu.io/upload_images/15711810-ee8f55403e3716b4.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="2.拷贝include文件夹"></p>
+<p>然后再src/main目录下创建一个名为<strong>jniLibs</strong>的目录， 然后将\opencv-3.4.2-android-sdk\OpenCV-android-sdk\sdk\native\libs目录下的动态库文件全部拷贝到这个目录下。
+<img src="https://upload-images.jianshu.io/upload_images/15711810-0e7d1ce62e4475d1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="3.添加动态库文件">
+到了这一步，我们就可以在工程中使用引入的库文件了。</p>
+<h2 id="3-在project中引入opencv">3. 在project中引入opencv</h2>
+<p>首先是要去CmakeList.txt文件中去添加我们引入的新文件。下面贴出的是修改好的文件，为了方便看已经将大部分自带的注释都删除掉了。这里主要设置的是3个地方，第一个是设置opencv头文件的目录，这是为了让cpp文件在编译的时候能找到OpenCV中类或函数的定义。第二个就是添加opencv动态库。第三就是要将opencv的动态库链接到native-lib中，这样app只需要load native-lib就可以调用opencv了。
+使用到的cmake指令：</p>
+<ul>
+<li>include_directories 函数设置了include文件夹的路径</li>
+<li>add_library 函数设置库名和类型，其中libopencv_java3 是用户自定义的变量名，前后保持一致即可，SHARE 表示引入的库是动态链接库</li>
+<li>set_target_properties 设置了OpenCV的动态链接库的路径 target_link_libraries 具有依赖关系的动态库链接到指定目标上，链接顺序需符合gcc链接规则，这里我们把libopencv_java3和log链接到了native-lib上。</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmake" data-lang="cmake">cmake_minimum_required(<span style="color:#e6db74">VERSION</span> <span style="color:#e6db74">3.4.1</span>)<span style="color:#960050;background-color:#1e0010"></span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># 设置include文件夹的地址
+</span><span style="color:#75715e"></span>include_directories(<span style="color:#f92672">${</span>CMAKE_SOURCE_DIR<span style="color:#f92672">}</span><span style="color:#e6db74">/src/main/cpp/include</span>)<span style="color:#960050;background-color:#1e0010"></span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># 设置opencv的动态库
+</span><span style="color:#75715e"></span>add_library(<span style="color:#e6db74">libopencv</span> <span style="color:#e6db74">SHARED</span> <span style="color:#e6db74">IMPORTED</span>)<span style="color:#960050;background-color:#1e0010"></span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>set_target_properties(<span style="color:#e6db74">libopencv</span> <span style="color:#e6db74">PROPERTIES</span> <span style="color:#e6db74">IMPORTED_LOCATION</span> <span style="color:#f92672">${</span>CMAKE_SOURCE_DIR<span style="color:#f92672">}</span><span style="color:#e6db74">/src/main/jniLibs/</span><span style="color:#f92672">${</span>ANDROID_ABI<span style="color:#f92672">}</span><span style="color:#e6db74">/libopencv_java3.so</span>)<span style="color:#960050;background-color:#1e0010"></span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>add_library( <span style="color:#75715e"># Sets the name of the library.
+</span><span style="color:#75715e"></span>             <span style="color:#e6db74">native-lib</span>
+             <span style="color:#75715e"># Sets the library as a shared library.
+</span><span style="color:#75715e"></span>             <span style="color:#e6db74">SHARED</span>
+             <span style="color:#75715e"># Provides a relative path to your source file(s).
+</span><span style="color:#75715e"></span>             <span style="color:#e6db74">src/main/cpp/native-lib.cpp</span> )<span style="color:#960050;background-color:#1e0010"></span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>find_library( <span style="color:#75715e"># Sets the name of the path variable.
+</span><span style="color:#75715e"></span>              <span style="color:#e6db74">log-lib</span>
+<span style="color:#e6db74"></span>
+              <span style="color:#75715e"># Specifies the name of the NDK library that
+</span><span style="color:#75715e"></span>              <span style="color:#75715e"># you want CMake to locate.
+</span><span style="color:#75715e"></span>              <span style="color:#e6db74">log</span> )<span style="color:#960050;background-color:#1e0010"></span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span>target_link_libraries( <span style="color:#75715e"># Specifies the target library.
+</span><span style="color:#75715e"></span>                       <span style="color:#e6db74">native-lib</span>
+                       <span style="color:#e6db74">libopencv</span>
+                       <span style="color:#75715e"># Links the target library to the log library
+</span><span style="color:#75715e"></span>                       <span style="color:#75715e"># included in the NDK.
+</span><span style="color:#75715e"></span>                       <span style="color:#f92672">${</span>log-lib<span style="color:#f92672">}</span> )<span style="color:#960050;background-color:#1e0010"></span><span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>这个文件配置完基本就可以直接在cpp中使用opencv了，<strong>网上很多配置的方法中说要在app下的build.gradle里面进行修改，其实完全可以不修改也是可以运行的</strong>。下面我们就试试在项目中使用opencv将图片进行一下处理。</p>
+<h2 id="4-在project中使用opencv">4. 在project中使用opencv</h2>
+<p>首先在工程中添加一张图，作为我们图像处理的原材料。这里，我拷贝一张名为abc.jpg的图像到drawable下。
+然后修改布局文件：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span>
+<span style="color:#f92672">&lt;LinearLayout</span>
+    <span style="color:#a6e22e">xmlns:android=</span><span style="color:#e6db74">&#34;http://schemas.android.com/apk/res/android&#34;</span>
+    <span style="color:#a6e22e">xmlns:tools=</span><span style="color:#e6db74">&#34;http://schemas.android.com/tools&#34;</span>
+    <span style="color:#a6e22e">xmlns:app=</span><span style="color:#e6db74">&#34;http://schemas.android.com/apk/res-auto&#34;</span>
+    <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+    <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+    <span style="color:#a6e22e">android:orientation=</span><span style="color:#e6db74">&#34;vertical&#34;</span>
+    <span style="color:#a6e22e">android:gravity=</span><span style="color:#e6db74">&#34;center&#34;</span>
+    <span style="color:#a6e22e">tools:context=</span><span style="color:#e6db74">&#34;com.ay.cvdemo.MainActivity&#34;</span><span style="color:#f92672">&gt;</span>
+
+    <span style="color:#f92672">&lt;TextView</span>
+        <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/sample_text&#34;</span>
+        <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+        <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+        <span style="color:#a6e22e">android:text=</span><span style="color:#e6db74">&#34;Hello World!&#34;</span>
+        <span style="color:#a6e22e">app:layout_constraintBottom_toBottomOf=</span><span style="color:#e6db74">&#34;parent&#34;</span>
+        <span style="color:#a6e22e">app:layout_constraintLeft_toLeftOf=</span><span style="color:#e6db74">&#34;parent&#34;</span>
+        <span style="color:#a6e22e">app:layout_constraintRight_toRightOf=</span><span style="color:#e6db74">&#34;parent&#34;</span>
+        <span style="color:#a6e22e">app:layout_constraintTop_toTopOf=</span><span style="color:#e6db74">&#34;parent&#34;</span> <span style="color:#f92672">/&gt;</span>
+
+    <span style="color:#f92672">&lt;LinearLayout</span>
+        <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+        <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+        <span style="color:#a6e22e">android:layout_weight=</span><span style="color:#e6db74">&#34;1&#34;</span>
+        <span style="color:#a6e22e">android:orientation=</span><span style="color:#e6db74">&#34;vertical&#34;</span><span style="color:#f92672">&gt;</span>
+
+        <span style="color:#f92672">&lt;ImageView</span>
+            <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/image&#34;</span>
+            <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+            <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+            <span style="color:#a6e22e">android:layout_weight=</span><span style="color:#e6db74">&#34;1&#34;</span>
+            <span style="color:#a6e22e">app:srcCompat=</span><span style="color:#e6db74">&#34;@drawable/abc&#34;</span> <span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;/LinearLayout&gt;</span>
+
+    <span style="color:#f92672">&lt;LinearLayout</span>
+        <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+        <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+        <span style="color:#a6e22e">android:layout_weight=</span><span style="color:#e6db74">&#34;1&#34;</span>
+        <span style="color:#a6e22e">android:orientation=</span><span style="color:#e6db74">&#34;horizontal&#34;</span><span style="color:#f92672">&gt;</span>
+
+        <span style="color:#f92672">&lt;Button</span>
+            <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/button_gray&#34;</span>
+            <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+            <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+            <span style="color:#a6e22e">android:layout_weight=</span><span style="color:#e6db74">&#34;1&#34;</span>
+            <span style="color:#a6e22e">android:text=</span><span style="color:#e6db74">&#34;灰度图&#34;</span> <span style="color:#f92672">/&gt;</span>
+
+        <span style="color:#f92672">&lt;Button</span>
+            <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/button_src&#34;</span>
+            <span style="color:#a6e22e">android:layout_width=</span><span style="color:#e6db74">&#34;match_parent&#34;</span>
+            <span style="color:#a6e22e">android:layout_height=</span><span style="color:#e6db74">&#34;wrap_content&#34;</span>
+            <span style="color:#a6e22e">android:layout_weight=</span><span style="color:#e6db74">&#34;1&#34;</span>
+            <span style="color:#a6e22e">android:text=</span><span style="color:#e6db74">&#34;原始图&#34;</span> <span style="color:#f92672">/&gt;</span>
+
+    <span style="color:#f92672">&lt;/LinearLayout&gt;</span>
+
+<span style="color:#f92672">&lt;/LinearLayout&gt;</span>
+
+</code></pre></div><p>然后修改MainActivity.java</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> com.ay.cvdemo<span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> android.graphics.Bitmap<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> android.graphics.BitmapFactory<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> android.support.v7.app.AppCompatActivity<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> android.os.Bundle<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> android.view.View<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> android.widget.Button<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> android.widget.ImageView<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> android.widget.TextView<span style="color:#f92672">;</span>
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MainActivity</span> <span style="color:#66d9ef">extends</span> AppCompatActivity <span style="color:#66d9ef">implements</span> View<span style="color:#f92672">.</span><span style="color:#a6e22e">OnClickListener</span><span style="color:#f92672">{</span>
+
+
+    <span style="color:#75715e">// Used to load the &#39;native-lib&#39; library on application startup.
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">static</span> <span style="color:#f92672">{</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">loadLibrary</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;native-lib&#34;</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">private</span> Button btn_src<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> Button btn_gray<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> ImageView imageView<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> Bitmap bitmap<span style="color:#f92672">;</span>
+
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onCreate</span><span style="color:#f92672">(</span>Bundle savedInstanceState<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">super</span><span style="color:#f92672">.</span><span style="color:#a6e22e">onCreate</span><span style="color:#f92672">(</span>savedInstanceState<span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+        setContentView<span style="color:#f92672">(</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">layout</span><span style="color:#f92672">.</span><span style="color:#a6e22e">activity_main</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+
+        <span style="color:#75715e">// Example of a call to a native method
+</span><span style="color:#75715e"></span>        TextView tv <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>TextView<span style="color:#f92672">)</span> findViewById<span style="color:#f92672">(</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">id</span><span style="color:#f92672">.</span><span style="color:#a6e22e">sample_text</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+        tv<span style="color:#f92672">.</span><span style="color:#a6e22e">setText</span><span style="color:#f92672">(</span>stringFromJNI<span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+
+        btn_src <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>Button<span style="color:#f92672">)</span>findViewById<span style="color:#f92672">(</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">id</span><span style="color:#f92672">.</span><span style="color:#a6e22e">button_src</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+        imageView <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>ImageView<span style="color:#f92672">)</span>findViewById<span style="color:#f92672">(</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">id</span><span style="color:#f92672">.</span><span style="color:#a6e22e">image</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+        bitmap <span style="color:#f92672">=</span> BitmapFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">decodeResource</span><span style="color:#f92672">(</span>getResources<span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">,</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">drawable</span><span style="color:#f92672">.</span><span style="color:#a6e22e">abc</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+        imageView<span style="color:#f92672">.</span><span style="color:#a6e22e">setImageBitmap</span><span style="color:#f92672">(</span>bitmap<span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+        btn_src<span style="color:#f92672">.</span><span style="color:#a6e22e">setOnClickListener</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+
+        btn_gray <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>Button<span style="color:#f92672">)</span>findViewById<span style="color:#f92672">(</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">id</span><span style="color:#f92672">.</span><span style="color:#a6e22e">button_gray</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+        btn_gray<span style="color:#f92672">.</span><span style="color:#a6e22e">setOnClickListener</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">showImage</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">{</span>
+        bitmap <span style="color:#f92672">=</span> BitmapFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">decodeResource</span><span style="color:#f92672">(</span>getResources<span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">,</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">drawable</span><span style="color:#f92672">.</span><span style="color:#a6e22e">abc</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+        imageView<span style="color:#f92672">.</span><span style="color:#a6e22e">setImageBitmap</span><span style="color:#f92672">(</span>bitmap<span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">gray</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">int</span> w <span style="color:#f92672">=</span> bitmap<span style="color:#f92672">.</span><span style="color:#a6e22e">getWidth</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">int</span> h <span style="color:#f92672">=</span> bitmap<span style="color:#f92672">.</span><span style="color:#a6e22e">getHeight</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">int</span><span style="color:#f92672">[</span><span style="color:#f92672">]</span> piexls <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[</span>w<span style="color:#f92672">*</span>h<span style="color:#f92672">]</span><span style="color:#f92672">;</span>
+        bitmap<span style="color:#f92672">.</span><span style="color:#a6e22e">getPixels</span><span style="color:#f92672">(</span>piexls<span style="color:#f92672">,</span>0<span style="color:#f92672">,</span>w<span style="color:#f92672">,</span>0<span style="color:#f92672">,</span>0<span style="color:#f92672">,</span>w<span style="color:#f92672">,</span>h<span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">int</span><span style="color:#f92672">[</span><span style="color:#f92672">]</span> resultData <span style="color:#f92672">=</span> Bitmap2Gray<span style="color:#f92672">(</span>piexls<span style="color:#f92672">,</span> w<span style="color:#f92672">,</span> h<span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+        Bitmap resultImage <span style="color:#f92672">=</span> Bitmap<span style="color:#f92672">.</span><span style="color:#a6e22e">createBitmap</span><span style="color:#f92672">(</span>w<span style="color:#f92672">,</span>h<span style="color:#f92672">,</span> Bitmap<span style="color:#f92672">.</span><span style="color:#a6e22e">Config</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ARGB_8888</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+        resultImage<span style="color:#f92672">.</span><span style="color:#a6e22e">setPixels</span><span style="color:#f92672">(</span>resultData<span style="color:#f92672">,</span>0<span style="color:#f92672">,</span>w<span style="color:#f92672">,</span>0<span style="color:#f92672">,</span>0<span style="color:#f92672">,</span>w<span style="color:#f92672">,</span>h<span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+        imageView<span style="color:#f92672">.</span><span style="color:#a6e22e">setImageBitmap</span><span style="color:#f92672">(</span>resultImage<span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onClick</span><span style="color:#f92672">(</span>View v<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span>v<span style="color:#f92672">.</span><span style="color:#a6e22e">getId</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">case</span> R<span style="color:#f92672">.</span><span style="color:#a6e22e">id</span><span style="color:#f92672">.</span><span style="color:#a6e22e">button_src</span><span style="color:#f92672">:</span>
+                showImage<span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+                <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+            <span style="color:#66d9ef">case</span> R<span style="color:#f92672">.</span><span style="color:#a6e22e">id</span><span style="color:#f92672">.</span><span style="color:#a6e22e">button_gray</span><span style="color:#f92672">:</span>
+                gray<span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+                <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#75715e">/**
+</span><span style="color:#75715e">     * A native method that is implemented by the &#39;native-lib&#39; native library,
+</span><span style="color:#75715e">     * which is packaged with this application.
+</span><span style="color:#75715e">     */</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">native</span> String <span style="color:#a6e22e">stringFromJNI</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">native</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[</span><span style="color:#f92672">]</span> <span style="color:#a6e22e">Bitmap2Gray</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">[</span><span style="color:#f92672">]</span> pixels<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> w<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> h<span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+
+
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onResume</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">super</span><span style="color:#f92672">.</span><span style="color:#a6e22e">onResume</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>然后是native-lib.cpp文件</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;jni.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;string&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;opencv2/opencv.hpp&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+<span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> cv;
+
+<span style="color:#66d9ef">extern</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">C</span><span style="color:#e6db74">&#34;</span>
+JNIEXPORT jintArray JNICALL
+Java_com_ay_cvdemo_MainActivity_Bitmap2Gray(JNIEnv <span style="color:#f92672">*</span>env,
+                                            jobject instance,
+                                            jintArray buf,
+                                            jint w,
+                                            jint h) {
+    jint <span style="color:#f92672">*</span>cbuf;
+    jboolean ptfalse <span style="color:#f92672">=</span> false;
+    cbuf <span style="color:#f92672">=</span> env<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>GetIntArrayElements(buf, <span style="color:#f92672">&amp;</span>ptfalse);
+    <span style="color:#66d9ef">if</span>(cbuf <span style="color:#f92672">=</span><span style="color:#f92672">=</span> NULL){
+        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+    }
+
+    Mat <span style="color:#a6e22e">imgData</span>(h, w, CV_8UC4, (<span style="color:#66d9ef">unsigned</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span>)cbuf);
+    <span style="color:#75715e">// 注意，Android的Bitmap是ARGB四通道
+</span><span style="color:#75715e"></span>    cv<span style="color:#f92672">:</span><span style="color:#f92672">:</span>cvtColor(imgData, imgData, CV_BGRA2GRAY);
+    cv<span style="color:#f92672">:</span><span style="color:#f92672">:</span>cvtColor(imgData, imgData, CV_GRAY2BGRA);
+
+    <span style="color:#66d9ef">int</span> size<span style="color:#f92672">=</span>w <span style="color:#f92672">*</span> h;
+    jintArray result <span style="color:#f92672">=</span> env<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>NewIntArray(size);
+    env<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>SetIntArrayRegion(result, <span style="color:#ae81ff">0</span>, size, (jint<span style="color:#f92672">*</span>)imgData.data);
+    env<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>ReleaseIntArrayElements(buf, cbuf, <span style="color:#ae81ff">0</span>);
+    <span style="color:#66d9ef">return</span> result;
+}
+
+<span style="color:#66d9ef">extern</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">C</span><span style="color:#e6db74">&#34;</span>
+JNIEXPORT jstring JNICALL
+Java_com_ay_cvdemo_MainActivity_stringFromJNI(
+        JNIEnv<span style="color:#f92672">*</span> env,
+        jobject <span style="color:#75715e">/* this */</span>) {
+    std<span style="color:#f92672">:</span><span style="color:#f92672">:</span>string hello <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Hello from C++</span><span style="color:#e6db74">&#34;</span>;
+    <span style="color:#66d9ef">return</span> env<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>NewStringUTF(hello.c_str());
+}
+</code></pre></div><p>做完上述工作之后就可以在虚拟机上测试运行了。
+<img src="https://upload-images.jianshu.io/upload_images/15711810-82d977aa34599a23.gif?imageMogr2/auto-orient/strip" alt="result"></p>
+        </div>
+
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="https://bzhou830.github.io/">十面埋伏</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="https://bzhou830.github.io/posts/20190103Android%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8JNI%E6%96%B9%E5%BC%8F%E8%B0%83%E7%94%A8OpenCV%E9%85%8D%E7%BD%AE/">https://bzhou830.github.io/posts/20190103Android%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8JNI%E6%96%B9%E5%BC%8F%E8%B0%83%E7%94%A8OpenCV%E9%85%8D%E7%BD%AE/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
+</div>
+<br/>
+
+
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/posts/20190103%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9B%B8%E5%85%B3/">树莓派工具</a></li>
+        
+        <li><a href="/posts/20190101Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">Hexo博客搭建</a></li>
+        
+        <li><a href="/about/">关于我</a></li>
+        
+        <li><a href="/posts/20161117DICOM%E5%BD%B1%E5%83%8F%E4%B8%AD%E7%9A%84%E7%AA%97%E5%AE%BD%E7%AA%97%E4%BD%8D/">DICOM影像中的窗宽窗位</a></li>
+        
+        <li><a href="/posts/20161008DICOM%E9%80%9A%E4%BF%A1PDU%E6%95%B0%E6%8D%AE%E5%8C%852/">DICOM通信|PDU数据包（2）</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='https://bzhou830.github.io/tags/opencv'>opencv</a></li>
+                
+                <li><a href='https://bzhou830.github.io/tags/android'>android</a></li>
+                
+                <li><a href='https://bzhou830.github.io/tags/jni'>jni</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "bzhou830/Blog"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='https://bzhou830.github.io/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://bzhou830.github.io/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20190801Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" title="Git快速入门手册">Git快速入门手册</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20190710%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8503/" title="03 图形管线概览及GPU中顶点处理">03 图形管线概览及GPU中顶点处理</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20190705%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8502/" title="02 GPU内存架构和命令处理器">02 GPU内存架构和命令处理器</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20190703%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8501/" title="01 从App到硬件各个层级">01 从App到硬件各个层级</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20190610Python%E8%AF%BB%E5%86%99Excel/" title="Python读写Excel">Python读写Excel</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20190601%E9%9B%86%E8%A3%85%E7%AE%B1OCR%E4%BD%BF%E7%94%A8EAST%E5%92%8Ctesseract/" title="集装箱OCR：使用EAST和Tesseract">集装箱OCR：使用EAST和Tesseract</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20190226Windows%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B1/" title="Windows驱动编程(1)：第一个驱动程序">Windows驱动编程(1)：第一个驱动程序</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20190112C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8603/" title="C&#43;&#43;内存管理(3)：重载">C&#43;&#43;内存管理(3)：重载</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20190110C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8602/" title="C&#43;&#43;内存管理(2)：内存操作相关函数">C&#43;&#43;内存管理(2)：内存操作相关函数</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20190106C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8601/" title="C&#43;&#43;内存管理(1)：分配和释放的四个层面">C&#43;&#43;内存管理(1)：分配和释放的四个层面</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://bzhou830.github.io/tags/C/C&#43;&#43;/">C/C&#43;&#43;</a>
+    
+    <a href="https://bzhou830.github.io/tags/C/C&#43;&#43;STL/">C/C&#43;&#43;，STL</a>
+    
+    <a href="https://bzhou830.github.io/tags/DICOM/">DICOM</a>
+    
+    <a href="https://bzhou830.github.io/tags/Excel/">Excel</a>
+    
+    <a href="https://bzhou830.github.io/tags/GPU/">GPU</a>
+    
+    <a href="https://bzhou830.github.io/tags/OCR/">OCR</a>
+    
+    <a href="https://bzhou830.github.io/tags/OpenCV%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">OpenCV，图像处理</a>
+    
+    <a href="https://bzhou830.github.io/tags/Python/">Python</a>
+    
+    <a href="https://bzhou830.github.io/tags/android/">android</a>
+    
+    <a href="https://bzhou830.github.io/tags/git/">git</a>
+    
+    <a href="https://bzhou830.github.io/tags/github/">github</a>
+    
+    <a href="https://bzhou830.github.io/tags/hexo/">hexo</a>
+    
+    <a href="https://bzhou830.github.io/tags/jni/">jni</a>
+    
+    <a href="https://bzhou830.github.io/tags/opencv/">opencv</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%85%A5%E9%97%A8/">入门</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">内存管理</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86DICOM/">图像处理，DICOM</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E6%96%87%E6%9C%AC%E6%A3%80%E6%B5%8B/">文本检测</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8/">驱动</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B/">驱动编程</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://bzhou830.github.io/" title="十面埋伏的博客">十面埋伏的博客</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://bzhou830.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="https://bzhou830.github.io/">十面埋伏的博客 By 十面埋伏</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+    <script src='/js/douban.js'></script>
+
+</body>
+
+</html>

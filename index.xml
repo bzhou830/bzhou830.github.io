@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>十面埋伏的博客</title>
+    <link>https://bzhou830.github.io/</link>
+    <description>Recent content on 十面埋伏的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 01 Aug 2019 09:16:34 +0800</lastBuildDate>
+    
+	<atom:link href="https://bzhou830.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Git快速入门手册</title>
+      <link>https://bzhou830.github.io/posts/20190801Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Thu, 01 Aug 2019 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20190801Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</guid>
+      <description>&lt;p&gt;本文作为版本控制软件git的入门指导和常用命令整理。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>03 图形管线概览及GPU中顶点处理</title>
+      <link>https://bzhou830.github.io/posts/20190710%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8503/</link>
+      <pubDate>Wed, 10 Jul 2019 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20190710%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8503/</guid>
+      <description>&lt;p&gt;通过前面几篇的内容，我们知道，应用程序中的Draw API调用会经过D3D Runtime, 用户态驱动等等各个层级，最终将命令传到GPU的命令解释器，GPU就会根据命令的内容来进行图形的计算和处理。那么这一篇我们就来看看顶点的处理流程。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>02 GPU内存架构和命令处理器</title>
+      <link>https://bzhou830.github.io/posts/20190705%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8502/</link>
+      <pubDate>Fri, 05 Jul 2019 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20190705%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8502/</guid>
+      <description>&lt;p&gt;上一篇中主要介绍了3D渲染命令到达GPU之前经历过的各个阶段。用下图可以概括上一篇中所讲的内容，当然其中很多细节没有出现在图中。之前我们说KMD将命令送给了硬件，这个简单的“送”的过程实际上并不是那么简单的。我们知道显卡都是通过信号线连在主板上的，所以我们送命令都是需要走这些信号线的。还有就是我们把命令送给显卡，那显卡总得有个地方来接受命令吧，这必然需要涉及到内存的使用。然而系统的内存条是通过PCIe总线连接在主板上的，而且显卡自己也可以配有自己的显存，选择使用他们中的哪一个显然也是必须要考究的，那么我们首先就来谈谈内存子系统。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>01 从App到硬件各个层级</title>
+      <link>https://bzhou830.github.io/posts/20190703%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8501/</link>
+      <pubDate>Wed, 03 Jul 2019 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20190703%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8501/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;A trip through the Graphics Pipeline 2011&lt;/strong&gt; 是发布在博客 &lt;a href=&#34;http://fgiesen.wordpress.com&#34;&gt;http://fgiesen.wordpress.com&lt;/a&gt; 上的系列文章。主要涉及图形流水线在GPU中实现的方方面面。包括D3D/OpenGL app, UMD Driver, KMD Driver, GPU 硬件流水线设计等等。是非常好的学习图形学应用，GPU驱动等相关领域的资料。翻译的目的一方面是对学习的总结；另一方面是为了分享，因为国内在图形学， GPU相关的资料比较缺乏，导致学习曲线比较陡峭。由于能力欠缺，翻译和理解中肯定存在很多问题，如果发现有问题，烦请交流，避免为后续学习者挖坑。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python读写Excel</title>
+      <link>https://bzhou830.github.io/posts/20190610Python%E8%AF%BB%E5%86%99Excel/</link>
+      <pubDate>Mon, 10 Jun 2019 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20190610Python%E8%AF%BB%E5%86%99Excel/</guid>
+      <description>&lt;p&gt;Python3使用xlrd，xlwt, xlutils进行Excel文件的读写操作&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>集装箱OCR：使用EAST和Tesseract</title>
+      <link>https://bzhou830.github.io/posts/20190601%E9%9B%86%E8%A3%85%E7%AE%B1OCR%E4%BD%BF%E7%94%A8EAST%E5%92%8Ctesseract/</link>
+      <pubDate>Sat, 01 Jun 2019 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20190601%E9%9B%86%E8%A3%85%E7%AE%B1OCR%E4%BD%BF%E7%94%A8EAST%E5%92%8Ctesseract/</guid>
+      <description>&lt;p&gt;本篇文章主要记录下使用EAST和Tesseract做自然场景中集装箱上字符OCR的一个简单的实现。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Windows驱动编程(1)：第一个驱动程序</title>
+      <link>https://bzhou830.github.io/posts/20190226Windows%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B1/</link>
+      <pubDate>Tue, 26 Feb 2019 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20190226Windows%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B1/</guid>
+      <description>&lt;p&gt;本篇主要介绍在VS2013环境下使用WDK8.1开发KMD驱动的一个简单的demo.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;开发环境：VS2013, WDK8.1&lt;/li&gt;
+&lt;li&gt;需要使用的工具：vmware player(安装windows xp作为实验环境), DriverMonitor(加载驱动的工具), DbgView(捕获内核的信息输出)&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;内存管理(3)：重载</title>
+      <link>https://bzhou830.github.io/posts/20190112C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8603/</link>
+      <pubDate>Sat, 12 Jan 2019 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20190112C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8603/</guid>
+      <description>&lt;p&gt;前面两篇中从整体上来看系统中四个层面上内存的分配和释放，然后详细的介绍了这四个层面中的操作符或函数的使用方法，以及他们背后的调用关系。这一篇中我们就从内存管理的实现的基本点“重载”开始，看看C++给我们提供了哪些可供使用的内存管理接口。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;内存管理(2)：内存操作相关函数</title>
+      <link>https://bzhou830.github.io/posts/20190110C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8602/</link>
+      <pubDate>Thu, 10 Jan 2019 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20190110C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8602/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://www.jianshu.com/p/8f5e4d215d97&#34;&gt;C++内存管理（1）——分配和释放的四个层面&lt;/a&gt; 上一篇中从整体上来看系统中四个层面上内存的分配和释放，这样我们就对内存分配有了一个整体的认识。这一节则详细的来写写这四个层面中的操作符或函数的使用方法，以及他们背后的调用关系。首先我们从我们使用最多的new和delete来说起。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;内存管理(1)：分配和释放的四个层面</title>
+      <link>https://bzhou830.github.io/posts/20190106C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8601/</link>
+      <pubDate>Sun, 06 Jan 2019 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20190106C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8601/</guid>
+      <description>&lt;p&gt;内存的使用是稍底层一些的程序，或者性能要求严格的程序都是非常有讲究的一块。从程序的分层设计的角度来看，一般有四个层面上内存的分配和释放可以共给我们开发人员使用。本篇就介绍这这个层面上内存分配相关的一些函数接口。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Android平台使用JNI方式调用OpenCV配置</title>
+      <link>https://bzhou830.github.io/posts/20190103Android%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8JNI%E6%96%B9%E5%BC%8F%E8%B0%83%E7%94%A8OpenCV%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Thu, 03 Jan 2019 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20190103Android%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8JNI%E6%96%B9%E5%BC%8F%E8%B0%83%E7%94%A8OpenCV%E9%85%8D%E7%BD%AE/</guid>
+      <description>&lt;p&gt;本文主要介绍 OpenCV3.4.2 在 android studio2.3 中的配置，并使用 JNI 方式调用 OpenCV 中 C/C++ 层函数。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>树莓派工具</title>
+      <link>https://bzhou830.github.io/posts/20190103%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9B%B8%E5%85%B3/</link>
+      <pubDate>Thu, 03 Jan 2019 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20190103%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9B%B8%E5%85%B3/</guid>
+      <description>&lt;p&gt;本文主要记录使用树莓派过程的一些问题和解决方案。系统是基于官方的Raspbian Stretch with desktop系统。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hexo博客搭建</title>
+      <link>https://bzhou830.github.io/posts/20190101Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</link>
+      <pubDate>Tue, 01 Jan 2019 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20190101Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</guid>
+      <description>&lt;p&gt;本文用来记录我使用Hexo进行静态博客搭建的过程，博客是托管在Github Page上的。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>关于我</title>
+      <link>https://bzhou830.github.io/about/</link>
+      <pubDate>Fri, 10 Mar 2017 00:13:27 +0000</pubDate>
+      
+      <guid>https://bzhou830.github.io/about/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DICOM影像中的窗宽窗位</title>
+      <link>https://bzhou830.github.io/posts/20161117DICOM%E5%BD%B1%E5%83%8F%E4%B8%AD%E7%9A%84%E7%AA%97%E5%AE%BD%E7%AA%97%E4%BD%8D/</link>
+      <pubDate>Thu, 17 Nov 2016 09:29:11 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20161117DICOM%E5%BD%B1%E5%83%8F%E4%B8%AD%E7%9A%84%E7%AA%97%E5%AE%BD%E7%AA%97%E4%BD%8D/</guid>
+      <description>1.为什么有窗宽窗位? 医学图像领域的关键技术窗技术，是CT检查中用以观察不同密度的正常组织或病变的一种显示技术，包括窗宽(window width)和窗位(window level)。由于各种组织结构或病变具有不同的CT值，因此想要显示某一组织结构细节时，应该选择适合观察该组织或病变</description>
+    </item>
+    
+    <item>
+      <title>DICOM通信|PDU数据包（2）</title>
+      <link>https://bzhou830.github.io/posts/20161008DICOM%E9%80%9A%E4%BF%A1PDU%E6%95%B0%E6%8D%AE%E5%8C%852/</link>
+      <pubDate>Sat, 08 Oct 2016 09:29:11 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20161008DICOM%E9%80%9A%E4%BF%A1PDU%E6%95%B0%E6%8D%AE%E5%8C%852/</guid>
+      <description>DICOM通信-PDU数据包(1)中主要分析了DICOM通信协议的连接协商请求和连接协商应答。 在7个PDU数据包中还有5个数据包，从结构上来看，他们比协议的协商过程要简单明了一些。 这篇博客就来分析下剩下的5种数据包。 博客中使用的是WireShark抓包工具获取到的通信传输数据。 1</description>
+    </item>
+    
+    <item>
+      <title>DICOM通信|PDU数据包（1）</title>
+      <link>https://bzhou830.github.io/posts/20161007DICOM%E9%80%9A%E4%BF%A1PDU%E6%95%B0%E6%8D%AE%E5%8C%851/</link>
+      <pubDate>Fri, 07 Oct 2016 09:29:11 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20161007DICOM%E9%80%9A%E4%BF%A1PDU%E6%95%B0%E6%8D%AE%E5%8C%851/</guid>
+      <description>DICOM上层协议为DIMSE提供透明的网络数据传输服务，即以上层协议规定的协议数据单元传送接收DIMSE的命令流与数据流。上层协议中制定了上层服务以及协议数据单元(Protocol Data Unit，PDU)。PDU是处在同一层的对等体用来交换的信息格式，DICOM根据上层服务定义了以</description>
+    </item>
+    
+    <item>
+      <title>STL中的算法</title>
+      <link>https://bzhou830.github.io/posts/20160306STL%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Sun, 06 Mar 2016 09:29:11 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20160306STL%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E7%AE%97%E6%B3%95/</guid>
+      <description>STL算法部分主要由头文件,,组成。要使用 STL中的算法函数必须包含头文件，对于数值算法须包含，中则定义了一些模板类，用来声明函数对象。 STL中算法大致分为四类： 1、非可变序列算法：指不直接修改其所操作的容器内容的算法。 2、可变序列算法：指可以修改它们所操作的容器内容的算法。 3、</description>
+    </item>
+    
+    <item>
+      <title>OpenCV最大熵分割</title>
+      <link>https://bzhou830.github.io/posts/20151130OpenCV%E6%9C%80%E5%A4%A7%E7%86%B5%E5%88%86%E5%89%B2/</link>
+      <pubDate>Mon, 30 Nov 2015 12:55:00 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20151130OpenCV%E6%9C%80%E5%A4%A7%E7%86%B5%E5%88%86%E5%89%B2/</guid>
+      <description>1. 最大熵是什么？ 这里所说的熵是指信息熵，信息熵是来自于信息论的一个词，它是对系统所含信息的一种度量。通俗的讲，系统的不确定性越大，那么系统的信息熵就越大。反之，一个系统如果确定性高（系统越有序），那么整个系统的信息熵就越小。其数学定义表述如下： $$ H = -\int_{\-\infty}^{+\infty}p(x)log[p(x)]dx $$ 上式中，$p(x)$ 表示灰</description>
+    </item>
+    
+    <item>
+      <title>OpenCV最大间方差分割</title>
+      <link>https://bzhou830.github.io/posts/20151129OpenCV%E6%9C%80%E5%A4%A7%E9%97%B4%E6%96%B9%E5%B7%AE%E5%88%86%E5%89%B2/</link>
+      <pubDate>Sun, 29 Nov 2015 12:55:00 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20151129OpenCV%E6%9C%80%E5%A4%A7%E9%97%B4%E6%96%B9%E5%B7%AE%E5%88%86%E5%89%B2/</guid>
+      <description>OpenCV中其实有对OTUS算法的实现，threhold()函数最后一个参数可以指定使用OTUS算法。 1、最大间方差(OTUS)算法的描述 和均值迭代算法相似，OTUS算法也是利用图像的直方图进行的。OTUS算法的思想是选取一个阈值$T， T \in [0,m-1]$,$m$为图像的灰度级</description>
+    </item>
+    
+    <item>
+      <title>OpenCV均值迭代分割</title>
+      <link>https://bzhou830.github.io/posts/20151128OpenCV%E5%9D%87%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%88%86%E5%89%B2/</link>
+      <pubDate>Sat, 28 Nov 2015 12:55:00 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20151128OpenCV%E5%9D%87%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%88%86%E5%89%B2/</guid>
+      <description>【题外话】:之前在博客中写过一篇“区域生长”的博客，区域生长在平时经常用到，也比较容易理解和代码实现，所以在很多情况下大家会选择这种方法。但是区域生长有一个最致命的点就是需要选取一个生长的种子点。 为了交流学习，同时也为了后面查阅方便，准备陆续将基于直方图的几种分割算法加以总结。 1</description>
+    </item>
+    
+    <item>
+      <title>OpenCV区域生长算法</title>
+      <link>https://bzhou830.github.io/posts/20151127OpenCV%E5%8C%BA%E5%9F%9F%E7%94%9F%E9%95%BF%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Fri, 27 Nov 2015 12:55:00 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20151127OpenCV%E5%8C%BA%E5%9F%9F%E7%94%9F%E9%95%BF%E7%AE%97%E6%B3%95/</guid>
+      <description>1.理论基础 区域生长算法的基本思想是将有相似性质的像素点合并到一起。对每一个区域要先指定一个种子点作为生长的起点，然后将种子点周围领域的像素点和种子点进行对比，将具有相似性质的点合并起来继续向外生长，直到没有满足条件的像素被包括进来为止。这样一个区域的生长就完成了。这个过程中有几</description>
+    </item>
+    
+    <item>
+      <title>图像插值运算总结</title>
+      <link>https://bzhou830.github.io/posts/20150324%E5%9B%BE%E5%83%8F%E6%8F%92%E5%80%BC%E8%BF%90%E7%AE%97%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Tue, 24 Mar 2015 09:29:11 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20150324%E5%9B%BE%E5%83%8F%E6%8F%92%E5%80%BC%E8%BF%90%E7%AE%97%E6%80%BB%E7%BB%93/</guid>
+      <description>&lt;p&gt;图像插值就是利用已知邻近像素点的灰度值（或RGB图像中的三色值）来产生未知像素点的灰度值，以便由原始图像再生出具有更高分辨率的图像。图像插值常常用在图像的放缩，旋转等变换中。常用的插值运算有三种：最邻近插值、双线性插值和立方卷积插值（cubic运算）。假设变换（放缩，旋转等等）前的图像为S，变换后的图像为T。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>归档</title>
+      <link>https://bzhou830.github.io/archives/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://bzhou830.github.io/archives/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

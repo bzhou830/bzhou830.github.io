@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DICOM on 十面埋伏的博客</title>
+    <link>https://bzhou830.github.io/tags/DICOM/</link>
+    <description>Recent content in DICOM on 十面埋伏的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 08 Oct 2016 09:29:11 +0800</lastBuildDate>
+    
+	<atom:link href="https://bzhou830.github.io/tags/DICOM/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>DICOM通信|PDU数据包（2）</title>
+      <link>https://bzhou830.github.io/posts/20161008DICOM%E9%80%9A%E4%BF%A1PDU%E6%95%B0%E6%8D%AE%E5%8C%852/</link>
+      <pubDate>Sat, 08 Oct 2016 09:29:11 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20161008DICOM%E9%80%9A%E4%BF%A1PDU%E6%95%B0%E6%8D%AE%E5%8C%852/</guid>
+      <description>DICOM通信-PDU数据包(1)中主要分析了DICOM通信协议的连接协商请求和连接协商应答。 在7个PDU数据包中还有5个数据包，从结构上来看，他们比协议的协商过程要简单明了一些。 这篇博客就来分析下剩下的5种数据包。 博客中使用的是WireShark抓包工具获取到的通信传输数据。 1</description>
+    </item>
+    
+    <item>
+      <title>DICOM通信|PDU数据包（1）</title>
+      <link>https://bzhou830.github.io/posts/20161007DICOM%E9%80%9A%E4%BF%A1PDU%E6%95%B0%E6%8D%AE%E5%8C%851/</link>
+      <pubDate>Fri, 07 Oct 2016 09:29:11 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20161007DICOM%E9%80%9A%E4%BF%A1PDU%E6%95%B0%E6%8D%AE%E5%8C%851/</guid>
+      <description>DICOM上层协议为DIMSE提供透明的网络数据传输服务，即以上层协议规定的协议数据单元传送接收DIMSE的命令流与数据流。上层协议中制定了上层服务以及协议数据单元(Protocol Data Unit，PDU)。PDU是处在同一层的对等体用来交换的信息格式，DICOM根据上层服务定义了以</description>
+    </item>
+    
+  </channel>
+</rss>

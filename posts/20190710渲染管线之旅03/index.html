@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>03 图形管线概览及GPU中顶点处理 | 十面埋伏的博客</title>
+    <meta property="og:title" content="03 图形管线概览及GPU中顶点处理 - 十面埋伏的博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2019-07-10T09:16:34&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2019-07-10T09:16:34&#43;08:00'>
+        
+    <meta name="Keywords" content="C/C&#43;&#43;，OpenCV，图像处理，Windows驱动开发">
+    <meta name="description" content="03 图形管线概览及GPU中顶点处理">
+        
+    <meta name="author" content="十面埋伏">
+    <meta property="og:url" content="https://bzhou830.github.io/posts/20190710%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8503/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4031353640611810",
+        enable_page_level_ads: true
+    });
+    </script>
+    
+
+
+    
+    
+        <link rel="stylesheet" href='/css/douban.css'>
+    
+        <link rel="stylesheet" href='/css/other.css'>
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://bzhou830.github.io/">
+                        十面埋伏的博客
+                    </a>
+                
+                <p class="description">专注于C/C&#43;&#43;, OpenCV, 图像处理, Windows驱动开发</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="https://bzhou830.github.io/">首页</a>
+                    
+                    <a  href="https://bzhou830.github.io/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://bzhou830.github.io/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    <style type="text/css">
+    .post-toc {
+        position: fixed;
+        width: 200px;
+        margin-left: -210px;
+        padding: 5px 10px;
+        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+        font-size: 12px;
+        border: 1px solid rgba(0, 0, 0, .07);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.98);
+        background-clip: padding-box;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        word-wrap: break-word;
+        white-space: nowrap;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 999;
+        cursor: pointer;
+        max-height: 70%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .post-toc .post-toc-title {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .post-toc .post-toc-content {
+        font-size: 15px;
+    }
+
+    .post-toc .post-toc-content>nav>ul {
+        margin: 10px 0;
+    }
+
+    .post-toc .post-toc-content ul {
+        padding-left: 20px;
+        list-style: square;
+        margin: 0.5em;
+        line-height: 1.8em;
+    }
+
+    .post-toc .post-toc-content ul ul {
+        padding-left: 15px;
+        display: none;
+    }
+
+    @media print,
+    screen and (max-width:1057px) {
+        .post-toc {
+            display: none;
+        }
+    }
+</style>
+<div class="post-toc" style="position: absolute; top: 188px;">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-开胃菜">1. 开胃菜</a></li>
+    <li><a href="#2-input-assembler-stage">2. Input Assembler stage</a></li>
+    <li><a href="#3-顶点缓存和顶点着色">3. 顶点缓存和顶点着色</a></li>
+    <li><a href="#4-着色器单元内部">4. 着色器单元内部</a></li>
+    <li><a href="#5-结束语">5. 结束语</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postToc = $(".post-toc");
+        if (postToc.length) {
+            var leftPos = $("#main").offset().left;
+            if(leftPos<220){
+                postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})
+            }
+
+            var t = postToc.offset().top - 20,
+                a = {
+                    start: {
+                        position: "absolute",
+                        top: t
+                    },
+                    process: {
+                        position: "fixed",
+                        top: 20
+                    },
+                };
+            $(window).scroll(function () {
+                var e = $(window).scrollTop();
+                e < t ? postToc.css(a.start) : postToc.css(a.process)
+            })
+        }
+    })
+</script>
+    <article class="post">
+        <header>
+            <h1 class="post-title">03 图形管线概览及GPU中顶点处理</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2019年7月10日
+        </date>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <p>通过前面几篇的内容，我们知道，应用程序中的Draw API调用会经过D3D Runtime, 用户态驱动等等各个层级，最终将命令传到GPU的命令解释器，GPU就会根据命令的内容来进行图形的计算和处理。那么这一篇我们就来看看顶点的处理流程。</p>
+<h2 id="1-开胃菜">1. 开胃菜</h2>
+<p>在介绍GPU的顶点处理之前，我们先看看3D渲染管线。3D渲染管线是由一系列的stage构成的，每个stage都完成一些特定的工作。下图是D3D 11的渲染管线。</p>
+<!-- raw HTML omitted -->
+<p><img src="https://raw.githubusercontent.com/bzhou830/images/master/blogs/03_GPU3/1.png" alt="D3D 11 渲染管线"></p>
+<!-- raw HTML omitted -->
+<p>上图中的每个每个方框内都是一个stage的名称，这个名称就是D3D10/11的官方文档的叫法，括号里面的就是它的缩写。在后续的内容中我们会逐渐的介绍它们，在这里我们先对它们都用一句话来做个总结性的介绍。</p>
+<ul>
+<li>IA — Input Assembler. 读取索引数据和顶点数据.</li>
+<li>VS — Vertex shader. 读入传进来的顶点数据，对顶点进行处理，传出处理之后的顶点数据.</li>
+<li>PA — Primitive Assembly. 读入顶点数据，并将顶点数据组装成图元，然后将图元传出.</li>
+<li>HS — Hull shader. 接受批量的图元，对批量图元的控制点进行转换，输出给DS, 同时添加一些额外的信息给Driver中做细分.</li>
+<li>TS — Tessellator stage. 为曲面细分的线或三角形创建顶点和连接.</li>
+<li>DS — Domain shader. 使用shader的控制点，以及来自HS的额外数据和来自TS的曲面细分位置，再次将它们转换为顶点.</li>
+<li>GS — Geometry shader. 输入图元，选择性的使用顶点邻接信息，然后输出得到不同的图元.</li>
+<li>SO — Stream-out. 将GS的输出写到Buffer中.</li>
+<li>RS — Rasterizer. 将图元进行光栅化处理.</li>
+<li>PS — Pixel shader. 获取插值后的顶点数据，输出像素颜色, 也可以写入UAVs.</li>
+<li>OM — Output merger. 从PS获取着色后的像素，进行alpha blend并将它们写回backbuffer.</li>
+<li>CS — Compute shader. 在它自己的管道中本身。 输入是常量缓冲区+线程ID; 可以写入缓冲区和UAV.</li>
+</ul>
+<p>现在已经开始了，这里是我将要讨论的各种数据路径的列表，按顺序排列。我将在这里省略IA，PA，RS和OM阶段，因为他们实际上没有对数据做任何事情，他们只是对数据进行了重新的排列或者排序，它们本质上是将stage连接起来。</p>
+<ol>
+<li>VS —&gt; PS: 经典的可编程管道. 在D3D9中只有一条可编程的流水线. 这个路径仍然是目前最重要的常规渲染路径。后面我们将从头到尾地经历这个过程，一旦我完成了这个流程，我们就可以关注其他更有趣的流水线了.</li>
+<li>VS —&gt; GS —&gt; PS: GS是在D3D10中新引进来的一个stage.</li>
+<li>VS —&gt; HS —&gt; TS —&gt; DS —&gt; PS, VS —&gt; HS —&gt; TS —&gt; DS —&gt; GS —&gt; PS: Tessellation 是在D3D11中新引进来的.</li>
+<li>VS —&gt; SO, VS —&gt; GS —&gt; SO, VS —&gt; HS —&gt; TS —&gt; DS —&gt; GS —&gt; SO: Stream-out的管道 (可以经过或者不经过Tessellation).</li>
+<li>CS: Compute. 这也是D3D11新引入的，它是自己独立的一个通路.</li>
+</ol>
+<p>让我们从VS开始吧！在进入VS之前我们可以再看看前面的那个图，在VS之前我们还必须经过IA.</p>
+<h2 id="2-input-assembler-stage">2. Input Assembler stage</h2>
+<p>如果使用了索引缓冲区（Index Buffer）的话，这里发生的第一件事就是从索引缓冲区中加载索引数据。如果没有使用索引缓冲区，只需假设它的索引缓冲区中为0 1 2 3 4…，并将其用作索引。如果存在索引缓冲区，那么此时将从内存中读取其内容，而不是直接使用0 1 2 3 4…。IA中通常有一个数据缓存用来访问索引/顶点缓冲区的位置。需要注意的是，索引缓冲区的读取是要进行越界检查的（实际上，d3d10+中的所有资源访问都需要进行越界检查）。如果引用到原始索引缓冲区之外的元素，得到的值就是0. 比如说DrawIndexed 中设置indexCount为6，但是Index buffer实际上长度只是5，那么越界的索引访问结果就会得到0。这个定义看起来是没有什么作用的，但是有可靠的访问结果有时候就可以在特定的场合派上用场。你可以给drawindexed传入一个空的索引缓冲区，那么这时候drawindexed的效果就像是给drawindexed传入了一个内容全部为0的索引缓冲区。
+一旦我们有了索引，我们就可以从输入顶点流中读取每个顶点和每个实例的数据。我们有一个数据布局声明，只需从缓存/内存中读取它，然后将其解包为我们的Shader cores想要输入的浮点格式。但是，这个读取不会一下子就完成。硬件正在运行着色顶点的缓存，因此如果一个顶点被多个三角形引用（在完全规则的闭合三角形网格中，每个顶点将被大约6个三角形引用）。它不需要每次都进行数据的拷贝——我们只是引用已经存在的数据！</p>
+<h2 id="3-顶点缓存和顶点着色">3. 顶点缓存和顶点着色</h2>
+<blockquote>
+<p>注：本节内容中的部分是猜测的。这些内容基于业内人士对当前GPU的一些说法和解释，但是他们只解释了是怎么工作的但是没有说为什么要这样做，所以这里有一些推断，但这里的猜测都是一些细节，而且这些猜测也不是完全的胡说八道。这里的猜测绝对都是合理而且是讲得通的，但不能保证在真实的硬件中就是这样的，而且也不能保证这中间丢掉了一些细节。</p>
+</blockquote>
+<p>在很长的一段时间内（包括着色器模型3.0时代的GPU），VS和PS都是使用不同的处理单元来实现的，而且都要基于不同性能进行权衡。顶点缓存是一个想当简单的事情：通常它只是一个用来存放顶点的FIFO, 大小一般也就是十几到二十几个，这个大小就可以满足在较差的情况下保证有足够的空间存放顶点的输出属性。
+然后就是统一的着色器出现了。如果将过去不同类型的shader统一起来（VS, PS），设计过程肯定会需要做很多妥协。一方面, 顶点着色器VS在正常的使用过程中可能会触及到上百万个顶点。另一方面，像素着色器PS在处理一帧1920*1080的图像时，每帧图像至少触及到230万个像素点才能将整个屏幕填满。如果你要渲染出更为复杂的图形的话，那就需要更多了。所以，他们中间谁会成为性能的瓶颈呢？
+这里就有一个权衡：以前的顶点着色器单元每一次处理一个或者几个顶点，现在有了性能强大的统一着色处理单元，它是基于低延迟，高吞吐量来设计的，因此它需要的是一次处理一批一批的内容。一批能有多少呢？目前(2001年)，一批的数量在16~64个顶点。
+所以，如果你不想出现性能的浪费，你可以在16~64个顶点缓存cache miss的时候去加载数据，然后让着色器工作。这时候好像整个FIFO还没有真正的发挥作用，问题是如果你一次性的去处理一批顶点，那么一旦完成这些顶点的处理接下来的只能是开始组装三角形。基于这一点考虑，你可能会将一批顶点直接放进FIFO的尾部（假如说一批有32个顶点），这意味着现在有32个旧的顶点会被丢掉，但是这些丢掉的顶点中很可能有就是我们当前组装三角形所需要的顶点，这种方式明显就是有问题的。这里我们也没有办法保证FIFO中最老的32个顶点可以被顶点缓存命中，因为我们使用他们的时候可能他们已经不在FIFO里面了。而且我们让这个FIFO设计成多大比较合适呢？如果我们一批顶点是32个的话，那么FIFO的大小至少应该是32个，但是我们无法使用上一批中的顶点，因为它们已经不在FIFO里面了。那么我们可以将这个FIFO设计的更大一点？64个？那又太大了，需要注意的是每个顶点缓存的查找都涉及到将顶点索引和FIFO中的所有标记进行比较——这些是完全并行处理的，但这还是会降低性能。我们在这里有效的实现了一个完全关联的缓存。另外，在调度32个顶点进行着色处理和接收到结果中间我们做什么呢？只是等待着？这中处理一般需要几百个时钟周期，等待似乎是个愚蠢的做法。或许我们可以考虑上一篇中的方法，我们使用两个shader core进行并行处理，现在我们的FIFO至少需要64个Entry的长度，而且我们不能保证上一个64个Entry中的顶点可以hit到，因为在我们接收到结果的时候他们已经从FIFO中移出去了。这是一个FIFO vs. 两个shder core, 我们还可以使用一个FIFO vs. 多个shader core. 这种情况下Amdahl定律仍然成立——将一个严格的串行组件放到一个完全并行的管道中，这无疑是让它成为瓶颈的方法。
+弄一个FIFO看起来真的不能很好的适应这种环境，所以，将这种方式直接扔掉。回到原来的位置，我们实际上想做的是什么呢？获得一个批次相当大数量的顶点来处理，但是又要尽量不要那些不需要使用的顶点。
+所以，为了保证简单: 分配足够的空间给32个顶点(=一个批次)，同样的为32个entry分配标记缓存，使用一个空的缓存作为开始，即所有的entry都是无效状态。对于index buffer中的每一个图元都做一次索引的查找。如果在缓存中hit到了，就直接使用，如果没有hit到，在当前的批次中分配一个slot，然后将新的索引添加到缓存标记数组中。一旦我们没有足够的空间来添加新的图元，那么我们将这一批都送给shader core进行处理， 然后保存缓存标记数组（也就是我们送下去的32个顶点的索引），接着就从一个空的cache中处理一个新的批次，这样就保证的了批次之间的相对独立。
+着色处理单元处理一个批次大概需要几百个时钟周期，但这也没有关系，因为我们有多个着色处理单元，这就实现了并行化。我们最终会得到结果，此时我们可以使用保存的缓存标签和原始的索引缓冲区数据来进行图元的组装（这些是在“Primitive Assmbly”做的，在后面的部分会讲到）。
+当我们说获取结果的时候，这些结果到底在哪里呢？主要有两个选择：1.专用的缓冲区； 2.一些通用缓存/内存。以前使用的是1，具有围绕顶点数据设计的固定结构（每个顶点具有16个float4向量属性的空间）。但是现在的GPU都倾向于是用2，也就是使用通用的缓存或者内存，这种方式相比更加的灵活，它明显的优势就在于你可以将这块内存用于其他的shader stage。</p>
+<!-- raw HTML omitted -->
+<p><img src="https://raw.githubusercontent.com/bzhou830/images/master/blogs/03_GPU3/3.png" alt="vertex shading data flow"></p>
+<!-- raw HTML omitted -->
+<h2 id="4-着色器单元内部">4. 着色器单元内部</h2>
+<p>简短版本：着色器单元内部处理的内容和你反编译HLSL编译输出（fxc /dumpbin是很好的工具）所看到的内容差不多。只有处理器能很好地运行这类代码，而在硬件中完成这类事情的方式是构建一些非常接近着色器字节码的东西。这与我到目前所讨论的内容不同的是，它有很好的文档，如果您感兴趣，可以查看AMD和NVidia的会议演示文稿，或者阅读CUDA/Stream SDKs的文档。
+总之，快速ALU主要围绕FMAC(Float Multiply-ACcumulate)单元。一些HW支持倒数, 倒数的平方根, log2, exp2, sin, cos, 为高吞吐量和低延迟做优化, 运行多数量线程来降低延迟, 每个线程对应的寄存器数量相当少(因为运行的线程数量太多了!)，这些线程都擅长执行没有分支的代码。
+这些对于所有的实现几乎都是通用的。当然也有一些不同: AMD的硬件曾经直接坚持使用HLSL/GLSL来实现4-width的SIMD (似乎他们最近正在改变这些做法), 而Nvidia不久前决定将4-way的SIMD转换成标量指令。
+不过，值得注意的是不同着色器阶段之间的差异。简而言之，它们确实相当少;例如，所有的算术和逻辑指令在所有阶段都是完全相同的。一些结构(如导数指令和像素着色器中的插值属性)只存在于某些阶段;但是，主要的区别在于传入和传出数据的类型(和格式)。
+与着色器有关的有一个特殊的部分，虽然这是一个足够大的主题值得自己的一部分。这部分就是纹理采样(和纹理单元)。这将是我们下次的主题!到时候见。</p>
+<h2 id="5-结束语">5. 结束语</h2>
+<p>再次重申我对“顶点缓存和着色”部分的免责声明:这部分中有些是我自己的猜测。我也不打算详细介绍如何管理scratch/cache内存，缓冲区大小主要取决于你处理的批的大小和你期望的顶点输出属性的数量。缓冲区大小和管理对性能非常重要，虽然很有趣，但是这些东西是特定于你所谈论的任何硬件的。</p>
+        </div>
+
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="https://bzhou830.github.io/">十面埋伏</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="https://bzhou830.github.io/posts/20190710%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8503/">https://bzhou830.github.io/posts/20190710%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8503/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
+</div>
+<br/>
+
+
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/posts/20190705%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8502/">02 GPU内存架构和命令处理器</a></li>
+        
+        <li><a href="/posts/20190703%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8501/">01 从App到硬件各个层级</a></li>
+        
+        <li><a href="/posts/20190610Python%E8%AF%BB%E5%86%99Excel/">Python读写Excel</a></li>
+        
+        <li><a href="/posts/20190601%E9%9B%86%E8%A3%85%E7%AE%B1OCR%E4%BD%BF%E7%94%A8EAST%E5%92%8Ctesseract/">集装箱OCR：使用EAST和Tesseract</a></li>
+        
+        <li><a href="/posts/20190226Windows%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B1/">Windows驱动编程(1)：第一个驱动程序</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='https://bzhou830.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6'>图形学</a></li>
+                
+                <li><a href='https://bzhou830.github.io/tags/GPU'>GPU</a></li>
+                
+                <li><a href='https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8'>驱动</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "bzhou830/Blog"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='https://bzhou830.github.io/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://bzhou830.github.io/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20190801Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" title="Git快速入门手册">Git快速入门手册</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20190710%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8503/" title="03 图形管线概览及GPU中顶点处理">03 图形管线概览及GPU中顶点处理</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20190705%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8502/" title="02 GPU内存架构和命令处理器">02 GPU内存架构和命令处理器</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20190703%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8501/" title="01 从App到硬件各个层级">01 从App到硬件各个层级</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20190610Python%E8%AF%BB%E5%86%99Excel/" title="Python读写Excel">Python读写Excel</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20190601%E9%9B%86%E8%A3%85%E7%AE%B1OCR%E4%BD%BF%E7%94%A8EAST%E5%92%8Ctesseract/" title="集装箱OCR：使用EAST和Tesseract">集装箱OCR：使用EAST和Tesseract</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20190226Windows%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B1/" title="Windows驱动编程(1)：第一个驱动程序">Windows驱动编程(1)：第一个驱动程序</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20190112C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8603/" title="C&#43;&#43;内存管理(3)：重载">C&#43;&#43;内存管理(3)：重载</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20190110C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8602/" title="C&#43;&#43;内存管理(2)：内存操作相关函数">C&#43;&#43;内存管理(2)：内存操作相关函数</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20190106C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8601/" title="C&#43;&#43;内存管理(1)：分配和释放的四个层面">C&#43;&#43;内存管理(1)：分配和释放的四个层面</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://bzhou830.github.io/tags/C/C&#43;&#43;/">C/C&#43;&#43;</a>
+    
+    <a href="https://bzhou830.github.io/tags/C/C&#43;&#43;STL/">C/C&#43;&#43;，STL</a>
+    
+    <a href="https://bzhou830.github.io/tags/DICOM/">DICOM</a>
+    
+    <a href="https://bzhou830.github.io/tags/Excel/">Excel</a>
+    
+    <a href="https://bzhou830.github.io/tags/GPU/">GPU</a>
+    
+    <a href="https://bzhou830.github.io/tags/OCR/">OCR</a>
+    
+    <a href="https://bzhou830.github.io/tags/OpenCV%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">OpenCV，图像处理</a>
+    
+    <a href="https://bzhou830.github.io/tags/Python/">Python</a>
+    
+    <a href="https://bzhou830.github.io/tags/android/">android</a>
+    
+    <a href="https://bzhou830.github.io/tags/git/">git</a>
+    
+    <a href="https://bzhou830.github.io/tags/github/">github</a>
+    
+    <a href="https://bzhou830.github.io/tags/hexo/">hexo</a>
+    
+    <a href="https://bzhou830.github.io/tags/jni/">jni</a>
+    
+    <a href="https://bzhou830.github.io/tags/opencv/">opencv</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%85%A5%E9%97%A8/">入门</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">内存管理</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86DICOM/">图像处理，DICOM</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E6%96%87%E6%9C%AC%E6%A3%80%E6%B5%8B/">文本检测</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8/">驱动</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B/">驱动编程</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://bzhou830.github.io/" title="十面埋伏的博客">十面埋伏的博客</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://bzhou830.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="https://bzhou830.github.io/">十面埋伏的博客 By 十面埋伏</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+    <script src='/js/douban.js'></script>
+
+</body>
+
+</html>

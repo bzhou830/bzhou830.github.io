@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>01 从App到硬件各个层级 | 十面埋伏的博客</title>
+    <meta property="og:title" content="01 从App到硬件各个层级 - 十面埋伏的博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2019-07-03T09:16:34&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2019-07-03T09:16:34&#43;08:00'>
+        
+    <meta name="Keywords" content="C/C&#43;&#43;，OpenCV，图像处理，Windows驱动开发">
+    <meta name="description" content="01 从App到硬件各个层级">
+        
+    <meta name="author" content="十面埋伏">
+    <meta property="og:url" content="https://bzhou830.github.io/posts/20190703%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8501/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4031353640611810",
+        enable_page_level_ads: true
+    });
+    </script>
+    
+
+
+    
+    
+        <link rel="stylesheet" href='/css/douban.css'>
+    
+        <link rel="stylesheet" href='/css/other.css'>
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://bzhou830.github.io/">
+                        十面埋伏的博客
+                    </a>
+                
+                <p class="description">专注于C/C&#43;&#43;, OpenCV, 图像处理, Windows驱动开发</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="https://bzhou830.github.io/">首页</a>
+                    
+                    <a  href="https://bzhou830.github.io/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://bzhou830.github.io/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    <style type="text/css">
+    .post-toc {
+        position: fixed;
+        width: 200px;
+        margin-left: -210px;
+        padding: 5px 10px;
+        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+        font-size: 12px;
+        border: 1px solid rgba(0, 0, 0, .07);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.98);
+        background-clip: padding-box;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        word-wrap: break-word;
+        white-space: nowrap;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 999;
+        cursor: pointer;
+        max-height: 70%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .post-toc .post-toc-title {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .post-toc .post-toc-content {
+        font-size: 15px;
+    }
+
+    .post-toc .post-toc-content>nav>ul {
+        margin: 10px 0;
+    }
+
+    .post-toc .post-toc-content ul {
+        padding-left: 20px;
+        list-style: square;
+        margin: 0.5em;
+        line-height: 1.8em;
+    }
+
+    .post-toc .post-toc-content ul ul {
+        padding-left: 15px;
+        display: none;
+    }
+
+    @media print,
+    screen and (max-width:1057px) {
+        .post-toc {
+            display: none;
+        }
+    }
+</style>
+<div class="post-toc" style="position: absolute; top: 188px;">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#0-介绍从app到硬件各个层级-introduction-the-software-stack">0. 介绍从App到硬件各个层级 （Introduction: the Software stack）</a></li>
+    <li><a href="#1-应用程序">1 应用程序</a></li>
+    <li><a href="#2-api-runtime">2 API runtime</a></li>
+    <li><a href="#3-用户态显卡驱动程序-umd">3 用户态显卡驱动程序 (UMD)</a></li>
+    <li><a href="#4-进入调度器">4 进入调度器</a></li>
+    <li><a href="#5-用户态显卡驱动程序the-kernel-mode-driver-kmd">5 用户态显卡驱动程序（The kernel-mode driver, KMD）</a></li>
+    <li><a href="#6-总线">6 总线</a></li>
+    <li><a href="#7-命令解析器">7 命令解析器</a></li>
+    <li><a href="#8-顺带说说opengl">8 顺带说说OpenGL</a></li>
+    <li><a href="#9-遗漏">9 遗漏</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postToc = $(".post-toc");
+        if (postToc.length) {
+            var leftPos = $("#main").offset().left;
+            if(leftPos<220){
+                postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})
+            }
+
+            var t = postToc.offset().top - 20,
+                a = {
+                    start: {
+                        position: "absolute",
+                        top: t
+                    },
+                    process: {
+                        position: "fixed",
+                        top: 20
+                    },
+                };
+            $(window).scroll(function () {
+                var e = $(window).scrollTop();
+                e < t ? postToc.css(a.start) : postToc.css(a.process)
+            })
+        }
+    })
+</script>
+    <article class="post">
+        <header>
+            <h1 class="post-title">01 从App到硬件各个层级</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2019年7月3日
+        </date>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <p><strong>A trip through the Graphics Pipeline 2011</strong> 是发布在博客 <a href="http://fgiesen.wordpress.com">http://fgiesen.wordpress.com</a> 上的系列文章。主要涉及图形流水线在GPU中实现的方方面面。包括D3D/OpenGL app, UMD Driver, KMD Driver, GPU 硬件流水线设计等等。是非常好的学习图形学应用，GPU驱动等相关领域的资料。翻译的目的一方面是对学习的总结；另一方面是为了分享，因为国内在图形学， GPU相关的资料比较缺乏，导致学习曲线比较陡峭。由于能力欠缺，翻译和理解中肯定存在很多问题，如果发现有问题，烦请交流，避免为后续学习者挖坑。</p>
+<h1 id="0-前言"><strong>0. 前言</strong></h1>
+<p>这部分是<strong>图形流水线之旅</strong>系列博客的索引页，这个系列主要写D3D/OpenGL图形管道在GPU硬件中的实际实现。
+图形学相关的程序员都知道，目前有大量关于图形学各方面的文章，它们中有些是对基本概念的概述，也有些是对某些组件细节的详细叙述，但是处于它们之间的材料非常之少，而且这些材料中有很多都是过时的内容。</p>
+<p>这个系列的文章主要面向熟悉现代3D API（至少是OpenGL 2.0+或D3D9+的图形编程人员）并想知道它在GPU中的实现的相关程序员，这并不是面向图形流水线新手的; 如果你还没有使用3D API，那么大多数内容对你来说都是毫无用处的。我还假设你对当代硬件设计有一个基本的理解——你至少应该知道寄存器、FIFO、缓存和管道是什么，以及它们是如何工作的（《深入理解计算机系统》中有相关内容）。最后，你至少需要了解基本的并行编程机制。GPU是一台大规模并行的计算机，没有办法绕过并行机制的内容。</p>
+<p>一些读者评论说，这是对图形管道和GPU的一个非常底层的描述。底层还是上层，这完全取决于你站的位置。GPU架构师称之为GPU的上层描述。这些内容并不像当新一代GPU出现时你在官网上看到的眼花缭乱的流程图那么上层，但是，老实说，这种报告往往信息密度非常低的，即使它做得非常绚丽。归根结底，官网上的那些内容并不是要解释各项技术是如何工作的——它只是试图炫耀新产品的科技宣传片。</p>
+<p>所以，这个系列的文章试着将它们没有解释的技术原理充实一下。当然，这也就意味着，相比宣传片，技术文章的视觉效果没那么绚丽，也没有那么多的基准测试结果。取而代之的是大量的文本，一些单色图表，甚至是一些公式。</p>
+<p>那么这个系列的内容主要就包含下面的这些内容：</p>
+<ul>
+<li>Part 1: 介绍从App到硬件各个层级 (Introduction: the Software stack)</li>
+<li>Part 2: GPU内存架构和命令的处理 (GPU memory architecture and the Command Processor)</li>
+<li>Part 3: 3D图形管线概览、顶点处理 (3D pipeline overview, vertex processing)</li>
+<li>Part 4: 纹理和采样 (Texture samplers)</li>
+<li>Part 5: 图元处理、Clip/Cull, 投影和视图变换 (Primitive Assembly, Clip/Cull, Projection, and Viewport transform)</li>
+<li>Part 6: 三角形的生成和建立 ((Triangle) rasterization and setup)</li>
+<li>Part 7: 深度处理、模板处理 (Z/Stencil processing, 3 different ways)</li>
+<li>Part 8: 像素处理之复制 (Pixel processing – “fork phase”)</li>
+<li>Part 9: 像素处理之联合 (Pixel processing – “join phase”)</li>
+<li>Part 10: 几何着色器 (Geometry Shaders)</li>
+<li>Part 11: 流输出 (Stream-Out)</li>
+<li>Part 12: 曲面细分 (Tessellation)</li>
+<li>Part 13: 计算着色器 (Compute Shaders)</li>
+</ul>
+<blockquote>
+<p>翻译中发现其实有很多的名词平常都是直接使用英文来称呼的，强行翻译成中文有些觉得比较别扭。关于名词有更好的译法的烦请指正，谢谢。</p>
+</blockquote>
+<h2 id="0-介绍从app到硬件各个层级-introduction-the-software-stack">0. 介绍从App到硬件各个层级 （Introduction: the Software stack）</h2>
+<p>我在这里发布了东西已经有一段时间了，我可能会用这个地方来解释一些关于2011年图形硬件和软件的一般观点。通常你可以找到你电脑中显卡调用栈的相关描述，但是这些调用关系是如何工作？它们又是为什么要这样呢？这些问题就不那么容易找到答案了。我会尽量填补空白，而不会对特定的硬件进行具体的描述。我将主要讨论在Windows系统上上运行d3d9/10/11的dx11级别GPU硬件，因为这是我最熟悉的（PC）调用栈——不是API细节。一旦我们真正使用了GPU，所有的本地命令就变得非常重要了。</p>
+<h2 id="1-应用程序">1 应用程序</h2>
+<p>应用程序指的是你写的D3D/OpenGL应用，比如CrossFire, LOL这些游戏。作为这些应用的开发者来说，你要做的就是调用D3D/OpenGL提供的api接口，来实现自己想要的渲染效果。出现在应用程序中的的Bug就是需要应用程序开发程序员根据D3D/OpenGL的接口文档或者来检查自己程序的实现进行Bug的修复。</p>
+<h2 id="2-api-runtime">2 API runtime</h2>
+<p>在初接触编程语言的时候我们就会经常的遇到Runtime这个词，中文中一般解释它为运行时环境。比如说我们用C语言调用了printf的时候，那么这个printf是从哪里来的呢？C Runtime! 对比起来，使用D3D/OpenGL API函数那就需要D3D/OpenGL的Runtime，Runtime一般是以动态库的方式存在，在程序运行的时候加载到应用程序的进程中。D3D/OpenGL应用程序中使用Runtime（d3d, Opengl）提供的API进行资源创建/状态设置/绘制等等操作。Runtime 会根据应用程序设置的当前状态，验证调用参数的合法性，并进行一致性检查，管理用户可见资源。此外，可能还会验证着色器代码（Shader code）和各个Stage之间的着色器连接（至少d3d中会做这些工作, 在OpenGL中这部分工作由驱动程序来完成），然后将处理结果全部移交给显卡驱动程序——更准确地说，是用户态显卡驱动程序(UMD, user-mode driver)。</p>
+<h2 id="3-用户态显卡驱动程序-umd">3 用户态显卡驱动程序 (UMD)</h2>
+<p>应用程序开发者有时候可能遇见这样的“诡异”现象，按照D3D/OpenGL的API使用指南调用的，但是渲染的效果却和理论上的不一致，或者是在一个厂商的显卡上渲染出来的是这种效果，换一个显卡发现渲染出来的效果却完全不一样。这些现象大多数都是在这里发生的。同时，UMD驱动也是CPU和GPU交互的重要地方。
+如果你的应用程序因为API调用而出现了崩溃，问题通常就在这里——&ldquo;nvd3dum.dll&rdquo; (NVidia) or &ldquo;atiumd.dll” (AMD)，其实可以使用调试工具看到crash在了那个dll层面上。这里只列出了NVidia和AMD，其实还有很多其他的显卡厂商。就像这些dll名字显示的，他们的名字中通常都带有um或者是umd, 这是意味着他们是<strong>User Mode Driver</strong>。UMD, 应用程序和API Runtime他们都处于相同的Context，和应用程序运行在相同的地址空间，不管是API Runtime或者是UMD，他们都是以dll的形式出现的，换句话说，在程序运行的过程中这些dll才会加载到应用程序的进程中的，所以他们是处在同一个进程空间的，那么他们肯定运行在相同的地址空间了。
+UMD实现的是由d3d API Runtime调用的底层API（一般称之为 DDI）, 这些DDI与你表面上看到的API（应用程序调用的）非常相似，但是它更加细化了很多处理，比如内存管理等等。</p>
+<p>在UMD模块中会处理类似于着色器编译的事情，现在的应用程序通常将比较复杂绚丽的特效都用shader来编写，其实这些shader就是在UMD中进行编译的。
+对于Direct3D来说，d3d Runtime向umd传递一个预先验证的shader token数据流——D3D Runtime会检查shader的语法，并且会检查shader的编写是遵循D3D的规范的(类型的使用时正确的，使用的C#, T#, S# 和U#都不超过可用范围)。shader token中还使用到很多高级优化， 比如各种循环优化、死循环消除、持续传播、预测IFS等。使用shader token对于driver来说大有裨益。但是，它还应用了一系列较低级别的优化（如寄存器分配和循环展开），这些比较低级别的优化驱动程序一般都宁愿自己来做。概括的讲，驱动程序通常会将shader token立即转化为中间表示（IR），然后再进行编译；着色硬件与编译的d3d字节码非常接近。不需要额外工作一般就可以获得比较好的结果（而且HLSL编译器已经完成了一些高产量和高成本的优化，这是非常有帮助的）。</p>
+<p>这里有个有意思的事情：如果你的应用是一款非常著名的游戏，那么NV/AMD的程序员们很可能已经看过你的Shader，他们为了让自己的显卡能更加流畅的运行你的应用程序，他们很可能会手动的替换你的Shader，这样做的前提是他们的Shader渲染的结果最好和你的Shader渲染的结果一样，不然这就闹笑话了。这里大家可以想到的就是各种跑分的软件了，很多厂商都会对跑分软件进行优化，为的就是达到很高的跑分，虽然这对于用户来讲并不是什么好事，但是高的跑分通常可以给显卡厂商带来更高的收益，因为这直接反应的就是他们的硬件性能。</p>
+<p>更有趣的是：一些API状态可能最终会被编译到着色器中。举个例子，纹理采样器中可能没有实现某个相对奇特（或很少使用）的功能，比如说纹理边界，但在着色器中通常使用额外的代码进行模拟（或者根本不支持）。这意味着，对于不同的API状态组合，同一个shader有时会有多个版本的编译结果。</p>
+<p>很多创建/编译Shader的工作都是由驱动程序启动的时候完成的，这也是为什么你打开游戏的时候通常会等待比较长时间的原因。只有在实际需要时才会执行需要的那些Shader（某些应用程序创建了很多的Shader, 但是有很多都是使用的垃圾！）。Graphics程序员知道的另外一面——如果你想确保某个东西是真的被创建的（而不是仅仅保留内存），你需要发出一个虚拟的绘制调用，使用它来“预热它”。这虽然看起来很挫，但自从1999年第一次开始使用3D硬件以来，情况就是这样的——也就是说，到目前为止，这几乎是生活中的一个事实，所以要习惯它。</p>
+<p>还有内存管理之类的事情。UMD将获得诸如纹理创建命令之类的东西，并需要为它们提供空间。实际上，umd只是从kmd（内核模式驱动程序）中分配了一些更大的内存块；实际上，映射和取消映射页面（以及管理umd可以看到的那些显存，以及gpu可以访问哪些系统内存）是内核模式的特权，不能由umd完成。</p>
+<p>但是UMD可以做一些像旋转纹理（除非GPU可以在硬件中这样做，通常使用的是2d传输单元而不是真正的3D管道）和系统内存和（映射的）显存等之间的调度传输。最重要的是，一旦kmd分配并移交命令缓冲区，它还可以编写命令缓冲区（一般称之为“dma buffer”——我将交替使用这两个名称）。命令缓冲区包含命令, 所有的状态更改和绘图操作都将由UMD转换为硬件能够理解的命令。还有很多你不需要手动触发的东西，比如上传纹理和材质到显存中。</p>
+<p>一般来说，驱动程序将尽可能多地把实际的处理放到UMD中；UMD是用户模式代码，因此在其中运行的任何东西都不需要任何昂贵的内核模式转换，它可以自由地分配内存，将工作分配给多个线程，因为它只是一个常规的DLL（即使它是由API加载的，而不是直接通过你的应用程序）。这对驱动程序开发也有好处——如果UMD崩溃，应用程序也会崩溃，但不是整个系统，如果是KMD奔溃了那么面临的就是直接的蓝屏了；UMD可以在系统运行时被替换（它只是一个DLL！）；它可以使用常规调试器进行调试；所以它不仅效率高，而且调试和使用都方便。</p>
+<p>前面我们已经说过UMD只是一个DLL。虽然这个dll是依靠D3D的runtime调用，而且可以直接和KMd进行交互，但它仍然是一个常规的dll，并且在调用它的进程的地址空间中运行。</p>
+<p>我一直在说的这个“GPU”，他是所用应用共享的资源。然而，我们有多个应用程序试图访问它（并假装它们是唯一一个这样做的应用程序）。这不仅仅是自动的；在过去，解决方案是一次只给一个应用程序3D，而当这个应用程序处于活动状态时，其他所有应用程序都无法访问。但是，如果你想让你的窗口系统使用GPU进行渲染，这并不能真正解决问题。这就是为什么您需要一些组件来仲裁对GPU的访问并分配时间片等等。</p>
+<h2 id="4-进入调度器">4 进入调度器</h2>
+<p>调度器是一个系统组件，我在这里谈论的是图形调度程序，而不是CPU或IO调度程序。这和你想象的完全一样，它通过在不同的应用程序之间对3D管道进行时间切片来仲裁对它的访问。上下文切换至少会导致GPU的一些状态切换（它为命令缓冲区生成额外的命令），并且可能还会交换显存中或内存中的一些资源。当然，在任何给定的时间，只有一个进程能够真正地向3D管道提交命令。
+您经常会发现控制台程序员抱怨PC上的3d API的多层次、易操作性由此带来的性能成本。但问题是，PC上的3D API驱动程序确实比控制台游戏有更复杂的问题要解决——例如，它们确实需要跟踪完整的当前状态，因为有人可能随时从它们下面拉出隐藏的画面！他们还围绕着坏掉的应用程序工作，并试图在背后解决性能问题；这是一个没有人满意的非常恼人的做法，当然包括驱动程序作者自己。但事实是，业务场景在这理显得更为重要；人们希望运行的东西继续运行（并且运行得很顺利）。你只是喊着“这是错误的”，不会赢得任何朋友。不管怎么说，在运行流程上走进下一站：内核模式驱动！</p>
+<h2 id="5-用户态显卡驱动程序the-kernel-mode-driver-kmd">5 用户态显卡驱动程序（The kernel-mode driver, KMD）</h2>
+<p>KMD是实际处理硬件的部分。系统中一次可能有多个UMD实例在运行，但KMD却只有一个，如果KMD崩溃了，那么Boom, 就直接的蓝屏了。
+即使有多个应用程序在争夺它，GPU的内存也只有一个。有人需要调用快照并实际分配（和映射）物理内存。同样，有人必须在启动时初始化GPU，设置显示模式（并从显示器中获取模式信息），管理硬件鼠标光标，这是有硬件处理的，而且真的只有一个！对硬件看门狗定时器进行编程，以便GPU能在一定时间内无响应、响应中断等情况下（一般讲这种状态称之为hang）重置。这些就是KMD所做的。
+对我们来说最重要的是，kmd管理实际的命令缓冲区。这个命令缓冲区就是硬件实际消耗的那个。UMD产生的命令缓冲并不是真正的缓冲区——事实上，它们只是GPU可寻址内存的随机切片。它们实际发生的情况是，UMD完成它们，将它们提交给调度程序，然后等待该进程启动，然后将UMD命令缓冲区传递给kmd。然后，kmd将对命令缓冲区的调用写入主命令缓冲区，根据GPU命令处理器是否可以从主内存中读取，它可能还需要首先将其DMA到视频内存中。主命令缓冲区通常是一个相当小的环缓冲区（Ring buffer）——在那里唯一能被写入的东西就是系统/初始化命令和对“真实的”丰富的3D命令缓冲区的调用。
+Ring buffer仍然只是内存中的一个缓冲区。显卡知道Ring buffer的位置——通常有一个读指针，它是GPU在主命令缓冲区中的位置，还有一个写指针，它是KMD写入缓冲区的距离（或者更准确地说，它告诉GPU它已经写入的命令的数量）。</p>
+<h2 id="6-总线">6 总线</h2>
+<p>当然，CMD不会直接进入显卡，除非它集成在CPU芯片上！，因为它需要先通过总线——通常是现在的PCI Express。DMA传输等采用相同的路径。这不需要很长时间，但这是我们命令流进入的的另一个阶段。</p>
+<h2 id="7-命令解析器">7 命令解析器</h2>
+<p>这是GPU的前端——实际读取KMD写入的命令的部分。我将在下一期文章中从这里继续，因为这篇文章已经足够长了。</p>
+<h2 id="8-顺带说说opengl">8 顺带说说OpenGL</h2>
+<p>OpenGL与我刚才描述的非常相似，只是API和UMD层之间没有那么明显的区别。与d3d不同，glsl的shader编译不由API处理，而是由驱动程序完成。这带来的一个不幸副作用是，GLSL前端和3D硬件供应商一样多，也就是说每个显卡的厂商都要实现他们自己的GLSL的前端编译。虽然它们都基于相同的规范，但都有自己的缺陷和特性。这也意味着驱动程序必须在看到着色器时自己进行所有优化——包括昂贵的优化。对于这个问题，d3d字节码格式确实是一个更干净的解决方案——只有一个编译器（所以不同供应商之间没有稍微不兼容的方言！）它允许进行比通常情况下更昂贵的数据流分析。</p>
+<h2 id="9-遗漏">9 遗漏</h2>
+<p>本片文章只是一个概述，忽略了很多微妙之处。例如，不仅有一个调度程序，还有多个实现（驱动程序可以选择）；还有关于如何处理CPU和GPU之间的同步的整个问题到目前为止还没有解释过。后续的文章中慢慢的将这些都补上了。</p>
+        </div>
+
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="https://bzhou830.github.io/">十面埋伏</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="https://bzhou830.github.io/posts/20190703%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8501/">https://bzhou830.github.io/posts/20190703%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8501/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
+</div>
+<br/>
+
+
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/posts/20190610Python%E8%AF%BB%E5%86%99Excel/">Python读写Excel</a></li>
+        
+        <li><a href="/posts/20190601%E9%9B%86%E8%A3%85%E7%AE%B1OCR%E4%BD%BF%E7%94%A8EAST%E5%92%8Ctesseract/">集装箱OCR：使用EAST和Tesseract</a></li>
+        
+        <li><a href="/posts/20190226Windows%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B1/">Windows驱动编程(1)：第一个驱动程序</a></li>
+        
+        <li><a href="/posts/20190112C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8603/">C&#43;&#43;内存管理(3)：重载</a></li>
+        
+        <li><a href="/posts/20190110C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8602/">C&#43;&#43;内存管理(2)：内存操作相关函数</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='https://bzhou830.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6'>图形学</a></li>
+                
+                <li><a href='https://bzhou830.github.io/tags/GPU'>GPU</a></li>
+                
+                <li><a href='https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8'>驱动</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "bzhou830/Blog"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='https://bzhou830.github.io/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://bzhou830.github.io/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20190801Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" title="Git快速入门手册">Git快速入门手册</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20190710%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8503/" title="03 图形管线概览及GPU中顶点处理">03 图形管线概览及GPU中顶点处理</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20190705%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8502/" title="02 GPU内存架构和命令处理器">02 GPU内存架构和命令处理器</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20190703%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8501/" title="01 从App到硬件各个层级">01 从App到硬件各个层级</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20190610Python%E8%AF%BB%E5%86%99Excel/" title="Python读写Excel">Python读写Excel</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20190601%E9%9B%86%E8%A3%85%E7%AE%B1OCR%E4%BD%BF%E7%94%A8EAST%E5%92%8Ctesseract/" title="集装箱OCR：使用EAST和Tesseract">集装箱OCR：使用EAST和Tesseract</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20190226Windows%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B1/" title="Windows驱动编程(1)：第一个驱动程序">Windows驱动编程(1)：第一个驱动程序</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20190112C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8603/" title="C&#43;&#43;内存管理(3)：重载">C&#43;&#43;内存管理(3)：重载</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20190110C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8602/" title="C&#43;&#43;内存管理(2)：内存操作相关函数">C&#43;&#43;内存管理(2)：内存操作相关函数</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20190106C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8601/" title="C&#43;&#43;内存管理(1)：分配和释放的四个层面">C&#43;&#43;内存管理(1)：分配和释放的四个层面</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://bzhou830.github.io/tags/C/C&#43;&#43;/">C/C&#43;&#43;</a>
+    
+    <a href="https://bzhou830.github.io/tags/C/C&#43;&#43;STL/">C/C&#43;&#43;，STL</a>
+    
+    <a href="https://bzhou830.github.io/tags/DICOM/">DICOM</a>
+    
+    <a href="https://bzhou830.github.io/tags/Excel/">Excel</a>
+    
+    <a href="https://bzhou830.github.io/tags/GPU/">GPU</a>
+    
+    <a href="https://bzhou830.github.io/tags/OCR/">OCR</a>
+    
+    <a href="https://bzhou830.github.io/tags/OpenCV%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">OpenCV，图像处理</a>
+    
+    <a href="https://bzhou830.github.io/tags/Python/">Python</a>
+    
+    <a href="https://bzhou830.github.io/tags/android/">android</a>
+    
+    <a href="https://bzhou830.github.io/tags/git/">git</a>
+    
+    <a href="https://bzhou830.github.io/tags/github/">github</a>
+    
+    <a href="https://bzhou830.github.io/tags/hexo/">hexo</a>
+    
+    <a href="https://bzhou830.github.io/tags/jni/">jni</a>
+    
+    <a href="https://bzhou830.github.io/tags/opencv/">opencv</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%85%A5%E9%97%A8/">入门</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">内存管理</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86DICOM/">图像处理，DICOM</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E6%96%87%E6%9C%AC%E6%A3%80%E6%B5%8B/">文本检测</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8/">驱动</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B/">驱动编程</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://bzhou830.github.io/" title="十面埋伏的博客">十面埋伏的博客</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://bzhou830.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="https://bzhou830.github.io/">十面埋伏的博客 By 十面埋伏</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+    <script src='/js/douban.js'></script>
+
+</body>
+
+</html>

@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>树莓派工具 | 十面埋伏的博客</title>
+    <meta property="og:title" content="树莓派工具 - 十面埋伏的博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2019-01-03T09:16:34&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2019-01-03T09:16:34&#43;08:00'>
+        
+    <meta name="Keywords" content="C/C&#43;&#43;，OpenCV，图像处理，Windows驱动开发">
+    <meta name="description" content="树莓派工具">
+        
+    <meta name="author" content="十面埋伏">
+    <meta property="og:url" content="https://bzhou830.github.io/posts/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9B%B8%E5%85%B3/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4031353640611810",
+        enable_page_level_ads: true
+    });
+    </script>
+    
+
+
+    
+    
+        <link rel="stylesheet" href='/css/douban.css'>
+    
+        <link rel="stylesheet" href='/css/other.css'>
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://bzhou830.github.io/">
+                        十面埋伏的博客
+                    </a>
+                
+                <p class="description">专注于C/C&#43;&#43;, OpenCV, 图像处理, Windows驱动开发</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="https://bzhou830.github.io/">首页</a>
+                    
+                    <a  href="https://bzhou830.github.io/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://bzhou830.github.io/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    <style type="text/css">
+    .post-toc {
+        position: fixed;
+        width: 200px;
+        margin-left: -210px;
+        padding: 5px 10px;
+        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+        font-size: 12px;
+        border: 1px solid rgba(0, 0, 0, .07);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.98);
+        background-clip: padding-box;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        word-wrap: break-word;
+        white-space: nowrap;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 999;
+        cursor: pointer;
+        max-height: 70%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .post-toc .post-toc-title {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .post-toc .post-toc-content {
+        font-size: 15px;
+    }
+
+    .post-toc .post-toc-content>nav>ul {
+        margin: 10px 0;
+    }
+
+    .post-toc .post-toc-content ul {
+        padding-left: 20px;
+        list-style: square;
+        margin: 0.5em;
+        line-height: 1.8em;
+    }
+
+    .post-toc .post-toc-content ul ul {
+        padding-left: 15px;
+        display: none;
+    }
+
+    @media print,
+    screen and (max-width:1057px) {
+        .post-toc {
+            display: none;
+        }
+    }
+</style>
+<div class="post-toc" style="position: absolute; top: 188px;">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1安装使用opencv">1.安装使用OpenCV</a></li>
+    <li><a href="#2opencv程序中访问树莓派摄像头">2.OpenCV程序中访问树莓派摄像头</a></li>
+    <li><a href="#3树莓派io操作">3.树莓派IO操作</a></li>
+    <li><a href="#4树莓派在没有外设时配置wifi连接">4.树莓派在没有外设时配置WIFI连接</a></li>
+    <li><a href="#5在树莓派中开发-opencv-大型程序">5.在树莓派中开发 opencv 大型程序</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postToc = $(".post-toc");
+        if (postToc.length) {
+            var leftPos = $("#main").offset().left;
+            if(leftPos<220){
+                postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})
+            }
+
+            var t = postToc.offset().top - 20,
+                a = {
+                    start: {
+                        position: "absolute",
+                        top: t
+                    },
+                    process: {
+                        position: "fixed",
+                        top: 20
+                    },
+                };
+            $(window).scroll(function () {
+                var e = $(window).scrollTop();
+                e < t ? postToc.css(a.start) : postToc.css(a.process)
+            })
+        }
+    })
+</script>
+    <article class="post">
+        <header>
+            <h1 class="post-title">树莓派工具</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2019年1月3日
+        </date>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <p>本文主要记录使用树莓派过程的一些问题和解决方案。系统是基于官方的Raspbian Stretch with desktop系统。</p>
+<h2 id="1安装使用opencv">1.安装使用OpenCV</h2>
+<ol>
+<li>推荐使用16G或以上的卡，最好是class10以上，因为8G class6卡安装到35%就爆满了，推算安装完成要4.6G左右的空间。</li>
+<li>OpenCV的安装可不改变交换空间的大小，因为内存是够用的。</li>
+<li>安装过程很慢，树莓派的CPU也容易发热，需要做好散热。</li>
+</ol>
+<p>首先需要安装OpenCV使用的依赖环境：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo apt-get install build-essential git cmake pkg-config -y
+sudo apt-get install libjpeg8-dev -y
+sudo apt-get install libtiff5-dev -y
+sudo apt-get install libjasper-dev -y
+sudo apt-get install libpng12-dev -y
+sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev -y
+sudo apt-get install libgtk2.0-dev -y
+sudo apt-get install libatlas-base-dev gfortran -y
+</code></pre></div><p>上面的这些依赖和在PC端Linux中安装OpenCV是一样的。安装完成上述的依赖之后就需要下载OpenCV的源码。源码的下载方式很多，可以直接使用git clone到本地。
+也可以下载官网中release的zip文件（通过wget或者是在浏览器中都可以）.
+下载到源码之后，解压，创建一个cmake创建工程的目录，然后使用cmake创建一个编译的工程。
+有些选项可以关闭掉，用来节省编译的时间，比如如果我们不需要在树莓派上使用Python来调用OpenCV那么Python的选项就可以关闭掉。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo cmake -D CMAKE_BUILD_TYPE<span style="color:#f92672">=</span>RELEASE <span style="color:#ae81ff">\</span>
+    -D CMAKE_INSTALL_PREFIX<span style="color:#f92672">=</span>/usr/local <span style="color:#ae81ff">\</span>
+    -D OPENCV_EXTRA_MODULES_PATH<span style="color:#f92672">=</span>~/opencv_contrib-3.4.1/modules <span style="color:#ae81ff">\</span>
+    -D INSTALL_PYTHON_EXAMPLES<span style="color:#f92672">=</span>ON <span style="color:#ae81ff">\</span>
+    -D BUILD_EXAMPLES<span style="color:#f92672">=</span>ON ..
+</code></pre></div><p>cmake完成时候就可以使用下面的命令进行编译和将编译的结果按照到我们指定的位置，这个过程比较漫长，一般需要几个小时或者1个多小时。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">make 
+sudo make install
+</code></pre></div><h2 id="2opencv程序中访问树莓派摄像头">2.OpenCV程序中访问树莓派摄像头</h2>
+<p>这里说的树莓派摄像头，指的是树莓派专用接口的那种摄像头，普通的USB摄像头是可以不用配置直接访问使用的。</p>
+<pre><code>sudo raspi-config   可进入树莓派配置界面，打开摄像头。
+raspivid -l -o tcp://0.0.0.0:3333  可测试摄像头是否开启。
+sudo vim /etc/modules-load.d/rpi-camera.conf  打开摄像头配置文件。
+</code></pre><p>在上述的文件最后添加一行bcm2835-v4l2，保存重启，至此opencv就可以读取树莓派自带的摄像头了。</p>
+<h2 id="3树莓派io操作">3.树莓派IO操作</h2>
+<p>首先从源那里获取软件包信息， 升级可升级的软件包</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo apt-get update
+sudo apt-get upgrade
+</code></pre></div><p>然后下载安装wiringPi库，wiringPi库是用来操作树莓派IO的一个库。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git clone git://git.drogon.net/wiringPi
+cd wiringPi
+sudo ./build
+</code></pre></div><p>安装完成后就可以使用wiringPi库操作树莓派的IO</p>
+<h2 id="4树莓派在没有外设时配置wifi连接">4.树莓派在没有外设时配置WIFI连接</h2>
+<p>首先烧录新系统，烧完系统后由于windows系统不能识别Linux的系统分区，所以进不了/etc，但是还好可以进/boot
+在boot文件夹下面创建一个文件/boot/wpa_supplicant.conf</p>
+<p>内容如下</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">country<span style="color:#f92672">=</span>CN
+ctrl_interface<span style="color:#f92672">=</span>DIR<span style="color:#f92672">=</span>/var/run/wpa_supplicant GROUP<span style="color:#f92672">=</span>netdev
+update_config<span style="color:#f92672">=</span>1
+ 
+network<span style="color:#f92672">=</span><span style="color:#f92672">{</span>
+ssid<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;你的WIFi的名字&#34;</span>
+psk<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;你的WIFI的密码&#34;</span>
+key_mgmt<span style="color:#f92672">=</span>WPA-PSK
+priority<span style="color:#f92672">=</span>1
+<span style="color:#f92672">}</span>
+</code></pre></div><p>然后插入树莓派开机就ok了。</p>
+<h2 id="5在树莓派中开发-opencv-大型程序">5.在树莓派中开发 opencv 大型程序</h2>
+<p>开发相对大一点的程序的时候，一般都会使用便于管理项目的工具，比如：cmake, qmake.
+在使用qt作为软件界面的时候，qmake就显得非常的好用，但是在树莓派上直接安装qt开发工具非常的耗时间，因为树莓派性能没有那么的强。所以考虑树莓派上的环境搭建。
+首先需要安装qt的开发环境和opencv, opencv可以自己编译，但是需要特别注意的是：gtk的版本必须和qt中使用的gtk的版本一致，不然就程序运行时会crash.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo apt-get install qt4-dev-tools  <span style="color:#75715e">#安装 Qt 开发环境</span>
+sudo apt-get install libopencv-dev  <span style="color:#75715e">#安装 opencv</span>
+</code></pre></div><p>安装好上述的工具之后，我们在pc上开发好项目，然后拷贝到树莓派上。进入项目目录:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">qmake *.pro  <span style="color:#75715e">#生成 makefile</span>
+make         <span style="color:#75715e">#编译</span>
+</code></pre></div><p>这样就编译好了项目，可直接运行了。</p>
+        </div>
+
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="https://bzhou830.github.io/">十面埋伏</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="https://bzhou830.github.io/posts/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9B%B8%E5%85%B3/">https://bzhou830.github.io/posts/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9B%B8%E5%85%B3/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
+</div>
+<br/>
+
+
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/posts/Android%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8JNI%E6%96%B9%E5%BC%8F%E8%B0%83%E7%94%A8OpenCV%E9%85%8D%E7%BD%AE/">Android平台使用JNI方式调用OpenCV配置</a></li>
+        
+        <li><a href="/posts/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">Hexo博客搭建</a></li>
+        
+        <li><a href="/about/">关于我</a></li>
+        
+        <li><a href="/archives/">归档</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='https://bzhou830.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE'>树莓派</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "bzhou830/Blog"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    <section class="widget">
+        <form id="search" action='https://bzhou830.github.io/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://bzhou830.github.io/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" title="Git快速入门手册">Git快速入门手册</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8503/" title="03 图形管线概览及GPU中顶点处理">03 图形管线概览及GPU中顶点处理</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8502/" title="02 GPU内存架构和命令处理器">02 GPU内存架构和命令处理器</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8501/" title="01 从App到硬件各个层级">01 从App到硬件各个层级</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/Python%E8%AF%BB%E5%86%99Excel/" title="Python读写Excel">Python读写Excel</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/%E9%9B%86%E8%A3%85%E7%AE%B1OCR%E4%BD%BF%E7%94%A8EAST%E5%92%8Ctesseract/" title="集装箱OCR：使用EAST和Tesseract">集装箱OCR：使用EAST和Tesseract</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/Windows%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B1-%E7%AC%AC%E4%B8%80%E4%B8%AA%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F/" title="Windows驱动编程(1)：第一个驱动程序">Windows驱动编程(1)：第一个驱动程序</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8603/" title="C&#43;&#43;内存管理(3)：重载">C&#43;&#43;内存管理(3)：重载</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8602/" title="C&#43;&#43;内存管理(2)：内存操作相关函数">C&#43;&#43;内存管理(2)：内存操作相关函数</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8601/" title="C&#43;&#43;内存管理(1)：分配和释放的四个层面">C&#43;&#43;内存管理(1)：分配和释放的四个层面</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://bzhou830.github.io/tags/C/C&#43;&#43;/">C/C&#43;&#43;</a>
+    
+    <a href="https://bzhou830.github.io/tags/Excel/">Excel</a>
+    
+    <a href="https://bzhou830.github.io/tags/GPU/">GPU</a>
+    
+    <a href="https://bzhou830.github.io/tags/OCR/">OCR</a>
+    
+    <a href="https://bzhou830.github.io/tags/Python/">Python</a>
+    
+    <a href="https://bzhou830.github.io/tags/android/">android</a>
+    
+    <a href="https://bzhou830.github.io/tags/git/">git</a>
+    
+    <a href="https://bzhou830.github.io/tags/github/">github</a>
+    
+    <a href="https://bzhou830.github.io/tags/hexo/">hexo</a>
+    
+    <a href="https://bzhou830.github.io/tags/jni/">jni</a>
+    
+    <a href="https://bzhou830.github.io/tags/opencv/">opencv</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%85%A5%E9%97%A8/">入门</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">内存管理</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E6%96%87%E6%9C%AC%E6%A3%80%E6%B5%8B/">文本检测</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8/">驱动</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B/">驱动编程</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://bzhou830.github.io/" title="十面埋伏的博客">十面埋伏的博客</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://bzhou830.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2020 <a href="https://bzhou830.github.io/">十面埋伏的博客 By 十面埋伏</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+    <script src='/js/douban.js'></script>
+
+</body>
+
+</html>

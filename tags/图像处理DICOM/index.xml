@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>图像处理，DICOM on 十面埋伏的博客</title>
+    <link>https://bzhou830.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86DICOM/</link>
+    <description>Recent content in 图像处理，DICOM on 十面埋伏的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 17 Nov 2016 09:29:11 +0800</lastBuildDate>
+    
+	<atom:link href="https://bzhou830.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86DICOM/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>DICOM影像中的窗宽窗位</title>
+      <link>https://bzhou830.github.io/posts/20161117DICOM%E5%BD%B1%E5%83%8F%E4%B8%AD%E7%9A%84%E7%AA%97%E5%AE%BD%E7%AA%97%E4%BD%8D/</link>
+      <pubDate>Thu, 17 Nov 2016 09:29:11 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20161117DICOM%E5%BD%B1%E5%83%8F%E4%B8%AD%E7%9A%84%E7%AA%97%E5%AE%BD%E7%AA%97%E4%BD%8D/</guid>
+      <description>1.为什么有窗宽窗位? 医学图像领域的关键技术窗技术，是CT检查中用以观察不同密度的正常组织或病变的一种显示技术，包括窗宽(window width)和窗位(window level)。由于各种组织结构或病变具有不同的CT值，因此想要显示某一组织结构细节时，应该选择适合观察该组织或病变</description>
+    </item>
+    
+  </channel>
+</rss>

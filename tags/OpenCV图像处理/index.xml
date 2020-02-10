@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OpenCV，图像处理 on 十面埋伏的博客</title>
+    <link>https://bzhou830.github.io/tags/OpenCV%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</link>
+    <description>Recent content in OpenCV，图像处理 on 十面埋伏的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 30 Nov 2015 12:55:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://bzhou830.github.io/tags/OpenCV%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>OpenCV最大熵分割</title>
+      <link>https://bzhou830.github.io/posts/20151130OpenCV%E6%9C%80%E5%A4%A7%E7%86%B5%E5%88%86%E5%89%B2/</link>
+      <pubDate>Mon, 30 Nov 2015 12:55:00 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20151130OpenCV%E6%9C%80%E5%A4%A7%E7%86%B5%E5%88%86%E5%89%B2/</guid>
+      <description>1. 最大熵是什么？ 这里所说的熵是指信息熵，信息熵是来自于信息论的一个词，它是对系统所含信息的一种度量。通俗的讲，系统的不确定性越大，那么系统的信息熵就越大。反之，一个系统如果确定性高（系统越有序），那么整个系统的信息熵就越小。其数学定义表述如下： $$ H = -\int_{\-\infty}^{+\infty}p(x)log[p(x)]dx $$ 上式中，$p(x)$ 表示灰</description>
+    </item>
+    
+    <item>
+      <title>OpenCV最大间方差分割</title>
+      <link>https://bzhou830.github.io/posts/20151129OpenCV%E6%9C%80%E5%A4%A7%E9%97%B4%E6%96%B9%E5%B7%AE%E5%88%86%E5%89%B2/</link>
+      <pubDate>Sun, 29 Nov 2015 12:55:00 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20151129OpenCV%E6%9C%80%E5%A4%A7%E9%97%B4%E6%96%B9%E5%B7%AE%E5%88%86%E5%89%B2/</guid>
+      <description>OpenCV中其实有对OTUS算法的实现，threhold()函数最后一个参数可以指定使用OTUS算法。 1、最大间方差(OTUS)算法的描述 和均值迭代算法相似，OTUS算法也是利用图像的直方图进行的。OTUS算法的思想是选取一个阈值$T， T \in [0,m-1]$,$m$为图像的灰度级</description>
+    </item>
+    
+    <item>
+      <title>OpenCV均值迭代分割</title>
+      <link>https://bzhou830.github.io/posts/20151128OpenCV%E5%9D%87%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%88%86%E5%89%B2/</link>
+      <pubDate>Sat, 28 Nov 2015 12:55:00 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20151128OpenCV%E5%9D%87%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%88%86%E5%89%B2/</guid>
+      <description>【题外话】:之前在博客中写过一篇“区域生长”的博客，区域生长在平时经常用到，也比较容易理解和代码实现，所以在很多情况下大家会选择这种方法。但是区域生长有一个最致命的点就是需要选取一个生长的种子点。 为了交流学习，同时也为了后面查阅方便，准备陆续将基于直方图的几种分割算法加以总结。 1</description>
+    </item>
+    
+    <item>
+      <title>OpenCV区域生长算法</title>
+      <link>https://bzhou830.github.io/posts/20151127OpenCV%E5%8C%BA%E5%9F%9F%E7%94%9F%E9%95%BF%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Fri, 27 Nov 2015 12:55:00 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20151127OpenCV%E5%8C%BA%E5%9F%9F%E7%94%9F%E9%95%BF%E7%AE%97%E6%B3%95/</guid>
+      <description>1.理论基础 区域生长算法的基本思想是将有相似性质的像素点合并到一起。对每一个区域要先指定一个种子点作为生长的起点，然后将种子点周围领域的像素点和种子点进行对比，将具有相似性质的点合并起来继续向外生长，直到没有满足条件的像素被包括进来为止。这样一个区域的生长就完成了。这个过程中有几</description>
+    </item>
+    
+  </channel>
+</rss>

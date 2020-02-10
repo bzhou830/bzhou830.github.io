@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C/C&#43;&#43;，STL on 十面埋伏的博客</title>
+    <link>https://bzhou830.github.io/tags/C/C&#43;&#43;STL/</link>
+    <description>Recent content in C/C&#43;&#43;，STL on 十面埋伏的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 06 Mar 2016 09:29:11 +0800</lastBuildDate>
+    
+	<atom:link href="https://bzhou830.github.io/tags/C/C++STL/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>STL中的算法</title>
+      <link>https://bzhou830.github.io/posts/20160306STL%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Sun, 06 Mar 2016 09:29:11 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20160306STL%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E7%AE%97%E6%B3%95/</guid>
+      <description>STL算法部分主要由头文件,,组成。要使用 STL中的算法函数必须包含头文件，对于数值算法须包含，中则定义了一些模板类，用来声明函数对象。 STL中算法大致分为四类： 1、非可变序列算法：指不直接修改其所操作的容器内容的算法。 2、可变序列算法：指可以修改它们所操作的容器内容的算法。 3、</description>
+    </item>
+    
+  </channel>
+</rss>
