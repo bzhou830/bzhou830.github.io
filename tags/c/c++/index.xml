@@ -51,5 +51,14 @@
       <description>&lt;p&gt;内存的使用是稍底层一些的程序，或者性能要求严格的程序都是非常有讲究的一块。从程序的分层设计的角度来看，一般有四个层面上内存的分配和释放可以共给我们开发人员使用。本篇就介绍这这个层面上内存分配相关的一些函数接口。&lt;/p&gt;</description>
     </item>
     
+    <item>
+      <title>C&#43;&#43;面试题</title>
+      <link>https://bzhou830.github.io/posts/20160406Cpp%E9%9D%A2%E8%AF%95%E9%A2%98/</link>
+      <pubDate>Wed, 06 Apr 2016 09:29:11 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20160406Cpp%E9%9D%A2%E8%AF%95%E9%A2%98/</guid>
+      <description>一.static关键字的作用 1.修饰普通变量，修改变量的存储区域和生命周期，使变量存储在静态区，在 main 函数运行前就分配了空间，如果有初始值就用初始值初始化它，如果没有初始值系统用默认值初始化它。 2.修饰普通函数，表明函数的作用范围，仅在定义该函数的文件内才能使用。在多人开发项目时，</description>
+    </item>
+    
   </channel>
 </rss>
