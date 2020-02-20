@@ -6,21 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>opencv | 十面埋伏的博客</title>
-    <meta property="og:title" content="opencv - 十面埋伏的博客">
+    <title>OpenCV | 十面埋伏的博客</title>
+    <meta property="og:title" content="OpenCV - 十面埋伏的博客">
     <meta property="og:type" content="article">
         
         
     <meta name="Keywords" content="C/C&#43;&#43;，OpenCV，图像处理，Windows驱动开发">
-    <meta name="description" content="opencv">
+    <meta name="description" content="OpenCV">
         
     <meta name="author" content="十面埋伏">
-    <meta property="og:url" content="https://bzhou830.github.io/tags/opencv/">
+    <meta property="og:url" content="https://bzhou830.github.io/tags/OpenCV/">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href='/css/normalize.css'>
     <link rel="stylesheet" href='/css/style.css'>
-    <link rel="alternate" type="application/rss+xml+xml" href="https://bzhou830.github.io/tags/opencv/index.xml" title="十面埋伏的博客" />
+    <link rel="alternate" type="application/rss+xml+xml" href="https://bzhou830.github.io/tags/OpenCV/index.xml" title="十面埋伏的博客" />
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     
@@ -79,7 +79,7 @@
     
     <h3 class="archive-title">
         包含标签
-        <span class="keyword">opencv</span>
+        <span class="keyword">OpenCV</span>
         的文章
     </h3>
     
@@ -88,16 +88,64 @@
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="https://bzhou830.github.io/posts/20190103Android%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8JNI%E6%96%B9%E5%BC%8F%E8%B0%83%E7%94%A8OpenCV%E9%85%8D%E7%BD%AE/">Android平台使用JNI方式调用OpenCV配置</a>
+                <a href="https://bzhou830.github.io/posts/20151130OpenCV%E6%9C%80%E5%A4%A7%E7%86%B5%E5%88%86%E5%89%B2/">OpenCV最大熵分割</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
-            2019年1月3日
+            2015年11月30日
         </date>
         
         <div class="post-content">
-            本文主要介绍 OpenCV3.4.2 在 android studio2.3 中的配置，并使用 JNI 方式调用 OpenCV 中 C/C++ 层函数。 Android Studio在2.2版本更新之后加入了CMAKE方式配置NDK的方法，这大大简化了之前通过Android.mk和Application.mk两个本地配置文件进行NDK开发的方式。这种方法在后续更新的版本中不断增强，越来……
-            <p class="readmore"><a href="https://bzhou830.github.io/posts/20190103Android%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8JNI%E6%96%B9%E5%BC%8F%E8%B0%83%E7%94%A8OpenCV%E9%85%8D%E7%BD%AE/">阅读全文</a></p>
+            1. 最大熵是什么？ 这里所说的熵是指信息熵，信息熵是来自于信息论的一个词，它是对系统所含信息的一种度量。通俗的讲，系统的不确定性越大，那么系统的信息熵就越大。反之，一个系统如果确定性高（系统越有序），那么整个系统的信息熵就越小。其数学定义表述如下： $$ H = -\int_{\-\infty}^{+\infty}p(x)log[p(x)]dx $$ 上式中，$p(x)$ 表示灰……
+            <p class="readmore"><a href="https://bzhou830.github.io/posts/20151130OpenCV%E6%9C%80%E5%A4%A7%E7%86%B5%E5%88%86%E5%89%B2/">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://bzhou830.github.io/posts/20151129OpenCV%E6%9C%80%E5%A4%A7%E9%97%B4%E6%96%B9%E5%B7%AE%E5%88%86%E5%89%B2/">OpenCV最大间方差分割</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2015年11月29日
+        </date>
+        
+        <div class="post-content">
+            OpenCV中其实有对OTUS算法的实现，threhold()函数最后一个参数可以指定使用OTUS算法。 1、最大间方差(OTUS)算法的描述 和均值迭代算法相似，OTUS算法也是利用图像的直方图进行的。OTUS算法的思想是选取一个阈值$T， T \in [0,m-1]$,$m$为图像的灰度级……
+            <p class="readmore"><a href="https://bzhou830.github.io/posts/20151129OpenCV%E6%9C%80%E5%A4%A7%E9%97%B4%E6%96%B9%E5%B7%AE%E5%88%86%E5%89%B2/">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://bzhou830.github.io/posts/20151128OpenCV%E5%9D%87%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%88%86%E5%89%B2/">OpenCV均值迭代分割</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2015年11月28日
+        </date>
+        
+        <div class="post-content">
+            【题外话】:之前在博客中写过一篇“区域生长”的博客，区域生长在平时经常用到，也比较容易理解和代码实现，所以在很多情况下大家会选择这种方法。但是区域生长有一个最致命的点就是需要选取一个生长的种子点。 为了交流学习，同时也为了后面查阅方便，准备陆续将基于直方图的几种分割算法加以总结。 1……
+            <p class="readmore"><a href="https://bzhou830.github.io/posts/20151128OpenCV%E5%9D%87%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%88%86%E5%89%B2/">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://bzhou830.github.io/posts/20151127OpenCV%E5%8C%BA%E5%9F%9F%E7%94%9F%E9%95%BF%E7%AE%97%E6%B3%95/">OpenCV区域生长算法</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2015年11月27日
+        </date>
+        
+        <div class="post-content">
+            1.理论基础 区域生长算法的基本思想是将有相似性质的像素点合并到一起。对每一个区域要先指定一个种子点作为生长的起点，然后将种子点周围领域的像素点和种子点进行对比，将具有相似性质的点合并起来继续向外生长，直到没有满足条件的像素被包括进来为止。这样一个区域的生长就完成了。这个过程中有几……
+            <p class="readmore"><a href="https://bzhou830.github.io/posts/20151127OpenCV%E5%8C%BA%E5%9F%9F%E7%94%9F%E9%95%BF%E7%AE%97%E6%B3%95/">阅读全文</a></p>
         </div>
     </article>
     
@@ -151,6 +199,10 @@
     </li>
     
     <li>
+        <a href="https://bzhou830.github.io/posts/20190506Windows%E5%B8%B8%E7%94%A8Tips/" title="Windows常用Tips">Windows常用Tips</a>
+    </li>
+    
+    <li>
         <a href="https://bzhou830.github.io/posts/20190226Windows%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B1/" title="Windows驱动编程(1)：第一个驱动程序">Windows驱动编程(1)：第一个驱动程序</a>
     </li>
     
@@ -160,10 +212,6 @@
     
     <li>
         <a href="https://bzhou830.github.io/posts/20190110C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8602/" title="C&#43;&#43;内存管理|02 内存操作相关函数">C&#43;&#43;内存管理|02 内存操作相关函数</a>
-    </li>
-    
-    <li>
-        <a href="https://bzhou830.github.io/posts/20190106C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8601/" title="C&#43;&#43;内存管理|01 分配和释放的四个层面">C&#43;&#43;内存管理|01 分配和释放的四个层面</a>
     </li>
     
 </ul>
@@ -192,7 +240,7 @@
     
     <a href="https://bzhou830.github.io/tags/OCR/">OCR</a>
     
-    <a href="">OpenCV</a>
+    <a href="https://bzhou830.github.io/tags/OpenCV/">OpenCV</a>
     
     <a href="https://bzhou830.github.io/tags/Python/">Python</a>
     
@@ -206,7 +254,7 @@
     
     <a href="https://bzhou830.github.io/tags/jni/">jni</a>
     
-    <a href="https://bzhou830.github.io/tags/opencv/">opencv</a>
+    <a href="">opencv</a>
     
     <a href="https://bzhou830.github.io/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">内存管理</a>
     

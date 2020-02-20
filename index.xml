@@ -66,6 +66,15 @@
     </item>
     
     <item>
+      <title>Windows常用Tips</title>
+      <link>https://bzhou830.github.io/posts/20190506Windows%E5%B8%B8%E7%94%A8Tips/</link>
+      <pubDate>Mon, 06 May 2019 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20190506Windows%E5%B8%B8%E7%94%A8Tips/</guid>
+      <description>win10自带输入法切换简体繁体快捷键: Ctrl+Shift+F Win10自带的截图工具: Win+Shift+S 快速关闭窗口和计算机：Alt + F4 快速回到桌面 Win + D 快速打开运行 Win + R 切换窗口：Alt + Tab 任务视图：Win + Tab(松开键盘界面不会消失) 任务管理器： Ctrl + Alt + Del 查看win10激活信息：slmgr.vbs -dlv 查看wi</description>
+    </item>
+    
+    <item>
       <title>Windows驱动编程(1)：第一个驱动程序</title>
       <link>https://bzhou830.github.io/posts/20190226Windows%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B1/</link>
       <pubDate>Tue, 26 Feb 2019 09:16:34 +0800</pubDate>
