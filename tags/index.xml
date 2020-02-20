@@ -48,15 +48,6 @@
     </item>
     
     <item>
-      <title>入门</title>
-      <link>https://bzhou830.github.io/tags/%E5%85%A5%E9%97%A8/</link>
-      <pubDate>Sat, 29 Jun 2019 09:16:34 +0800</pubDate>
-      
-      <guid>https://bzhou830.github.io/tags/%E5%85%A5%E9%97%A8/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Excel</title>
       <link>https://bzhou830.github.io/tags/Excel/</link>
       <pubDate>Mon, 10 Jun 2019 09:16:34 +0800</pubDate>
@@ -174,47 +165,29 @@
     </item>
     
     <item>
-      <title>图像处理，DICOM</title>
-      <link>https://bzhou830.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86DICOM/</link>
-      <pubDate>Thu, 17 Nov 2016 09:29:11 +0800</pubDate>
-      
-      <guid>https://bzhou830.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86DICOM/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>DICOM</title>
       <link>https://bzhou830.github.io/tags/DICOM/</link>
-      <pubDate>Sat, 08 Oct 2016 09:29:11 +0800</pubDate>
+      <pubDate>Thu, 17 Nov 2016 09:29:11 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/tags/DICOM/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>C/C&#43;&#43;，STL</title>
-      <link>https://bzhou830.github.io/tags/C/C&#43;&#43;STL/</link>
-      <pubDate>Sun, 06 Mar 2016 09:29:11 +0800</pubDate>
-      
-      <guid>https://bzhou830.github.io/tags/C/C&#43;&#43;STL/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>OpenCV，图像处理</title>
-      <link>https://bzhou830.github.io/tags/OpenCV%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</link>
-      <pubDate>Mon, 30 Nov 2015 12:55:00 +0800</pubDate>
-      
-      <guid>https://bzhou830.github.io/tags/OpenCV%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>图像处理</title>
       <link>https://bzhou830.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</link>
-      <pubDate>Tue, 24 Mar 2015 09:29:11 +0800</pubDate>
+      <pubDate>Thu, 17 Nov 2016 09:29:11 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>OpenCV</title>
+      <link></link>
+      <pubDate>Mon, 30 Nov 2015 12:55:00 +0800</pubDate>
+      
+      <guid></guid>
       <description></description>
     </item>
     

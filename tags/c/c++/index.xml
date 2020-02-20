@@ -21,7 +21,7 @@
     </item>
     
     <item>
-      <title>C&#43;&#43;内存管理(3)：重载</title>
+      <title>C&#43;&#43;内存管理|03 重载</title>
       <link>https://bzhou830.github.io/posts/20190112C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8603/</link>
       <pubDate>Sat, 12 Jan 2019 09:16:34 +0800</pubDate>
       
@@ -30,7 +30,7 @@
     </item>
     
     <item>
-      <title>C&#43;&#43;内存管理(2)：内存操作相关函数</title>
+      <title>C&#43;&#43;内存管理|02 内存操作相关函数</title>
       <link>https://bzhou830.github.io/posts/20190110C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8602/</link>
       <pubDate>Thu, 10 Jan 2019 09:16:34 +0800</pubDate>
       
@@ -39,7 +39,7 @@
     </item>
     
     <item>
-      <title>C&#43;&#43;内存管理(1)：分配和释放的四个层面</title>
+      <title>C&#43;&#43;内存管理|01 分配和释放的四个层面</title>
       <link>https://bzhou830.github.io/posts/20190106C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8601/</link>
       <pubDate>Sun, 06 Jan 2019 09:16:34 +0800</pubDate>
       
@@ -54,6 +54,15 @@
       
       <guid>https://bzhou830.github.io/posts/20160406Cpp%E9%9D%A2%E8%AF%95%E9%A2%98/</guid>
       <description>一.static关键字的作用 1.修饰普通变量，修改变量的存储区域和生命周期，使变量存储在静态区，在 main 函数运行前就分配了空间，如果有初始值就用初始值初始化它，如果没有初始值系统用默认值初始化它。 2.修饰普通函数，表明函数的作用范围，仅在定义该函数的文件内才能使用。在多人开发项目时，</description>
+    </item>
+    
+    <item>
+      <title>STL中的算法</title>
+      <link>https://bzhou830.github.io/posts/20160306STL%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Sun, 06 Mar 2016 09:29:11 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20160306STL%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E7%AE%97%E6%B3%95/</guid>
+      <description>STL算法部分主要由头文件,,组成。要使用 STL中的算法函数必须包含头文件，对于数值算法须包含，中则定义了一些模板类，用来声明函数对象。 STL中算法大致分为四类： 1、非可变序列算法：指不直接修改其所操作的容器内容的算法。 2、可变序列算法：指可以修改它们所操作的容器内容的算法。 3、</description>
     </item>
     
   </channel>
