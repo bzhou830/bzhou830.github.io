@@ -17,7 +17,7 @@
       <pubDate>Thu, 03 Jan 2019 09:16:34 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/posts/20190103%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9B%B8%E5%85%B3/</guid>
-      <description>&lt;p&gt;本文主要记录使用树莓派过程的一些问题和解决方案。系统是基于官方的Raspbian Stretch with desktop系统。&lt;/p&gt;</description>
+      <description>本文主要记录使用树莓派过程的一些问题和解决方案。系统是基于官方的Raspbian Stretch with desktop系统。 1.安装使用OpenCV 推荐使用16G或以上的卡，最好是class10以上，因为8G class6卡安装到35%就爆满了，推算安装完成要4.6G左右的空间。 OpenCV的安装可不</description>
     </item>
     
   </channel>

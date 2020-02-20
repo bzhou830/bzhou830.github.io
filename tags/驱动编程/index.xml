@@ -17,11 +17,7 @@
       <pubDate>Tue, 26 Feb 2019 09:16:34 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/posts/20190226Windows%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B1/</guid>
-      <description>&lt;p&gt;本篇主要介绍在VS2013环境下使用WDK8.1开发KMD驱动的一个简单的demo.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;开发环境：VS2013, WDK8.1&lt;/li&gt;
-&lt;li&gt;需要使用的工具：vmware player(安装windows xp作为实验环境), DriverMonitor(加载驱动的工具), DbgView(捕获内核的信息输出)&lt;/li&gt;
-&lt;/ul&gt;</description>
+      <description>本篇主要介绍在VS2013环境下使用WDK8.1开发KMD驱动的一个简单的demo. 开发环境：VS2013, WDK8.1 需要使用的工具：vmware player(安装windows xp作为实验环境), DriverMonitor(加载驱动的工具), DbgView(捕获内核的信息输出) 1. 搭建开</description>
     </item>
     
   </channel>

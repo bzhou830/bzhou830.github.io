@@ -56,7 +56,7 @@
                         十面埋伏的博客
                     </a>
                 
-                <p class="description">每一个不曾起舞的日子都是对生命的辜负</p>
+                <p class="description">操千曲而后晓声,观千剑而后识器</p>
             </div>
             <div>
                 <nav id="nav-menu" class="clearfix">
@@ -200,9 +200,7 @@
             <p>通过前面几篇的内容，我们知道，应用程序中的Draw API调用会经过D3D Runtime, 用户态驱动等等各个层级，最终将命令传到GPU的命令解释器，GPU就会根据命令的内容来进行图形的计算和处理。那么这一篇我们就来看看顶点的处理流程。</p>
 <h2 id="1-开胃菜">1. 开胃菜</h2>
 <p>在介绍GPU的顶点处理之前，我们先看看3D渲染管线。3D渲染管线是由一系列的stage构成的，每个stage都完成一些特定的工作。下图是D3D 11的渲染管线。</p>
-<!-- raw HTML omitted -->
-<p><img src="https://raw.githubusercontent.com/bzhou830/images/master/blogs/03_GPU3/1.png" alt="D3D 11 渲染管线"></p>
-<!-- raw HTML omitted -->
+<p><img src="20190710%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8503_1.png" alt="D3D 11 渲染管线"></p>
 <p>上图中的每个每个方框内都是一个stage的名称，这个名称就是D3D10/11的官方文档的叫法，括号里面的就是它的缩写。在后续的内容中我们会逐渐的介绍它们，在这里我们先对它们都用一句话来做个总结性的介绍。</p>
 <ul>
 <li>IA — Input Assembler. 读取索引数据和顶点数据.</li>
@@ -242,9 +240,7 @@
 所以，为了保证简单: 分配足够的空间给32个顶点(=一个批次)，同样的为32个entry分配标记缓存，使用一个空的缓存作为开始，即所有的entry都是无效状态。对于index buffer中的每一个图元都做一次索引的查找。如果在缓存中hit到了，就直接使用，如果没有hit到，在当前的批次中分配一个slot，然后将新的索引添加到缓存标记数组中。一旦我们没有足够的空间来添加新的图元，那么我们将这一批都送给shader core进行处理， 然后保存缓存标记数组（也就是我们送下去的32个顶点的索引），接着就从一个空的cache中处理一个新的批次，这样就保证的了批次之间的相对独立。
 着色处理单元处理一个批次大概需要几百个时钟周期，但这也没有关系，因为我们有多个着色处理单元，这就实现了并行化。我们最终会得到结果，此时我们可以使用保存的缓存标签和原始的索引缓冲区数据来进行图元的组装（这些是在“Primitive Assmbly”做的，在后面的部分会讲到）。
 当我们说获取结果的时候，这些结果到底在哪里呢？主要有两个选择：1.专用的缓冲区； 2.一些通用缓存/内存。以前使用的是1，具有围绕顶点数据设计的固定结构（每个顶点具有16个float4向量属性的空间）。但是现在的GPU都倾向于是用2，也就是使用通用的缓存或者内存，这种方式相比更加的灵活，它明显的优势就在于你可以将这块内存用于其他的shader stage。</p>
-<!-- raw HTML omitted -->
-<p><img src="https://raw.githubusercontent.com/bzhou830/images/master/blogs/03_GPU3/3.png" alt="vertex shading data flow"></p>
-<!-- raw HTML omitted -->
+<p><img src="20190710%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8503_3.png" alt="vertex shading data flow"></p>
 <h2 id="4-着色器单元内部">4. 着色器单元内部</h2>
 <p>简短版本：着色器单元内部处理的内容和你反编译HLSL编译输出（fxc /dumpbin是很好的工具）所看到的内容差不多。只有处理器能很好地运行这类代码，而在硬件中完成这类事情的方式是构建一些非常接近着色器字节码的东西。这与我到目前所讨论的内容不同的是，它有很好的文档，如果您感兴趣，可以查看AMD和NVidia的会议演示文稿，或者阅读CUDA/Stream SDKs的文档。
 总之，快速ALU主要围绕FMAC(Float Multiply-ACcumulate)单元。一些HW支持倒数, 倒数的平方根, log2, exp2, sin, cos, 为高吞吐量和低延迟做优化, 运行多数量线程来降低延迟, 每个线程对应的寄存器数量相当少(因为运行的线程数量太多了!)，这些线程都擅长执行没有分支的代码。
@@ -253,6 +249,7 @@
 与着色器有关的有一个特殊的部分，虽然这是一个足够大的主题值得自己的一部分。这部分就是纹理采样(和纹理单元)。这将是我们下次的主题!到时候见。</p>
 <h2 id="5-结束语">5. 结束语</h2>
 <p>再次重申我对“顶点缓存和着色”部分的免责声明:这部分中有些是我自己的猜测。我也不打算详细介绍如何管理scratch/cache内存，缓冲区大小主要取决于你处理的批的大小和你期望的顶点输出属性的数量。缓冲区大小和管理对性能非常重要，虽然很有趣，但是这些东西是特定于你所谈论的任何硬件的。</p>
+
         </div>
 
         
@@ -277,11 +274,11 @@
         
         <li><a href="/posts/20190703%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8501/">01 从App到硬件各个层级</a></li>
         
+        <li><a href="/posts/20190620Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/">Git快速入门手册</a></li>
+        
         <li><a href="/posts/20190610Python%E8%AF%BB%E5%86%99Excel/">Python读写Excel</a></li>
         
         <li><a href="/posts/20190601%E9%9B%86%E8%A3%85%E7%AE%B1OCR%E4%BD%BF%E7%94%A8EAST%E5%92%8Ctesseract/">集装箱OCR：使用EAST和Tesseract</a></li>
-        
-        <li><a href="/posts/20190226Windows%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B1/">Windows驱动编程(1)：第一个驱动程序</a></li>
         
     </ul>
 </div>
@@ -335,10 +332,6 @@
 <ul class="widget-list">
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20190801Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" title="Git快速入门手册">Git快速入门手册</a>
-    </li>
-    
-    <li>
         <a href="https://bzhou830.github.io/posts/20190710%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8503/" title="03 图形管线概览及GPU中顶点处理">03 图形管线概览及GPU中顶点处理</a>
     </li>
     
@@ -348,6 +341,10 @@
     
     <li>
         <a href="https://bzhou830.github.io/posts/20190703%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8501/" title="01 从App到硬件各个层级">01 从App到硬件各个层级</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20190620Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" title="Git快速入门手册">Git快速入门手册</a>
     </li>
     
     <li>

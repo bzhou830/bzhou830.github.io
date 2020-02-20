@@ -56,7 +56,7 @@
                         十面埋伏的博客
                     </a>
                 
-                <p class="description">每一个不曾起舞的日子都是对生命的辜负</p>
+                <p class="description">操千曲而后晓声,观千剑而后识器</p>
             </div>
             <div>
                 <nav id="nav-menu" class="clearfix">
@@ -195,7 +195,7 @@
         
         
         <div class="post-content">
-            <p><a href="https://www.jianshu.com/p/8f5e4d215d97">C++内存管理（1）——分配和释放的四个层面</a> 上一篇中从整体上来看系统中四个层面上内存的分配和释放，这样我们就对内存分配有了一个整体的认识。这一节则详细的来写写这四个层面中的操作符或函数的使用方法，以及他们背后的调用关系。首先我们从我们使用最多的new和delete来说起。</p>
+            <p>上一篇中从整体上来看系统中四个层面上内存的分配和释放，这样我们就对内存分配有了一个整体的认识。这一节则详细的来写写这四个层面中的操作符或函数的使用方法，以及他们背后的调用关系。首先我们从我们使用最多的new和delete来说起。</p>
 <h2 id="1-new-和-delete">1. new 和 delete</h2>
 <p>new 操作符有时候也有地方称他为<strong>new operator</strong>，这和另外一个<strong>operator new</strong>非常容易让人混淆。这也是在很多的笔试面试中喜欢问到的知识。其实这两个有很大的区别的，new （new operator）是操作符，operator new却是函数。new操作符在使用的时候做两件事，现时分配内存，然后调用构造函数对对象进行初始化。但是operator new在使用的时候只做分配内存一件事情。说了这么多，那么我们怎么使用他们呢？下面我们通过一个例子来对比一下他们的使用。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
@@ -262,6 +262,7 @@
 <span style="color:#75715e">#</span><span style="color:#75715e">endif</span><span style="color:#75715e">
 </span></code></pre></div><p>上面可以看到，对于不同版本的编译器实现，allocator的使用上也会有所不同。但是容器提供给应用程序开发者的接口还是一致的，所以对于这种咋不同的编译器上又不同表现的代码，一般很少使用在考虑跨平台的软件中的。</p>
 <p>好了，关于几个层面上内存操作的函数/操作符到这里就说完了。关于allocator的内部实现，已经更为底层的原理，在后续的篇章中将会一一叙述。</p>
+
         </div>
 
         
@@ -342,10 +343,6 @@
 <ul class="widget-list">
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20190801Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" title="Git快速入门手册">Git快速入门手册</a>
-    </li>
-    
-    <li>
         <a href="https://bzhou830.github.io/posts/20190710%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8503/" title="03 图形管线概览及GPU中顶点处理">03 图形管线概览及GPU中顶点处理</a>
     </li>
     
@@ -355,6 +352,10 @@
     
     <li>
         <a href="https://bzhou830.github.io/posts/20190703%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8501/" title="01 从App到硬件各个层级">01 从App到硬件各个层级</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20190620Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" title="Git快速入门手册">Git快速入门手册</a>
     </li>
     
     <li>

@@ -17,7 +17,7 @@
       <pubDate>Mon, 10 Jun 2019 09:16:34 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/posts/20190610Python%E8%AF%BB%E5%86%99Excel/</guid>
-      <description>&lt;p&gt;Python3使用xlrd，xlwt, xlutils进行Excel文件的读写操作&lt;/p&gt;</description>
+      <description>Python3使用xlrd，xlwt, xlutils进行Excel文件的读写操作 操作之前，需要先理解excel的结构。 首先需要安装几个库。 xlrd, 这个是用于读取excel xlwt, 这个是用于写入excel xlutils, 里面有一些对excel操作的东西 pip install xlrd pip install xlwt pip install xlutils 1. 读取excel # 读取excel中的内</description>
     </item>
     
   </channel>

@@ -17,7 +17,7 @@
       <pubDate>Wed, 10 Jul 2019 09:16:34 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/posts/20190710%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8503/</guid>
-      <description>&lt;p&gt;通过前面几篇的内容，我们知道，应用程序中的Draw API调用会经过D3D Runtime, 用户态驱动等等各个层级，最终将命令传到GPU的命令解释器，GPU就会根据命令的内容来进行图形的计算和处理。那么这一篇我们就来看看顶点的处理流程。&lt;/p&gt;</description>
+      <description>通过前面几篇的内容，我们知道，应用程序中的Draw API调用会经过D3D Runtime, 用户态驱动等等各个层级，最终将命令传到GPU的命令解释器，GPU就会根据命令的内容来进行图形的计算和处理。那么这一篇我们就来看看顶点的处理流程。 1. 开胃菜 在介绍GPU的顶点处理之前，我们先看看3D渲染管线。3</description>
     </item>
     
     <item>
@@ -26,7 +26,7 @@
       <pubDate>Fri, 05 Jul 2019 09:16:34 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/posts/20190705%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8502/</guid>
-      <description>&lt;p&gt;上一篇中主要介绍了3D渲染命令到达GPU之前经历过的各个阶段。用下图可以概括上一篇中所讲的内容，当然其中很多细节没有出现在图中。之前我们说KMD将命令送给了硬件，这个简单的“送”的过程实际上并不是那么简单的。我们知道显卡都是通过信号线连在主板上的，所以我们送命令都是需要走这些信号线的。还有就是我们把命令送给显卡，那显卡总得有个地方来接受命令吧，这必然需要涉及到内存的使用。然而系统的内存条是通过PCIe总线连接在主板上的，而且显卡自己也可以配有自己的显存，选择使用他们中的哪一个显然也是必须要考究的，那么我们首先就来谈谈内存子系统。&lt;/p&gt;</description>
+      <description>上一篇中主要介绍了3D渲染命令到达GPU之前经历过的各个阶段。用下图可以概括上一篇中所讲的内容，当然其中很多细节没有出现在图中。之前我们说KMD将命令送给了硬件，这个简单的“送”的过程实际上并不是那么简单的。我们知道显卡都是通过信号线连在主板上的，所以我们送命令都是需要走这些信号</description>
     </item>
     
     <item>
@@ -35,7 +35,7 @@
       <pubDate>Wed, 03 Jul 2019 09:16:34 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/posts/20190703%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8501/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;A trip through the Graphics Pipeline 2011&lt;/strong&gt; 是发布在博客 &lt;a href=&#34;http://fgiesen.wordpress.com&#34;&gt;http://fgiesen.wordpress.com&lt;/a&gt; 上的系列文章。主要涉及图形流水线在GPU中实现的方方面面。包括D3D/OpenGL app, UMD Driver, KMD Driver, GPU 硬件流水线设计等等。是非常好的学习图形学应用，GPU驱动等相关领域的资料。翻译的目的一方面是对学习的总结；另一方面是为了分享，因为国内在图形学， GPU相关的资料比较缺乏，导致学习曲线比较陡峭。由于能力欠缺，翻译和理解中肯定存在很多问题，如果发现有问题，烦请交流，避免为后续学习者挖坑。&lt;/p&gt;</description>
+      <description>A trip through the Graphics Pipeline 2011 是发布在博客 http://fgiesen.wordpress.com 上的系列文章。主要涉及图形流水线在GPU中实现的方方面面。包括D3D/OpenGL app, UMD Driver, KMD Driver, GPU 硬件流水线设计等等。是非常好的学习图形学应用，GPU驱动等相关领域的资料。翻译的目的一方面是对学习的总结；另一方面是为了分享，因为国内在图形学， GPU相关的资</description>
     </item>
     
   </channel>

@@ -56,7 +56,7 @@
                         十面埋伏的博客
                     </a>
                 
-                <p class="description">每一个不曾起舞的日子都是对生命的辜负</p>
+                <p class="description">操千曲而后晓声,观千剑而后识器</p>
             </div>
             <div>
                 <nav id="nav-menu" class="clearfix">
@@ -198,16 +198,15 @@
         
         <div class="post-content">
             <p>上一篇中主要介绍了3D渲染命令到达GPU之前经历过的各个阶段。用下图可以概括上一篇中所讲的内容，当然其中很多细节没有出现在图中。之前我们说KMD将命令送给了硬件，这个简单的“送”的过程实际上并不是那么简单的。我们知道显卡都是通过信号线连在主板上的，所以我们送命令都是需要走这些信号线的。还有就是我们把命令送给显卡，那显卡总得有个地方来接受命令吧，这必然需要涉及到内存的使用。然而系统的内存条是通过PCIe总线连接在主板上的，而且显卡自己也可以配有自己的显存，选择使用他们中的哪一个显然也是必须要考究的，那么我们首先就来谈谈内存子系统。</p>
-<!-- raw HTML omitted -->
 <p><img src="https://docs.microsoft.com/zh-cn/windows-hardware/drivers/display/images/dx10arch.png" alt="a"></p>
-<!-- raw HTML omitted -->
 <p>[图片来源] <a href="https://docs.microsoft.com/zh-cn/windows-hardware/drivers/display/windows-vista-and-later-display-driver-model-architecture">https://docs.microsoft.com/zh-cn/windows-hardware/drivers/display/windows-vista-and-later-display-driver-model-architecture</a></p>
 <h2 id="1-内存子系统">1. 内存子系统</h2>
 <p>GPU和我们其他插在主板上的设备有所不同，因为GPU不仅可以使用系统的内存（一般称为内存，主存，system memory）， 还可以使用显卡上自己带的内存（一般称为显存，video memory, local memory）。这相比cpu使用内存差别巨大，这些差别的重要原因就是显卡用途的特殊性，早期的显卡主要解决的就是屏幕显示刷新，3D渲染等等问题。我们来对比一下gpu和cpu，这里以i7 2600k和GeForce GTX 480来对比。拿他们对比原因之一就是它们所处的时期差不多。i7 2600K的内存带宽在表现好的时候可以达到19GB/s，然而GeForce GTX 480的内存带宽近180GB/s， 这整整的相差了一个数量级。在这个角度来讲，GPU相比CPU确实快的不止一点点。
 对于第一代i7(Nehalem架构)，一次cache miss的大概需要耗费140个时钟周期（可以从https://www.anandtech.com/show/2542/5 给出的数据来计算）。从斯坦福给出的一个数据上看（http://www.stanford.edu/dept/ICME/docs/seminars/Rennich-2011-04-25.pdf ）,  GeForce GTX 480一次cache miss大概是需要400~800时钟周期，从时钟周期的角度看，GeForce GTX 480的内存延迟是i7的4倍多，同时我们还要考虑它们主频，i7 2600K的主频是2.93GHz，GTX 480的shader时钟频率是1.4GHz, 这又是一个2倍多的差距，乘以前面的4倍，这又是一个数量级了。
 也就是说GPU的内存带宽优势是远强于CPU的，但是它的内存延迟确实远不及CPU的。GPU的带宽大幅增加，但他们为延迟的大量增加而付出代价。 这是GPU的一般模式：在GPU的整个延迟期间，不要等待那里还没有的结果，而是做别的事！
 除了后续文中会说到的DRAM相关的信息，上面的内容几乎是你需要知道的关于GPU内存的所有内容。不管从逻辑上还是从物理结构上，DRAM芯片是一种2D的网格结构，也就是说它有行线和列线组成的。就像下图显示的那样。</p>
-<!-- raw HTML omitted -->
+<p><img src="20190705%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8502_2.png" alt="DRAM"></p>
+<p>在每一个行线和列线的交叉位置，都有一个晶体管和一个电容。关于它们是如何来存储信息的，可以到wiki百科上搜索（https://en.wikipedia.org/wiki/Dynamic_random-access_memory#Operation_principle）. 不管怎样，我们这里的重点是DRAM中的位置地址被分成行地址和列地址，并且内部的DRAM读/写总是最终同时访问给定行中的所有列。这意味着访问映射到一个DRAM行的内存区比访问跨多行的相同内存量的效率要高得多。目前，看起来这可能只是一个随机的DRAM的一点琐事，但这将在后面变得非常重要。这里先明确一点：每次只读取整个内存中的几个字节，是无法达到上述峰值内存带宽数字的; 如果你想让内存带宽饱和，你最好一次完成一个完整的DRAM行。</p>
 <h2 id="2-pcie主机接口">2. PCIe主机接口</h2>
 <p>从图形程序员的角度来看，这个接口硬件并不非常有趣。 实际上，对于GPU硬件架构师也可能同样如此。问题是，一旦它慢到成为整个系统的瓶颈，你仍然会开始关心它。 所以你要做的就是让专业的人去把它做好，以确保瓶颈不会发生。PCIe接口使得CPU可以对显存和一堆GPU的寄存器进行读/写访问，GPU也可以对主内存（部分）进行GPU读/写访问。很多人都会头疼于这些事务的延迟甚至比内存延迟还要差。因为信号必须从GPU芯片中流出，进入插槽，在主板上移动，然后在之后到达CPU中的某个位置。虽然大多数GPU现在使用的16通道PCIe 2.0连接的（2011年的时候）带宽高达约8GB / s（理论上）峰值聚合带宽，但带宽相当不错，因此占总CPU内存带宽的一半到三分之一，这是一个不错的比例。PCIe 2.0与AGP等早期标准不同，它是一种对称的点对点链路，带宽可以达到两个方向，AGP拥有从CPU到GPU的快速通道，但不能相反传输。</p>
 <h2 id="3-内存的其他点滴">3. 内存的其他点滴</h2>
@@ -247,8 +246,10 @@
 顺便说一句，如果你可以从CPU端设置这些寄存器，那么你也可以使用另一种方式 ：提交一个包含等待特定值的命令，然后从CPU而不是GPU更改寄存器。这可用于实现D3D11样式的多线程渲染，你可以在其中提交一个引用顶点/索引缓冲区的批处理，这些缓冲区仍然锁定在CPU端（可能由另一个线程写入）。您只需在实际渲染调用之前填充等待命令，然后一旦顶点/索引缓冲区解锁，CPU就可以更改寄存器的内容。
 当然，你也不一定必须使用设置寄存器/等待寄存器模型， 对于GPU / GPU同步，您可以简单地使用“rendertarget barrier”指令来确保rendertarget可以安全使用，以及“flush everything”命令。但是相比之下，我更喜欢set register-style模型，因为它不仅实现了GPU的自同步，它还可以随时向CPU报告什么资源正在使用。
 在这里，我绘制了一个图表。为了让它不那么令人费解，所以我将来会降低细节数量。</p>
-<!-- raw HTML omitted -->
+<p><img src="20190705%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8502_3.png" alt="Blocks"></p>
+<p>命令处理器前面有一个长长的FIFO，然后是命令解码逻辑，由2D单元，3D前端（常规3D渲染）或着色器单元（Computer Shader）直接通信的各种处理 ，然后有一个处理同步/等待命令的块（它包含我们前面所讨论的公开可见的寄存器），还有一个处理命令缓冲区跳转/调用的单元（它改变了进入FIFO的当前提取地址）。我们派遣工作的所有模块都需要向我们发送完成事件，以便我们知道何时纹理不再被使用，以至于它们的内存可以被及时的回收。</p>
 <p>关于命令处理器的基本上就讲完了。下一篇我们就可以继续向下，进入实际渲染的工作流程。最后要说的一点是文中很可能存在很多不妥之处，如果你发现有问题，请留言告诉我，避免传递了错误的知识。</p>
+
         </div>
 
         
@@ -271,13 +272,13 @@
         
         <li><a href="/posts/20190703%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8501/">01 从App到硬件各个层级</a></li>
         
+        <li><a href="/posts/20190620Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/">Git快速入门手册</a></li>
+        
         <li><a href="/posts/20190610Python%E8%AF%BB%E5%86%99Excel/">Python读写Excel</a></li>
         
         <li><a href="/posts/20190601%E9%9B%86%E8%A3%85%E7%AE%B1OCR%E4%BD%BF%E7%94%A8EAST%E5%92%8Ctesseract/">集装箱OCR：使用EAST和Tesseract</a></li>
         
         <li><a href="/posts/20190226Windows%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B1/">Windows驱动编程(1)：第一个驱动程序</a></li>
-        
-        <li><a href="/posts/20190112C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8603/">C&#43;&#43;内存管理(3)：重载</a></li>
         
     </ul>
 </div>
@@ -331,10 +332,6 @@
 <ul class="widget-list">
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20190801Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" title="Git快速入门手册">Git快速入门手册</a>
-    </li>
-    
-    <li>
         <a href="https://bzhou830.github.io/posts/20190710%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8503/" title="03 图形管线概览及GPU中顶点处理">03 图形管线概览及GPU中顶点处理</a>
     </li>
     
@@ -344,6 +341,10 @@
     
     <li>
         <a href="https://bzhou830.github.io/posts/20190703%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8501/" title="01 从App到硬件各个层级">01 从App到硬件各个层级</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20190620Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" title="Git快速入门手册">Git快速入门手册</a>
     </li>
     
     <li>

@@ -17,7 +17,7 @@
       <pubDate>Sat, 01 Jun 2019 09:16:34 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/posts/20190601%E9%9B%86%E8%A3%85%E7%AE%B1OCR%E4%BD%BF%E7%94%A8EAST%E5%92%8Ctesseract/</guid>
-      <description>&lt;p&gt;本篇文章主要记录下使用EAST和Tesseract做自然场景中集装箱上字符OCR的一个简单的实现。&lt;/p&gt;</description>
+      <description>本篇文章主要记录下使用EAST和Tesseract做自然场景中集装箱上字符OCR的一个简单的实现。 在看具体问题之前先来谈谈自然场景中文本检测这个领域。自然场景的文本检测和识别一直以来都是一个比较难的问题，在深度学习走红之前，都是绞尽脑汁的变着法子提取有用的特征，然后做定位检测。得</description>
     </item>
     
   </channel>

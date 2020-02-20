@@ -6,19 +6,10 @@
     <description>Recent content on 十面埋伏的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 01 Aug 2019 09:16:34 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 10 Jul 2019 09:16:34 +0800</lastBuildDate>
     
 	<atom:link href="https://bzhou830.github.io/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Git快速入门手册</title>
-      <link>https://bzhou830.github.io/posts/20190801Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</link>
-      <pubDate>Thu, 01 Aug 2019 09:16:34 +0800</pubDate>
-      
-      <guid>https://bzhou830.github.io/posts/20190801Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</guid>
-      <description>&lt;p&gt;本文作为版本控制软件git的入门指导和常用命令整理。&lt;/p&gt;</description>
-    </item>
     
     <item>
       <title>03 图形管线概览及GPU中顶点处理</title>
@@ -26,7 +17,7 @@
       <pubDate>Wed, 10 Jul 2019 09:16:34 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/posts/20190710%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8503/</guid>
-      <description>&lt;p&gt;通过前面几篇的内容，我们知道，应用程序中的Draw API调用会经过D3D Runtime, 用户态驱动等等各个层级，最终将命令传到GPU的命令解释器，GPU就会根据命令的内容来进行图形的计算和处理。那么这一篇我们就来看看顶点的处理流程。&lt;/p&gt;</description>
+      <description>通过前面几篇的内容，我们知道，应用程序中的Draw API调用会经过D3D Runtime, 用户态驱动等等各个层级，最终将命令传到GPU的命令解释器，GPU就会根据命令的内容来进行图形的计算和处理。那么这一篇我们就来看看顶点的处理流程。 1. 开胃菜 在介绍GPU的顶点处理之前，我们先看看3D渲染管线。3</description>
     </item>
     
     <item>
@@ -35,7 +26,7 @@
       <pubDate>Fri, 05 Jul 2019 09:16:34 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/posts/20190705%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8502/</guid>
-      <description>&lt;p&gt;上一篇中主要介绍了3D渲染命令到达GPU之前经历过的各个阶段。用下图可以概括上一篇中所讲的内容，当然其中很多细节没有出现在图中。之前我们说KMD将命令送给了硬件，这个简单的“送”的过程实际上并不是那么简单的。我们知道显卡都是通过信号线连在主板上的，所以我们送命令都是需要走这些信号线的。还有就是我们把命令送给显卡，那显卡总得有个地方来接受命令吧，这必然需要涉及到内存的使用。然而系统的内存条是通过PCIe总线连接在主板上的，而且显卡自己也可以配有自己的显存，选择使用他们中的哪一个显然也是必须要考究的，那么我们首先就来谈谈内存子系统。&lt;/p&gt;</description>
+      <description>上一篇中主要介绍了3D渲染命令到达GPU之前经历过的各个阶段。用下图可以概括上一篇中所讲的内容，当然其中很多细节没有出现在图中。之前我们说KMD将命令送给了硬件，这个简单的“送”的过程实际上并不是那么简单的。我们知道显卡都是通过信号线连在主板上的，所以我们送命令都是需要走这些信号</description>
     </item>
     
     <item>
@@ -44,7 +35,16 @@
       <pubDate>Wed, 03 Jul 2019 09:16:34 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/posts/20190703%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8501/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;A trip through the Graphics Pipeline 2011&lt;/strong&gt; 是发布在博客 &lt;a href=&#34;http://fgiesen.wordpress.com&#34;&gt;http://fgiesen.wordpress.com&lt;/a&gt; 上的系列文章。主要涉及图形流水线在GPU中实现的方方面面。包括D3D/OpenGL app, UMD Driver, KMD Driver, GPU 硬件流水线设计等等。是非常好的学习图形学应用，GPU驱动等相关领域的资料。翻译的目的一方面是对学习的总结；另一方面是为了分享，因为国内在图形学， GPU相关的资料比较缺乏，导致学习曲线比较陡峭。由于能力欠缺，翻译和理解中肯定存在很多问题，如果发现有问题，烦请交流，避免为后续学习者挖坑。&lt;/p&gt;</description>
+      <description>A trip through the Graphics Pipeline 2011 是发布在博客 http://fgiesen.wordpress.com 上的系列文章。主要涉及图形流水线在GPU中实现的方方面面。包括D3D/OpenGL app, UMD Driver, KMD Driver, GPU 硬件流水线设计等等。是非常好的学习图形学应用，GPU驱动等相关领域的资料。翻译的目的一方面是对学习的总结；另一方面是为了分享，因为国内在图形学， GPU相关的资</description>
+    </item>
+    
+    <item>
+      <title>Git快速入门手册</title>
+      <link>https://bzhou830.github.io/posts/20190620Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Sat, 29 Jun 2019 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20190620Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</guid>
+      <description>本文作为版本控制软件git的入门指导和常用命令整理。 1.git的安装 自诞生于 2005 年以来，Git 日臻成熟完善，在高度易用的同时，仍然保留着初期设定的目标。它的速度飞快，极其适合管理大项目 。Git可以在windows、Mac、Linux全平台系统使用。登录 https://git-scm.com/downloads 下载你系统的Git软件并进行</description>
     </item>
     
     <item>
@@ -53,7 +53,7 @@
       <pubDate>Mon, 10 Jun 2019 09:16:34 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/posts/20190610Python%E8%AF%BB%E5%86%99Excel/</guid>
-      <description>&lt;p&gt;Python3使用xlrd，xlwt, xlutils进行Excel文件的读写操作&lt;/p&gt;</description>
+      <description>Python3使用xlrd，xlwt, xlutils进行Excel文件的读写操作 操作之前，需要先理解excel的结构。 首先需要安装几个库。 xlrd, 这个是用于读取excel xlwt, 这个是用于写入excel xlutils, 里面有一些对excel操作的东西 pip install xlrd pip install xlwt pip install xlutils 1. 读取excel # 读取excel中的内</description>
     </item>
     
     <item>
@@ -62,7 +62,7 @@
       <pubDate>Sat, 01 Jun 2019 09:16:34 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/posts/20190601%E9%9B%86%E8%A3%85%E7%AE%B1OCR%E4%BD%BF%E7%94%A8EAST%E5%92%8Ctesseract/</guid>
-      <description>&lt;p&gt;本篇文章主要记录下使用EAST和Tesseract做自然场景中集装箱上字符OCR的一个简单的实现。&lt;/p&gt;</description>
+      <description>本篇文章主要记录下使用EAST和Tesseract做自然场景中集装箱上字符OCR的一个简单的实现。 在看具体问题之前先来谈谈自然场景中文本检测这个领域。自然场景的文本检测和识别一直以来都是一个比较难的问题，在深度学习走红之前，都是绞尽脑汁的变着法子提取有用的特征，然后做定位检测。得</description>
     </item>
     
     <item>
@@ -71,11 +71,7 @@
       <pubDate>Tue, 26 Feb 2019 09:16:34 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/posts/20190226Windows%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B1/</guid>
-      <description>&lt;p&gt;本篇主要介绍在VS2013环境下使用WDK8.1开发KMD驱动的一个简单的demo.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;开发环境：VS2013, WDK8.1&lt;/li&gt;
-&lt;li&gt;需要使用的工具：vmware player(安装windows xp作为实验环境), DriverMonitor(加载驱动的工具), DbgView(捕获内核的信息输出)&lt;/li&gt;
-&lt;/ul&gt;</description>
+      <description>本篇主要介绍在VS2013环境下使用WDK8.1开发KMD驱动的一个简单的demo. 开发环境：VS2013, WDK8.1 需要使用的工具：vmware player(安装windows xp作为实验环境), DriverMonitor(加载驱动的工具), DbgView(捕获内核的信息输出) 1. 搭建开</description>
     </item>
     
     <item>
@@ -84,7 +80,7 @@
       <pubDate>Sat, 12 Jan 2019 09:16:34 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/posts/20190112C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8603/</guid>
-      <description>&lt;p&gt;前面两篇中从整体上来看系统中四个层面上内存的分配和释放，然后详细的介绍了这四个层面中的操作符或函数的使用方法，以及他们背后的调用关系。这一篇中我们就从内存管理的实现的基本点“重载”开始，看看C++给我们提供了哪些可供使用的内存管理接口。&lt;/p&gt;</description>
+      <description>前面两篇中从整体上来看系统中四个层面上内存的分配和释放，然后详细的介绍了这四个层面中的操作符或函数的使用方法，以及他们背后的调用关系。这一篇中我们就从内存管理的实现的基本点“重载”开始，看看C++给我们提供了哪些可供使用的内存管理接口。 应用程序的设计中，我们所说的内存管理就是将系</description>
     </item>
     
     <item>
@@ -93,7 +89,7 @@
       <pubDate>Thu, 10 Jan 2019 09:16:34 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/posts/20190110C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8602/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://www.jianshu.com/p/8f5e4d215d97&#34;&gt;C++内存管理（1）——分配和释放的四个层面&lt;/a&gt; 上一篇中从整体上来看系统中四个层面上内存的分配和释放，这样我们就对内存分配有了一个整体的认识。这一节则详细的来写写这四个层面中的操作符或函数的使用方法，以及他们背后的调用关系。首先我们从我们使用最多的new和delete来说起。&lt;/p&gt;</description>
+      <description>上一篇中从整体上来看系统中四个层面上内存的分配和释放，这样我们就对内存分配有了一个整体的认识。这一节则详细的来写写这四个层面中的操作符或函数的使用方法，以及他们背后的调用关系。首先我们从我们使用最多的new和delete来说起。 1. new 和 delete new 操作符有时候也有地方称他为new opera</description>
     </item>
     
     <item>
@@ -102,7 +98,7 @@
       <pubDate>Sun, 06 Jan 2019 09:16:34 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/posts/20190106C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8601/</guid>
-      <description>&lt;p&gt;内存的使用是稍底层一些的程序，或者性能要求严格的程序都是非常有讲究的一块。从程序的分层设计的角度来看，一般有四个层面上内存的分配和释放可以共给我们开发人员使用。本篇就介绍这这个层面上内存分配相关的一些函数接口。&lt;/p&gt;</description>
+      <description>内存的使用是稍底层一些的程序，或者性能要求严格的程序都是非常有讲究的一块。从程序的分层设计的角度来看，一般有四个层面上内存的分配和释放可以共给我们开发人员使用。本篇就介绍这这个层面上内存分配相关的一些函数接口。 1. 站在高处思考 从一个比较高的角度来看，内存管理说到底就是使用OS提供的</description>
     </item>
     
     <item>
@@ -111,7 +107,7 @@
       <pubDate>Thu, 03 Jan 2019 09:16:34 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/posts/20190103Android%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8JNI%E6%96%B9%E5%BC%8F%E8%B0%83%E7%94%A8OpenCV%E9%85%8D%E7%BD%AE/</guid>
-      <description>&lt;p&gt;本文主要介绍 OpenCV3.4.2 在 android studio2.3 中的配置，并使用 JNI 方式调用 OpenCV 中 C/C++ 层函数。&lt;/p&gt;</description>
+      <description>本文主要介绍 OpenCV3.4.2 在 android studio2.3 中的配置，并使用 JNI 方式调用 OpenCV 中 C/C++ 层函数。 Android Studio在2.2版本更新之后加入了CMAKE方式配置NDK的方法，这大大简化了之前通过Android.mk和Application.mk两个本地配置文件进行NDK开发的方式。这种方法在后续更新的版本中不断增强，越来</description>
     </item>
     
     <item>
@@ -120,7 +116,7 @@
       <pubDate>Thu, 03 Jan 2019 09:16:34 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/posts/20190103%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9B%B8%E5%85%B3/</guid>
-      <description>&lt;p&gt;本文主要记录使用树莓派过程的一些问题和解决方案。系统是基于官方的Raspbian Stretch with desktop系统。&lt;/p&gt;</description>
+      <description>本文主要记录使用树莓派过程的一些问题和解决方案。系统是基于官方的Raspbian Stretch with desktop系统。 1.安装使用OpenCV 推荐使用16G或以上的卡，最好是class10以上，因为8G class6卡安装到35%就爆满了，推算安装完成要4.6G左右的空间。 OpenCV的安装可不</description>
     </item>
     
     <item>
@@ -129,7 +125,7 @@
       <pubDate>Tue, 01 Jan 2019 09:16:34 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/posts/20190101Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</guid>
-      <description>&lt;p&gt;本文用来记录我使用Hexo进行静态博客搭建的过程，博客是托管在Github Page上的。&lt;/p&gt;</description>
+      <description>本文用来记录我使用Hexo进行静态博客搭建的过程，博客是托管在Github Page上的。 1.下载安装node.js和git两个工具 因为需要使用npm和git进行博客的生成，搭建和上传部署。 npm install hexo-cli -g hexo init blog cd blog npm install hexo server 运行完成上面的命令之后就可以看到cmd窗口提示已经将blog发布到</description>
     </item>
     
     <item>
@@ -228,7 +224,7 @@
       <pubDate>Tue, 24 Mar 2015 09:29:11 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/posts/20150324%E5%9B%BE%E5%83%8F%E6%8F%92%E5%80%BC%E8%BF%90%E7%AE%97%E6%80%BB%E7%BB%93/</guid>
-      <description>&lt;p&gt;图像插值就是利用已知邻近像素点的灰度值（或RGB图像中的三色值）来产生未知像素点的灰度值，以便由原始图像再生出具有更高分辨率的图像。图像插值常常用在图像的放缩，旋转等变换中。常用的插值运算有三种：最邻近插值、双线性插值和立方卷积插值（cubic运算）。假设变换（放缩，旋转等等）前的图像为S，变换后的图像为T。&lt;/p&gt;</description>
+      <description>图像插值就是利用已知邻近像素点的灰度值（或RGB图像中的三色值）来产生未知像素点的灰度值，以便由原始图像再生出具有更高分辨率的图像。图像插值常常用在图像的放缩，旋转等变换中。常用的插值运算有三种：最邻近插值、双线性插值和立方卷积插值（cubic运算）。假设变换（放缩，旋转等等）前</description>
     </item>
     
     <item>
