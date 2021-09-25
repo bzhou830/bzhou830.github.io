@@ -1,15 +1,60 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>C/C&#43;&#43; on 十面埋伏的博客</title>
+    <title>C/C&#43;&#43; on Binean&#39;s Blog</title>
     <link>https://bzhou830.github.io/tags/C/C&#43;&#43;/</link>
-    <description>Recent content in C/C&#43;&#43; on 十面埋伏的博客</description>
+    <description>Recent content in C/C&#43;&#43; on Binean&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 26 Feb 2019 09:16:34 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 05 Jan 2020 19:16:34 +0800</lastBuildDate>
     
 	<atom:link href="https://bzhou830.github.io/tags/C/C++/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>C&#43;&#43;中的字符串split</title>
+      <link>https://bzhou830.github.io/posts/20200105CppSplit/</link>
+      <pubDate>Sun, 05 Jan 2020 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20200105CppSplit/</guid>
+      <description>使用过Java, Python或者go这些语言然后切换到C++的同学很可能遇到一个问题就是：为什么在C++的string类里面为什么没有提供一个split函数呢？ 猜测可能有下面几个原因： split之后的结果存放在哪里呢？vector？但是string类中引入vector势必会造成s</description>
+    </item>
+    
+    <item>
+      <title>从例子中学C&#43;&#43;11多线程</title>
+      <link>https://bzhou830.github.io/posts/20200102cpp11%E5%A4%9A%E7%BA%BF%E7%A8%8B/</link>
+      <pubDate>Thu, 02 Jan 2020 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20200102cpp11%E5%A4%9A%E7%BA%BF%E7%A8%8B/</guid>
+      <description>1. 线程的创建 C++11中提供了thread类可以直接用来创建线程，创建步骤： 包含thread所在的头文件 #include &amp;lt;thread&amp;gt; 在需要的地方直接创建一个thread对象，构造函数中传入一个线程入口函数（或者是一个可调对象）。（普通函数，lambda表达式，重载了()的类都可以传入，普通类成员函数也可</description>
+    </item>
+    
+    <item>
+      <title>Windows Kernel Program</title>
+      <link>https://bzhou830.github.io/posts/20190406WindowsKernelProgram/</link>
+      <pubDate>Sat, 06 Apr 2019 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20190406WindowsKernelProgram/</guid>
+      <description>Chapter 1: Windows内部概述 本章描述了Windows内部工作原理中最重要的概念。一些主题将在本书后面更详细地描述，它与当前的主题密切相关。确保你理解了本章的概念，因为这些是任何驱动程序甚至是用户模式底层代码的基础。 进程 虚拟内存 线程 系统服务 系统架构 句柄和对象 1. 进程 进程表示的是正在运行</description>
+    </item>
+    
+    <item>
+      <title>Windows驱动开发总结(二)</title>
+      <link>https://bzhou830.github.io/posts/20190306Windows%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93%E4%BA%8C/</link>
+      <pubDate>Wed, 06 Mar 2019 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20190306Windows%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93%E4%BA%8C/</guid>
+      <description>同步异步的两种用法 FILE_FLAG_OVERLAPPED异步打开参数 在CreateFile打开设备对象时 HANDLE CreateFile( LPCSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, //FILE_FLAG_OVERLAPPED HANDLE hTemplateFile ); 加入FILE_FLAG_OVERLAPPED参数就是以异步的方式打开驱动的设备对象 与驱动通讯时如下的调用界面及异步结构，需要设置一个OVE</description>
+    </item>
+    
+    <item>
+      <title>Windows驱动开发总结(一)</title>
+      <link>https://bzhou830.github.io/posts/20190305Windows%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93%E4%B8%80/</link>
+      <pubDate>Tue, 05 Mar 2019 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20190305Windows%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93%E4%B8%80/</guid>
+      <description>1. windows内核对象 每个对象都有对象头和对象体组成。所有类型的对象头结构都是相同的，而结构体部分却各不相同的。下面是内核对象的结构图： 进程句柄表 dt nt!_EPROCESS +0x000 Pcb : _KPROCESS +0x06c ProcessLock : _EX_PUSH_LOCK +0x070 CreateTime : _LARGE_INTEGER +0x078 ExitTime : _LARGE_INTEGER +0x080 RundownProtect : _EX_RUNDOWN_REF +0x084 UniqueProcessId : Ptr32 Void +0x088 ActiveProcessLinks : _LIST_ENTRY +0x090 QuotaUsage : [3] Uint4B +0x09c QuotaPeak : [3] Uint4B +0x0a8 CommitCharge : Uint4B +0x0ac PeakVirtualSize : Uint4B +0x0b0 VirtualSize : Uint4B +0x0b4 SessionProcessLinks : _LIST_ENTRY +0x0bc DebugPort : Ptr32 Void +0x0c0 ExceptionPort : Ptr32</description>
+    </item>
     
     <item>
       <title>Windows驱动编程(1)：第一个驱动程序</title>
@@ -17,34 +62,61 @@
       <pubDate>Tue, 26 Feb 2019 09:16:34 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/posts/20190226Windows%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B1/</guid>
-      <description>本篇主要介绍在VS2013环境下使用WDK8.1开发KMD驱动的一个简单的demo. 开发环境：VS2013, WDK8.1 需要使用的工具：vmware player(安装windows xp作为实验环境), DriverMonitor(加载驱动的工具), DbgView(捕获内核的信息输出) 1. 搭建开</description>
+      <description>本篇主要介绍在VS2013环境下使用WDK8.1开发KMD驱动的一个简单的demo. 开发环境：VS2013, WDK8.1 需要使用的工具：vmware player(安装windows xp作为实验环境),DriverMonitor(加载驱动的工具), DbgView(捕获内核的信息输出) 1. 搭建开</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;内存管理|05 各平台下std::allocator概览</title>
+      <link>https://bzhou830.github.io/posts/20180116C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8605/</link>
+      <pubDate>Tue, 16 Jan 2018 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20180116C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8605/</guid>
+      <description>1. VC6中的std::allocator VC6中的std::allocator源码实现如下图： 从图中可以发现，VC6中的std::allocator并没有进行memory pool这类的处理，直接在里面调用operator new()，进而调用::operator new，然后mall</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;内存管理|04 内存池</title>
+      <link>https://bzhou830.github.io/posts/20180114C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8604/</link>
+      <pubDate>Sun, 14 Jan 2018 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20180114C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8604/</guid>
+      <description>1. per-class allocator (ver 1.0) 前面几篇内存管理介绍了在C++中进行内存管理的接口，有了这些接口就可以开始使用这些工具管理内存。首先来看一个来自&amp;lt;&amp;lt;C++ Primer&amp;gt;&amp;gt; 3ed, p765的一个例子： #include &amp;lt;cstddef&amp;gt; #include &amp;lt;iostream&amp;gt; using namespace std; class Screen { public: Screen(int x) :i(x) {}; int geti() { return i; }; void* operator new(size_t size) { Screen *p; if (!freeStore) { size_t chunk = screenChunk * size; freeStore = p = reinterpret_cast&amp;lt;Screen*&amp;gt;(new char[chunk]); for (; p != &amp;amp;freeStore[screenChunk - 1]; ++p) { p-&amp;gt;next = p +</description>
     </item>
     
     <item>
       <title>C&#43;&#43;内存管理|03 重载</title>
-      <link>https://bzhou830.github.io/posts/20190112C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8603/</link>
-      <pubDate>Sat, 12 Jan 2019 09:16:34 +0800</pubDate>
+      <link>https://bzhou830.github.io/posts/20180112C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8603/</link>
+      <pubDate>Fri, 12 Jan 2018 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/posts/20190112C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8603/</guid>
-      <description>前面两篇中从整体上来看系统中四个层面上内存的分配和释放，然后详细的介绍了这四个层面中的操作符或函数的使用方法，以及他们背后的调用关系。这一篇中我们就从内存管理的实现的基本点“重载”开始，看看C++给我们提供了哪些可供使用的内存管理接口。 应用程序的设计中，我们所说的内存管理就是将系</description>
+      <guid>https://bzhou830.github.io/posts/20180112C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8603/</guid>
+      <description>前面两篇【C++内存管理】从整体上来看了系统中四个调用层面上的内存分配和释放，然后详细的介绍了这四个层面中的操作符/函数的使用以及背后的调用关系。在这一篇我们就从内存管理实现的基本点重载开始，看看C++给我们提供了哪些可供用户使用的内存管理接口。 应用程序的设计中，我们所说的内存管</description>
     </item>
     
     <item>
       <title>C&#43;&#43;内存管理|02 内存操作相关函数</title>
-      <link>https://bzhou830.github.io/posts/20190110C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8602/</link>
-      <pubDate>Thu, 10 Jan 2019 09:16:34 +0800</pubDate>
+      <link>https://bzhou830.github.io/posts/20180110C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8602/</link>
+      <pubDate>Wed, 10 Jan 2018 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/posts/20190110C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8602/</guid>
+      <guid>https://bzhou830.github.io/posts/20180110C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8602/</guid>
       <description>上一篇中从整体上来看系统中四个层面上内存的分配和释放，这样我们就对内存分配有了一个整体的认识。这一节则详细的来写写这四个层面中的操作符或函数的使用方法，以及他们背后的调用关系。首先我们从我们使用最多的new和delete来说起。 1. new 和 delete new 操作符有时候也有地方称他为new opera</description>
     </item>
     
     <item>
       <title>C&#43;&#43;内存管理|01 分配和释放的四个层面</title>
-      <link>https://bzhou830.github.io/posts/20190106C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8601/</link>
-      <pubDate>Sun, 06 Jan 2019 09:16:34 +0800</pubDate>
+      <link>https://bzhou830.github.io/posts/20180106C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8601/</link>
+      <pubDate>Sat, 06 Jan 2018 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/posts/20190106C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8601/</guid>
+      <guid>https://bzhou830.github.io/posts/20180106C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8601/</guid>
       <description>内存的使用是稍底层一些的程序，或者性能要求严格的程序都是非常有讲究的一块。从程序的分层设计的角度来看，一般有四个层面上内存的分配和释放可以共给我们开发人员使用。本篇就介绍这这个层面上内存分配相关的一些函数接口。 1. 站在高处思考 从一个比较高的角度来看，内存管理说到底就是使用OS提供的</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;对象模型</title>
+      <link>https://bzhou830.github.io/posts/20170120Cpp%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B/</link>
+      <pubDate>Fri, 20 Jan 2017 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20170120Cpp%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B/</guid>
+      <description>1. 类对象多占的空间 sizeof(空类) = ? 静态成员变量/函数，不占用类对象的空间 有虚函数时，类对象会多一个指针大小的空间（指向虚函数表vftbl） 对齐？ 2. 对象结构的演化和发展 3. this指针的调整 4. 分析obj文件 5. 拷贝构造函数 6. 程序转化语义 7. 程序的优化 class Value{ public: };</description>
     </item>
     
     <item>

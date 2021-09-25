@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>算法 on Binean&#39;s Blog</title>
+    <link>https://bzhou830.github.io/tags/%E7%AE%97%E6%B3%95/</link>
+    <description>Recent content in 算法 on Binean&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 12 Jan 2017 19:16:34 +0800</lastBuildDate>
+    
+	<atom:link href="https://bzhou830.github.io/tags/%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>图论算法笔记|12网络流算法</title>
+      <link>https://bzhou830.github.io/posts/20170112%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9512/</link>
+      <pubDate>Thu, 12 Jan 2017 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20170112%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9512/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>图论算法笔记|11有向图算法</title>
+      <link>https://bzhou830.github.io/posts/20170111%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9511/</link>
+      <pubDate>Wed, 11 Jan 2017 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20170111%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9511/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>图论算法笔记|10最短路径</title>
+      <link>https://bzhou830.github.io/posts/20170110%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9510/</link>
+      <pubDate>Tue, 10 Jan 2017 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20170110%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9510/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>图论算法笔记|09最小生成树</title>
+      <link>https://bzhou830.github.io/posts/20170109%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9509/</link>
+      <pubDate>Mon, 09 Jan 2017 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20170109%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9509/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>图论算法笔记|08欧拉回路和欧拉路径</title>
+      <link>https://bzhou830.github.io/posts/20170108%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9508/</link>
+      <pubDate>Sun, 08 Jan 2017 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20170108%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9508/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>图论算法笔记|07哈密顿回路和路径</title>
+      <link>https://bzhou830.github.io/posts/20170107%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9507/</link>
+      <pubDate>Sat, 07 Jan 2017 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20170107%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9507/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>图论算法笔记|06桥和割点</title>
+      <link>https://bzhou830.github.io/posts/20170106%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9506/</link>
+      <pubDate>Fri, 06 Jan 2017 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20170106%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9506/</guid>
+      <description>1. 什么是桥 对于无向图，如果删除了一条边，整个图的联通分量的数量发生了变化，那么删除的这条边就成为桥（Bridge）,桥也叫割边。桥意味着图中最脆弱的关系。例如在交通设计中各个地点表示顶点，之间的道路表示边，那么桥就是联通城市群的交通要道，如果桥断了就形成了隔离的城市群。 2. 割点 对于</description>
+    </item>
+    
+    <item>
+      <title>图论算法笔记|05图论搜索和人工智能</title>
+      <link>https://bzhou830.github.io/posts/20170105%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9505/</link>
+      <pubDate>Thu, 05 Jan 2017 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20170105%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9505/</guid>
+      <description>Leetcode 1091 状态表达 leetcode 752 一个5L的桶和一个3L的桶，装出4L的水 农夫过河问题 leetcode 773 华容道</description>
+    </item>
+    
+    <item>
+      <title>图论算法笔记|04图论建模和Floodfill</title>
+      <link>https://bzhou830.github.io/posts/20170104%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9504/</link>
+      <pubDate>Wed, 04 Jan 2017 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20170104%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9504/</guid>
+      <description>1. 图论建模 大多数的时候我们遇到的问题都不会直接说明这是一个图论的问题，然后你需要使用什么方法来解决。大多数的时候是需要我们自己对问题进行抽象，然后将问题建模成一个图论的问题，然后求解。图论的问题求解过程绝大多数还是使用的dfs或者是bfs。不同的是对于不同的问题，我们需要在遍历的</description>
+    </item>
+    
+    <item>
+      <title>图论算法笔记|03广度优先遍历</title>
+      <link>https://bzhou830.github.io/posts/20170103%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9503/</link>
+      <pubDate>Tue, 03 Jan 2017 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20170103%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9503/</guid>
+      <description>1. 广度优先遍历 在深度优先遍历中，从一个节点出发然后一直递归的去遍历和它相连的节点，也就是说我们是依次遍历完成一个节点的子图。 广度优先遍历不同于深度优先遍历，我们从一个节点出发遍历完和它相连的节点，然后再去遍历和它相连的这些节点相连的节点，就好像是一层层的去遍历完整个图（和二叉树的</description>
+    </item>
+    
+    <item>
+      <title>图论算法笔记|02深度优先遍历</title>
+      <link>https://bzhou830.github.io/posts/20170102%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9502/</link>
+      <pubDate>Mon, 02 Jan 2017 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20170102%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9502/</guid>
+      <description>1. 遍历的意义 图是一种数据结构，数据结构的作用就是用来将数据进行结构化的存储。然而存储的目的为的是后续高效率的查找。查找这个动作就是需要在数据结构里面进行遍历，所以从这个角度上来看任何的数据结构都应该存在遍历的方式。 对于“图”这种数据结构来说，它可以有深度优先遍历和广度优先遍历两种</description>
+    </item>
+    
+    <item>
+      <title>图论算法笔记|01图的存储结构</title>
+      <link>https://bzhou830.github.io/posts/20170101%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9501/</link>
+      <pubDate>Sun, 01 Jan 2017 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20170101%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9501/</guid>
+      <description>图是一种表示多对多关系的结构，表示图的数据结构一般有两种形式，一种是邻接矩阵，另一种是邻接表。 1. 邻接矩阵 邻接矩阵，顾名思义，是一个矩阵，它是存储着边信息的矩阵，顶点用矩阵的下标表示。对于一个邻接矩阵M，如果$M(i,j)=1$，则说明顶点$i$和顶点$j$之间存在一条边。 对于无向</description>
+    </item>
+    
+  </channel>
+</rss>

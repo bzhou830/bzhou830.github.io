@@ -1,0 +1,1285 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Flask 学习笔记|11 Python与Flask的结合应用 | Binean&#39;s Blog</title>
+    <meta property="og:title" content="Flask 学习笔记|11 Python与Flask的结合应用 - Binean&#39;s Blog">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2016-05-11T09:16:34&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2016-05-11T09:16:34&#43;08:00'>
+        
+    <meta name="Keywords" content="C/C&#43;&#43;, GPU, Windows驱动开发, OpenCV, 图像处理">
+    <meta name="description" content="Flask 学习笔记|11 Python与Flask的结合应用">
+        
+    <meta name="author" content="Binean">
+    <meta property="og:url" content="https://bzhou830.github.io/posts/20160511flask11/">
+    <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href='/css/normalize.css'>
+    
+    <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://bzhou830.github.io/">
+                        Binean&#39;s Blog
+                    </a>
+                
+                <p class="description">杏花疏影里，吹笛到天明</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="https://bzhou830.github.io/">首页</a>
+                    
+                    <a  href="https://bzhou830.github.io/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://bzhou830.github.io/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    <style type="text/css">
+    .post-toc {
+        position: fixed;
+        width: 200px;
+        margin-left: -210px;
+        padding: 5px 10px;
+        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+        font-size: 12px;
+        border: 1px solid rgba(0, 0, 0, .07);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.98);
+        background-clip: padding-box;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        word-wrap: break-word;
+        white-space: nowrap;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 999;
+        cursor: pointer;
+        max-height: 70%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .post-toc .post-toc-title {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .post-toc .post-toc-content {
+        font-size: 15px;
+    }
+
+    .post-toc .post-toc-content>nav>ul {
+        margin: 10px 0;
+    }
+
+    .post-toc .post-toc-content ul {
+        padding-left: 20px;
+        list-style: square;
+        margin: 0.5em;
+        line-height: 1.8em;
+    }
+
+    .post-toc .post-toc-content ul ul {
+        padding-left: 15px;
+        display: none;
+    }
+
+    @media print,
+    screen and (max-width:1057px) {
+        .post-toc {
+            display: none;
+        }
+    }
+</style>
+<div class="post-toc" style="position: absolute; top: 188px;">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#111-重置密码流程分析">11.1 重置密码流程分析</a></li>
+    <li><a href="#112-first_or_404和可调用对象">11.2 first_or_404和可调用对象</a>
+      <ul>
+        <li><a href="#1first_or_404">1.first_or_404</a></li>
+        <li><a href="#2可调用对象的作用">2.可调用对象的作用</a></li>
+      </ul>
+    </li>
+    <li><a href="#113-httpexception">11.3 HttpException</a>
+      <ul>
+        <li><a href="#1first_ot_404的异常抛出流程">1.first_ot_404的异常抛出流程</a></li>
+        <li><a href="#2抛出异常后到浏览器异常界面的显示流程">2.抛出异常后到浏览器异常界面的显示流程</a></li>
+        <li><a href="#3基于aop统一处理异常">3.基于AOP统一处理异常</a></li>
+      </ul>
+    </li>
+    <li><a href="#114-发送电子邮件">11.4 发送电子邮件</a>
+      <ul>
+        <li><a href="#1在app中注册flask-mail">1.在app中注册flask-mail</a></li>
+        <li><a href="#2email配置">2.EMAIL配置</a></li>
+        <li><a href="#3编写邮件工具类">3.编写邮件工具类</a></li>
+        <li><a href="#4测试调用">4.测试调用</a></li>
+        <li><a href="#5使用itsdangerous生成token">5.使用itsdangerous生成token</a></li>
+        <li><a href="#6重置密码">6.重置密码</a></li>
+        <li><a href="#7视图函数编写">7.视图函数编写</a></li>
+        <li><a href="#8发送邮件优化异步发送">8.发送邮件优化，异步发送</a></li>
+      </ul>
+    </li>
+    <li><a href="#115-鱼漂">11.5 鱼漂</a>
+      <ul>
+        <li><a href="#1业务逻辑编写">1.业务逻辑编写</a></li>
+        <li><a href="#2模型设计">2.模型设计</a></li>
+        <li><a href="#3鱼漂条件检测">3.鱼漂条件检测</a></li>
+        <li><a href="#4完成鱼漂业务逻辑">4.完成鱼漂业务逻辑</a></li>
+      </ul>
+    </li>
+    <li><a href="#116-交易记录">11.6 交易记录</a>
+      <ul>
+        <li><a href="#1业务逻辑">1.业务逻辑</a></li>
+        <li><a href="#2获取鱼漂列表">2.获取鱼漂列表</a></li>
+        <li><a href="#3drift-viewmodel-编写">3.Drift ViewModel 编写</a></li>
+      </ul>
+    </li>
+    <li><a href="#117-其他操作">11.7 其他操作</a>
+      <ul>
+        <li><a href="#1更好的使用枚举">1.更好的使用枚举</a></li>
+        <li><a href="#2撤销操作业务逻辑">2.撤销操作业务逻辑</a></li>
+        <li><a href="#3拒绝操作业务逻辑">3.拒绝操作业务逻辑</a></li>
+        <li><a href="#4完成邮寄">4.完成邮寄</a></li>
+        <li><a href="#5撤销赠送">5.撤销赠送</a></li>
+        <li><a href="#6撤销心愿">6.撤销心愿</a></li>
+        <li><a href="#7赠送书籍">7.赠送书籍</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postToc = $(".post-toc");
+        if (postToc.length) {
+            var leftPos = $("#main").offset().left;
+            if(leftPos<220){
+                postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})
+            }
+
+            var t = postToc.offset().top - 20,
+                a = {
+                    start: {
+                        position: "absolute",
+                        top: t
+                    },
+                    process: {
+                        position: "fixed",
+                        top: 20
+                    },
+                };
+            $(window).scroll(function () {
+                var e = $(window).scrollTop();
+                e < t ? postToc.css(a.start) : postToc.css(a.process)
+            })
+        }
+    })
+</script>
+    <article class="post">
+        <header>
+            <h1 class="post-title">Flask 学习笔记|11 Python与Flask的结合应用</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2016年5月11日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/Flask'>Flask</a></span>
+            
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/Python'>Python</a></span>
+            
+        </div>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <h2 id="111-重置密码流程分析">11.1 重置密码流程分析</h2>
+<p>重置密码主要流程如下：
+<img src="https://upload-images.jianshu.io/upload_images/7220971-974e8b43209b8e07.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png">
+其中，发送重置密码邮件后的流程如下：
+<img src="https://upload-images.jianshu.io/upload_images/7220971-bf0862fd7d3a3c64.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h2 id="112-first_or_404和可调用对象">11.2 first_or_404和可调用对象</h2>
+<h3 id="1first_or_404">1.first_or_404</h3>
+<p>视图函数接受用户填写的email账号，如果不存在应该跳转到404界面，这个逻辑flask-sqlalchemy为我们提供了良好的封装，不需要手动去处理,只需要调用Query的first_or_404()方法即可</p>
+<pre><code class="language-python">user = User.query.filter_by(email=account_email).first_or_404()
+</code></pre>
+<p>first_or_404内部是对first函数的封装，他在获取了first的结果以后，会进行空判断，如果结果为空，则调用abort()方法，而abort()方法内部是调用了一个对象</p>
+<p>first_or_404</p>
+<pre><code class="language-python">    def first_or_404(self):
+        &quot;&quot;&quot;Like :meth:`first` but aborts with 404 if not found instead of returning ``None``.&quot;&quot;&quot;
+
+        rv = self.first()
+        if rv is None:
+            abort(404)
+        return rv
+</code></pre>
+<p>abort()</p>
+<pre><code class="language-python">def abort(status, *args, **kwargs):
+    '''
+    Raises an :py:exc:`HTTPException` for the given status code or WSGI
+    application::
+
+        abort(404)  # 404 Not Found
+        abort(Response('Hello World'))
+
+    Can be passed a WSGI application or a status code.  If a status code is
+    given it's looked up in the list of exceptions and will raise that
+    exception, if passed a WSGI application it will wrap it in a proxy WSGI
+    exception and raise that::
+
+       abort(404)
+       abort(Response('Hello World'))
+
+    '''
+    return _aborter(status, *args, **kwargs)
+
+_aborter = Aborter()
+</code></pre>
+<p>如果要将一个对象像函数一样调用，需要在函数内部实现__call__方法，<code>_aborter(status, *args, **kwargs)</code>实际上就是调用了Aborter的__call__方法</p>
+<p>Aborter()</p>
+<pre><code class="language-python">class Aborter(object):
+
+    &quot;&quot;&quot;
+    When passed a dict of code -&gt; exception items it can be used as
+    callable that raises exceptions.  If the first argument to the
+    callable is an integer it will be looked up in the mapping, if it's
+    a WSGI application it will be raised in a proxy exception.
+
+    The rest of the arguments are forwarded to the exception constructor.
+    &quot;&quot;&quot;
+
+    def __init__(self, mapping=None, extra=None):
+        if mapping is None:
+            mapping = default_exceptions
+        self.mapping = dict(mapping)
+        if extra is not None:
+            self.mapping.update(extra)
+
+    def __call__(self, code, *args, **kwargs):
+        if not args and not kwargs and not isinstance(code, integer_types):
+            raise HTTPException(response=code)
+        if code not in self.mapping:
+            raise LookupError('no exception for %r' % code)
+        raise self.mapping[code](*args, **kwargs)
+</code></pre>
+<h3 id="2可调用对象的作用">2.可调用对象的作用</h3>
+<p><img src="https://upload-images.jianshu.io/upload_images/7220971-42d1552795e1e2c2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png">
+关于其中的统一调用接口，我们看下面的实例</p>
+<pre><code class="language-python">class A:
+    def go(self):
+        return object()
+
+
+class B:
+    def run(self):
+        return object()
+
+
+def func():
+    return object()
+
+
+def main(param):
+    # 我想在main中传入一个参数，得到一个对象object
+    # b.run()
+    # a.go()
+    # func()
+    pass
+
+
+main(A())
+main(B())
+main(func)
+</code></pre>
+<p>如果不适用可调用对象，我们需要在main函数中区分是不同的情况，分别处理，非常的麻烦。
+如果main方法传入的参数只有方法那就好说了，我们只需要<code>param()</code>就可以调用，所以python为我们提供了可调用对象，让对象可以像方法一样调用,修改好的代码如下</p>
+<pre><code class="language-python">class A:
+    def __call__(self):
+        return object()
+
+
+class B:
+    def __call__(self):
+        return object()
+
+
+def func():
+    return object()
+
+
+def main(callable):
+    # 我想在main中传入一个参数，得到一个对象object
+    callable()
+    pass
+
+
+main(A())
+main(B())
+main(func)
+</code></pre>
+<p>这就是可调用对象中统一调用接口的意义。在flask中有很多可调用对象的使用，如globas.py中对current_app,request等对象的封装.其中_find_app，_lookup_req_object都是可调用对象</p>
+<pre><code class="language-python"># context locals
+_request_ctx_stack = LocalStack()
+_app_ctx_stack = LocalStack()
+current_app = LocalProxy(_find_app)
+request = LocalProxy(partial(_lookup_req_object, 'request'))
+session = LocalProxy(partial(_lookup_req_object, 'session'))
+g = LocalProxy(partial(_lookup_app_object, 'g'))
+</code></pre>
+<h2 id="113-httpexception">11.3 HttpException</h2>
+<h3 id="1first_ot_404的异常抛出流程">1.first_ot_404的异常抛出流程</h3>
+<p>我们来接着看Aborter类中的first_ot_404流程,在first_ot_404调用流程中，由于不满足__call__的前两个判断条件，最终会抛出self.mapping，其在构造函数中进行了声明</p>
+<pre><code class="language-python">class Aborter(object):
+
+    &quot;&quot;&quot;
+    When passed a dict of code -&gt; exception items it can be used as
+    callable that raises exceptions.  If the first argument to the
+    callable is an integer it will be looked up in the mapping, if it's
+    a WSGI application it will be raised in a proxy exception.
+
+    The rest of the arguments are forwarded to the exception constructor.
+    &quot;&quot;&quot;
+
+    def __init__(self, mapping=None, extra=None):
+        if mapping is None:
+            mapping = default_exceptions
+        self.mapping = dict(mapping)
+        if extra is not None:
+            self.mapping.update(extra)
+
+    def __call__(self, code, *args, **kwargs):
+        if not args and not kwargs and not isinstance(code, integer_types):
+            raise HTTPException(response=code)
+        if code not in self.mapping:
+            raise LookupError('no exception for %r' % code)
+        raise self.mapping[code](*args, **kwargs)
+</code></pre>
+<p>self.mapping是一个dict，其封装了default_exceptions，下面来看一下default_exceptions的装载，在_find_exceptions中完成。他的作用是扫描当前模块下所有HTTPException的子类对象，并装载到default_exceptions</p>
+<pre><code class="language-python">default_exceptions = {}
+__all__ = ['HTTPException']
+
+
+def _find_exceptions():
+    for name, obj in iteritems(globals()):
+        try:
+            is_http_exception = issubclass(obj, HTTPException)
+        except TypeError:
+            is_http_exception = False
+        if not is_http_exception or obj.code is None:
+            continue
+        __all__.append(obj.__name__)
+        old_obj = default_exceptions.get(obj.code, None)
+        if old_obj is not None and issubclass(obj, old_obj):
+            continue
+        default_exceptions[obj.code] = obj
+_find_exceptions()
+del _find_exceptions
+</code></pre>
+<p>最终Aborter函数的__call__方法拿着封装好的self.mapping（实质是default_exceptions）通过参数传来的code去匹配相应的异常，并进行抛出。</p>
+<p>以下为first_ot_404的总执行流程
+<img src="https://upload-images.jianshu.io/upload_images/7220971-552b85c9460607f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h3 id="2抛出异常后到浏览器异常界面的显示流程">2.抛出异常后到浏览器异常界面的显示流程</h3>
+<p>因为first_or_404（）后面传入Aborter的code为404，所以其对应抛出的异常就是
+NotFound对象,而其中的description描述文本，就是异常页面的显示文本</p>
+<pre><code class="language-python">class NotFound(HTTPException):
+
+    &quot;&quot;&quot;*404* `Not Found`
+
+    Raise if a resource does not exist and never existed.
+    &quot;&quot;&quot;
+    code = 404
+    description = (
+        'The requested URL was not found on the server.  '
+        'If you entered the URL manually please check your spelling and '
+        'try again.'
+    )
+</code></pre>
+<p>而所有的页面的显示文本，都是由response来做的，我们的试图函数在调用first_or_404()函数时，由于结果不存在，就抛出了上面的NotFound异常而终止了，后面的异常流程直到界面显示，都是由HttpException完成的，来看下其对应源码</p>
+<pre><code class="language-python">    # get_response最终返回了一个Response对象
+    def get_response(self, environ=None):
+        &quot;&quot;&quot;Get a response object.  If one was passed to the exception
+        it's returned directly.
+
+        :param environ: the optional environ for the request.  This
+                        can be used to modify the response depending
+                        on how the request looked like.
+        :return: a :class:`Response` object or a subclass thereof.
+        &quot;&quot;&quot;
+        if self.response is not None:
+            return self.response
+        if environ is not None:
+            environ = _get_environ(environ)
+        headers = self.get_headers(environ)
+        # get_body获取页面文本内容
+        return Response(self.get_body(environ), self.code, headers)
+</code></pre>
+<p>get_body()</p>
+<pre><code class="language-python">    def get_body(self, environ=None):
+        &quot;&quot;&quot;Get the HTML body.&quot;&quot;&quot;
+        return text_type((
+            u'&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 3.2 Final//EN&quot;&gt;\n'
+            u'&lt;title&gt;%(code)s %(name)s&lt;/title&gt;\n'
+            u'&lt;h1&gt;%(name)s&lt;/h1&gt;\n'
+            u'%(description)s\n'
+        ) % {
+            'code':         self.code,
+            'name':         escape(self.name),
+            # self.get_description获取异常的description信息
+            'description':  self.get_description(environ)
+        })
+</code></pre>
+<p>至此，first_or_404，从调用，到界面显示流程，就剖析完成了</p>
+<h3 id="3基于aop统一处理异常">3.基于AOP统一处理异常</h3>
+<p>如果我们不想返回默认的404界面，而想自己定制，那么直接想到的方法就是在代码中捕获异常，返回我们自定义的试图，但是这样代码太啰嗦了。我们可以采用AOP面向切面的设计思想，定义一个装饰器，用来统一处理某类异常，好在Flask已经为我们提供了这种方法，使用方法如下</p>
+<pre><code class="language-python"># web是蓝图对象，当然也可以使用app对象
+# app_errorhandler接受一个状态码，代表当前方法处理的异常
+# not_found函数不是只能返回视图，他可以做任何你想做的事情
+@web.app_errorhandler(404)
+def not_found(e):
+    return render_template('404.html'), 404
+</code></pre>
+<h2 id="114-发送电子邮件">11.4 发送电子邮件</h2>
+<p>我们使用flask_mail来完成电子邮件的发送</p>
+<pre><code class="language-python">pipenv install flask-mail
+</code></pre>
+<h3 id="1在app中注册flask-mail">1.在app中注册flask-mail</h3>
+<pre><code class="language-python">    mail = Mail()
+    mail.init_app(mail)
+</code></pre>
+<h3 id="2email配置">2.EMAIL配置</h3>
+<pre><code class="language-python"># email配置
+MAIL_SERVER = 'smtp.qq.com'
+MAIL_PORT = 465
+MAIL_USE_SSL = True
+MAIL_USE_TSL = False
+MAIL_USERNAME = '1152057576@qq.com'
+# QQ邮箱-&gt;设置-&gt;账户-&gt;[POP3...]-&gt;生成授权码-&gt;发送短信-&gt;获取授权码
+MAIL_PASSWORD = 'pstomjiomwyybadh'
+</code></pre>
+<h3 id="3编写邮件工具类">3.编写邮件工具类</h3>
+<pre><code class="language-python">def send_email(to, subject, template, **kwargs):
+    msg = Message(
+        subject,
+        sender=current_app.config['MAIL_USERNAME'],
+        recipients=[to])
+    # 发送一封HTML邮件
+    mail.html = render_template(template, kwargs)
+    mail.send(msg)
+</code></pre>
+<h3 id="4测试调用">4.测试调用</h3>
+<pre><code class="language-python">send_email(account_email, &quot;重置你的密码&quot;, 'email/reset_password.html',
+                   user=user, token='aaa')
+</code></pre>
+<h3 id="5使用itsdangerous生成token">5.使用itsdangerous生成token</h3>
+<p>我们的token应该有一个过期时间，应该可以存储我们想要存储的值，flask为我们提供了一个非常好用的插件itsdangerous</p>
+<pre><code class="language-python">    def generate_token(self, expiration=600):
+        from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+        s = Serializer(secret_key=current_app.config['SECRET_KEY'], expires_in=expiration)
+        # s.dumps生成的是byte数组，我们需要编码成字符串
+        return s.dumps({'id': self.id}).decode('utf-8')
+</code></pre>
+<h3 id="6重置密码">6.重置密码</h3>
+<pre><code class="language-python">    @classmethod
+    def reset_password(cls, token, new_password):
+        s = Serializer(secret_key=current_app.config['SECRET_KEY'])
+        try:
+            # 解析token获取用户id，方法与生成token相反
+            data = s.loads(token.encode('utf-8'))
+        except:
+            return False
+        
+        uid = data.get(id)
+        with db.auto_commit():
+            # 获取用户信息并修改
+            user = User.query.get_or_404(uid)
+            user.password = new_password
+        return True
+</code></pre>
+<h3 id="7视图函数编写">7.视图函数编写</h3>
+<pre><code class="language-python">@web.route('/reset/password/&lt;token&gt;', methods=['GET', 'POST'])
+def forget_password(token):
+    form = ResetPasswordForm(request.form)
+    if request.method == 'POST' and form.validate():
+        success = User.reset_password(token, form.password1.data)
+        if success:
+            flash('您的密码已重置，请使用新密码登录')
+            return redirect(url_for('web.login'))
+
+    flash('密码重置失败')
+    return render_template('auth/forget_password.html')
+</code></pre>
+<h3 id="8发送邮件优化异步发送">8.发送邮件优化，异步发送</h3>
+<pre><code class="language-python">def send_mail_async(app, msg):
+    # App_Context 的栈Local Stack是线程隔离的，在新线程里栈顶为空，需要手动入栈
+    with app.app_context():
+        try:
+            mail.send(msg)
+        except:
+            print('邮件发送失败')
+
+
+def send_mail(to, subject, template, **kwargs):
+    msg = Message(
+        '[鱼书]'+' '+subject,
+        sender=current_app.config['MAIL_USERNAME'],
+        recipients=[to])
+    msg.html = render_template(template, **kwargs)
+    # current_app是代理对象，在当前线程下有指向，但是在新开启的线程中就没了，因为LocalProxy是线程隔离的
+    app = current_app._get_current_object()
+    thr = Thread(target=send_mail_async, args=[app,msg])
+    thr.start()
+</code></pre>
+<h2 id="115-鱼漂">11.5 鱼漂</h2>
+<h3 id="1业务逻辑编写">1.业务逻辑编写</h3>
+<p>当用户在像其他用户发起一个赠书请求的时候，这实际上就是一次交易的发起，我们将这个交易起名为鱼漂（Drift），具体业务逻辑如下</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7220971-c7e7c9c4f2e5f911.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h3 id="2模型设计">2.模型设计</h3>
+<p>models/drift.py</p>
+<pre><code class="language-python">class Drift(Base):
+    &quot;&quot;&quot;
+        一次具体的交易信息
+    &quot;&quot;&quot;
+    __tablename__ = 'drift'
+
+    id = Column(Integer, primary_key=True)
+
+    # 邮寄信息
+    recipient_name = Column(String(20), nullable=False)
+    address = Column(String(100), nullable=False)
+    message = Column(String(200))
+    mobile = Column(String(20), nullable=False)
+
+    # 书籍信息
+    isbn = Column(String(13))
+    book_title = Column(String(50))
+    book_author = Column(String(30))
+    book_img = Column(String(50))
+
+    # 请求者信息
+    requester_id = Column(Integer)
+    requester_nickname = Column(String(20))
+
+    # 赠送者信息
+    gifter_id = Column(Integer)
+    gift_id = Column(Integer)
+    gifter_nickname = Column(String(20))
+    
+    # 状态
+    _pending = Column('pending', SmallInteger, default=1)
+</code></pre>
+<p>状态信息应该使用枚举类</p>
+<pre><code class="language-python">class PendingStatus(Enum):
+    Waiting = 1
+    Success = 2
+    Reject = 3
+    Redraw = 4
+</code></pre>
+<h4 id="模型冗余而不是模型关联">模型冗余而不是模型关联？</h4>
+<p>1.Drift旨在记录历史状态，而模型关联记录的是实时关联的。所以应该在Drift中直接平铺所有信息</p>
+<p>2.模型关联是使得每次查询的时候多次关联，降低查询速度</p>
+<h3 id="3鱼漂条件检测">3.鱼漂条件检测</h3>
+<p>1.自己不能够向自己索要数据 
+models/gift.py</p>
+<pre><code class="language-python">    def is_yourself_gift(self, uid):
+        return uid == self.uid
+</code></pre>
+<p>2.鱼豆数量必须大于等于1
+3.每索取两本书，必须赠送一本书
+models/user.py</p>
+<pre><code class="language-python">    def can_send_drifts(self):
+        if self.beans &lt; 1:
+            return False
+        success_gift_count = Gift.query.filter_by(
+            uid=self.id, launched=True).count()
+        success_receive_count = Drift.query.filter_by(
+            uid=self.id, pending=PendingStatus.Success).count()
+
+        return floor(success_receive_count / 2) &lt;= success_gift_count
+</code></pre>
+<h3 id="4完成鱼漂业务逻辑">4.完成鱼漂业务逻辑</h3>
+<h4 id="试图函数">试图函数</h4>
+<p>web/drift.py</p>
+<pre><code class="language-python">@web.route('/drift/&lt;int:gid&gt;', methods=['GET', 'POST'])
+@login_required
+def send_drift(gid):
+    current_gift = Gift.query.get_or_404(gid)
+    if current_gift.is_yourself_gift(current_user.id):
+        flash('这本书是自己的(*^▽^*)，不能向自己索要哦')
+        return redirect(url_for('web.book_detail', isbn=current_gift.isbn))
+
+    can = current_user.can_send_drifts()
+    if not can:
+        return render_template('not_enough_beans.html', beans=current_user.beans)
+
+    form = DriftForm(request.form)
+    if request.method == 'POST' and form.validate():
+        save_drift(form, current_gift)
+        send_mail(current_gift.user.email, '有人想要一本书', 'email/get_gift.html',
+                  wisher=current_user,
+                  gift=current_gift)
+        # 成功后跳转到鱼漂历史记录界面
+        return redirect(url_for('web.pending'))
+        
+    # summary用户的简介频繁使用，且更像是一种用户的属性，所以作为用户的一个属性
+    gifter = current_gift.user.summary
+    return render_template('drift.html', gifter=gifter, user_beans=current_user.beans, form=form)
+</code></pre>
+<p>models/user.py</p>
+<pre><code class="language-python">    @property
+    def summary(self):
+        return dict(
+            nikename=self.nickname,
+            beans=self.beans,
+            email=self.email,
+            send_receive=str(self.send_counter) + '/' + str(self.receive_counter)
+        )
+</code></pre>
+<p>save_gift.py</p>
+<pre><code class="language-python">def save_drift(drift_form, current_gift):
+    if current_user.beans &lt; 1:
+        # TODO 自定义异常
+        raise Exception()
+
+    with db.auto_commit():
+        drift = Drift()
+        drift_form.populate_obj(drift)
+
+        drift.gift_id = current_gift.id
+        drift.requester_id = current_user.id
+        drift.requester_nickname = current_user.nickname
+        drift.gifter_nickname = current_gift.user.nickname
+        drift.gifter_id = current_gift.user.id
+
+        book = BookViewModel(current_gift.book)
+        drift.book_title = book.title
+        drift.book_author = book.author
+        drift.book_img = book.image
+        drift.isbn = book.isbn
+
+        db.session.add(drift)
+
+        current_user.beans -= 1
+
+</code></pre>
+<h2 id="116-交易记录">11.6 交易记录</h2>
+<h3 id="1业务逻辑">1.业务逻辑</h3>
+<p><img src="https://upload-images.jianshu.io/upload_images/7220971-25315925934661cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>这两个条件应该是或者（or）的关系</p>
+<h3 id="2获取鱼漂列表">2.获取鱼漂列表</h3>
+<pre><code class="language-python"># select * from drift where requester_id = ? or gifter_id = ?
+    # order by create_time desc
+    drifts = Drift.query.filter(
+        or_(Drift.requester_id == current_user.id,
+            Drift.gifter_id == current_user.id))\
+        .order_by(desc(Drift.create_time)).all()
+</code></pre>
+<h3 id="3drift-viewmodel-编写">3.Drift ViewModel 编写</h3>
+<p>Drift ViewModel需要适应当前用户是赠送者和当前用户是索要者两个情况</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/7220971-61ce58ec497d2dca.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<pre><code class="language-python">class DriftCollection:
+
+    def __init__(self, drifts, current_user_id):
+        self.data = []
+
+        self.data = self._parse(drifts, current_user_id)
+
+    def _parse(self, drifts, current_user_id):
+        return [DriftViewModel(drift, current_user_id).data for drift in drifts]
+
+
+class DriftViewModel:
+
+    def __init__(self, drift, current_user_id):
+        self.data = {}
+
+        self.data = self._parse(drift, current_user_id)
+
+    @staticmethod
+    def requester_or_gifter(drift, current_user_id):
+        # 不建议将current_user耦合进DriftViewModel，破坏了封装性，难以扩展，所以当做参数从外部传入
+        return 'requester' if current_user_id == drift.requester_id else 'gifter'
+
+    def _parse(self, drift, current_user_id):
+        you_are = DriftViewModel.requester_or_gifter(drift, current_user_id)
+        # pending_status 设计到了4*2=8种状态，这个状态的判断应该在PendingStatus完成
+        pending_status = PendingStatus.pending_str(drift.pending, you_are)
+        r = {
+            'drift_id': drift.id,
+            'you_are': you_are,
+            'book_title': drift.book_title,
+            'book_author': drift.book_author,
+            'book_img': drift.book_img,
+            'date': drift.create_datetime.strftime('%Y-%m-%d'),
+            'operator': drift.requester_nickname if you_are != 'requester' \
+                else drift.gifter_nickname,
+            'message': drift.message,
+            'address': drift.address,
+            'status_str': pending_status,
+            'recipient_name': drift.recipient_name,
+            'mobile': drift.mobile,
+            'status': drift.pending
+        }
+
+        return r
+</code></pre>
+<p>enums.py</p>
+<pre><code class="language-python">class PendingStatus(Enum):
+    Waiting = 1
+    Success = 2
+    Reject = 3
+    Redraw = 4
+
+    @classmethod
+    def pending_str(cls, status, key):
+        key_map = {
+            cls.Waiting.value: {
+                'requester': '等待对方邮寄',
+                'gifter': '等待你邮寄'
+            },
+            cls.Reject.value: {
+                'requester': '对方已拒绝',
+                'gifter': '你已拒绝'
+            },
+            cls.Redraw.value: {
+                'requester': '你已撤销',
+                'gifter': '对方已撤销'
+            },
+            cls.Success.value: {
+                'requester': '对方已邮寄',
+                'gifter': '你已邮寄，交易完成'
+            }
+        }
+        return key_map[status][key]
+</code></pre>
+<h4 id="对比三种viewmodel">对比三种ViewModel</h4>
+<blockquote>
+<p>1.BookViewModel将单体和集合分开，单体定义实例属性，清晰明了（最推荐）
+2.MyTrade 将单体作为字典融合在集合类里面，代码少，灵活性高，但是不易扩展（最不推荐）
+3.DriftViewModel 将单体和集合分开，单体使用字典。坚固了前两中的优点，但是可读性下降（也不是特别推荐）</p>
+</blockquote>
+<h2 id="117-其他操作">11.7 其他操作</h2>
+<h3 id="1更好的使用枚举">1.更好的使用枚举</h3>
+<p>我们的数据库中pending存储的是数字类型，但是我们在代码中使用的是枚举类型。这肯定是匹配不上的，一种最优雅的解决方式就是为我们的Drift模型的pending属性编写getter/setter方法</p>
+<pre><code class="language-python">    # 状态
+    _pending = Column('pending', SmallInteger, default=1)
+
+    @property
+    def pending(self):
+        return PendingStatus(self._pending)
+
+    @pending.setter
+    def pending(self, status):
+        self._pending = status.value
+</code></pre>
+<p>这样就能在外部使用枚举类型操作我们的属性了</p>
+<h3 id="2撤销操作业务逻辑">2.撤销操作业务逻辑</h3>
+<pre><code class="language-python">@web.route('/drift/&lt;int:did&gt;/redraw')
+@login_required
+def redraw_drift(did):
+    with db.auto_commit():
+        # 横向越权：一个用户访问另一个用户的数据并进行修改
+        # requester_id=current_user.id 防止横向越权
+        drift = Drift.query.filter_by(
+            id=did, requester_id=current_user.id).first_or_404()
+        drift.pending = PendingStatus.Redraw
+        current_user.beans += 1
+
+    return redirect(url_for('web.pending'))
+</code></pre>
+<h3 id="3拒绝操作业务逻辑">3.拒绝操作业务逻辑</h3>
+<pre><code class="language-python">@web.route('/drift/&lt;int:did&gt;/redraw')
+@login_required
+def redraw_drift(did):
+    with db.auto_commit():
+        # requester_id=current_user.id 防止超权现象
+        drift = Drift.query.filter_by(
+            id=did, requester_id=current_user.id).first_or_404()
+        drift.pending = PendingStatus.Redraw
+        current_user.beans += 1
+
+    return redirect(url_for('web.pending'))
+</code></pre>
+<h3 id="4完成邮寄">4.完成邮寄</h3>
+<pre><code class="language-python">@web.route('/drift/&lt;int:did&gt;/mailed')
+def mailed_drift(did):
+    with db.auto_commit():
+        # 更改鱼漂状态位成功
+        drift = Drift.query.filter_by(
+            id=did, gifter_id=current_user.id).first_or_404()
+        drift.pending = PendingStatus.Success
+
+        # 赠送一个鱼豆
+        current_user.beans += 1
+
+        # 完成赠送
+        gift = Gift.query.get_or_404(drift.gift_id)
+        gift.launched = True
+
+        # 完成心愿
+        Wish.query.filter_by(
+            isbn=drift.isbn, uid=drift.requester_id, launched=False)\
+            .update({Wish.launched: True})
+    return redirect(url_for('web.pending'))
+</code></pre>
+<h3 id="5撤销赠送">5.撤销赠送</h3>
+<pre><code class="language-python">@web.route('/gifts/&lt;gid&gt;/redraw')
+def redraw_from_gifts(gid):
+    gift = Gift.query.filter_by(id=gid, launched=False).first_or_404()
+    # 思维逻辑要严谨 
+    drift = Drift.query.filter_by(gift_id=gid, pending=PendingStatus.Waiting).first()
+
+    if drift:
+        flash('这个礼物正处于交易状态，请先千万鱼漂完成该交易')
+    else:
+        with db.auto_commit():
+            gift.delete()
+            current_user.beans -= current_app.config['BEANS_UPLOAD_ONE_BOOK']
+
+    return redirect(url_for('web.my_gifts'))
+</code></pre>
+<h3 id="6撤销心愿">6.撤销心愿</h3>
+<pre><code class="language-python">@web.route('/wish/book/&lt;isbn&gt;/redraw')
+def redraw_from_wish(isbn):
+    wish = Wish.query.filter_by(isbn=isbn, launched=False).first_or_404()
+
+    with db.auto_commit():
+        wish.delete()
+
+    return redirect(url_for('web.my_wish'))
+</code></pre>
+<h3 id="7赠送书籍">7.赠送书籍</h3>
+<pre><code>    &quot;&quot;&quot;
+        向想要这本书的人发送一封邮件
+        注意，这个接口需要做一定的频率限制
+        这接口比较适合写成一个ajax接口
+    &quot;&quot;&quot;
+    wish = Wish.query.get_or_404(wid)
+    gift = Gift.query.filter_by(uid=current_user.id, isbn=wish.isbn).first()
+    if not gift:
+        flash('你还没有上传此书，请点击“加入到赠送清单”添加此书。添加前，请确保自己可以赠送此书')
+    else:
+        send_mail(wish.user.email, '有人想送你一本书', 'email/satisify_wish.html', wish=wish,
+                   gift=gift)
+        flash('已向他/她发送了一封邮件，如果他/她愿意接受你的赠送，你将收到一个鱼漂')
+    return redirect(url_for('web.book_detail', isbn=wish.isbn))
+</code></pre>
+<p>email/satisify_wish.html的内容</p>
+<pre><code class="language-python">&lt;p&gt;&lt;stong&gt;亲爱的 {{ wish.user.nickname }},&lt;/stong&gt;&lt;/p&gt;
+&lt;p&gt;{{ gift.user.nickname }} 有一本《{{ wish.book.title }}》可以赠送给你&lt;/p&gt;
+{# 将用户导向send_drift索要数据的试图函数#}
+&lt;p&gt;点击&lt;a
+        href=&quot;{{ url_for('web.send_drift', gid=gift.id, _external=True) }}&quot;&gt;这里&lt;/a&gt;填写书籍邮寄地址，
+    等待{{ gift.user.nickname }}将书籍寄送给你
+&lt;/p&gt;
+&lt;p&gt;如果无法点击，你也可以将下面的地址复制到浏览器中打开:&lt;/p&gt;
+&lt;p&gt;{{ url_for('web.send_drift', gid=gift.id, _external=True) }}&lt;/p&gt;
+&lt;p&gt;你的，&lt;/p&gt;
+&lt;p&gt;鱼书&lt;/p&gt;
+&lt;p&gt;
+    &lt;small&gt;注意，请不要回复此邮件哦&lt;/small&gt;
+&lt;/p&gt;
+
+</code></pre>
+
+        </div>
+
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="https://bzhou830.github.io/">Binean</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="https://bzhou830.github.io/posts/20160511flask11/">https://bzhou830.github.io/posts/20160511flask11/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
+    <center><image src= "https://bineanju.gitee.io/blog/about/wx.png" ></image></center>
+</div>
+<br/>
+
+
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/posts/20160510flask10/">Flask 学习笔记|10 鱼书业务处理</a></li>
+        
+        <li><a href="/posts/20160509flask09/">Flask 学习笔记|09 书籍交易模型（数据库事务、重写Flask中的对象）</a></li>
+        
+        <li><a href="/posts/20160508flask08/">Flask 学习笔记|08 用户登录与注册</a></li>
+        
+        <li><a href="/posts/20160507flask07/">Flask 学习笔记|07 静态文件、模板、消息闪现与Jinja2</a></li>
+        
+        <li><a href="/posts/20160506flask06/">Flask 学习笔记|06 书籍详情页面的构建</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='https://bzhou830.github.io/tags/Flask'>Flask</a></li>
+                
+                <li><a href='https://bzhou830.github.io/tags/Python'>Python</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "bzhou830/Blog"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    
+<section class="widget">
+    
+    <ul class="widget-list">
+        
+        <li>
+            <a href="https://bzhou830.github.io/" title="简介" target="_blank">
+                
+                
+                    <div>
+                        <div style="width: 200px; height: 200px; border-radius:100%; overflow:hidden;">
+                            <img src=https://bzhou830.github.io/about/touxiang.jpg >
+                        </div>
+                    </div>
+
+                    <div>
+                        <h2>Binean</h2>
+                    </div>
+                    
+                    <div>
+                        <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path><path fill="currentColor" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V18c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-1.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05.02.01.03.03.04.04 1.14.83 1.93 1.94 1.93 3.41V18c0 .35-.07.69-.18 1H22c.55 0 1-.45 1-1v-1.5c0-2.33-4.67-3.5-7-3.5z"></path></svg>
+                            ****
+                        </div>
+                    </div>
+
+                    <div>
+                        <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path><path fill="currentColor" d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm8.94 3c-.46-4.17-3.77-7.48-7.94-7.94V2c0-.55-.45-1-1-1s-1 .45-1 1v1.06C6.83 3.52 3.52 6.83 3.06 11H2c-.55 0-1 .45-1 1s.45 1 1 1h1.06c.46 4.17 3.77 7.48 7.94 7.94V22c0 .55.45 1 1 1s1-.45 1-1v-1.06c4.17-.46 7.48-3.77 7.94-7.94H22c.55 0 1-.45 1-1s-.45-1-1-1h-1.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"></path></svg>
+                        武汉
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div>      
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path><path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-.4 4.25l-7.07 4.42c-.32.2-.74.2-1.06 0L4.4 8.25c-.25-.16-.4-.43-.4-.72 0-.67.73-1.07 1.3-.72L12 11l6.7-4.19c.57-.35 1.3.05 1.3.72 0 .29-.15.56-.4.72z"></path></svg>
+                        <a href="mailto:bzhou830@qq.com">bzhou830@qq.com</a> 
+                        </div>
+                    </div>
+                
+            </a>
+        </li>
+        
+        <li>
+            <a href="https://bzhou830.github.io/about/" title="欢迎关注微信公众号" target="_blank">
+                
+                    <h3 class="widget-title">欢迎关注微信公众号</h3>
+                    <img src="https://bzhou830.github.io/about/qrcode.jpg" >
+                
+            </a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <form id="search" action='https://bzhou830.github.io/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://bzhou830.github.io/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://bzhou830.github.io/categories/">Categories (2)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/C&#43;&#43;/">C&#43;&#43; (3)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/C/C&#43;&#43;/">C/C&#43;&#43; (10)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Flask/">Flask (11)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/GPU/">GPU (16)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Golang/">Golang (10)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Misc/">Misc (9)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/OpenCV/">OpenCV (1)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Python/">Python (12)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Windows%E9%A9%B1%E5%8A%A8/">Windows驱动 (4)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E4%B8%B2%E5%8F%A3/">串口 (5)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理 (14)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学 (5)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E8%AE%BA/">图论 (12)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E6%88%90%E9%95%BF/">成长 (4)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式 (1)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20210710imgui%E7%9A%84%E4%BD%BF%E7%94%A8/" title="imgui的使用">imgui的使用</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20210618Python_GrabScreen/" title="Python获取屏幕截图">Python获取屏幕截图</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20210503DrawIo%E6%90%AD%E5%BB%BA/" title="Draw.io部署教程">Draw.io部署教程</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20210215GPUShader/" title="Shader在GPU中是如何执行的？">Shader在GPU中是如何执行的？</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20210112NES%E6%A8%A1%E6%8B%9F%E5%99%A8/" title="NES模拟器">NES模拟器</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20201226%E5%9C%A8%E6%AD%A6%E6%B1%89%E7%9A%842020/" title="2020，我在武汉的这一年的故事">2020，我在武汉的这一年的故事</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20200608opencv_squares/" title="谈谈OpenCV中的四边形">谈谈OpenCV中的四边形</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20200515python_opencv_camera/" title="PyQt5&#43;OpenCV多线程显示摄像头数据">PyQt5&#43;OpenCV多线程显示摄像头数据</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20200302RayTracingInOneWeekend/" title="Go语言实现RayTracing">Go语言实现RayTracing</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20200222Games101_04/" title="Games101笔记|Z-Buffer(深度缓冲)">Games101笔记|Z-Buffer(深度缓冲)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://bzhou830.github.io/" title="Binean’s">Binean’s</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://bzhou830.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://bzhou830.github.io/tags/">Tags</a>
+    
+    <a href="https://bzhou830.github.io/tags/C&#43;&#43;/">C&#43;&#43;</a>
+    
+    <a href="https://bzhou830.github.io/tags/C/C&#43;&#43;/">C/C&#43;&#43;</a>
+    
+    <a href="https://bzhou830.github.io/tags/DICOM/">DICOM</a>
+    
+    <a href="https://bzhou830.github.io/tags/Excel/">Excel</a>
+    
+    <a href="https://bzhou830.github.io/tags/Flask/">Flask</a>
+    
+    <a href="https://bzhou830.github.io/tags/GPU/">GPU</a>
+    
+    <a href="https://bzhou830.github.io/tags/Golang/">Golang</a>
+    
+    <a href="https://bzhou830.github.io/tags/OCR/">OCR</a>
+    
+    <a href="">OpenCV</a>
+    
+    <a href="https://bzhou830.github.io/tags/Python/">Python</a>
+    
+    <a href="https://bzhou830.github.io/tags/android/">android</a>
+    
+    <a href="https://bzhou830.github.io/tags/git/">git</a>
+    
+    <a href="https://bzhou830.github.io/tags/github/">github</a>
+    
+    <a href="https://bzhou830.github.io/tags/hexo/">hexo</a>
+    
+    <a href="https://bzhou830.github.io/tags/hugo/">hugo</a>
+    
+    <a href="https://bzhou830.github.io/tags/jni/">jni</a>
+    
+    <a href="https://bzhou830.github.io/tags/opencv/">opencv</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E4%B8%B2%E5%8F%A3/">串口</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%85%AC%E5%BC%8F/">公式</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">内存管理</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E6%96%87%E6%9C%AC%E6%A3%80%E6%B5%8B/">文本检测</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8/">驱动</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B/">驱动编程</a>
+    
+</div>
+    </section>
+
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2021 <a href="https://bzhou830.github.io/">Binean&#39;s Blog By Binean</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        <br><a href="http://www.beian.miit.gov.cn/" target="_blank">鄂ICP备20004395号</a>. 
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function(){
+            $("pre code").parent().addClass("line-numbers")
+        }())
+    
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [ ['$','$'] ],
+                processEscapes: true
+            }
+        };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+
+</body>
+
+</html>

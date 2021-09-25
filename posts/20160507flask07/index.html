@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Flask 学习笔记|07 静态文件、模板、消息闪现与Jinja2 | Binean&#39;s Blog</title>
+    <meta property="og:title" content="Flask 学习笔记|07 静态文件、模板、消息闪现与Jinja2 - Binean&#39;s Blog">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2016-05-07T09:16:34&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2016-05-07T09:16:34&#43;08:00'>
+        
+    <meta name="Keywords" content="C/C&#43;&#43;, GPU, Windows驱动开发, OpenCV, 图像处理">
+    <meta name="description" content="Flask 学习笔记|07 静态文件、模板、消息闪现与Jinja2">
+        
+    <meta name="author" content="Binean">
+    <meta property="og:url" content="https://bzhou830.github.io/posts/20160507flask07/">
+    <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href='/css/normalize.css'>
+    
+    <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://bzhou830.github.io/">
+                        Binean&#39;s Blog
+                    </a>
+                
+                <p class="description">杏花疏影里，吹笛到天明</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="https://bzhou830.github.io/">首页</a>
+                    
+                    <a  href="https://bzhou830.github.io/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://bzhou830.github.io/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    <style type="text/css">
+    .post-toc {
+        position: fixed;
+        width: 200px;
+        margin-left: -210px;
+        padding: 5px 10px;
+        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+        font-size: 12px;
+        border: 1px solid rgba(0, 0, 0, .07);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.98);
+        background-clip: padding-box;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        word-wrap: break-word;
+        white-space: nowrap;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 999;
+        cursor: pointer;
+        max-height: 70%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .post-toc .post-toc-title {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .post-toc .post-toc-content {
+        font-size: 15px;
+    }
+
+    .post-toc .post-toc-content>nav>ul {
+        margin: 10px 0;
+    }
+
+    .post-toc .post-toc-content ul {
+        padding-left: 20px;
+        list-style: square;
+        margin: 0.5em;
+        line-height: 1.8em;
+    }
+
+    .post-toc .post-toc-content ul ul {
+        padding-left: 15px;
+        display: none;
+    }
+
+    @media print,
+    screen and (max-width:1057px) {
+        .post-toc {
+            display: none;
+        }
+    }
+</style>
+<div class="post-toc" style="position: absolute; top: 188px;">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#71-静态文件访问原理">7.1 静态文件访问原理</a>
+      <ul>
+        <li><a href="#1默认访问方法">1.默认访问方法</a></li>
+        <li><a href="#2修改默认存储路径">2.修改默认存储路径</a></li>
+        <li><a href="#3核心原理">3.核心原理</a></li>
+      </ul>
+    </li>
+    <li><a href="#72-模板文件的位置与修改方案_x264">7.2 模板文件的位置与修改方案_x264</a>
+      <ul>
+        <li><a href="#1-默认位置">1. 默认位置</a></li>
+        <li><a href="#2修改默认位置">2.修改默认位置</a></li>
+      </ul>
+    </li>
+    <li><a href="#73-jinja2">7.3 Jinja2</a>
+      <ul>
+        <li><a href="#1jinja2模板渲染">1.jinja2模板渲染</a></li>
+        <li><a href="#2使用模板继承">2.使用模板继承</a></li>
+        <li><a href="#2设置jinja2语法高亮">2.设置jinja2语法高亮</a></li>
+        <li><a href="#3官网ttpjinjapocooorgdocs210">3.官网ttp://jinja.pocoo.org/docs/2.10/</a></li>
+      </ul>
+    </li>
+    <li><a href="#74-过滤器与管道命令">7.4 过滤器与管道命令</a></li>
+    <li><a href="#75-反向构建url">7.5 反向构建URL</a>
+      <ul>
+        <li><a href="#法1直接通过全路径访问">法1：直接通过全路径访问</a></li>
+        <li><a href="#法2通过相对路径">法2：通过相对路径</a></li>
+        <li><a href="#法3通过endpoint反向构建url">法3：通过endpoint反向构建url</a></li>
+      </ul>
+    </li>
+    <li><a href="#76-消息闪现secretykey与变量作用域">7.6 消息闪现、SecretyKey与变量作用域</a>
+      <ul>
+        <li><a href="#1在视图函数中配置闪现消息">1.在视图函数中配置闪现消息</a></li>
+        <li><a href="#2在html中使用闪现消息">2.在html中使用闪现消息</a></li>
+      </ul>
+    </li>
+    <li><a href="#77-页面结构解析">7.7 页面结构解析</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postToc = $(".post-toc");
+        if (postToc.length) {
+            var leftPos = $("#main").offset().left;
+            if(leftPos<220){
+                postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})
+            }
+
+            var t = postToc.offset().top - 20,
+                a = {
+                    start: {
+                        position: "absolute",
+                        top: t
+                    },
+                    process: {
+                        position: "fixed",
+                        top: 20
+                    },
+                };
+            $(window).scroll(function () {
+                var e = $(window).scrollTop();
+                e < t ? postToc.css(a.start) : postToc.css(a.process)
+            })
+        }
+    })
+</script>
+    <article class="post">
+        <header>
+            <h1 class="post-title">Flask 学习笔记|07 静态文件、模板、消息闪现与Jinja2</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2016年5月7日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/Flask'>Flask</a></span>
+            
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/Python'>Python</a></span>
+            
+        </div>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <p>本章，我们将通过借助学习flask的模板来间接学习：列表推导式的应用、三元表达式的应用、@Property属性描述符、filter函数的应用、管道过滤器</p>
+<h2 id="71-静态文件访问原理">7.1 静态文件访问原理</h2>
+<h3 id="1默认访问方法">1.默认访问方法</h3>
+<p>Flask访问静态文件非常简单，只需要在项目根目录建立static文件夹。将静态资源文件放入static下即可。访问的时候访问<code>http://ip:port/static/fileName</code>即可。</p>
+<p>需要注意的是，这里的根目录并不是项目的根目录fisher，而是app目录。这是因为，我们在实例化Flask核心对象的时候，传入了__name__参数，这个 __name__指向的就是当前文件所在目录。</p>
+<p><img src="1.jpg" alt="image.png"></p>
+<h3 id="2修改默认存储路径">2.修改默认存储路径</h3>
+<p>修改默认存储路径，只需要在实例化Flask核心对象的时候，传入static_folder这个关键字参数即可，但是这个时候，访问的路径应该变成<code>http://ip:port/static_folder的最后一级/fileName</code>，如果想自定义url访问路径，传入关键字参数static_url_path即可</p>
+<pre><code class="language-python">app = Flask(__name__, static_folder=&quot;statics&quot;, static_url_path=&quot;/static&quot;)
+</code></pre>
+<h3 id="3核心原理">3.核心原理</h3>
+<p>在Flask的app.py的Flask类的构造函数的地556行，是注册静态资源视图函数的源码，可以看到实际上就是通过我们之前所讲到的add_url_rule注册了一个视图函数。其中的访问url路径，就是获取了static_url_path</p>
+<pre><code class="language-python">        if self.has_static_folder:
+            assert bool(static_host) == host_matching, 'Invalid static_host/host_matching combination'
+            self.add_url_rule(
+                self.static_url_path + '/&lt;path:filename&gt;',
+                endpoint='static',
+                host=static_host,
+                view_func=self.send_static_file
+            )
+</code></pre>
+<p>下面是<code>static_url_path</code>的定义，可以看到他是调用了<code>_get_static_url_path</code>方法。
+这个方法首先获取<code>static_url_path</code>关键字参数，如果有，则直接将其作为url访问路径，否则获取<code>static_folder</code>关键字参数，如果有，则取他的基本路径拼拼接上“/”作为url访问路径</p>
+<pre><code class="language-python">    def _get_static_url_path(self):
+        if self._static_url_path is not None:
+            return self._static_url_path
+
+        if self.static_folder is not None:
+            return '/' + os.path.basename(self.static_folder)
+</code></pre>
+<h2 id="72-模板文件的位置与修改方案_x264">7.2 模板文件的位置与修改方案_x264</h2>
+<h3 id="1-默认位置">1. 默认位置</h3>
+<p>模板文件默认的位置是根目录（这里的根目录口径同上一节）下的templates，然后再下面建立html文件。</p>
+<p>编写视图函数，返回值使用Flask的<code>render_template</code>方法，第一个参数传html页面名称，后面的参数可以穿要渲染的数据对key-value。key为这组数据名，value为数据对象</p>
+<p><img src="2.jpg" alt="image.png"></p>
+<h3 id="2修改默认位置">2.修改默认位置</h3>
+<p>如果要修改模板默认位置的话，可以在app或者蓝图实例化的时候，传入<code>template_floder</code>关键字参数</p>
+<pre><code class="language-python">web = Blueprint('web', __name__, template_folder='')
+</code></pre>
+<pre><code class="language-python">app = Flask(__name__, template_folder='')
+</code></pre>
+<ul>
+<li>不建议将视图和静态资源建立在蓝图下面，因为他们可能属于多个蓝图。</li>
+</ul>
+<h2 id="73-jinja2">7.3 Jinja2</h2>
+<h3 id="1jinja2模板渲染">1.jinja2模板渲染</h3>
+<p>读取字典和对象的两种方式</p>
+<pre><code class="language-python">{# 注释 #}
+{{ data.name}}
+{{ data[&quot;age&quot;] }}
+</code></pre>
+<p>条件控制语句</p>
+<pre><code class="language-python">{# 条件可以使用python的逻辑语言 #}
+{% if data.age &lt; 18 or data.name == '高文峰' %}
+    aaa
+{% elif data.age == 18 %}
+    bbb
+{% else %}
+    ccc
+{% endif %}
+</code></pre>
+<p>循环控制语句</p>
+<pre><code class="language-python">{% for foo in [1,2,3] %}
+    {{ foo }}
+{% endfor %}
+
+{% for key,value in data.items() %}
+    {{ key }}
+    {{ value }}
+{% endfor %}
+</code></pre>
+<h3 id="2使用模板继承">2.使用模板继承</h3>
+<p>父文件使用block定义各个模块
+layout.html</p>
+<pre><code class="language-python">{% block head %}    
+&lt;div&gt;this is head&lt;/div&gt;
+{% endblock %}{% block father content %}    
+&lt;div&gt;this is content&lt;/div&gt;
+{% endblock %}
+{% block foot %}    
+&lt;div&gt;this is foot&lt;/div&gt;
+{% endblock %}
+</code></pre>
+<p>子文件使用 extends 继承父模块，然后可以覆盖父模块的block，如果还需要继承父模块的元素，可以使用super()关键字</p>
+<pre><code class="language-python">{% extends 'layout.html'%}{% block content %}    
+{{ super() }}
+this is child content
+{% endblock %}
+</code></pre>
+<h3 id="2设置jinja2语法高亮">2.设置jinja2语法高亮</h3>
+<p><img src="3.jpg" alt="image.png"></p>
+<h3 id="3官网ttpjinjapocooorgdocs210">3.官网ttp://jinja.pocoo.org/docs/2.10/</h3>
+<p>最重要的为以下几节
+<img src="4.jpg" alt="image.png"></p>
+<h2 id="74-过滤器与管道命令">7.4 过滤器与管道命令</h2>
+<p>代码1</p>
+<pre><code class="language-python">{# 注意这里的data里是不存在school的值的 #}
+{{ data.school | default(&quot;未名&quot;)}}
+</code></pre>
+<p>这段代码在浏览器中会显示“未名”。</p>
+<p>代码2</p>
+<pre><code class="language-python">{# 注意这里的data里是不存在school的值的 #}
+{{ data.school==None | default(&quot;未名&quot;)}}
+</code></pre>
+<p>这段代码在浏览器中会显示False。</p>
+<p>代码3</p>
+<pre><code class="language-python">{# 注意这里的data里是不存在school的值的 #}
+{{ data.school | default(data.class) | default(&quot;未名&quot;)}}
+</code></pre>
+<p>这段代码在浏览器中会显示”未名“。</p>
+<blockquote>
+<ul>
+<li>管道命令“|”是首先计算“|”前面的表达式的值, 然后将结果传到“|”后面的表达式。</li>
+<li>default函数的作用是先判断前面传来的值存在不存在，如果存在直接返回，否则返回参数的值</li>
+<li>data.school 这个属性不存在，所以第一段代码会执行default函数，而data.school==None结果是False，这个结果存在，所以第二段代码直接返回False</li>
+<li>第三段代码，首先计算data.school，传入下面的default，data.school不存在，所以返回data.class，data.class又回传入第三个default，data.class不存在，所以返回”未名“</li>
+</ul>
+</blockquote>
+<p>代码4</p>
+<pre><code class="language-python">{# data = {name:&quot;mark&quot;,age:19} #}
+{{ data | length() }}
+</code></pre>
+<p>这段代码返回2，因为length()函数，返回前面传入结果的长度</p>
+<h2 id="75-反向构建url">7.5 反向构建URL</h2>
+<p>如果需要在html中通过url访问其他的路径，有如下几种方法</p>
+<h3 id="法1直接通过全路径访问">法1：直接通过全路径访问</h3>
+<pre><code class="language-html">&lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;http://ip:port/static/test.css&quot;&gt;
+</code></pre>
+<p>这种方案最差，当上了生产环境，就需要修改ip和port，不现实</p>
+<h3 id="法2通过相对路径">法2：通过相对路径</h3>
+<pre><code class="language-html">&lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;/static/test.css&quot;&gt;
+</code></pre>
+<p>这种方案的缺点在于，静态文件的url_path是可以修改的，当修改了静态文件位置的时候，还是需要全局修改。</p>
+<h3 id="法3通过endpoint反向构建url">法3：通过endpoint反向构建url</h3>
+<p>之前我们讲过url和视图函数的映射，是通过endpoint和map注册的。这里的endpoint就是用来我们反向构建url，通过endpoint找到对应的url。</p>
+<p>关于endpoint的讲解，请看2.6</p>
+<pre><code class="language-html">    &lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;{{ url_for('static',filename='test.css') }}&quot;&gt;
+</code></pre>
+<h2 id="76-消息闪现secretykey与变量作用域">7.6 消息闪现、SecretyKey与变量作用域</h2>
+<p>官方文档 <a href="http://docs.jinkan.org/docs/flask/patterns/flashing.html">http://docs.jinkan.org/docs/flask/patterns/flashing.html</a></p>
+<p>Flask 提供了一个非常简单的方法来使用闪现系统向用户反馈信息。闪现系统使得在一个请求结束的时候记录一个信息，然后在且仅仅在下一个请求中访问这个数据。</p>
+<h3 id="1在视图函数中配置闪现消息">1.在视图函数中配置闪现消息</h3>
+<pre><code class="language-python">    flash(&quot;hello,wenfeng&quot;, category=&quot;success&quot;)
+    flash(&quot;hello,jiagndan&quot;, category=&quot;warning&quot;)
+</code></pre>
+<h3 id="2在html中使用闪现消息">2.在html中使用闪现消息</h3>
+<pre><code class="language-python">    {% set message = get_flashed_messages() %}
+    {{ message }}
+</code></pre>
+<p>使用set创建变量，这时的变量作用于在整个block</p>
+<pre><code class="language-python">    {% with message = get_flashed_messages() %}
+        {{ message }}
+    {% endwith %}
+</code></pre>
+<p>使用with关键字，可以随意控制作用域</p>
+<h2 id="77-页面结构解析">7.7 页面结构解析</h2>
+
+        </div>
+
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="https://bzhou830.github.io/">Binean</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="https://bzhou830.github.io/posts/20160507flask07/">https://bzhou830.github.io/posts/20160507flask07/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
+    <center><image src= "https://bineanju.gitee.io/blog/about/wx.png" ></image></center>
+</div>
+<br/>
+
+
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/posts/20160506flask06/">Flask 学习笔记|06 书籍详情页面的构建</a></li>
+        
+        <li><a href="/posts/20160505flask05/">Flask 学习笔记|05 Flask中的多线程与线程隔离技术</a></li>
+        
+        <li><a href="/posts/20160504flask04/">Flask 学习笔记|04 flask核心机制</a></li>
+        
+        <li><a href="/posts/20160503flask03/">Flask 学习笔记|03 蓝图、模型与CodeFirst</a></li>
+        
+        <li><a href="/posts/20160502flask02/">Flask 学习笔记|02 数据和路由</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='https://bzhou830.github.io/tags/Flask'>Flask</a></li>
+                
+                <li><a href='https://bzhou830.github.io/tags/Python'>Python</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "bzhou830/Blog"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    
+<section class="widget">
+    
+    <ul class="widget-list">
+        
+        <li>
+            <a href="https://bzhou830.github.io/" title="简介" target="_blank">
+                
+                
+                    <div>
+                        <div style="width: 200px; height: 200px; border-radius:100%; overflow:hidden;">
+                            <img src=https://bzhou830.github.io/about/touxiang.jpg >
+                        </div>
+                    </div>
+
+                    <div>
+                        <h2>Binean</h2>
+                    </div>
+                    
+                    <div>
+                        <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path><path fill="currentColor" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V18c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-1.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05.02.01.03.03.04.04 1.14.83 1.93 1.94 1.93 3.41V18c0 .35-.07.69-.18 1H22c.55 0 1-.45 1-1v-1.5c0-2.33-4.67-3.5-7-3.5z"></path></svg>
+                            ****
+                        </div>
+                    </div>
+
+                    <div>
+                        <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path><path fill="currentColor" d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm8.94 3c-.46-4.17-3.77-7.48-7.94-7.94V2c0-.55-.45-1-1-1s-1 .45-1 1v1.06C6.83 3.52 3.52 6.83 3.06 11H2c-.55 0-1 .45-1 1s.45 1 1 1h1.06c.46 4.17 3.77 7.48 7.94 7.94V22c0 .55.45 1 1 1s1-.45 1-1v-1.06c4.17-.46 7.48-3.77 7.94-7.94H22c.55 0 1-.45 1-1s-.45-1-1-1h-1.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"></path></svg>
+                        武汉
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div>      
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path><path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-.4 4.25l-7.07 4.42c-.32.2-.74.2-1.06 0L4.4 8.25c-.25-.16-.4-.43-.4-.72 0-.67.73-1.07 1.3-.72L12 11l6.7-4.19c.57-.35 1.3.05 1.3.72 0 .29-.15.56-.4.72z"></path></svg>
+                        <a href="mailto:bzhou830@qq.com">bzhou830@qq.com</a> 
+                        </div>
+                    </div>
+                
+            </a>
+        </li>
+        
+        <li>
+            <a href="https://bzhou830.github.io/about/" title="欢迎关注微信公众号" target="_blank">
+                
+                    <h3 class="widget-title">欢迎关注微信公众号</h3>
+                    <img src="https://bzhou830.github.io/about/qrcode.jpg" >
+                
+            </a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <form id="search" action='https://bzhou830.github.io/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://bzhou830.github.io/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://bzhou830.github.io/categories/">Categories (2)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/C&#43;&#43;/">C&#43;&#43; (3)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/C/C&#43;&#43;/">C/C&#43;&#43; (10)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Flask/">Flask (11)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/GPU/">GPU (16)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Golang/">Golang (10)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Misc/">Misc (9)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/OpenCV/">OpenCV (1)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Python/">Python (12)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Windows%E9%A9%B1%E5%8A%A8/">Windows驱动 (4)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E4%B8%B2%E5%8F%A3/">串口 (5)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理 (14)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学 (5)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E8%AE%BA/">图论 (12)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E6%88%90%E9%95%BF/">成长 (4)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式 (1)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20210710imgui%E7%9A%84%E4%BD%BF%E7%94%A8/" title="imgui的使用">imgui的使用</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20210618Python_GrabScreen/" title="Python获取屏幕截图">Python获取屏幕截图</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20210503DrawIo%E6%90%AD%E5%BB%BA/" title="Draw.io部署教程">Draw.io部署教程</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20210215GPUShader/" title="Shader在GPU中是如何执行的？">Shader在GPU中是如何执行的？</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20210112NES%E6%A8%A1%E6%8B%9F%E5%99%A8/" title="NES模拟器">NES模拟器</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20201226%E5%9C%A8%E6%AD%A6%E6%B1%89%E7%9A%842020/" title="2020，我在武汉的这一年的故事">2020，我在武汉的这一年的故事</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20200608opencv_squares/" title="谈谈OpenCV中的四边形">谈谈OpenCV中的四边形</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20200515python_opencv_camera/" title="PyQt5&#43;OpenCV多线程显示摄像头数据">PyQt5&#43;OpenCV多线程显示摄像头数据</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20200302RayTracingInOneWeekend/" title="Go语言实现RayTracing">Go语言实现RayTracing</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20200222Games101_04/" title="Games101笔记|Z-Buffer(深度缓冲)">Games101笔记|Z-Buffer(深度缓冲)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://bzhou830.github.io/" title="Binean’s">Binean’s</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://bzhou830.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://bzhou830.github.io/tags/">Tags</a>
+    
+    <a href="https://bzhou830.github.io/tags/C&#43;&#43;/">C&#43;&#43;</a>
+    
+    <a href="https://bzhou830.github.io/tags/C/C&#43;&#43;/">C/C&#43;&#43;</a>
+    
+    <a href="https://bzhou830.github.io/tags/DICOM/">DICOM</a>
+    
+    <a href="https://bzhou830.github.io/tags/Excel/">Excel</a>
+    
+    <a href="https://bzhou830.github.io/tags/Flask/">Flask</a>
+    
+    <a href="https://bzhou830.github.io/tags/GPU/">GPU</a>
+    
+    <a href="https://bzhou830.github.io/tags/Golang/">Golang</a>
+    
+    <a href="https://bzhou830.github.io/tags/OCR/">OCR</a>
+    
+    <a href="">OpenCV</a>
+    
+    <a href="https://bzhou830.github.io/tags/Python/">Python</a>
+    
+    <a href="https://bzhou830.github.io/tags/android/">android</a>
+    
+    <a href="https://bzhou830.github.io/tags/git/">git</a>
+    
+    <a href="https://bzhou830.github.io/tags/github/">github</a>
+    
+    <a href="https://bzhou830.github.io/tags/hexo/">hexo</a>
+    
+    <a href="https://bzhou830.github.io/tags/hugo/">hugo</a>
+    
+    <a href="https://bzhou830.github.io/tags/jni/">jni</a>
+    
+    <a href="https://bzhou830.github.io/tags/opencv/">opencv</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E4%B8%B2%E5%8F%A3/">串口</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%85%AC%E5%BC%8F/">公式</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">内存管理</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E6%96%87%E6%9C%AC%E6%A3%80%E6%B5%8B/">文本检测</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8/">驱动</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B/">驱动编程</a>
+    
+</div>
+    </section>
+
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2021 <a href="https://bzhou830.github.io/">Binean&#39;s Blog By Binean</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        <br><a href="http://www.beian.miit.gov.cn/" target="_blank">鄂ICP备20004395号</a>. 
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function(){
+            $("pre code").parent().addClass("line-numbers")
+        }())
+    
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [ ['$','$'] ],
+                processEscapes: true
+            }
+        };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Games101笔记|概述和线性代数 | Binean&#39;s Blog</title>
+    <meta property="og:title" content="Games101笔记|概述和线性代数 - Binean&#39;s Blog">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2020-02-03T19:16:34&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2020-02-03T19:16:34&#43;08:00'>
+        
+    <meta name="Keywords" content="C/C&#43;&#43;, GPU, Windows驱动开发, OpenCV, 图像处理">
+    <meta name="description" content="Games101笔记|概述和线性代数">
+        
+    <meta name="author" content="Binean">
+    <meta property="og:url" content="https://bzhou830.github.io/posts/20200203Games101_01/">
+    <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href='/css/normalize.css'>
+    
+    <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://bzhou830.github.io/">
+                        Binean&#39;s Blog
+                    </a>
+                
+                <p class="description">杏花疏影里，吹笛到天明</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="https://bzhou830.github.io/">首页</a>
+                    
+                    <a  href="https://bzhou830.github.io/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://bzhou830.github.io/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    <style type="text/css">
+    .post-toc {
+        position: fixed;
+        width: 200px;
+        margin-left: -210px;
+        padding: 5px 10px;
+        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+        font-size: 12px;
+        border: 1px solid rgba(0, 0, 0, .07);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.98);
+        background-clip: padding-box;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        word-wrap: break-word;
+        white-space: nowrap;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 999;
+        cursor: pointer;
+        max-height: 70%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .post-toc .post-toc-title {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .post-toc .post-toc-content {
+        font-size: 15px;
+    }
+
+    .post-toc .post-toc-content>nav>ul {
+        margin: 10px 0;
+    }
+
+    .post-toc .post-toc-content ul {
+        padding-left: 20px;
+        list-style: square;
+        margin: 0.5em;
+        line-height: 1.8em;
+    }
+
+    .post-toc .post-toc-content ul ul {
+        padding-left: 15px;
+        display: none;
+    }
+
+    @media print,
+    screen and (max-width:1057px) {
+        .post-toc {
+            display: none;
+        }
+    }
+</style>
+<div class="post-toc" style="position: absolute; top: 188px;">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-计算机图形学概述">1. 计算机图形学概述</a>
+      <ul>
+        <li><a href="#11-相关应用">1.1 相关应用</a></li>
+        <li><a href="#12-基础知识">1.2 基础知识</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-线性代数">2. 线性代数</a>
+      <ul>
+        <li><a href="#21-向量vectors">2.1 向量(Vectors)</a></li>
+        <li><a href="#22-向量的叉乘">2.2 向量的叉乘</a></li>
+        <li><a href="#23-点乘和叉乘在图形学中的应用">2.3 点乘和叉乘在图形学中的应用</a></li>
+        <li><a href="#24-矩阵">2.4 矩阵</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postToc = $(".post-toc");
+        if (postToc.length) {
+            var leftPos = $("#main").offset().left;
+            if(leftPos<220){
+                postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})
+            }
+
+            var t = postToc.offset().top - 20,
+                a = {
+                    start: {
+                        position: "absolute",
+                        top: t
+                    },
+                    process: {
+                        position: "fixed",
+                        top: 20
+                    },
+                };
+            $(window).scroll(function () {
+                var e = $(window).scrollTop();
+                e < t ? postToc.css(a.start) : postToc.css(a.process)
+            })
+        }
+    })
+</script>
+    <article class="post">
+        <header>
+            <h1 class="post-title">Games101笔记|概述和线性代数</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2020年2月3日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6'>图形学</a></span>
+            
+        </div>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <blockquote>
+<p>本文是games101课程的第1，2课的相关笔记。这两课的内容比较基础，大学中有线性代数的学习经验就相对非常容易理解。</p>
+</blockquote>
+<h2 id="1-计算机图形学概述">1. 计算机图形学概述</h2>
+<p>计算机图形学（Computer Graphics，CG）是研究计算机在硬件和软件的帮助下创建计算机图形的学科，是计算机科学的一个分支领域，主要关注数字合成与操作视觉的图形内容。简单的说它与计算机视觉（Computer Vision，CV）的区别就是，CG是通过几何图形等构建物体，而CV则是让计算机理解捕捉到的画面，理解物体是什么，CV具有一定的推测性。</p>
+<h3 id="11-相关应用">1.1 相关应用</h3>
+<p>图形学目前已经被广泛应用到各行各业，常见的有电影特效制作、数据可视化、虚拟现实、模拟（Simulation，也可称为仿真）等。</p>
+<h3 id="12-基础知识">1.2 基础知识</h3>
+<ol>
+<li><strong>图形与图像</strong></li>
+</ol>
+<p>图象纯指就计算机内以位图(Bitmap)形式存在的灰度信息
+图形含有几何属性，更强调场景的几何表示，是由场景的几何模型和景物的物理属性共同组成
+图形主要分为两类：</p>
+<ul>
+<li>基于线条信息表示</li>
+<li>明暗图(Shading)</li>
+</ul>
+<ol start="2">
+<li><strong>三维几何建模</strong></li>
+</ol>
+<p>要在计算机中表示一个三维物体，首先要有它的几何模型表达。因此，三维模型的建模是计算机图形学的基础，是其他内容的前提。表达一个几何物体可以是用数学上的样条函数或隐式函数来表达；也可以是用光滑曲面上的采样点及其连接关系所表达的三角网格来表达（即连续曲面的分片线性逼近），如下图所示。</p>
+<p>在对三维几何模型的构建过程中，还会涉及到很多需要处理的几何问题，比如数据去噪(denoising or smoothing)、补洞(repairing)、简化(simplification)、层次细节(level of detail)、参数化(parameterization)、变形(deformation or editing)、分割(segmentation)、形状分析及检索(shape analysis and retrieval)等。这些问题构成“数字几何处理”的主要研究内容。</p>
+<ol start="3">
+<li><strong>渲染</strong></li>
+</ol>
+<p>上个世纪80-90年代研究的比较多些，包含了大量的渲染模型，包括局部光照模型(Local Illumination Model)、光线跟踪算法(Ray Tracing)、辐射度(Radiosity)等，以及到后面的更为复杂、真实、快速的渲染技术，比如全局光照模型(Global Illumination Model)、Photo mapping、BTF、BRDF、以及基于GPU的渲染技术等。
+现在的渲染技术已经能够将各种物体，包括皮肤、树木、花草、水、烟雾、毛发等渲染得非常逼真。一些商业化软件（比如Maya, Blender, Pov Ray等）也提供了强大的真实感渲染功能，在计算机图形学研究论文中作图中要经常用到这些工具来渲染漂亮的展示图或结果图。
+然而，已知的渲染实现方法，仍无法实现复杂的视觉特效，离实时的高真实感渲染还有很大差距，比如完整地实现适于电影渲染（高真实感、高分辨率）制作的RenderMan标准，以及其他各类基于物理真实感的实时渲染算法等。因此，如何充分利用GPU的计算特性，结合分布式的集群技术，从而来构造低功耗的渲染服务是发展趋势之一。</p>
+<ol start="4">
+<li><strong>动画(Animation)</strong></li>
+</ol>
+<p>动画是采用连续播放静止图像的方法产生物体运动的效果。计算机动画借助于编程或动画制作软件生成一系列的景物画面，是计算机图形学的研究热点之一。研究方向包括：人体动画，关节动画，运动动画，脚本动画，具有人的意识的虚拟角色的动画系统等。另外，高度物理真实感的动态模拟，包括对各种形变、水、气、云、烟雾、燃烧、爆炸、撕裂、老化等物理现象的真实模拟，也是动画领域的主要问题。这些技术是各类动态仿真应用的核心技术，可以极大地提高虚拟现实系统的沉浸感。计算机动画的应用领域广泛，比如动画片制作，广告、电影特技，训练模拟，物理仿真，游戏等。</p>
+<h2 id="2-线性代数">2. 线性代数</h2>
+<h3 id="21-向量vectors">2.1 向量(Vectors)</h3>
+<ul>
+<li>有序实数组，用以表示在不同坐标轴上的投影长度</li>
+<li>有行和列两种表达方式，<strong>图形学中一般以列向量的形式表示</strong></li>
+<li>代表了一个有方向的长度</li>
+<li>基本运算：
+<ul>
+<li>加法（满足结合律和交换律）</li>
+<li>标量乘以向量（满足结合律和分配率）</li>
+<li>点乘（内积，结果为标量，满足分配率和交换律，可用于判断两向量夹角，求向量长度，计算投影等）</li>
+<li>叉乘（外积，结果为向量，垂直于原向量构建的平面，长度为 $ \vec a \times \vec b = \left | a \right | \left | b \right |  \sin\left \langle a,b \right \rangle $，交换叉乘中两向量的位置，会得到长度相同但方向相反的向量）</li>
+<li>向量归一化：p的归一化向量q与p方向相同，长度为1，可通过点乘算出。</li>
+</ul>
+</li>
+</ul>
+<h3 id="22-向量的叉乘">2.2 向量的叉乘</h3>
+<p>向量的点乘比较容易理解，而且求解的形式也很简单，得到的结果是一个标量，也不需要考虑方向。相比向量的叉乘就复杂一些了。</p>
+<p>叉乘正交于两个原始向量，即垂直于两个原始向量构成的平面，方向遵循右手法则。</p>
+<p><img src="3.jpg" alt="cross"></p>
+<p>需要说明的是：一般默认是右手法则，$\vec x \times \vec y = + \vec z$ ,但是OpenGL默认是左手法则，$\vec x \times \vec y = - \vec z$</p>
+<h3 id="23-点乘和叉乘在图形学中的应用">2.3 点乘和叉乘在图形学中的应用</h3>
+<p>点乘可以用于两个向量的夹角，比如，光源与物体表面夹角的余弦值。也可以求一个向量在另一个方向上的投影。
+因为叉乘的的结果带有方向，所以可以用这个特性来求两个向量的方向关系，在左还是在右。</p>
+<p><img src="1.png" alt="cross"></p>
+<p>如上图所示, 两个向量进行叉乘，比如：$\vec a \times \vec b &gt; 0$，所以，$\vec a$ 在$\vec b$ 的顺时针方向（右边）；$\vec b \times \vec a &lt; 0$,所以，$\vec b$在$\vec a$ 的逆时针方向（左边），如果$\vec a \times \vec b = 0$，那么$\vec a$则与$\vec b$共线。利用这个左右关系就可以确定平面上的点在三角形的内部还是外部。</p>
+<p><img src="2.png" alt="cross"></p>
+<p>如上图，若P点在三角形内部，则从同一个端点出发的边，$\vec AB$与到P点的向量$\vec AP$, 可以确定P点在$\vec AB$的左边还是右边。按此顺序判断（即边向量顺序连接），则P点只会在三条边的同一个方向；若在外部，P点相对于三个边的位置将不在同一边。</p>
+<h3 id="24-矩阵">2.4 矩阵</h3>
+<p>图形学中，矩阵广泛用于变换（旋转、剪切、缩放等）。
+矩阵的基本运算:</p>
+<ul>
+<li>加法</li>
+<li>乘法 - 要符合行列的限制。</li>
+<li>转置</li>
+<li>取逆 - 矩阵必须为方阵。</li>
+<li>行列式 - 矩阵必须为方阵。</li>
+<li>特征值 向量
+<ul>
+<li>跟矩阵相乘后方向不会改变的向量。</li>
+<li>不是左右矩阵都有特征向量。</li>
+</ul>
+</li>
+<li>特征值 - 特征向量在相乘后长度的变化比例。</li>
+<li>对称矩阵的特征值分解。
+<ul>
+<li>对称矩阵的特征值分解和非堆成矩阵的特征值分解。</li>
+<li>将对称矩阵分解成更加简单的矩阵。</li>
+</ul>
+</li>
+<li>非对称矩阵的特征值分解 - 奇异值分解(SVD)
+<ul>
+<li>对非对称矩阵的特征值分解和非堆成矩阵的特征值分解。</li>
+<li>将非对称矩阵分解成更加简单的矩阵。</li>
+</ul>
+</li>
+</ul>
+<p>矩阵的种类</p>
+<ul>
+<li>对角矩阵 - 除了对角线上的元素，其余元素都为零。</li>
+<li>对称矩阵 - 矩阵转置和未转置相等。</li>
+<li>正交矩阵
+<ul>
+<li>且行列式的值为 1，或 -1.</li>
+<li>矩阵中每一个行/列向量长度为1，且都互相垂直。</li>
+<li>转置就是矩阵的逆</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="https://bzhou830.github.io/">Binean</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="https://bzhou830.github.io/posts/20200203Games101_01/">https://bzhou830.github.io/posts/20200203Games101_01/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
+    <center><image src= "https://bineanju.gitee.io/blog/about/wx.png" ></image></center>
+</div>
+<br/>
+
+
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/posts/20190830%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8514/">渲染管线之旅|14 索引页</a></li>
+        
+        <li><a href="/posts/20190825%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8513/">渲染管线之旅|13 计算着色器</a></li>
+        
+        <li><a href="/posts/20190820%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8512/">渲染管线之旅|12 曲面细分</a></li>
+        
+        <li><a href="/posts/20190815%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8511/">渲染管线之旅|11 流输出</a></li>
+        
+        <li><a href="/posts/20190810%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8510/">渲染管线之旅|10 几何着色器</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='https://bzhou830.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6'>图形学</a></li>
+                
+                <li><a href='https://bzhou830.github.io/tags/%E7%AC%94%E8%AE%B0'>笔记</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "bzhou830/Blog"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    
+<section class="widget">
+    
+    <ul class="widget-list">
+        
+        <li>
+            <a href="https://bzhou830.github.io/" title="简介" target="_blank">
+                
+                
+                    <div>
+                        <div style="width: 200px; height: 200px; border-radius:100%; overflow:hidden;">
+                            <img src=https://bzhou830.github.io/about/touxiang.jpg >
+                        </div>
+                    </div>
+
+                    <div>
+                        <h2>Binean</h2>
+                    </div>
+                    
+                    <div>
+                        <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path><path fill="currentColor" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V18c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-1.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05.02.01.03.03.04.04 1.14.83 1.93 1.94 1.93 3.41V18c0 .35-.07.69-.18 1H22c.55 0 1-.45 1-1v-1.5c0-2.33-4.67-3.5-7-3.5z"></path></svg>
+                            ****
+                        </div>
+                    </div>
+
+                    <div>
+                        <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path><path fill="currentColor" d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm8.94 3c-.46-4.17-3.77-7.48-7.94-7.94V2c0-.55-.45-1-1-1s-1 .45-1 1v1.06C6.83 3.52 3.52 6.83 3.06 11H2c-.55 0-1 .45-1 1s.45 1 1 1h1.06c.46 4.17 3.77 7.48 7.94 7.94V22c0 .55.45 1 1 1s1-.45 1-1v-1.06c4.17-.46 7.48-3.77 7.94-7.94H22c.55 0 1-.45 1-1s-.45-1-1-1h-1.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"></path></svg>
+                        武汉
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div>      
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path><path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-.4 4.25l-7.07 4.42c-.32.2-.74.2-1.06 0L4.4 8.25c-.25-.16-.4-.43-.4-.72 0-.67.73-1.07 1.3-.72L12 11l6.7-4.19c.57-.35 1.3.05 1.3.72 0 .29-.15.56-.4.72z"></path></svg>
+                        <a href="mailto:bzhou830@qq.com">bzhou830@qq.com</a> 
+                        </div>
+                    </div>
+                
+            </a>
+        </li>
+        
+        <li>
+            <a href="https://bzhou830.github.io/about/" title="欢迎关注微信公众号" target="_blank">
+                
+                    <h3 class="widget-title">欢迎关注微信公众号</h3>
+                    <img src="https://bzhou830.github.io/about/qrcode.jpg" >
+                
+            </a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <form id="search" action='https://bzhou830.github.io/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://bzhou830.github.io/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://bzhou830.github.io/categories/">Categories (2)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/C&#43;&#43;/">C&#43;&#43; (3)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/C/C&#43;&#43;/">C/C&#43;&#43; (10)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Flask/">Flask (11)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/GPU/">GPU (16)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Golang/">Golang (10)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Misc/">Misc (9)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/OpenCV/">OpenCV (1)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Python/">Python (12)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Windows%E9%A9%B1%E5%8A%A8/">Windows驱动 (4)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E4%B8%B2%E5%8F%A3/">串口 (5)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理 (14)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学 (5)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E8%AE%BA/">图论 (12)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E6%88%90%E9%95%BF/">成长 (4)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式 (1)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20210710imgui%E7%9A%84%E4%BD%BF%E7%94%A8/" title="imgui的使用">imgui的使用</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20210618Python_GrabScreen/" title="Python获取屏幕截图">Python获取屏幕截图</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20210503DrawIo%E6%90%AD%E5%BB%BA/" title="Draw.io部署教程">Draw.io部署教程</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20210215GPUShader/" title="Shader在GPU中是如何执行的？">Shader在GPU中是如何执行的？</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20210112NES%E6%A8%A1%E6%8B%9F%E5%99%A8/" title="NES模拟器">NES模拟器</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20201226%E5%9C%A8%E6%AD%A6%E6%B1%89%E7%9A%842020/" title="2020，我在武汉的这一年的故事">2020，我在武汉的这一年的故事</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20200608opencv_squares/" title="谈谈OpenCV中的四边形">谈谈OpenCV中的四边形</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20200515python_opencv_camera/" title="PyQt5&#43;OpenCV多线程显示摄像头数据">PyQt5&#43;OpenCV多线程显示摄像头数据</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20200302RayTracingInOneWeekend/" title="Go语言实现RayTracing">Go语言实现RayTracing</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20200222Games101_04/" title="Games101笔记|Z-Buffer(深度缓冲)">Games101笔记|Z-Buffer(深度缓冲)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://bzhou830.github.io/" title="Binean’s">Binean’s</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://bzhou830.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://bzhou830.github.io/tags/">Tags</a>
+    
+    <a href="https://bzhou830.github.io/tags/C&#43;&#43;/">C&#43;&#43;</a>
+    
+    <a href="https://bzhou830.github.io/tags/C/C&#43;&#43;/">C/C&#43;&#43;</a>
+    
+    <a href="https://bzhou830.github.io/tags/DICOM/">DICOM</a>
+    
+    <a href="https://bzhou830.github.io/tags/Excel/">Excel</a>
+    
+    <a href="https://bzhou830.github.io/tags/Flask/">Flask</a>
+    
+    <a href="https://bzhou830.github.io/tags/GPU/">GPU</a>
+    
+    <a href="https://bzhou830.github.io/tags/Golang/">Golang</a>
+    
+    <a href="https://bzhou830.github.io/tags/OCR/">OCR</a>
+    
+    <a href="">OpenCV</a>
+    
+    <a href="https://bzhou830.github.io/tags/Python/">Python</a>
+    
+    <a href="https://bzhou830.github.io/tags/android/">android</a>
+    
+    <a href="https://bzhou830.github.io/tags/git/">git</a>
+    
+    <a href="https://bzhou830.github.io/tags/github/">github</a>
+    
+    <a href="https://bzhou830.github.io/tags/hexo/">hexo</a>
+    
+    <a href="https://bzhou830.github.io/tags/hugo/">hugo</a>
+    
+    <a href="https://bzhou830.github.io/tags/jni/">jni</a>
+    
+    <a href="https://bzhou830.github.io/tags/opencv/">opencv</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E4%B8%B2%E5%8F%A3/">串口</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%85%AC%E5%BC%8F/">公式</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">内存管理</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E6%96%87%E6%9C%AC%E6%A3%80%E6%B5%8B/">文本检测</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8/">驱动</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B/">驱动编程</a>
+    
+</div>
+    </section>
+
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2021 <a href="https://bzhou830.github.io/">Binean&#39;s Blog By Binean</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        <br><a href="http://www.beian.miit.gov.cn/" target="_blank">鄂ICP备20004395号</a>. 
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function(){
+            $("pre code").parent().addClass("line-numbers")
+        }())
+    
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [ ['$','$'] ],
+                processEscapes: true
+            }
+        };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+
+</body>
+
+</html>

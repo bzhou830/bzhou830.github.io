@@ -1,14 +1,150 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on 十面埋伏的博客</title>
+    <title>Categories on Binean&#39;s Blog</title>
     <link>https://bzhou830.github.io/categories/</link>
-    <description>Recent content in Categories on 十面埋伏的博客</description>
+    <description>Recent content in Categories on Binean&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
+    <lastBuildDate>Sat, 10 Jul 2021 19:16:34 +0800</lastBuildDate>
     
 	<atom:link href="https://bzhou830.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Python</title>
+      <link>https://bzhou830.github.io/categories/Python/</link>
+      <pubDate>Fri, 18 Jun 2021 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/categories/Python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GPU</title>
+      <link>https://bzhou830.github.io/categories/GPU/</link>
+      <pubDate>Mon, 15 Feb 2021 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/categories/GPU/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;</title>
+      <link>https://bzhou830.github.io/categories/C&#43;&#43;/</link>
+      <pubDate>Tue, 12 Jan 2021 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/categories/C&#43;&#43;/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>成长</title>
+      <link>https://bzhou830.github.io/categories/%E6%88%90%E9%95%BF/</link>
+      <pubDate>Sat, 26 Dec 2020 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/categories/%E6%88%90%E9%95%BF/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>图像处理</title>
+      <link>https://bzhou830.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</link>
+      <pubDate>Mon, 08 Jun 2020 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>图形学</title>
+      <link>https://bzhou830.github.io/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/</link>
+      <pubDate>Mon, 02 Mar 2020 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>C/C&#43;&#43;</title>
+      <link>https://bzhou830.github.io/categories/C/C&#43;&#43;/</link>
+      <pubDate>Sun, 05 Jan 2020 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/categories/C/C&#43;&#43;/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Misc</title>
+      <link>https://bzhou830.github.io/categories/Misc/</link>
+      <pubDate>Sat, 29 Jun 2019 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/categories/Misc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Windows驱动</title>
+      <link>https://bzhou830.github.io/categories/Windows%E9%A9%B1%E5%8A%A8/</link>
+      <pubDate>Sat, 06 Apr 2019 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/categories/Windows%E9%A9%B1%E5%8A%A8/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Golang</title>
+      <link>https://bzhou830.github.io/categories/Golang/</link>
+      <pubDate>Fri, 11 May 2018 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/categories/Golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>设计模式</title>
+      <link>https://bzhou830.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Wed, 03 May 2017 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>OpenCV</title>
+      <link>https://bzhou830.github.io/categories/OpenCV/</link>
+      <pubDate>Mon, 06 Mar 2017 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/categories/OpenCV/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>图论</title>
+      <link>https://bzhou830.github.io/categories/%E5%9B%BE%E8%AE%BA/</link>
+      <pubDate>Thu, 12 Jan 2017 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/categories/%E5%9B%BE%E8%AE%BA/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Flask</title>
+      <link>https://bzhou830.github.io/categories/Flask/</link>
+      <pubDate>Wed, 11 May 2016 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/categories/Flask/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>串口</title>
+      <link>https://bzhou830.github.io/categories/%E4%B8%B2%E5%8F%A3/</link>
+      <pubDate>Fri, 26 Apr 2013 09:29:11 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/categories/%E4%B8%B2%E5%8F%A3/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>

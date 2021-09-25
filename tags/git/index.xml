@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>git on 十面埋伏的博客</title>
+    <title>git on Binean&#39;s Blog</title>
     <link>https://bzhou830.github.io/tags/git/</link>
-    <description>Recent content in git on 十面埋伏的博客</description>
+    <description>Recent content in git on Binean&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sat, 29 Jun 2019 09:16:34 +0800</lastBuildDate>
@@ -17,7 +17,7 @@
       <pubDate>Sat, 29 Jun 2019 09:16:34 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/posts/20190620Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</guid>
-      <description>本文作为版本控制软件git的入门指导和常用命令整理。 1.git的安装 自诞生于 2005 年以来，Git 日臻成熟完善，在高度易用的同时，仍然保留着初期设定的目标。它的速度飞快，极其适合管理大项目 。Git可以在windows、Mac、Linux全平台系统使用。登录 https://git-scm.com/downloads 下载你系统的Git软件并进行</description>
+      <description>本文作为版本控制软件git的入门指导和常用命令整理。 首先用一张图来总结基本的使用的流程，后文中都有详细的解释。 1.git的安装 自诞生于 2005 年以来，Git 日臻成熟完善，在高度易用的同时，仍然保留着初期设定的目标。它的速度飞快，极其适合管理大项目 。Git可以在windows、Mac、L</description>
     </item>
     
   </channel>

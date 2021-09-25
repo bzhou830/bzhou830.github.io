@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hugo on Binean&#39;s Blog</title>
+    <link>https://bzhou830.github.io/tags/hugo/</link>
+    <description>Recent content in hugo on Binean&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 03 Jan 2016 09:16:34 +0800</lastBuildDate>
+    
+	<atom:link href="https://bzhou830.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>hugo静态网站相关</title>
+      <link>https://bzhou830.github.io/posts/20160103Hugo_and_markdown/</link>
+      <pubDate>Sun, 03 Jan 2016 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20160103Hugo_and_markdown/</guid>
+      <description>1. hugo使用内嵌HTML的方法 hugo在默认的情况下无法显示markdown中内嵌的html，在生成的网页中可以看到html的内容被&amp;lt;!--raw HTML omitted--&amp;gt;替代了。原因是在2019年11月的hugo更新中，使用了goldmark作为了默认库，那么想要内嵌</description>
+    </item>
+    
+  </channel>
+</rss>

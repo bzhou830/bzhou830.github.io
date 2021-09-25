@@ -3,37 +3,222 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://bzhou830.github.io/tags/GPU/</loc>
-    <lastmod>2019-07-10T09:16:34+08:00</lastmod>
+    <loc>https://bzhou830.github.io/</loc>
+    <lastmod>2021-07-10T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/categories/</loc>
+    <lastmod>2021-07-10T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20210710imgui%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
+    <lastmod>2021-07-10T19:16:34+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://bzhou830.github.io/posts/</loc>
-    <lastmod>2019-07-10T09:16:34+08:00</lastmod>
+    <lastmod>2021-07-10T19:16:34+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://bzhou830.github.io/tags/</loc>
-    <lastmod>2019-07-10T09:16:34+08:00</lastmod>
+    <lastmod>2021-07-10T19:16:34+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://bzhou830.github.io/</loc>
-    <lastmod>2019-07-10T09:16:34+08:00</lastmod>
+    <loc>https://bzhou830.github.io/categories/Python/</loc>
+    <lastmod>2021-06-18T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20210618Python_GrabScreen/</loc>
+    <lastmod>2021-06-18T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20210503DrawIo%E6%90%AD%E5%BB%BA/</loc>
+    <lastmod>2021-02-15T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/categories/GPU/</loc>
+    <lastmod>2021-02-15T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/tags/GPU/</loc>
+    <lastmod>2021-02-15T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20210215GPUShader/</loc>
+    <lastmod>2021-02-15T19:16:34+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://bzhou830.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/</loc>
-    <lastmod>2019-07-10T09:16:34+08:00</lastmod>
+    <lastmod>2021-02-15T19:16:34+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://bzhou830.github.io/posts/20190710%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8503/</loc>
-    <lastmod>2019-07-10T09:16:34+08:00</lastmod>
+    <loc>https://bzhou830.github.io/categories/C&#43;&#43;/</loc>
+    <lastmod>2021-01-12T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20210112NES%E6%A8%A1%E6%8B%9F%E5%99%A8/</loc>
+    <lastmod>2021-01-12T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20201226%E5%9C%A8%E6%AD%A6%E6%B1%89%E7%9A%842020/</loc>
+    <lastmod>2020-12-26T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/categories/%E6%88%90%E9%95%BF/</loc>
+    <lastmod>2020-12-26T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</loc>
+    <lastmod>2020-06-08T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</loc>
+    <lastmod>2020-06-08T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20200608opencv_squares/</loc>
+    <lastmod>2020-06-08T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20200515python_opencv_camera/</loc>
+    <lastmod>2020-05-15T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20200302RayTracingInOneWeekend/</loc>
+    <lastmod>2020-03-02T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/</loc>
+    <lastmod>2020-03-02T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20200222Games101_04/</loc>
+    <lastmod>2020-02-22T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/tags/%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2020-02-22T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20200216Games101_03/</loc>
+    <lastmod>2020-02-16T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20200215Games101_02/</loc>
+    <lastmod>2020-02-15T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20200203Games101_01/</loc>
+    <lastmod>2020-02-03T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20200105CppSplit/</loc>
+    <lastmod>2020-01-05T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/tags/C/C&#43;&#43;/</loc>
+    <lastmod>2020-01-05T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/categories/C/C&#43;&#43;/</loc>
+    <lastmod>2020-01-05T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20200102cpp11%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
+    <lastmod>2020-01-02T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20190830%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8514/</loc>
+    <lastmod>2019-08-30T09:16:34+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8/</loc>
+    <lastmod>2019-08-30T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20190825%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8513/</loc>
+    <lastmod>2019-08-25T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20190820%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8512/</loc>
+    <lastmod>2019-08-20T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20190815%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8511/</loc>
+    <lastmod>2019-08-15T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20190810%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8510/</loc>
+    <lastmod>2019-08-10T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20190805%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8509/</loc>
+    <lastmod>2019-08-05T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20190801%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8508/</loc>
+    <lastmod>2019-08-01T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20190730%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8507/</loc>
+    <lastmod>2019-07-30T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20190725%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8506/</loc>
+    <lastmod>2019-07-25T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20190720%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8505/</loc>
+    <lastmod>2019-07-20T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20190715%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8504/</loc>
+    <lastmod>2019-07-15T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20190710%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8503/</loc>
     <lastmod>2019-07-10T09:16:34+08:00</lastmod>
   </url>
   
@@ -58,17 +243,32 @@
   </url>
   
   <url>
+    <loc>https://bzhou830.github.io/categories/Misc/</loc>
+    <lastmod>2019-06-29T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20190611B%E7%AB%99%E7%BC%93%E5%AD%98%E8%A7%86%E9%A2%91%E5%92%8C%E5%8E%8B%E7%BC%A9/</loc>
+    <lastmod>2019-06-11T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/tags/Python/</loc>
+    <lastmod>2019-06-11T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://bzhou830.github.io/tags/Excel/</loc>
     <lastmod>2019-06-10T09:16:34+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://bzhou830.github.io/tags/Python/</loc>
+    <loc>https://bzhou830.github.io/posts/20190610Python%E8%AF%BB%E5%86%99Excel/</loc>
     <lastmod>2019-06-10T09:16:34+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://bzhou830.github.io/posts/20190610Python%E8%AF%BB%E5%86%99Excel/</loc>
+    <loc>https://bzhou830.github.io/posts/20190610VC%E4%B8%AD%E8%8E%B7%E5%8F%96%E6%A8%A1%E5%9D%97%E8%B7%AF%E5%BE%84/</loc>
     <lastmod>2019-06-10T09:16:34+08:00</lastmod>
   </url>
   
@@ -93,8 +293,28 @@
   </url>
   
   <url>
-    <loc>https://bzhou830.github.io/tags/C/C&#43;&#43;/</loc>
-    <lastmod>2019-02-26T09:16:34+08:00</lastmod>
+    <loc>https://bzhou830.github.io/posts/20190406WindowsKernelProgram/</loc>
+    <lastmod>2019-04-06T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/categories/Windows%E9%A9%B1%E5%8A%A8/</loc>
+    <lastmod>2019-04-06T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B/</loc>
+    <lastmod>2019-04-06T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20190306Windows%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93%E4%BA%8C/</loc>
+    <lastmod>2019-03-06T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20190305Windows%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93%E4%B8%80/</loc>
+    <lastmod>2019-03-05T09:16:34+08:00</lastmod>
   </url>
   
   <url>
@@ -103,28 +323,13 @@
   </url>
   
   <url>
-    <loc>https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B/</loc>
-    <lastmod>2019-02-26T09:16:34+08:00</lastmod>
+    <loc>https://bzhou830.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/</loc>
+    <lastmod>2019-01-04T09:16:34+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://bzhou830.github.io/posts/20190112C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8603/</loc>
-    <lastmod>2019-01-12T09:16:34+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://bzhou830.github.io/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</loc>
-    <lastmod>2019-01-12T09:16:34+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://bzhou830.github.io/posts/20190110C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8602/</loc>
-    <lastmod>2019-01-10T09:16:34+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://bzhou830.github.io/posts/20190106C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8601/</loc>
-    <lastmod>2019-01-06T09:16:34+08:00</lastmod>
+    <loc>https://bzhou830.github.io/posts/20190104PiCamera/</loc>
+    <lastmod>2019-01-04T09:16:34+08:00</lastmod>
   </url>
   
   <url>
@@ -143,7 +348,7 @@
   </url>
   
   <url>
-    <loc>https://bzhou830.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/</loc>
+    <loc>https://bzhou830.github.io/tags/opencv/</loc>
     <lastmod>2019-01-03T09:16:34+08:00</lastmod>
   </url>
   
@@ -168,8 +373,233 @@
   </url>
   
   <url>
+    <loc>https://bzhou830.github.io/tags/Golang/</loc>
+    <lastmod>2018-05-11T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/categories/Golang/</loc>
+    <lastmod>2018-05-11T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20180511Gohttp%E5%8F%8A%E5%85%B6%E4%BB%96%E6%A0%87%E5%87%86%E5%BA%93/</loc>
+    <lastmod>2018-05-11T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20180510GoChannel/</loc>
+    <lastmod>2018-05-10T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20180509GoGoroutine/</loc>
+    <lastmod>2018-05-09T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20180508Go%E6%B5%8B%E8%AF%95%E4%B8%8E%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/</loc>
+    <lastmod>2018-05-08T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20180507Go%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E5%92%8C%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/</loc>
+    <lastmod>2018-05-07T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20180506Go%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/</loc>
+    <lastmod>2018-05-06T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20180505Go%E9%9D%A2%E5%90%91%E6%8E%A5%E5%8F%A3/</loc>
+    <lastmod>2018-05-05T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20180504Go%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</loc>
+    <lastmod>2018-05-04T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20180503Go%E5%86%85%E5%BB%BA%E5%AE%B9%E5%99%A8/</loc>
+    <lastmod>2018-05-03T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20180502Go%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</loc>
+    <lastmod>2018-05-02T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20180116C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8605/</loc>
+    <lastmod>2018-01-16T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</loc>
+    <lastmod>2018-01-16T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20180114C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8604/</loc>
+    <lastmod>2018-01-14T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20180112C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8603/</loc>
+    <lastmod>2018-01-12T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20180110C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8602/</loc>
+    <lastmod>2018-01-10T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20180106C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8601/</loc>
+    <lastmod>2018-01-06T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20171217WDDM%E5%B7%A5%E4%BD%9C%E6%B5%81/</loc>
+    <lastmod>2017-12-17T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20170620%E4%B8%80%E4%B8%AA%E7%94%B5%E5%AD%90%E5%8F%91%E7%83%A7%E5%8F%8B%E7%9A%84%E7%A8%8B%E5%BA%8F%E5%91%98%E6%88%90%E9%95%BF%E4%B9%8B%E8%B7%AF/</loc>
+    <lastmod>2017-06-20T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/tags/C&#43;&#43;/</loc>
+    <lastmod>2017-05-03T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2017-05-03T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2017-05-03T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20170503DesignPatten01/</loc>
+    <lastmod>2017-05-03T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20170312SortAlgo/</loc>
+    <lastmod>2017-03-12T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://bzhou830.github.io/about/</loc>
     <lastmod>2017-03-10T00:13:27+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/categories/OpenCV/</loc>
+    <lastmod>2017-03-06T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20170306opencv_python/</loc>
+    <lastmod>2017-03-06T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20170206%E5%A6%82%E4%BD%95%E6%8F%92%E5%85%A5%E5%85%AC%E5%BC%8F/</loc>
+    <lastmod>2017-02-06T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/tags/%E5%85%AC%E5%BC%8F/</loc>
+    <lastmod>2017-02-06T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20170120Cpp%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B/</loc>
+    <lastmod>2017-01-20T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/categories/%E5%9B%BE%E8%AE%BA/</loc>
+    <lastmod>2017-01-12T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20170112%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9512/</loc>
+    <lastmod>2017-01-12T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/tags/%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2017-01-12T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20170111%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9511/</loc>
+    <lastmod>2017-01-11T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20170110%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9510/</loc>
+    <lastmod>2017-01-10T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20170109%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9509/</loc>
+    <lastmod>2017-01-09T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20170108%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9508/</loc>
+    <lastmod>2017-01-08T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20170107%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9507/</loc>
+    <lastmod>2017-01-07T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20170106%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9506/</loc>
+    <lastmod>2017-01-06T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20170105%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9505/</loc>
+    <lastmod>2017-01-05T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20170104%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9504/</loc>
+    <lastmod>2017-01-04T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20170103%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9503/</loc>
+    <lastmod>2017-01-03T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20170102%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9502/</loc>
+    <lastmod>2017-01-02T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20170101%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9501/</loc>
+    <lastmod>2017-01-01T19:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20161230%E6%88%91%E7%9A%842016/</loc>
+    <lastmod>2016-12-30T09:29:11+08:00</lastmod>
   </url>
   
   <url>
@@ -179,11 +609,6 @@
   
   <url>
     <loc>https://bzhou830.github.io/posts/20161117DICOM%E5%BD%B1%E5%83%8F%E4%B8%AD%E7%9A%84%E7%AA%97%E5%AE%BD%E7%AA%97%E4%BD%8D/</loc>
-    <lastmod>2016-11-17T09:29:11+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://bzhou830.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</loc>
     <lastmod>2016-11-17T09:29:11+08:00</lastmod>
   </url>
   
@@ -198,6 +623,76 @@
   </url>
   
   <url>
+    <loc>https://bzhou830.github.io/posts/20160915DCMTK%E8%AF%BB%E5%8F%96DICOM%E6%96%87%E4%BB%B6/</loc>
+    <lastmod>2016-09-15T08:29:11+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/tags/Flask/</loc>
+    <lastmod>2016-05-11T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/categories/Flask/</loc>
+    <lastmod>2016-05-11T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20160511flask11/</loc>
+    <lastmod>2016-05-11T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20160510flask10/</loc>
+    <lastmod>2016-05-10T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20160509flask09/</loc>
+    <lastmod>2016-05-09T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20160508flask08/</loc>
+    <lastmod>2016-05-08T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20160507flask07/</loc>
+    <lastmod>2016-05-07T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20160506flask06/</loc>
+    <lastmod>2016-05-06T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20160505flask05/</loc>
+    <lastmod>2016-05-05T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20160504flask04/</loc>
+    <lastmod>2016-05-04T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20160503flask03/</loc>
+    <lastmod>2016-05-03T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20160502flask02/</loc>
+    <lastmod>2016-05-02T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20160501flask01/</loc>
+    <lastmod>2016-05-01T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://bzhou830.github.io/posts/20160406Cpp%E9%9D%A2%E8%AF%95%E9%A2%98/</loc>
     <lastmod>2016-04-06T09:29:11+08:00</lastmod>
   </url>
@@ -208,8 +703,13 @@
   </url>
   
   <url>
-    <loc>https://bzhou830.github.io/tags/OpenCV/</loc>
-    <lastmod>2015-11-30T12:55:00+08:00</lastmod>
+    <loc>https://bzhou830.github.io/tags/hugo/</loc>
+    <lastmod>2016-01-03T09:16:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/20160103Hugo_and_markdown/</loc>
+    <lastmod>2016-01-03T09:16:34+08:00</lastmod>
   </url>
   
   <url>
@@ -238,11 +738,51 @@
   </url>
   
   <url>
-    <loc>https://bzhou830.github.io/categories/</loc>
+    <loc>https://bzhou830.github.io/posts/20140906bmp%E7%BC%96%E7%A0%81/</loc>
+    <lastmod>2014-09-06T09:29:11+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/%E4%B8%B2%E5%8F%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E5%88%975/</loc>
+    <lastmod>2013-04-26T09:29:11+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/categories/%E4%B8%B2%E5%8F%A3/</loc>
+    <lastmod>2013-04-26T09:29:11+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/tags/%E4%B8%B2%E5%8F%A3/</loc>
+    <lastmod>2013-04-26T09:29:11+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/%E4%B8%B2%E5%8F%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E5%88%974/</loc>
+    <lastmod>2013-04-24T09:29:11+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/%E4%B8%B2%E5%8F%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E5%88%973/</loc>
+    <lastmod>2013-04-23T09:29:11+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/%E4%B8%B2%E5%8F%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E5%88%972/</loc>
+    <lastmod>2013-04-21T09:29:11+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/posts/%E4%B8%B2%E5%8F%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E5%88%971/</loc>
+    <lastmod>2013-04-18T09:29:11+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://bzhou830.github.io/archives/</loc>
+  </url>
+  
+  <url>
+    <loc>https://bzhou830.github.io/search/</loc>
   </url>
   
 </urlset>

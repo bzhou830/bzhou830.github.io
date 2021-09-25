@@ -1,15 +1,33 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>图像处理 on 十面埋伏的博客</title>
+    <title>图像处理 on Binean&#39;s Blog</title>
     <link>https://bzhou830.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</link>
-    <description>Recent content in 图像处理 on 十面埋伏的博客</description>
+    <description>Recent content in 图像处理 on Binean&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 17 Nov 2016 09:29:11 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 08 Jun 2020 19:16:34 +0800</lastBuildDate>
     
 	<atom:link href="https://bzhou830.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>谈谈OpenCV中的四边形</title>
+      <link>https://bzhou830.github.io/posts/20200608opencv_squares/</link>
+      <pubDate>Mon, 08 Jun 2020 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20200608opencv_squares/</guid>
+      <description>首先抛出一个问题，给定一系列二维平面上的的点，这些点是可以组成一个封闭的二维图形。因为这些点是矩形区域拍摄图像后识别得到的图形的边界点，所以我们要抽象出来这个矩形，也就是我们要反映出这个矩形。问题是在拍照的时候摄像头可能不是正对着图形的，那么矩形就必然在图像上反映为一个四边形, 如</description>
+    </item>
+    
+    <item>
+      <title>PyQt5&#43;OpenCV多线程显示摄像头数据</title>
+      <link>https://bzhou830.github.io/posts/20200515python_opencv_camera/</link>
+      <pubDate>Fri, 15 May 2020 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20200515python_opencv_camera/</guid>
+      <description>pyqt5是一套Python绑定Digia QT5应用的框架。它可用于Python 2和3。Qt库是最强大的GUI库之一。pyqt5很大的优势就是跨平台，而且使用起来非常的方便，编写的代码比较精简，又能实现比较复杂的界面。在很多视觉程序中都需要GUI, 搭配OpenCV, pyqt5可方</description>
+    </item>
     
     <item>
       <title>DICOM影像中的窗宽窗位</title>
@@ -63,6 +81,15 @@
       
       <guid>https://bzhou830.github.io/posts/20150324%E5%9B%BE%E5%83%8F%E6%8F%92%E5%80%BC%E8%BF%90%E7%AE%97%E6%80%BB%E7%BB%93/</guid>
       <description>图像插值就是利用已知邻近像素点的灰度值（或RGB图像中的三色值）来产生未知像素点的灰度值，以便由原始图像再生出具有更高分辨率的图像。图像插值常常用在图像的放缩，旋转等变换中。常用的插值运算有三种：最邻近插值、双线性插值和立方卷积插值（cubic运算）。假设变换（放缩，旋转等等）前</description>
+    </item>
+    
+    <item>
+      <title>BMP图像编码格式</title>
+      <link>https://bzhou830.github.io/posts/20140906bmp%E7%BC%96%E7%A0%81/</link>
+      <pubDate>Sat, 06 Sep 2014 09:29:11 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20140906bmp%E7%BC%96%E7%A0%81/</guid>
+      <description>BMP文件由文件头、位图信息头、颜色信息和图形数据四部分组成。 1、文件头 BMP文件头数据结构含有BMP文件的类型、文件大小和位图起始位置等信息，一共包含14个字节。 例如：下图是个一个位图文件的二进制编码： 1-2字节：文件类型，必须是BM，十六进制中则是0x4d42； 3-6字节：位</description>
     </item>
     
   </channel>

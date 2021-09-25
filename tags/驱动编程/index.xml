@@ -1,15 +1,42 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>驱动编程 on 十面埋伏的博客</title>
+    <title>驱动编程 on Binean&#39;s Blog</title>
     <link>https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B/</link>
-    <description>Recent content in 驱动编程 on 十面埋伏的博客</description>
+    <description>Recent content in 驱动编程 on Binean&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 26 Feb 2019 09:16:34 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 06 Apr 2019 09:16:34 +0800</lastBuildDate>
     
 	<atom:link href="https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Windows Kernel Program</title>
+      <link>https://bzhou830.github.io/posts/20190406WindowsKernelProgram/</link>
+      <pubDate>Sat, 06 Apr 2019 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20190406WindowsKernelProgram/</guid>
+      <description>Chapter 1: Windows内部概述 本章描述了Windows内部工作原理中最重要的概念。一些主题将在本书后面更详细地描述，它与当前的主题密切相关。确保你理解了本章的概念，因为这些是任何驱动程序甚至是用户模式底层代码的基础。 进程 虚拟内存 线程 系统服务 系统架构 句柄和对象 1. 进程 进程表示的是正在运行</description>
+    </item>
+    
+    <item>
+      <title>Windows驱动开发总结(二)</title>
+      <link>https://bzhou830.github.io/posts/20190306Windows%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93%E4%BA%8C/</link>
+      <pubDate>Wed, 06 Mar 2019 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20190306Windows%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93%E4%BA%8C/</guid>
+      <description>同步异步的两种用法 FILE_FLAG_OVERLAPPED异步打开参数 在CreateFile打开设备对象时 HANDLE CreateFile( LPCSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, //FILE_FLAG_OVERLAPPED HANDLE hTemplateFile ); 加入FILE_FLAG_OVERLAPPED参数就是以异步的方式打开驱动的设备对象 与驱动通讯时如下的调用界面及异步结构，需要设置一个OVE</description>
+    </item>
+    
+    <item>
+      <title>Windows驱动开发总结(一)</title>
+      <link>https://bzhou830.github.io/posts/20190305Windows%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93%E4%B8%80/</link>
+      <pubDate>Tue, 05 Mar 2019 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/posts/20190305Windows%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93%E4%B8%80/</guid>
+      <description>1. windows内核对象 每个对象都有对象头和对象体组成。所有类型的对象头结构都是相同的，而结构体部分却各不相同的。下面是内核对象的结构图： 进程句柄表 dt nt!_EPROCESS +0x000 Pcb : _KPROCESS +0x06c ProcessLock : _EX_PUSH_LOCK +0x070 CreateTime : _LARGE_INTEGER +0x078 ExitTime : _LARGE_INTEGER +0x080 RundownProtect : _EX_RUNDOWN_REF +0x084 UniqueProcessId : Ptr32 Void +0x088 ActiveProcessLinks : _LIST_ENTRY +0x090 QuotaUsage : [3] Uint4B +0x09c QuotaPeak : [3] Uint4B +0x0a8 CommitCharge : Uint4B +0x0ac PeakVirtualSize : Uint4B +0x0b0 VirtualSize : Uint4B +0x0b4 SessionProcessLinks : _LIST_ENTRY +0x0bc DebugPort : Ptr32 Void +0x0c0 ExceptionPort : Ptr32</description>
+    </item>
     
     <item>
       <title>Windows驱动编程(1)：第一个驱动程序</title>
@@ -17,7 +44,7 @@
       <pubDate>Tue, 26 Feb 2019 09:16:34 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/posts/20190226Windows%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B1/</guid>
-      <description>本篇主要介绍在VS2013环境下使用WDK8.1开发KMD驱动的一个简单的demo. 开发环境：VS2013, WDK8.1 需要使用的工具：vmware player(安装windows xp作为实验环境), DriverMonitor(加载驱动的工具), DbgView(捕获内核的信息输出) 1. 搭建开</description>
+      <description>本篇主要介绍在VS2013环境下使用WDK8.1开发KMD驱动的一个简单的demo. 开发环境：VS2013, WDK8.1 需要使用的工具：vmware player(安装windows xp作为实验环境),DriverMonitor(加载驱动的工具), DbgView(捕获内核的信息输出) 1. 搭建开</description>
     </item>
     
   </channel>

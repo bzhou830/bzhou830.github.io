@@ -70,10 +70,8 @@ body {
     background-color:#FFF;
     color:#444;
     font-size: 15px;
-    /**
-    font-family:"TIBch", "Classic Grotesque W01", "Helvetica Neue", Arial, "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "WenQuanYi Micro Hei", SimSun, sans-serif;
-    **/
-    font-family: "Iowan Old Style", "Ovo", "Hoefler Text", Georgia, "Times New Roman", "TIBch", "Source Han Sans", "PingFangSC-Regular", "Hiragino Sans GB", "STHeiti", "Microsoft Yahei", "Droid Sans Fallback", "WenQuanYi Micro Hei", sans-serif;
+    /* font-family:"TIBch", "Classic Grotesque W01", "Helvetica Neue", consolas, "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "WenQuanYi Micro Hei", SimSun, sans-serif; */
+    font-family: "Iowan Old Style", "Ovo", "Hoefler Text", consolas, "Times New Roman", "TIBch", "Source Han Sans", "PingFangSC-Regular", "Hiragino Sans GB", "STHeiti", "Microsoft Yahei", "Droid Sans Fallback", "WenQuanYi Micro Hei", sans-serif;
     /**-webkit-font-smoothing: antialiased;**/
     -moz-osx-font-smoothing: grayscale;
 }
@@ -100,7 +98,7 @@ mark {
 }
 pre, code {
     font-family:Menlo, Monaco, Consolas, "Lucida Console", "Courier New", monospace;
-    font-size:.92857em;
+    font-size:1em;
 }
 pre {
     overflow:auto;
@@ -188,10 +186,9 @@ textarea {
     margin:0;
 }
 #logo {
-    /**
-    font:bold 42px/1.12 "Times New Roman", Georgia, Times, sans-serif;
-    **/
-    font-size: 37.5px;
+    /* font:bold 28px/1.12 "Georgia", Georgia, Times, sans-serif; */
+    /* font-size: 42px; */
+    font:bold 30px/1.12 "Iowan Old Style", "Ovo", "Hoefler Text", consolas, "Times New Roman", "TIBch", "Source Han Sans", "PingFangSC-Regular", "Hiragino Sans GB", "STHeiti", "Microsoft Yahei", "Droid Sans Fallback", "WenQuanYi Micro Hei", sans-serif;
     font-weight: bold;
     color:#555;
 }
@@ -609,6 +606,7 @@ textarea.textarea {
 #footer {
     padding:.8em 0 3.6em;
     line-height:1.5;
+    text-align:center;
     color:#999;
 }
 .error-page {

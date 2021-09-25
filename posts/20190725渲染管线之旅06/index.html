@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>渲染管线之旅|06 三角形的生成和建立 | Binean&#39;s Blog</title>
+    <meta property="og:title" content="渲染管线之旅|06 三角形的生成和建立 - Binean&#39;s Blog">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2019-07-25T09:16:34&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2019-07-25T09:16:34&#43;08:00'>
+        
+    <meta name="Keywords" content="C/C&#43;&#43;, GPU, Windows驱动开发, OpenCV, 图像处理">
+    <meta name="description" content="渲染管线之旅|06 三角形的生成和建立">
+        
+    <meta name="author" content="Binean">
+    <meta property="og:url" content="https://bzhou830.github.io/posts/20190725%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8506/">
+    <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href='/css/normalize.css'>
+    
+    <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://bzhou830.github.io/">
+                        Binean&#39;s Blog
+                    </a>
+                
+                <p class="description">杏花疏影里，吹笛到天明</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="https://bzhou830.github.io/">首页</a>
+                    
+                    <a  href="https://bzhou830.github.io/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://bzhou830.github.io/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    <style type="text/css">
+    .post-toc {
+        position: fixed;
+        width: 200px;
+        margin-left: -210px;
+        padding: 5px 10px;
+        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+        font-size: 12px;
+        border: 1px solid rgba(0, 0, 0, .07);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.98);
+        background-clip: padding-box;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        word-wrap: break-word;
+        white-space: nowrap;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 999;
+        cursor: pointer;
+        max-height: 70%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .post-toc .post-toc-title {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .post-toc .post-toc-content {
+        font-size: 15px;
+    }
+
+    .post-toc .post-toc-content>nav>ul {
+        margin: 10px 0;
+    }
+
+    .post-toc .post-toc-content ul {
+        padding-left: 20px;
+        list-style: square;
+        margin: 0.5em;
+        line-height: 1.8em;
+    }
+
+    .post-toc .post-toc-content ul ul {
+        padding-left: 15px;
+        display: none;
+    }
+
+    @media print,
+    screen and (max-width:1057px) {
+        .post-toc {
+            display: none;
+        }
+    }
+</style>
+<div class="post-toc" style="position: absolute; top: 188px;">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1如何画一个三角形">1.如何画一个三角形</a></li>
+    <li><a href="#2一个更好的方法">2.一个更好的方法</a></li>
+    <li><a href="#3我们这里需要的是更多的层级">3.我们这里需要的是更多的层级</a></li>
+    <li><a href="#4三角形设置阶段都做了什么">4.三角形设置阶段都做了什么？</a></li>
+    <li><a href="#5其它光栅化问题和像素输出">5.其它光栅化问题和像素输出</a></li>
+    <li><a href="#6注意事项">6.注意事项</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postToc = $(".post-toc");
+        if (postToc.length) {
+            var leftPos = $("#main").offset().left;
+            if(leftPos<220){
+                postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})
+            }
+
+            var t = postToc.offset().top - 20,
+                a = {
+                    start: {
+                        position: "absolute",
+                        top: t
+                    },
+                    process: {
+                        position: "fixed",
+                        top: 20
+                    },
+                };
+            $(window).scroll(function () {
+                var e = $(window).scrollTop();
+                e < t ? postToc.css(a.start) : postToc.css(a.process)
+            })
+        }
+    })
+</script>
+    <article class="post">
+        <header>
+            <h1 class="post-title">渲染管线之旅|06 三角形的生成和建立</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2019年7月25日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/GPU'>GPU</a></span>
+            
+        </div>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <p>欢迎回来。这次我们去看看三角形的光栅化。但在光栅化三角形之前，我们需要执行三角形设置，并且在设置三角形之前，我还要解释一下我们做的准备是为了什么，最后我们来聊聊三角形硬件光栅化算法。</p>
+<h2 id="1如何画一个三角形">1.如何画一个三角形</h2>
+<p>首先，给很熟悉这部分并自己写过软纹理映射的人一点小提示：三角形光栅器一次要处理一堆东西：跟踪三角形的形状，插值出坐标$u$和$v$（对于透视矫正映射，是$u/z$，$v/z$和$1/z$），执行Z缓冲测试（对于透视矫正映射，可以用$1/z$缓冲替代），然后处理实际的纹理（还有着色），以上步骤都在一个安排好可用寄存器的大循环里。在硬件中，这些东西都被打包成很整齐的小模块，这便于设计以及独立测试。硬件中的&quot;三角形光栅器&quot;是告诉你三角形覆盖了哪些像素的块；某些情况下，它也会给出三角形中这些像素的重心坐标。但仅此而已。不仅没有给出$u$和$v$，甚至没有$1/z$。当然也没有纹理和着色，但通过使用专用的纹理和shader单元这些都不是个事。</p>
+<p>其次，如果你写过自己的三角形映射器，你就可能会用过像<code>Chris Hecker</code>这种透视纹理映射的增量式扫描线光栅算法。在没有SIMD单元的处理器上这是一个非常好的方法，但是它对于拥有高速SIMD单元的现代处理器并不很适合，对于硬件甚至更糟糕。就像是放在角落里的过时了的游戏主机，现在根本没人感兴趣了。就好比是三角形光栅器对于屏幕底部和右侧的边的保护带裁剪非常快，而对于顶部和左侧的边就没这么快了。只是打个比方而已。</p>
+<p>那么，对硬件来说这个算法到底哪里不好？首先，它确实是通过逐条扫描线来光栅化三角形。当进行像素着色时就出现了问题，我们想要光栅器输出成组的2x2个像素点（所谓的&quot;方块quads&rdquo;——不要与&quot;四边形quad&quot;图元相混淆，quad图元在管线中被分解为一对三角形）。因为我们不仅要并行的运行两个&quot;实例instances&rdquo;，还要从他们各自的扫描线上的第一个像素开始绘制，它们可能离的很远而导致不能很好的生成我们想要的2x2的块，这就是扫描线算法的尴尬之处。而且很难高效的并行化，在x和y的方向上不对称——这意味着画一个宽8像素高100像素的三角形与一个宽100像素高8像素的三角程度是截然不同的。现在得让&quot;x&quot;和&quot;y&quot;的步进&quot;循环&quot;同样快来避免瓶颈——但我们要是在&quot;y&quot;的步进上执行所有工作，那&quot;x&quot;的循环就不重要了！这就有点麻烦了。</p>
+<h2 id="2一个更好的方法">2.一个更好的方法</h2>
+<p>在1988年<code>Pineda</code>的 论文里提到了一个非常简单（对硬件更加友好）的渲染三角形的方法。这个方法可以归结为两句话：到直线的符号距离可以通过2D点积来计算（相乘再相加）——就像到平面的符号距离可以通过3D点积来计算一样。以及三角形本质上可以被定义为三条边正确侧面上的所有点的集合。所以只用遍历所有像素的坐标并且测试他们是否在三角形里就行了。这就是最基本的算法。</p>
+<p>注意，比如当我们移动一个像素到右边，我们在X上加上一个数并同时保持Y不变。我们的边的公式有如下形式：</p>
+<p><code>a，b，c</code>是三角形常量，所以对于X+1就是：$E(X+1,Y) = a(X+1) + bY + c = E(X,Y) + a$.</p>
+<p>换句话说，一旦得到边的公式在已知点上的值，对于邻接像素的值仅作一些相加就可得出。还要注意，这很容易并行化：比如像AMD的硬件一次可以光栅化8x8=64像素（或是Xbox360，参考《Real-Time Rendering》第三版）。你只用计算 其中。一次计算每个三角形（和边）并保存在寄存器中。然后只需 计算左上角的三边公式，执行8x8次并行相加我们计算过的常量，来光栅化一个8x8的像素块，之后测试结果符号位来判定每个8x8像素是在边的内部还是外部。这样计算三条边，非常快，一个8x8的 三角形光栅块很适合并行化的方式，并且除了做大量的整数加法操作就没什么更复杂的了！这就是为什么在上一部分里要对齐到定点（fixed-point）网格——这样我们就可以在这用整数运算了。整数累加器比浮点运算单元可简单多了。当然我们可以选择累加器的宽度来刚好支持我们想要的视口大小，有足够的子像素精度，以及大概2~4倍的合适尺寸的保护带。</p>
+<p>顺带一提，这里还有一个棘手点，就是填充规则：你需要保证任何一对共用一条边的三角形，共用的边附近没有像素被漏掉或者被光栅化两次。D3D和OpenGL都使用所谓的&quot;左上角&quot;填充规则；具体细节在各自的用户手册上有解释。我就不在这里赘述了，不过要注意这种整数光栅器，在三角形设置过程中从一些边的常数项中减去1。使其保证不会出现问题—— 相比较，Chris在他的文章中的做法就适用这项工作了。两种方法结合起来就很棒了。</p>
+<p>仍然存在一个问题：我们如何找到要测试哪些8x8的像素块呢？Pineda提出了两种策略：1）只扫描整个三角形包围盒，或者2）一个更聪明的方案：一旦没有命中任何三角形采样点，就停止反复了。好吧，如果一次只测试一点像素点是没有问题的。但是我们现在要处理8x8个像素！同时执行64次并行相加，最后却发现没命中任何像素，太浪费了。所以，千万别这么干。</p>
+<h2 id="3我们这里需要的是更多的层级">3.我们这里需要的是更多的层级</h2>
+<p>我刚才讲的是适合光栅器工作 （实际输出的采样量）的方式。为了避免像素级上的多余工作，我们应该在它之前添加另一个光栅器，这个光栅器不把三角形 光栅化成像素，只是将8x8像素块分成tiles（McCormack和McNamara的 论文中有一些详细内容，以及Greene的&rdquo; Hierarchical Polygon Tiling with Coverage Masks&quot;的结论中用到了这个想法）。光栅化边的方程到覆盖的tile的工作很类似于光栅化像素；我们要做的是按照边的方程计算整个tile的上下边界；因为方程是线性的，所以极值是在tile的边界上——实际上，可以循环4个拐角点，从公式中a和b因数的符号可以判断出是哪个拐角。底部的线相比之下计算量就很小了，也需要同样的层级——一些并行的整数累加器。如果要估算tile一个拐角的边方程，不如传到细粒度光栅器中执行：每个8x8的块需要一个参考值，还记得吗？</p>
+<p>所以要先执行一次粗粒度光栅化来得到可能被三角形覆盖的tiles，这个光栅器可以做的小一点（8x8都足够用了），它不需要速度非常快（因为它只用来执行每个8x8的块），在这个层次，找到空的块的开销是比较小的。</p>
+<p>可以参考Greene的论文和Mike Abrash的《Rasterization on Larrabee》，实现一个完整的层级光栅器。但对于硬件光栅器来说：实际上增加了一些对小三角形的处理工作（除非你可以跳过层次级别，但硬件数据流不是那样设计的），如果三角形非常大，要做大量的光栅化工作。这种架构下生成像素位置非常快，比Shader单元的处理速度要快。</p>
+<p>然而，实际的问题不是处理大三角形：它们对于任何算法都很有效（当然包括扫描线光栅算法）。主要的问题在于小三角形。假如有一堆生成0或1个可见像素的小三角形，也需要执行三角形设置（马上就要讲到了），对于8x8的块至少要执行一步粗粒度光栅化和一步细粒度光栅化。小三角形很容易执行三角形设置，以及粗粒度光栅化边界。</p>
+<p>需要注意的是，这种算法对于薄片形（又长又窄的三角形）是开销很大的——你得遍历大量的tiles，却只能得到很少的覆盖像素。所以这种情况非常慢，要尽可能的避免。</p>
+<h2 id="4三角形设置阶段都做了什么">4.三角形设置阶段都做了什么？</h2>
+<p>我已经讲过了三角形的光栅化算法，在三角形设置过程中，仅需要看一下每条边使用的常量：</p>
+<p>边方程中的三角形三条边a, b, c。
+之前提到的一些派生值；如果不是要加上另一个值的话，一般不会将8x8的矩阵全部存储进硬件里。最好的方法就是只在硬件中计算，使用进位保留累加器（又名3:2 reducer，我之前写到过）来减少单独的和公式计算，然后完成常规加法。
+参考获取tile的四个角的方法来获取边方程的上下边界做粗粒度光栅化。
+在第一个粗粒度光栅化的参考点上，边方程的初始值（调整填充规则）。</p>
+<p>……这些就是三角形设置阶段要做的计算。它可以归结为用于边方程的几个大整数的乘法计算，以及它们的初始赋值，一些步进值的乘法计算，还有一些低开销的其它逻辑计算。</p>
+<h2 id="5其它光栅化问题和像素输出">5.其它光栅化问题和像素输出</h2>
+<p>有一件事到目前还没有提，那就是裁剪矩形（scissor rect）。这只是一个屏幕对齐的矩形掩码像素。光栅器不会生成矩形之外的像素。这相当容易实现——粗粒度光栅器可以直接拒绝不与scissor rect重叠的tiles，并且细粒度光栅器 将通过&quot;光栅化&quot;的scissor rect的覆盖像素掩码进行AND逻辑与运算（此处的&quot;光栅化&quot;指的是逐行逐列的整数比较，以及一些位的AND运算）。</p>
+<p>还有一个问题是多重抗锯齿。现在最大的挑战是需要测试每个像素的多个采样点——DX11中硬件需要至少支持8x MSAA。注意，每个像素中的采样位置不是在规则的网格里（这对于近似水平或近似垂直的边效果很不好），但大多数方向的边都可以得到不错的结果。这些不规则的采样位置是扫描线光栅算法的致命点（这是不使用它们的另一个原因！），但却很容易支持<code>Pineda-style</code>算法：即在三角形设置阶段计算每个边上的一些偏移量，然后对每个像素上的这些偏移量进行并行 相加和测试符号，来替代只计算一个点的方法。</p>
+<p>比如说4x MSAA，在一个8x8的光栅器上可以做两件事情：可以将每个采样点当作是一个特别的&quot;像素&rdquo;，它表示有效的tile大小是4x4个实际的屏幕像素，细粒度光栅格中的每个块有2x2个位置对应一个&quot;像素&rdquo;，或者可以用8x8个实际像素运行4次。8x8似乎有点大了，我假设AMD是这种工作方式，其它的MSAA也都差不多。</p>
+<p>无论如何，我们现在得到了一个细粒度的光栅器，它可以给出每个块上的8x8块的位置加上覆盖区域的掩码。非常好，不过这只是故事的一半——当今的硬件在执行<code>pixel shader</code>之前还要执行<code>early Z</code>和<code>hierarchica Z</code>测试，实际的光栅化与Z处理过程是交织在一起的。但最好分开来讲；所以在下一部分里，将会讲多种Z处理过程，Z比较，以及一些三角形设置——就是我们刚刚将的光栅化设置，但还有多个Z和像素着色的内插值，它们也需要在之前进行设置。</p>
+<h2 id="6注意事项">6.注意事项</h2>
+<p>我把一些我认为有代表性的光栅化算法联系到了一起（这些在网上都有资料）。还有一些我没尝试过的算法都在这给出了介绍；恐怕这块内容写的有点复杂了。</p>
+<p>本文假设为使用高端PC硬件平台。在大多数领域，特别是移动/嵌入式中，被称为tile渲染器，屏幕被分成若干tiles单独渲染。这和我讲过的8x8tile光栅化有所不同。基于tile的渲染器还至少需要一个非常粗粒度的光栅化阶段，它会预先找到被每个三角形覆盖的大块的tile；这个阶段通常被称为&quot;装箱（Binning）&quot;。基于tile的渲染器的工作方式有所不同，它相比&quot;后排序（sort-last）&ldquo;架构有不同的设计参数。讲完D3D11的管线，我有可能会用一到两篇文章讲一下基于tile的渲染器（如果感兴趣的话），但是现在先忽略它们，比如在常用的智能手机上的PowerVR芯片，它的处理方式是有些不同的。</p>
+<p>在8x8的块中（其它尺寸的块也有同样的问题），当三角形小于一定尺寸或者是不合适的比例时，需要做大量的光栅化工作，并且在处理过程中会得到很糟糕的效果。我很想告诉给你一个神奇的易于并行化的算法，不过我不知道，一些硬件厂商也做的不是很好。所以就目前而言，这些都是硬件光栅化的难题。或许未来会有一个不错的解决方案。</p>
+<p>我讲到的&quot;边方程的下边界&quot;适合于粗粒度光栅化，但是在某些情况下会出现错误（即需要在不覆盖任何像素的块中执行细粒度光栅化）。是有技巧减少这种情况的，但检测这些特殊情况比起在不覆盖任何像素的块中执行光栅化往往开销更大。这也是一种权衡。</p>
+<p>在光栅化过程中用到的块通常都是固定在一个网格上的（下一篇会讲的更详细）。如果一个三角形覆盖的两个像素跨过了两个tile，就得光栅化两个8x8的块。这是非常低效的。</p>
+<p>以上内容看似简单，但并不完美，实际的三角形光栅化是达不到理论峰值的（理论上总是假设所有的块都被全部填充）。请记住这一点。</p>
+
+        </div>
+
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="https://bzhou830.github.io/">Binean</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="https://bzhou830.github.io/posts/20190725%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8506/">https://bzhou830.github.io/posts/20190725%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8506/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
+    <center><image src= "https://bineanju.gitee.io/blog/about/wx.png" ></image></center>
+</div>
+<br/>
+
+
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/posts/20190720%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8505/">渲染管线之旅|05 图元处理、Clip/Cull, 投影和视图变换</a></li>
+        
+        <li><a href="/posts/20190715%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8504/">渲染管线之旅|04 纹理和采样</a></li>
+        
+        <li><a href="/posts/20190710%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8503/">渲染管线之旅|03 图形管线概览及GPU中顶点处理</a></li>
+        
+        <li><a href="/posts/20190705%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8502/">渲染管线之旅|02 GPU存储架构和命令处理器</a></li>
+        
+        <li><a href="/posts/20190703%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8501/">渲染管线之旅|01 软件调用栈</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='https://bzhou830.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6'>图形学</a></li>
+                
+                <li><a href='https://bzhou830.github.io/tags/GPU'>GPU</a></li>
+                
+                <li><a href='https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8'>驱动</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "bzhou830/Blog"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    
+<section class="widget">
+    
+    <ul class="widget-list">
+        
+        <li>
+            <a href="https://bzhou830.github.io/" title="简介" target="_blank">
+                
+                
+                    <div>
+                        <div style="width: 200px; height: 200px; border-radius:100%; overflow:hidden;">
+                            <img src=https://bzhou830.github.io/about/touxiang.jpg >
+                        </div>
+                    </div>
+
+                    <div>
+                        <h2>Binean</h2>
+                    </div>
+                    
+                    <div>
+                        <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path><path fill="currentColor" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V18c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-1.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05.02.01.03.03.04.04 1.14.83 1.93 1.94 1.93 3.41V18c0 .35-.07.69-.18 1H22c.55 0 1-.45 1-1v-1.5c0-2.33-4.67-3.5-7-3.5z"></path></svg>
+                            ****
+                        </div>
+                    </div>
+
+                    <div>
+                        <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path><path fill="currentColor" d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm8.94 3c-.46-4.17-3.77-7.48-7.94-7.94V2c0-.55-.45-1-1-1s-1 .45-1 1v1.06C6.83 3.52 3.52 6.83 3.06 11H2c-.55 0-1 .45-1 1s.45 1 1 1h1.06c.46 4.17 3.77 7.48 7.94 7.94V22c0 .55.45 1 1 1s1-.45 1-1v-1.06c4.17-.46 7.48-3.77 7.94-7.94H22c.55 0 1-.45 1-1s-.45-1-1-1h-1.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"></path></svg>
+                        武汉
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div>      
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path><path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-.4 4.25l-7.07 4.42c-.32.2-.74.2-1.06 0L4.4 8.25c-.25-.16-.4-.43-.4-.72 0-.67.73-1.07 1.3-.72L12 11l6.7-4.19c.57-.35 1.3.05 1.3.72 0 .29-.15.56-.4.72z"></path></svg>
+                        <a href="mailto:bzhou830@qq.com">bzhou830@qq.com</a> 
+                        </div>
+                    </div>
+                
+            </a>
+        </li>
+        
+        <li>
+            <a href="https://bzhou830.github.io/about/" title="欢迎关注微信公众号" target="_blank">
+                
+                    <h3 class="widget-title">欢迎关注微信公众号</h3>
+                    <img src="https://bzhou830.github.io/about/qrcode.jpg" >
+                
+            </a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <form id="search" action='https://bzhou830.github.io/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://bzhou830.github.io/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://bzhou830.github.io/categories/">Categories (2)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/C&#43;&#43;/">C&#43;&#43; (3)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/C/C&#43;&#43;/">C/C&#43;&#43; (10)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Flask/">Flask (11)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/GPU/">GPU (16)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Golang/">Golang (10)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Misc/">Misc (9)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/OpenCV/">OpenCV (1)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Python/">Python (12)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Windows%E9%A9%B1%E5%8A%A8/">Windows驱动 (4)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E4%B8%B2%E5%8F%A3/">串口 (5)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理 (14)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学 (5)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E8%AE%BA/">图论 (12)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E6%88%90%E9%95%BF/">成长 (4)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式 (1)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20210710imgui%E7%9A%84%E4%BD%BF%E7%94%A8/" title="imgui的使用">imgui的使用</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20210618Python_GrabScreen/" title="Python获取屏幕截图">Python获取屏幕截图</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20210503DrawIo%E6%90%AD%E5%BB%BA/" title="Draw.io部署教程">Draw.io部署教程</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20210215GPUShader/" title="Shader在GPU中是如何执行的？">Shader在GPU中是如何执行的？</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20210112NES%E6%A8%A1%E6%8B%9F%E5%99%A8/" title="NES模拟器">NES模拟器</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20201226%E5%9C%A8%E6%AD%A6%E6%B1%89%E7%9A%842020/" title="2020，我在武汉的这一年的故事">2020，我在武汉的这一年的故事</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20200608opencv_squares/" title="谈谈OpenCV中的四边形">谈谈OpenCV中的四边形</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20200515python_opencv_camera/" title="PyQt5&#43;OpenCV多线程显示摄像头数据">PyQt5&#43;OpenCV多线程显示摄像头数据</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20200302RayTracingInOneWeekend/" title="Go语言实现RayTracing">Go语言实现RayTracing</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/posts/20200222Games101_04/" title="Games101笔记|Z-Buffer(深度缓冲)">Games101笔记|Z-Buffer(深度缓冲)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://bzhou830.github.io/" title="Binean’s">Binean’s</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://bzhou830.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://bzhou830.github.io/tags/">Tags</a>
+    
+    <a href="https://bzhou830.github.io/tags/C&#43;&#43;/">C&#43;&#43;</a>
+    
+    <a href="https://bzhou830.github.io/tags/C/C&#43;&#43;/">C/C&#43;&#43;</a>
+    
+    <a href="https://bzhou830.github.io/tags/DICOM/">DICOM</a>
+    
+    <a href="https://bzhou830.github.io/tags/Excel/">Excel</a>
+    
+    <a href="https://bzhou830.github.io/tags/Flask/">Flask</a>
+    
+    <a href="https://bzhou830.github.io/tags/GPU/">GPU</a>
+    
+    <a href="https://bzhou830.github.io/tags/Golang/">Golang</a>
+    
+    <a href="https://bzhou830.github.io/tags/OCR/">OCR</a>
+    
+    <a href="">OpenCV</a>
+    
+    <a href="https://bzhou830.github.io/tags/Python/">Python</a>
+    
+    <a href="https://bzhou830.github.io/tags/android/">android</a>
+    
+    <a href="https://bzhou830.github.io/tags/git/">git</a>
+    
+    <a href="https://bzhou830.github.io/tags/github/">github</a>
+    
+    <a href="https://bzhou830.github.io/tags/hexo/">hexo</a>
+    
+    <a href="https://bzhou830.github.io/tags/hugo/">hugo</a>
+    
+    <a href="https://bzhou830.github.io/tags/jni/">jni</a>
+    
+    <a href="https://bzhou830.github.io/tags/opencv/">opencv</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E4%B8%B2%E5%8F%A3/">串口</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%85%AC%E5%BC%8F/">公式</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">内存管理</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E6%96%87%E6%9C%AC%E6%A3%80%E6%B5%8B/">文本检测</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8/">驱动</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B/">驱动编程</a>
+    
+</div>
+    </section>
+
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2021 <a href="https://bzhou830.github.io/">Binean&#39;s Blog By Binean</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        <br><a href="http://www.beian.miit.gov.cn/" target="_blank">鄂ICP备20004395号</a>. 
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function(){
+            $("pre code").parent().addClass("line-numbers")
+        }())
+    
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [ ['$','$'] ],
+                processEscapes: true
+            }
+        };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+
+</body>
+
+</html>
