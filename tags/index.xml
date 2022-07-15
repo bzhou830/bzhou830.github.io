@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on Binean&#39;s Blog</title>
+    <title>Tags on 菠萝蜜</title>
     <link>https://bzhou830.github.io/tags/</link>
-    <description>Recent content in Tags on Binean&#39;s Blog</description>
+    <description>Recent content in Tags on 菠萝蜜</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 10 Jul 2021 19:16:34 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 20 Jun 2022 19:16:34 +0800</lastBuildDate>
     
 	<atom:link href="https://bzhou830.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -50,7 +50,7 @@
     <item>
       <title>笔记</title>
       <link>https://bzhou830.github.io/tags/%E7%AC%94%E8%AE%B0/</link>
-      <pubDate>Sat, 22 Feb 2020 19:16:34 +0800</pubDate>
+      <pubDate>Sat, 29 Feb 2020 19:16:34 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/tags/%E7%AC%94%E8%AE%B0/</guid>
       <description></description>
@@ -59,9 +59,27 @@
     <item>
       <title>C/C&#43;&#43;</title>
       <link>https://bzhou830.github.io/tags/C/C&#43;&#43;/</link>
-      <pubDate>Sun, 05 Jan 2020 19:16:34 +0800</pubDate>
+      <pubDate>Wed, 05 Feb 2020 19:16:34 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/tags/C/C&#43;&#43;/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>树莓派</title>
+      <link>https://bzhou830.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/</link>
+      <pubDate>Fri, 03 Jan 2020 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>驱动编程</title>
+      <link>https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B/</link>
+      <pubDate>Tue, 31 Dec 2019 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B/</guid>
       <description></description>
     </item>
     
@@ -116,24 +134,6 @@
       <pubDate>Sat, 01 Jun 2019 09:16:34 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/tags/%E6%96%87%E6%9C%AC%E6%A3%80%E6%B5%8B/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>驱动编程</title>
-      <link>https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B/</link>
-      <pubDate>Sat, 06 Apr 2019 09:16:34 +0800</pubDate>
-      
-      <guid>https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>树莓派</title>
-      <link>https://bzhou830.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/</link>
-      <pubDate>Fri, 04 Jan 2019 09:16:34 +0800</pubDate>
-      
-      <guid>https://bzhou830.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/</guid>
       <description></description>
     </item>
     

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>USB on 菠萝蜜</title>
+    <link>https://bzhou830.github.io/categories/USB/</link>
+    <description>Recent content in USB on 菠萝蜜</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 20 Apr 2022 19:16:34 +0800</lastBuildDate>
+    
+	<atom:link href="https://bzhou830.github.io/categories/USB/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>USB探索| Flash 烧录器</title>
+      <link>https://bzhou830.github.io/post/20220420GD32USBEx/</link>
+      <pubDate>Wed, 20 Apr 2022 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/post/20220420GD32USBEx/</guid>
+      <description>flash芯片26VF064B的memory layout可以从芯片手册看到。 有8个8K Bytes, 2个32K Bytes, 126个64K Bytes.总计就是8M的容量。所以就是将Flash整个Memory全部写一遍（8M 所以就是将Flash整个Memory全部写一遍（8M Bytes的空间），写完之后去</description>
+    </item>
+    
+    <item>
+      <title>USB探索|3.从USB键盘改造成USB鼠标</title>
+      <link>https://bzhou830.github.io/post/20220220GD32USB04/</link>
+      <pubDate>Sun, 20 Feb 2022 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/post/20220220GD32USB04/</guid>
+      <description>1. 实现思路 有了前面实现USB键盘的基础，实现USB鼠标就变得相对非常的简单了。和USB键盘一样，USB鼠标也是HID设备。因此只需要修改HID报告描述符就能成功的把USB键盘改造成一个USB鼠标。 这里直接采用《圈圈带你玩USB》书中的鼠标案例中的HID报告描述符。内容如下： const uint8_t hid_report_desc[USB_HID_REPORT_DESC_LEN]</description>
+    </item>
+    
+    <item>
+      <title>USB探索|2.USB键盘的实现</title>
+      <link>https://bzhou830.github.io/post/20220213GD32USB03/</link>
+      <pubDate>Sun, 13 Feb 2022 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/post/20220213GD32USB03/</guid>
+      <description>1. 实现思路 在GD32L233C-start板子的官方例程中有一个USB CDC的案例，此外就没有任何USB相关的案例了。但是，从GD32L233R_EVAL_Demo_Suites里面找到了有USB键盘的案例，所以最简单的实现方式就是将这个Demo移植过来到GD32L233C-st</description>
+    </item>
+    
+    <item>
+      <title>USB探索|1.USB协议基础</title>
+      <link>https://bzhou830.github.io/post/20220212GD32USB02/</link>
+      <pubDate>Fri, 11 Feb 2022 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/post/20220212GD32USB02/</guid>
+      <description>在说枚举之前，先介绍一下USB的一种传输模式一一控制传输。这种传输在USB中是非常重要的，它要保证数据的正确性，在设备的枚举过程中都是使用控传输。控制传输分为三个过程：建立过程、可选的数掘过程及状态过程。建立（setup）过程都是由USB主机发起的。它开始于一个SETUP令牌包．</description>
+    </item>
+    
+    <item>
+      <title>USB探索|0.偶遇GD32L233</title>
+      <link>https://bzhou830.github.io/post/20220127GD32USB01/</link>
+      <pubDate>Thu, 27 Jan 2022 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/post/20220127GD32USB01/</guid>
+      <description>1. 序章 早在除夕之夜说过自己萌生了设计一个简单的外设来进行Windows驱动探索的想法。并且看中了USB外设，因为USB接口使用方便，硬件设计也相对简单。 春节期间恰好遇到了电子工程世界上兆易创新做的评测活动，评测活板子使用MCU是GD32L233，这颗芯片支持USB2.0, 正好可以</description>
+    </item>
+    
+  </channel>
+</rss>

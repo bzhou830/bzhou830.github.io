@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>渲染管线之旅|02 GPU存储架构和命令处理器 | 菠萝蜜</title>
+    <meta property="og:title" content="渲染管线之旅|02 GPU存储架构和命令处理器 - 菠萝蜜">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2019-07-05T09:16:34&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2019-07-05T09:16:34&#43;08:00'>
+        
+    <meta name="Keywords" content="C/C&#43;&#43;, GPU, Windows驱动开发, OpenCV, 图像处理">
+    <meta name="description" content="渲染管线之旅|02 GPU存储架构和命令处理器">
+        
+    <meta name="author" content="Binean">
+    <meta property="og:url" content="https://bzhou830.github.io/post/20190705%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8502/">
+    <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href='/css/normalize.css'>
+    
+    <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://bzhou830.github.io/">
+                        菠萝蜜
+                    </a>
+                
+                <p class="description">选择去发光，而不是被照亮</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://bzhou830.github.io/">首页</a>
+                    
+                    <a  href="https://bzhou830.github.io/GPU/" title="GPU">GPU</a>
+                    
+                    <a  href="https://bzhou830.github.io/USB/" title="USB">USB</a>
+                    
+                    <a  href="https://bzhou830.github.io/raspberrypi/" title="树莓派">树莓派</a>
+                    
+                    <a  href="https://bzhou830.github.io/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://bzhou830.github.io/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    <style type="text/css">
+    .post-toc {
+        position: fixed;
+        width: 200px;
+        margin-left: -210px;
+        padding: 5px 10px;
+        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+        font-size: 12px;
+        border: 1px solid rgba(0, 0, 0, .07);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.98);
+        background-clip: padding-box;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        word-wrap: break-word;
+        white-space: nowrap;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 999;
+        cursor: pointer;
+        max-height: 70%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .post-toc .post-toc-title {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .post-toc .post-toc-content {
+        font-size: 15px;
+    }
+
+    .post-toc .post-toc-content>nav>ul {
+        margin: 10px 0;
+    }
+
+    .post-toc .post-toc-content ul {
+        padding-left: 20px;
+        list-style: square;
+        margin: 0.5em;
+        line-height: 1.8em;
+    }
+
+    .post-toc .post-toc-content ul ul {
+        padding-left: 15px;
+        display: none;
+    }
+
+    @media print,
+    screen and (max-width:1057px) {
+        .post-toc {
+            display: none;
+        }
+    }
+</style>
+<div class="post-toc" style="position: absolute; top: 188px;">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-存储子系统">1. 存储子系统</a></li>
+    <li><a href="#2-pcie主机接口">2. PCIe主机接口</a></li>
+    <li><a href="#3-内存的其他点滴">3. 内存的其他点滴</a></li>
+    <li><a href="#4-命令处理器">4. 命令处理器</a></li>
+    <li><a href="#5-同步">5. 同步</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postToc = $(".post-toc");
+        if (postToc.length) {
+            var leftPos = $("#main").offset().left;
+            if(leftPos<220){
+                postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})
+            }
+
+            var t = postToc.offset().top - 20,
+                a = {
+                    start: {
+                        position: "absolute",
+                        top: t
+                    },
+                    process: {
+                        position: "fixed",
+                        top: 20
+                    },
+                };
+            $(window).scroll(function () {
+                var e = $(window).scrollTop();
+                e < t ? postToc.css(a.start) : postToc.css(a.process)
+            })
+        }
+    })
+</script>
+    <article class="post">
+        <header>
+            <h1 class="post-title">渲染管线之旅|02 GPU存储架构和命令处理器</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2019年7月5日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/GPU'>GPU</a></span>
+            
+        </div>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <p>上一篇中主要介绍了3D渲染命令到达GPU之前经历过的各个阶段。用下图可以概括上一篇中所讲的内容，当然其中很多细节没有出现在图中。之前我们说KMD将命令送给了硬件，这个简单的“送”的过程实际上并不是那么简单的。我们知道显卡都是通过信号线连在主板上的，所以我们送命令都是需要走这些信号线的。还有就是我们把命令送给显卡，那显卡总得有个地方来接受命令吧，这必然需要涉及到内存的使用。然而系统的内存条是通过PCIe总线连接在主板上的，而且显卡自己也可以配有自己的显存，选择使用他们中的哪一个显然也是必须要考究的，那么我们首先就来谈谈内存子系统。</p>
+<p><img src="https://docs.microsoft.com/zh-cn/windows-hardware/drivers/display/images/dx10arch.png" alt="a"></p>
+<p>[图片来源] <a href="https://docs.microsoft.com/zh-cn/windows-hardware/drivers/display/windows-vista-and-later-display-driver-model-architecture">https://docs.microsoft.com/zh-cn/windows-hardware/drivers/display/windows-vista-and-later-display-driver-model-architecture</a></p>
+<h2 id="1-存储子系统">1. 存储子系统</h2>
+<p>GPU和我们其他插在主板上的设备有所不同，因为GPU不仅可以使用系统的内存（一般称为内存，主存，system memory）， 还可以使用显卡上自己带的内存（一般称为显存，video memory, local memory）。这相比cpu使用内存差别巨大，这些差别的重要原因就是显卡用途的特殊性，早期的显卡主要解决的就是屏幕显示刷新，3D渲染等等问题。我们来对比一下gpu和cpu，这里以i7 2600k和GeForce GTX 480来对比。拿他们对比原因之一就是它们所处的时期差不多。i7 2600K的内存带宽在表现好的时候可以达到19GB/s，然而GeForce GTX 480的内存带宽近180GB/s， 这整整的相差了一个数量级。在这个角度来讲，GPU相比CPU确实快的不止一点点。
+对于第一代i7(Nehalem架构)，一次cache miss的大概需要耗费140个时钟周期（可以从https://www.anandtech.com/show/2542/5 给出的数据来计算）。从斯坦福给出的一个数据上看（http://www.stanford.edu/dept/ICME/docs/seminars/Rennich-2011-04-25.pdf ）,  GeForce GTX 480一次cache miss大概是需要400~800时钟周期，从时钟周期的角度看，GeForce GTX 480的内存延迟是i7的4倍多，同时我们还要考虑它们主频，i7 2600K的主频是2.93GHz，GTX 480的shader时钟频率是1.4GHz, 这又是一个2倍多的差距，乘以前面的4倍，这又是一个数量级了。
+也就是说GPU的内存带宽优势是远强于CPU的，但是它的内存延迟确实远不及CPU的。GPU的带宽大幅增加，但他们为延迟的大量增加而付出代价。 这是GPU的一般模式：在GPU的整个延迟期间，不要等待那里还没有的结果，而是做别的事！
+除了后续文中会说到的DRAM相关的信息，上面的内容几乎是你需要知道的关于GPU内存的所有内容。不管从逻辑上还是从物理结构上，DRAM芯片是一种2D的网格结构，也就是说它有行线和列线组成的。就像下图显示的那样。</p>
+<p><img src="20190705%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8502_2.png" alt="DRAM"></p>
+<center>DRAM 物理结构</center>
+<p>在每一个行线和列线的交叉位置，都有一个晶体管和一个电容。关于它们是如何来存储信息的，可以到wiki百科上搜索（https://en.wikipedia.org/wiki/Dynamic_random-access_memory#Operation_principle）. 不管怎样，我们这里的重点是DRAM中的位置地址被分成行地址和列地址，并且内部的DRAM读/写总是最终同时访问给定行中的所有列。这意味着访问映射到一个DRAM行的内存区比访问跨多行的相同内存量的效率要高得多。目前，看起来这可能只是一个随机的DRAM的一点琐事，但这将在后面变得非常重要。这里先明确一点：每次只读取整个内存中的几个字节，是无法达到上述峰值内存带宽数字的; 如果你想让内存带宽饱和，你最好一次完成一个完整的DRAM行。</p>
+<h2 id="2-pcie主机接口">2. PCIe主机接口</h2>
+<p>从图形程序员的角度来看，这个接口硬件并不非常有趣。 实际上，对于GPU硬件架构师也可能同样如此。问题是，一旦它慢到成为整个系统的瓶颈，你仍然会开始关心它。 所以你要做的就是让专业的人去把它做好，以确保瓶颈不会发生。PCIe接口使得CPU可以对显存和一堆GPU的寄存器进行读/写访问，GPU也可以对主内存（部分）进行GPU读/写访问。很多人都会头疼于这些事务的延迟甚至比内存延迟还要差。因为信号必须从GPU芯片中流出，进入插槽，在主板上移动，然后在之后到达CPU中的某个位置。虽然大多数GPU现在使用的16通道PCIe 2.0连接的（2011年的时候）带宽高达约8GB/s（理论上）峰值聚合带宽，但带宽相当不错，因此占总CPU内存带宽的一半到三分之一，这是一个不错的比例。PCIe 2.0与AGP等早期标准不同，它是一种对称的点对点链路，带宽可以达到两个方向，AGP拥有从CPU到GPU的快速通道，但不能相反传输。</p>
+<h2 id="3-内存的其他点滴">3. 内存的其他点滴</h2>
+<p>事实上，谈到这里我们现在已经非常接近实际看到的3D命令了！但是还有一件事我们需要先弄清楚。因为现在我们有两种内存 - 显存和系统内存。它们一个像是向北的短程旅途，另一个则是沿着PCI Express高速公路向南的7日游。那我们选择那一条路呢？
+最简单的解决方案就是添加一个额外的地址行，告诉你要走哪条路。 这种方式简单，也能工作得很好。或者是你讲这两中内存统一到一种内存框架上，就像一些游戏控制器那样，在这样的情况下，就不存在选在的余地了。
+如果你想要更高级的东西，你可以添加一个MMU（内存管理单元），它可以为你提供一个完全虚拟化的地址空间，并且你可以在显存中快速访问纹理的各个部分（它们很快）。 也可以访问系统内存中的一部分，因为大部分都没有映射不能访问 。MMU 它还允许对显存地址空间进行碎片整理，而无需在开始耗尽视频内存时复制内容。MMU/虚拟内存实际上并不是你可以添加的东西（不管在一个有缓存和内存一致性问题的架构中），但它确实不是特定的任何特定阶段，但我不得不在某处提到它， 所以我只是把它放在这里。
+其实还有一个DMA engine可以复制内存，而不必涉及任何我们宝贵的3D硬件/着色器内核。 通常，这至少可以在系统存储器和显存之间复制（在两个方向上）。 它通常也可以从显存到显存（如果你必须进行任何DRAM碎片整理，这是一个有用的东西）。 它通常不能将系统内存写入系统内存备份，因为这是一个GPU，而不是内存复制单元在CPU上做系统内存备份，因此也不必在两个方向上通过PCIe！</p>
+<p><img src="20190705%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8502_3.png" alt="Blocks"></p>
+<center>GPU 存储架构</center>
+<p>上图中显示了一些更多的细节，现在你的GPU有多个内存控制器，每个内存控制器控制多个内存库，前面有一个Memory Hub。
+好了，来看看我们已经有了哪些内容。我们在CPU上准备了一个命令缓冲区。 我们有PCIe主机接口，因此CPU实际上可以告诉我们这个，并将命令缓冲区地址写入某个寄存器。 我们有逻辑将该地址转换为实际返回数据的加载位置，如果它来自系统内存，那它通过PCIe，如果我们决定在显存中使用命令缓冲区，KMD可以设置DMA传输， GPU上的着色器内核和CPU和都不需要关心它。 然后我们可以通过内存子系统从显存中获取数据。 所有路径都有了，而且我们已经设置好了寄存器，最后准备看命令了！</p>
+<h2 id="4-命令处理器">4. 命令处理器</h2>
+<p>我们对命令处理器的讨论开始了，就像现在这么多事情一样，只用一个词：
+“缓冲&hellip;&hellip;”
+如之前所述，我们的显存路径是高带宽的，但同时也是高延迟的。 对于GPU管道中的大多数模块，选择解决此问题的方法是运行大量独立线程。但是，我们的命令处理器需要按顺序吃掉我们的命令缓冲区（因为这个命令缓冲区中包含诸如状态更改和渲染命令之类的事情，需要以正确的顺序执行）。 所以我们做了下一个最好的事情：添加足够大的缓冲区并预先取出足够的预取以避免中途暂停吃命令。</p>
+<p><img src="20190705%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8502_4.png" alt="Blocks"></p>
+<p>对于这个缓冲区来说，进入实际的命令处理前端，命令处理前端是一个知道如何解析命令的状态机（具有特定于硬件的格式）。如果存在一个单独的2D命令处理器来处理2D渲染操作，那么3D前端就不会看到2D命令。现代GPU上一般仍然隐藏着专用的2D硬件，就像在芯片上的某个地方仍然支持文本模式，4bit/像素位平面模式，平滑滚动和所有这些东西的VGA芯片一样。2D硬件这些东西确实存在，但后面我再也不会提到它了，因为我们主要关注于3D。然后有一些命令实际上将一些图元（primitives）传递给3D /着色器管道， 将在后续的部分中介绍它们。 
+然后是改变状态的命令。 作为一名程序员，你认为它们只是改变一个变量。 但是GPU是一个大规模并行计算机，你不能只是改变一个并行系统中的全局变量，并希望一切正常，如果你不能保证一切都可以通过你执行的一些不变量来工作， 一旦有一个错误，你最终会打断它的执行。 有几种流行的方法来处理，而且基本上所有的芯片都会使用不同的方法来处理不同类型的状态。</p>
+<ul>
+<li>
+<p>无论何时更改状态，都需要等待引用该状态的所有模块（即基本上是部分管道刷新）。 从历史上看，这就是图形芯片如何处理大多数状态变化的简单方法，如果batch较少，三角形较少且管道较短，则成本并不高。 但是，随着batch和三角形数量增加，管道变长，因此这种方法的成本会逐步上升。 这种处理方式仍然存在于处理那些不经常更改的东西（十几个部分管道冲洗在整个帧的过程中并不是那么大）或者过于昂贵/难以实现的部分。</p>
+</li>
+<li>
+<p>可以使硬件单元完全无状态。只需将状态更改命令传递到关注它的阶段; 然后让那个阶段将在每个发送命令的时候都将当前状态附加到它的下游模块。它没有存储在任何地方，但它总是存在的，所以任何的流水线阶段想要查看状态中的几个位，它可以做到，因为这些状态都是被传入进来的。如果你的状态恰好只是几位，这种方式并不是非常有效和实用。</p>
+</li>
+<li>
+<p>只存储状态的一个备份，并且每次更改阶段时都必须刷新，这会使得整个整个流程串行化，但是如果使用两个或者四个情况就好很多，你的状态设置前端可能会提前一些。假设你有足够的寄存器来存储每个状态的两个版本，并且一些活动作业引用slot 0, 那么你就可以安全地修改slot 1而不会暂停该作业而去等待slot 0使用完，也就是你不需要通过管道发送整个状态，每个命令使用一个位来表示选择是使用slot 0还是slot 1。当然，如果slot 0和slot 1都遇到busy的时候，你仍然需要等待。这种机制可以完全适用到两个以上的slot上面。</p>
+</li>
+<li>
+<p>对于像采样器或纹理着色器资源视图状态这样的东西，可能同时设置非常多的数量。 你不希望为2 * 128个活动纹理保留状态空间，因为目前活动的只有2个正在运行的状态集对于这种情况，你可以使用一种寄存器重命名方案：具有128个物理纹理描述符池。如果有人在一个着色器中实际需要128个纹理，那么状态变化将变慢，但是在可能性更大的情况下，一个使用少于20个纹理的应用程序种你有很多空间来保持多个版本，这使得在这种情况下的运行效率更高。
+上面的这些这并不是所有的方式，但它们的主要目的是让这些状态的改变像在应用程序中更改变量那么简单（甚至在UMD / KMD和命令缓冲区中也是如此！）。但是，实际上这些都是需要一些非常重要的支持硬件，以防止减慢运行速度。</p>
+</li>
+</ul>
+<h2 id="5-同步">5. 同步</h2>
+<p>CPU向GPU发送指令，那么CPU怎么知道GPU当前已经处理了哪些指令？因为命令实际上都是写在内存中的，那存放命令的内存什么时候可以再一次被CPU写入呢？GPU中模块之间怎么共享数据呢？这些都和同步有关，这一篇我们就来讲讲同步。</p>
+<p>通常来说，所有的“同步问题”都可以归为“如果事件X发生，才能做Y“的形式。我们首先从Y这部分看起，一般有两种合理处理Y这部分的方式，从GPU的角度来看，第一种是主动模式（push-model）,也就是GPU去主动通知CPU来处理事务，比如说GPU在进入垂直回扫期的时候会通知CPU“喂！CPU！我现在正在显示器0上进入垂直回扫，如果你想翻转缓冲区，那么现在可以开始了！”另一种是被动模式（pull-model）,这种方式下，GPU仅将已经处理的事情记录下来，CPU可以来向GPU查询。比如说：</p>
+<p>第一种方式通常使用中断实现，仅用于不频繁出现的事件和高优先级的事件，因为中断的代价比较大。后者需要的只是一些CPU可见的GPU寄存器，然后在某个事件发生后GPU将值从命令缓冲区将值写入GPU寄存器。假设你有16个这样的寄存器。然后你可以将当前的命令缓冲区Id分配给寄存器0。你为每个提交给GPU的DMA（这是在KMD中）分配一个序列号。然后在命令解释器中添加“如果你到达这个 指向命令缓冲区，把DMA中的缓冲区id写入到寄存器0中“这样的逻辑。这样，我们就知道GPU正在消耗哪个命令缓冲区了！因为我们知道命令处理器严格按顺序执行命令，因此如果命令缓冲器303中的第一个命令被执行，则意味着id为302包括它之前的所有命令缓冲区都已经在命令解释器中完成执行，那么KMD Driver就可以可以回收，释放， 修改302以及之前的命令缓存区的内存空间了。
+对于事件X发生，&ldquo;如果执行到了这里&quot;是最简单的一个例子。其实这里还有很多其他的，比如，如果现在所有shader都在命令缓冲区中完成了的对所有纹理读取，这就标志着现在是回收纹理/渲染目标内存的安全点了。如果现在渲染到所有活动的render target/UAVs已完成，那么标志着现在可以将这些活动的render target/UAVs当作textures来使用了，等等。顺便说一下，这种操作通常被称为“Fences”。选择写入状态寄存器的值有不同的方法，但就我而言，唯一明智的方法是使用顺序计数器（可能会借用其中的某些bit来表示其他的信息）。
+我们现在可以将状态从GPU报告给CPU，这使我们能够在我们的驱动程序中进行合理的进行内存管理（特别是，我们现在可以找到实际回收内存的安全点。顶点缓冲区，命令缓冲区，纹理和其他资源）。但是这只完成了CPU和GPU之间的同步，如果我们需要纯粹在GPU端进行同步，该怎么办？让我们回到渲染目标示例。在渲染实际完成之前我们不能将它用作纹理。解决方案是使用“wait”式指令：“等到寄存器M包含值N”。这可以是相等的比较，也可以是小于，或者更多花哨的东西。这里为了简单， 我们就使用equals来说明问题。这种方式允许我们在提交批处理之前执行渲染目标的同步。也允许我们构建一个完整的GPU刷新操作：“如果所有挂起的作业都完成，则将寄存器设置为++seqId“ 或者是等到寄存器包含seqId”。对于常规的渲染，GPU/GPU同步就解决了。DX11推出的Compute Shaders则需要另一种更细粒度的同步。
+顺便说一句，如果你可以从CPU端设置这些寄存器，那么你也可以使用另一种方式 ：提交一个包含等待特定值的命令，然后从CPU而不是GPU更改寄存器。这可用于实现D3D11样式的多线程渲染，你可以在其中提交一个引用顶点/索引缓冲区的批处理，这些缓冲区仍然锁定在CPU端（可能由另一个线程写入）。你只需在实际渲染调用之前填充等待命令，然后一旦顶点/索引缓冲区解锁，CPU就可以更改寄存器的内容。
+当然，你也不一定必须使用设置寄存器/等待寄存器模型， 对于GPU / GPU同步，你可以简单地使用“rendertarget barrier”指令来确保rendertarget可以安全使用，以及“flush everything”命令。但是相比之下，我更喜欢set register-style模型，因为它不仅实现了GPU的自同步，它还可以随时向CPU报告什么资源正在使用。
+在这里，我绘制了一个图表。为了让它不那么令人费解，所以我将来会降低细节数量。</p>
+<p><img src="20190705%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8502_5.png" alt="Blocks"></p>
+<center></center>
+<p>命令处理器前面有一个长长的FIFO，然后是命令解码逻辑，由2D单元，3D前端（常规3D渲染）或着色器单元（Computer Shader）直接通信的各种处理 ，然后有一个处理同步/等待命令的块（它包含我们前面所讨论的公开可见的寄存器），还有一个处理命令缓冲区跳转/调用的单元（它改变了进入FIFO的当前提取地址）。我们派遣工作的所有模块都需要向我们发送完成事件，以便我们知道何时纹理不再被使用，以至于它们的内存可以被及时的回收。</p>
+<p>关于命令处理器的基本上就讲完了。下一篇我们就可以继续向下，进入实际渲染的工作流程。最后要说的一点是文中很可能存在很多不妥之处，如果你发现有问题，请留言告诉我，谢谢。</p>
+
+        </div>
+
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="https://bzhou830.github.io/">Binean</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="https://bzhou830.github.io/post/20190705%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8502/">https://bzhou830.github.io/post/20190705%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8502/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
+    <center><image src= "https://bzhou830.github.io//about/wx.png" ></image></center>
+</div>
+<br/>
+
+
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/post/20190703%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8501/">渲染管线之旅|01 软件调用栈</a></li>
+        
+        <li><a href="/post/20171217WDDM%E5%B7%A5%E4%BD%9C%E6%B5%81/">WDDM时序调用流程图</a></li>
+        
+        <li><a href="/post/20190620Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/">Git快速入门手册</a></li>
+        
+        <li><a href="/post/20190611B%E7%AB%99%E7%BC%93%E5%AD%98%E8%A7%86%E9%A2%91%E5%92%8C%E5%8E%8B%E7%BC%A9/">B站缓存视频和压缩</a></li>
+        
+        <li><a href="/post/20190610Python%E8%AF%BB%E5%86%99Excel/">Python读写Excel</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='https://bzhou830.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6'>图形学</a></li>
+                
+                <li><a href='https://bzhou830.github.io/tags/GPU'>GPU</a></li>
+                
+                <li><a href='https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8'>驱动</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "bzhou830/Blog"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    
+<section class="widget">
+    
+    <ul class="widget-list">
+        
+        <li>
+            <a href="https://bzhou830.github.io/" title="简介" target="_blank">
+                
+                
+                    <div>
+                        <div style="width: 200px; height: 200px; border-radius:100%; overflow:hidden;">
+                            <img src=https://bzhou830.github.io/about/touxiang.jpg >
+                        </div>
+                    </div>
+
+                    <div>
+                        <h2>Binean</h2>
+                    </div>
+                    
+                    <div>
+                        <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path><path fill="currentColor" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V18c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-1.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05.02.01.03.03.04.04 1.14.83 1.93 1.94 1.93 3.41V18c0 .35-.07.69-.18 1H22c.55 0 1-.45 1-1v-1.5c0-2.33-4.67-3.5-7-3.5z"></path></svg>
+                            ****
+                        </div>
+                    </div>
+
+                    <div>
+                        <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path><path fill="currentColor" d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm8.94 3c-.46-4.17-3.77-7.48-7.94-7.94V2c0-.55-.45-1-1-1s-1 .45-1 1v1.06C6.83 3.52 3.52 6.83 3.06 11H2c-.55 0-1 .45-1 1s.45 1 1 1h1.06c.46 4.17 3.77 7.48 7.94 7.94V22c0 .55.45 1 1 1s1-.45 1-1v-1.06c4.17-.46 7.48-3.77 7.94-7.94H22c.55 0 1-.45 1-1s-.45-1-1-1h-1.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"></path></svg>
+                        武汉
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div>      
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path><path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-.4 4.25l-7.07 4.42c-.32.2-.74.2-1.06 0L4.4 8.25c-.25-.16-.4-.43-.4-.72 0-.67.73-1.07 1.3-.72L12 11l6.7-4.19c.57-.35 1.3.05 1.3.72 0 .29-.15.56-.4.72z"></path></svg>
+                        <a href="mailto:bzhou830@qq.com">bzhou830@qq.com</a> 
+                        </div>
+                    </div>
+                
+            </a>
+        </li>
+        
+        <li>
+            <a href="https://bzhou830.github.io/about/" title="欢迎关注微信公众号" target="_blank">
+                
+                    <h3 class="widget-title">欢迎关注微信公众号</h3>
+                    <img src="https://bzhou830.github.io/about/qrcode.jpg" >
+                
+            </a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <form id="search" action='https://bzhou830.github.io/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://bzhou830.github.io/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://bzhou830.github.io/categories/">Categories (3)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/C/C&#43;&#43;/">C/C&#43;&#43; (12)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Flask/">Flask (11)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/GPU/">GPU (18)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Golang/">Golang (10)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/MCU/">MCU (1)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Misc/">Misc (13)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/OpenCV/">OpenCV (1)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/PiCo/">PiCo (1)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Python/">Python (12)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/USB/">USB (5)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/WindowsKernel/">WindowsKernel (9)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E4%B8%B2%E5%8F%A3/">串口 (5)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理 (14)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学 (6)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E8%AE%BA/">图论 (12)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E6%88%90%E9%95%BF/">成长 (5)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式 (1)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20220705Pico%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="PiCo| 开发环境搭建">PiCo| 开发环境搭建</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20220420GD32USBEx/" title="USB探索| Flash 烧录器">USB探索| Flash 烧录器</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20220220GD32USB04/" title="USB探索|3.从USB键盘改造成USB鼠标">USB探索|3.从USB键盘改造成USB鼠标</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20220213GD32USB03/" title="USB探索|2.USB键盘的实现">USB探索|2.USB键盘的实现</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20220212GD32USB02/" title="USB探索|1.USB协议基础">USB探索|1.USB协议基础</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20220127GD32USB01/" title="USB探索|0.偶遇GD32L233">USB探索|0.偶遇GD32L233</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20211225%E4%BA%8C%E9%9B%B6%E4%BA%8C%E4%B8%80%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2021年终总结">2021年终总结</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20211207Windbg%E6%89%A9%E5%B1%95%E5%85%A5%E6%B4%BB/" title="Windbg扩展|01入活">Windbg扩展|01入活</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20211121%E8%BF%9C%E7%A8%8B%E9%87%8D%E5%90%AF%E5%B0%8F%E5%B7%A5%E5%85%B7/" title="远程重启小工具">远程重启小工具</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20211024GPU-Tile-Based-Immediate/" title="GPU topic：Tile-Based Rendering vs. Immediate Mode Rendering">GPU topic：Tile-Based Rendering vs. Immediate Mode Rendering</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://bzhou830.github.io/" title="Binean’s">Binean’s</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://bzhou830.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://bzhou830.github.io/tags/">Tags</a>
+    
+    <a href="https://bzhou830.github.io/tags/C&#43;&#43;/">C&#43;&#43;</a>
+    
+    <a href="https://bzhou830.github.io/tags/C/C&#43;&#43;/">C/C&#43;&#43;</a>
+    
+    <a href="https://bzhou830.github.io/tags/DICOM/">DICOM</a>
+    
+    <a href="https://bzhou830.github.io/tags/Excel/">Excel</a>
+    
+    <a href="https://bzhou830.github.io/tags/Flask/">Flask</a>
+    
+    <a href="https://bzhou830.github.io/tags/GPU/">GPU</a>
+    
+    <a href="https://bzhou830.github.io/tags/Golang/">Golang</a>
+    
+    <a href="https://bzhou830.github.io/tags/OCR/">OCR</a>
+    
+    <a href="">OpenCV</a>
+    
+    <a href="https://bzhou830.github.io/tags/Python/">Python</a>
+    
+    <a href="https://bzhou830.github.io/tags/android/">android</a>
+    
+    <a href="https://bzhou830.github.io/tags/git/">git</a>
+    
+    <a href="https://bzhou830.github.io/tags/github/">github</a>
+    
+    <a href="https://bzhou830.github.io/tags/hexo/">hexo</a>
+    
+    <a href="https://bzhou830.github.io/tags/hugo/">hugo</a>
+    
+    <a href="https://bzhou830.github.io/tags/jni/">jni</a>
+    
+    <a href="https://bzhou830.github.io/tags/opencv/">opencv</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E4%B8%B2%E5%8F%A3/">串口</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%85%AC%E5%BC%8F/">公式</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">内存管理</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E6%96%87%E6%9C%AC%E6%A3%80%E6%B5%8B/">文本检测</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8/">驱动</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B/">驱动编程</a>
+    
+</div>
+    </section>
+
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2022 <a href="https://bzhou830.github.io/">菠萝蜜 By Binean</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        <br><a href="http://www.beian.miit.gov.cn/" target="_blank">鄂ICP备20004395号</a>. 
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function(){
+            $("pre code").parent().addClass("line-numbers")
+        }())
+    
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [ ['$','$'] ],
+                processEscapes: true
+            }
+        };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+    
+    
+    
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+
+</body>
+
+</html>

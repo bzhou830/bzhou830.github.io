@@ -1,0 +1,653 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>双目测距1 | 菠萝蜜</title>
+    <meta property="og:title" content="双目测距1 - 菠萝蜜">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2020-01-01T09:16:34&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2020-01-01T09:16:34&#43;08:00'>
+        
+    <meta name="Keywords" content="C/C&#43;&#43;, GPU, Windows驱动开发, OpenCV, 图像处理">
+    <meta name="description" content="双目测距1">
+        
+    <meta name="author" content="Binean">
+    <meta property="og:url" content="https://bzhou830.github.io/post/20200101%E5%8F%8C%E7%9B%AE%E6%B5%8B%E8%B7%9D01/">
+    <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href='/css/normalize.css'>
+    
+    <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://bzhou830.github.io/">
+                        菠萝蜜
+                    </a>
+                
+                <p class="description">选择去发光，而不是被照亮</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://bzhou830.github.io/">首页</a>
+                    
+                    <a  href="https://bzhou830.github.io/GPU/" title="GPU">GPU</a>
+                    
+                    <a  href="https://bzhou830.github.io/USB/" title="USB">USB</a>
+                    
+                    <a  href="https://bzhou830.github.io/raspberrypi/" title="树莓派">树莓派</a>
+                    
+                    <a  href="https://bzhou830.github.io/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://bzhou830.github.io/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    <style type="text/css">
+    .post-toc {
+        position: fixed;
+        width: 200px;
+        margin-left: -210px;
+        padding: 5px 10px;
+        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+        font-size: 12px;
+        border: 1px solid rgba(0, 0, 0, .07);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.98);
+        background-clip: padding-box;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        word-wrap: break-word;
+        white-space: nowrap;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 999;
+        cursor: pointer;
+        max-height: 70%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .post-toc .post-toc-title {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .post-toc .post-toc-content {
+        font-size: 15px;
+    }
+
+    .post-toc .post-toc-content>nav>ul {
+        margin: 10px 0;
+    }
+
+    .post-toc .post-toc-content ul {
+        padding-left: 20px;
+        list-style: square;
+        margin: 0.5em;
+        line-height: 1.8em;
+    }
+
+    .post-toc .post-toc-content ul ul {
+        padding-left: 15px;
+        display: none;
+    }
+
+    @media print,
+    screen and (max-width:1057px) {
+        .post-toc {
+            display: none;
+        }
+    }
+</style>
+<div class="post-toc" style="position: absolute; top: 188px;">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+        <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#准备标定板">准备标定板</a></li>
+        <li><a href="#采集图片">采集图片</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#1-调出标定工具箱">1. 调出标定工具箱</a></li>
+    <li><a href="#2勾选相应的选项">2.勾选相应的选项</a></li>
+    <li><a href="#3载入图像">3.载入图像</a></li>
+    <li><a href="#4标定">4.标定</a></li>
+    <li><a href="#5校准">5.校准</a></li>
+    <li><a href="#6导出参数">6.导出参数</a></li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1-两个摄像头的平移和旋转参数">1. 两个摄像头的平移和旋转参数</a></li>
+        <li><a href="#2摄像机内参矩阵">2.摄像机内参矩阵</a></li>
+      </ul>
+    </li>
+    <li><a href="#3畸变参数">3.畸变参数</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postToc = $(".post-toc");
+        if (postToc.length) {
+            var leftPos = $("#main").offset().left;
+            if(leftPos<220){
+                postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})
+            }
+
+            var t = postToc.offset().top - 20,
+                a = {
+                    start: {
+                        position: "absolute",
+                        top: t
+                    },
+                    process: {
+                        position: "fixed",
+                        top: 20
+                    },
+                };
+            $(window).scroll(function () {
+                var e = $(window).scrollTop();
+                e < t ? postToc.css(a.start) : postToc.css(a.process)
+            })
+        }
+    })
+</script>
+    <article class="post">
+        <header>
+            <h1 class="post-title">双目测距1</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2020年1月1日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/Misc'>Misc</a></span>
+            
+        </div>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <p>准备双目摄像头：</p>
+<p><img src="E:%5Crepo%5Cblog%5Ccontent%5Cpost%5C20200101%E5%8F%8C%E7%9B%AE%E6%B5%8B%E8%B7%9D01%5Cimage-20220418113029936.png" alt="image-20220418113029936"></p>
+<h3 id="准备标定板">准备标定板</h3>
+<p>标定的开始阶段最需要用到的标定板，可以直接从opencv官网上能下载到： 
+<a href="http://docs.opencv.org/2.4/_downloads/pattern.png">http://docs.opencv.org/2.4/_downloads/pattern.png</a></p>
+<p>具体如下：</p>
+<p><img src="E:%5Crepo%5Cblog%5Ccontent%5Cpost%5C20200101%E5%8F%8C%E7%9B%AE%E6%B5%8B%E8%B7%9D01%5Cimage-20220418113127673.png" alt="image-20220418113127673"></p>
+<p>然后，建议固定到盒子上，方便等下拍照。</p>
+<h3 id="采集图片">采集图片</h3>
+<p>建议左右摄像头，同时拍照，分别保存起来，可以参考 <a href="https://blog.csdn.net/qq_41204464/article/details/86518807">opencv 双目摄像头拍照</a></p>
+<p>保存大约20到30张图片，MATLAB2016的这个工具十分挑剔，如果角度不好的话，将使用不了，因此在采集图像时，最好多的采集一些，拍的时候要拍到全部**；注意事项：是测量好屏幕上每个方格的大小**，这个标定的时候会用到，比如20mm。</p>
+<h1 id="一-标定步骤">一、 标定步骤</h1>
+<h2 id="1-调出标定工具箱">1. 调出标定工具箱</h2>
+<p>在命令行输入<strong>stereoCameraCalibrator</strong>，出现如下界面：</p>
+<p><img src="https://img-blog.csdnimg.cn/20190124180434653.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjA0NDY0,size_16,color_FFFFFF,t_70" alt="img"></p>
+<h2 id="2勾选相应的选项">2.勾选相应的选项</h2>
+<p>然后将上面的“<strong>Skew</strong>”、“<strong>Tangential Distortion</strong>”以及“<strong>2 Coefficients</strong>”等选项选上，将“3 Coefficients”选项去掉，如下：</p>
+<p><img src="https://img-blog.csdnimg.cn/20190124180506544.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjA0NDY0,size_16,color_FFFFFF,t_70" alt="img"></p>
+<h2 id="3载入图像">3.载入图像</h2>
+<p>然后点击 <strong>Add images（添加图像）</strong>，出现如下界面：</p>
+<p><img src="https://img-blog.csdnimg.cn/20190124180529290.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjA0NDY0,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p><strong>Camera 1</strong> 代表左摄像头，<strong>Camera 2</strong> 代表右摄像头，分别选择存放着左右图像的文件夹，需要特别注意的是棋盘格的边长应该根据打印的实际大小填写 <strong>(例如20mm)</strong>，单位可以选择</p>
+<p>然后点击OK，程序会自动检测采集的图像到底有多少可以使用，可以说MATLAB2016的这个工具十分挑剔，如果角度不好的话，将使用不了，因此在采集图像时，最好多的采集一些。(此处只是为了说明标定步骤，所以使用的图像较少)。</p>
+<p><img src="https://img-blog.csdnimg.cn/20190122224530230.png" alt="img"></p>
+<h2 id="4标定">4.标定</h2>
+<p>点击<img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltYWdlLm1hbWljb2RlLmNvbS9pbmZvLzIwMTcwOS8yMDE4MDExMTAwMjY1NjUyODIxNi5wbmc?x-oss-process=image/format,png" alt="技术分享">按钮，开始标定：</p>
+<p><img src="https://img-blog.csdnimg.cn/2019012222474855.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjA0NDY0,size_16,color_FFFFFF,t_70" alt="img"></p>
+<h2 id="5校准">5.校准</h2>
+<p>从下图可以看到，<strong>平均的标定误差</strong>以及 <strong>标定过程中误差较大</strong>的的图像对。</p>
+<p><img src="https://img-blog.csdnimg.cn/20190122224951358.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjA0NDY0,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p><img src="https://img-blog.csdnimg.cn/20190123002027518.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjA0NDY0,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p>点击选择不想接受的误差直方图，可以直接在左边的图像对中找到对应的图像，右键选择“<strong>Remove and Recalibrate</strong>”：</p>
+<p><img src="https://img-blog.csdnimg.cn/20190122231201335.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjA0NDY0,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p>可以重复上述步骤，直到认为误差满足标定需求为止。</p>
+<h2 id="6导出参数">6.导出参数</h2>
+<p>点击<img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltYWdlLm1hbWljb2RlLmNvbS9pbmZvLzIwMTcwOS8yMDE4MDExMTAwMjY1NjU0Nzc0OC5wbmc?x-oss-process=image/format,png" alt="技术分享">选择Export camera parameters, 并点击“OK”。</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltYWdlLm1hbWljb2RlLmNvbS9pbmZvLzIwMTcwOS8yMDE4MDExMTAwMjY1NjU1MDY3OC5wbmc?x-oss-process=image/format,png" alt="技术分享"></p>
+<h1 id="二参数读取">二、参数读取</h1>
+<p>标定结束后，会得到如下标定参数：</p>
+<p><img src="https://img-blog.csdnimg.cn/20190122231405748.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjA0NDY0,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p>CameraParameters1与CameraParameters2为左右摄像头的内部参数，RotationOfCamera2与TranslationOfCamera2为两个摄像头的旋转、平移参数。</p>
+<h3 id="1-两个摄像头的平移和旋转参数">1. 两个摄像头的平移和旋转参数</h3>
+<p>平移参数可直接使用；
+但旋转参数需进行<strong>转置</strong>才能使用。</p>
+<h3 id="2摄像机内参矩阵">2.摄像机内参矩阵</h3>
+<p>双击框框这里：</p>
+<p><img src="https://img-blog.csdnimg.cn/20190122233103738.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjA0NDY0,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p>CameraParameters1与CameraParameters2中包含如下文件：</p>
+<p><img src="https://img-blog.csdnimg.cn/20190122233232612.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjA0NDY0,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p>IntrinsicMatrix存放的是摄像头的内参，只与摄像机的内部结构有关，需要先<strong>转置</strong>再使用。</p>
+<p>例如：左相机的参数，<strong>点击CameraParameters1</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/20190122233426291.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjA0NDY0,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p><strong>IntrinsicMatrix</strong> 存放的是摄像头的内参</p>
+<p><strong>RadialDistortion</strong> 和 <strong>TangentialDistortion</strong> 中存放的是畸变参数</p>
+<p>先看一下 <strong>IntrinsicMatrix</strong> 参数，双击一下 <strong>IntrinsicMatrix</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/20190122235135886.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjA0NDY0,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p>这个和<a href="https://so.csdn.net/so/search?q=OpenCV&amp;spm=1001.2101.3001.7020">OpenCV</a>中是<strong>转置的</strong>关系，注意不要搞错。</p>
+<p>对应</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWFnZXMyMDE4LmNuYmxvZ3MuY29tL2Jsb2cvMTIyMDA5My8yMDE4MDIvMTIyMDA5My0yMDE4MDIyNTE5NTAxNjM1NS0yMDQyMzAyMy5qcGc?x-oss-process=image/format,png" alt="img"></p>
+<p>即：</p>
+<p><strong>420.758142829981    -0.457820850080972   344.440839504749
+0                423.157176819330      242.870587685168<br>
+0                   0                        1</strong></p>
+<h2 id="3畸变参数">3.畸变参数</h2>
+<p><strong>RadialDistortion</strong> 和<strong>TangentialDistortion</strong> 中存放的是畸变参数，</p>
+<p><strong>RadialDistortion 为 径向畸变</strong>，摄像头由于光学透镜的特性使得成像存在着径向畸变，可由K1，K2，K3确定。</p>
+<p><strong>TangentialDistortion</strong> 为 <strong>切向畸变</strong>，由于装配方面的误差，传感器与光学镜头之间并非完全平行，因此成像存在切向畸变，可由两个参数<strong>P1，P2</strong>确定。</p>
+<p>不过在使用时，需要注意参数的排放顺序，即**K1****，<strong><strong>K2</strong></strong>，<strong><strong>P1</strong></strong>，<strong><strong>P2</strong></strong>，**<strong>K3</strong>。切记不可弄错，否则后续的立体匹配会出现很大的偏差。</p>
+<p>例如， 左相机为例：</p>
+<p><img src="https://img-blog.csdnimg.cn/20190123000847812.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjA0NDY0,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p><strong>RadialDistortion ：<strong>0.016004928431323 , 0.041062484186359 对应 <strong>K1</strong></strong>，K2 ； K3默认为0</strong></p>
+<p>**TangentialDistortion ：<strong>0.005480700176874 , 0.003979285309815  对应  <strong>P1</strong></strong>，**<strong>P2</strong></p>
+<p>所以在opencv中使用时，<strong>K1</strong>**，****K2****，****P1****，****P2****，****K3**顺序 ：</p>
+<p>0.016004928431323 , 0.041062484186359 , 0.005480700176874 , 0.003979285309815 ,0</p>
+
+        </div>
+
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="https://bzhou830.github.io/">Binean</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="https://bzhou830.github.io/post/20200101%E5%8F%8C%E7%9B%AE%E6%B5%8B%E8%B7%9D01/">https://bzhou830.github.io/post/20200101%E5%8F%8C%E7%9B%AE%E6%B5%8B%E8%B7%9D01/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
+    <center><image src= "https://bzhou830.github.io//about/wx.png" ></image></center>
+</div>
+<br/>
+
+
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/post/20190104%E6%A0%91%E8%8E%93%E6%B4%BE%E6%8E%A8%E6%B5%81/">树莓派推流</a></li>
+        
+        <li><a href="/post/20190104PiCamera/">树莓派Camera的使用</a></li>
+        
+        <li><a href="/post/20190103%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9B%B8%E5%85%B3/">树莓派环境配置汇总</a></li>
+        
+        <li><a href="/post/20191231WindowsKernelPrograming05Debugging/">Windows内核编程05|调试</a></li>
+        
+        <li><a href="/post/20191230WindowsKernelPrograming04KernelFlow/">Windows内核编程04|内核工作流程</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='https://bzhou830.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE'>树莓派</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "bzhou830/Blog"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    
+<section class="widget">
+    
+    <ul class="widget-list">
+        
+        <li>
+            <a href="https://bzhou830.github.io/" title="简介" target="_blank">
+                
+                
+                    <div>
+                        <div style="width: 200px; height: 200px; border-radius:100%; overflow:hidden;">
+                            <img src=https://bzhou830.github.io/about/touxiang.jpg >
+                        </div>
+                    </div>
+
+                    <div>
+                        <h2>Binean</h2>
+                    </div>
+                    
+                    <div>
+                        <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path><path fill="currentColor" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V18c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-1.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05.02.01.03.03.04.04 1.14.83 1.93 1.94 1.93 3.41V18c0 .35-.07.69-.18 1H22c.55 0 1-.45 1-1v-1.5c0-2.33-4.67-3.5-7-3.5z"></path></svg>
+                            ****
+                        </div>
+                    </div>
+
+                    <div>
+                        <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path><path fill="currentColor" d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm8.94 3c-.46-4.17-3.77-7.48-7.94-7.94V2c0-.55-.45-1-1-1s-1 .45-1 1v1.06C6.83 3.52 3.52 6.83 3.06 11H2c-.55 0-1 .45-1 1s.45 1 1 1h1.06c.46 4.17 3.77 7.48 7.94 7.94V22c0 .55.45 1 1 1s1-.45 1-1v-1.06c4.17-.46 7.48-3.77 7.94-7.94H22c.55 0 1-.45 1-1s-.45-1-1-1h-1.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"></path></svg>
+                        武汉
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div>      
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path><path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-.4 4.25l-7.07 4.42c-.32.2-.74.2-1.06 0L4.4 8.25c-.25-.16-.4-.43-.4-.72 0-.67.73-1.07 1.3-.72L12 11l6.7-4.19c.57-.35 1.3.05 1.3.72 0 .29-.15.56-.4.72z"></path></svg>
+                        <a href="mailto:bzhou830@qq.com">bzhou830@qq.com</a> 
+                        </div>
+                    </div>
+                
+            </a>
+        </li>
+        
+        <li>
+            <a href="https://bzhou830.github.io/about/" title="欢迎关注微信公众号" target="_blank">
+                
+                    <h3 class="widget-title">欢迎关注微信公众号</h3>
+                    <img src="https://bzhou830.github.io/about/qrcode.jpg" >
+                
+            </a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <form id="search" action='https://bzhou830.github.io/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://bzhou830.github.io/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://bzhou830.github.io/categories/">Categories (3)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/C/C&#43;&#43;/">C/C&#43;&#43; (12)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Flask/">Flask (11)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/GPU/">GPU (18)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Golang/">Golang (10)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/MCU/">MCU (1)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Misc/">Misc (13)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/OpenCV/">OpenCV (1)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/PiCo/">PiCo (1)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Python/">Python (12)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/USB/">USB (5)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/WindowsKernel/">WindowsKernel (9)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E4%B8%B2%E5%8F%A3/">串口 (5)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理 (14)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学 (6)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E8%AE%BA/">图论 (12)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E6%88%90%E9%95%BF/">成长 (5)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式 (1)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20220705Pico%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="PiCo| 开发环境搭建">PiCo| 开发环境搭建</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20220420GD32USBEx/" title="USB探索| Flash 烧录器">USB探索| Flash 烧录器</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20220220GD32USB04/" title="USB探索|3.从USB键盘改造成USB鼠标">USB探索|3.从USB键盘改造成USB鼠标</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20220213GD32USB03/" title="USB探索|2.USB键盘的实现">USB探索|2.USB键盘的实现</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20220212GD32USB02/" title="USB探索|1.USB协议基础">USB探索|1.USB协议基础</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20220127GD32USB01/" title="USB探索|0.偶遇GD32L233">USB探索|0.偶遇GD32L233</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20211225%E4%BA%8C%E9%9B%B6%E4%BA%8C%E4%B8%80%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2021年终总结">2021年终总结</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20211207Windbg%E6%89%A9%E5%B1%95%E5%85%A5%E6%B4%BB/" title="Windbg扩展|01入活">Windbg扩展|01入活</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20211121%E8%BF%9C%E7%A8%8B%E9%87%8D%E5%90%AF%E5%B0%8F%E5%B7%A5%E5%85%B7/" title="远程重启小工具">远程重启小工具</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20211024GPU-Tile-Based-Immediate/" title="GPU topic：Tile-Based Rendering vs. Immediate Mode Rendering">GPU topic：Tile-Based Rendering vs. Immediate Mode Rendering</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://bzhou830.github.io/" title="Binean’s">Binean’s</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://bzhou830.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://bzhou830.github.io/tags/">Tags</a>
+    
+    <a href="https://bzhou830.github.io/tags/C&#43;&#43;/">C&#43;&#43;</a>
+    
+    <a href="https://bzhou830.github.io/tags/C/C&#43;&#43;/">C/C&#43;&#43;</a>
+    
+    <a href="https://bzhou830.github.io/tags/DICOM/">DICOM</a>
+    
+    <a href="https://bzhou830.github.io/tags/Excel/">Excel</a>
+    
+    <a href="https://bzhou830.github.io/tags/Flask/">Flask</a>
+    
+    <a href="https://bzhou830.github.io/tags/GPU/">GPU</a>
+    
+    <a href="https://bzhou830.github.io/tags/Golang/">Golang</a>
+    
+    <a href="https://bzhou830.github.io/tags/OCR/">OCR</a>
+    
+    <a href="">OpenCV</a>
+    
+    <a href="https://bzhou830.github.io/tags/Python/">Python</a>
+    
+    <a href="https://bzhou830.github.io/tags/android/">android</a>
+    
+    <a href="https://bzhou830.github.io/tags/git/">git</a>
+    
+    <a href="https://bzhou830.github.io/tags/github/">github</a>
+    
+    <a href="https://bzhou830.github.io/tags/hexo/">hexo</a>
+    
+    <a href="https://bzhou830.github.io/tags/hugo/">hugo</a>
+    
+    <a href="https://bzhou830.github.io/tags/jni/">jni</a>
+    
+    <a href="https://bzhou830.github.io/tags/opencv/">opencv</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E4%B8%B2%E5%8F%A3/">串口</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%85%AC%E5%BC%8F/">公式</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">内存管理</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E6%96%87%E6%9C%AC%E6%A3%80%E6%B5%8B/">文本检测</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8/">驱动</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B/">驱动编程</a>
+    
+</div>
+    </section>
+
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2022 <a href="https://bzhou830.github.io/">菠萝蜜 By Binean</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        <br><a href="http://www.beian.miit.gov.cn/" target="_blank">鄂ICP备20004395号</a>. 
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function(){
+            $("pre code").parent().addClass("line-numbers")
+        }())
+    
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [ ['$','$'] ],
+                processEscapes: true
+            }
+        };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+    
+    
+    
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+
+</body>
+
+</html>

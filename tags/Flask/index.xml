@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Flask on Binean&#39;s Blog</title>
+    <title>Flask on 菠萝蜜</title>
     <link>https://bzhou830.github.io/tags/Flask/</link>
-    <description>Recent content in Flask on Binean&#39;s Blog</description>
+    <description>Recent content in Flask on 菠萝蜜</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Wed, 11 May 2016 09:16:34 +0800</lastBuildDate>
@@ -13,100 +13,100 @@
     
     <item>
       <title>Flask 学习笔记|11 Python与Flask的结合应用</title>
-      <link>https://bzhou830.github.io/posts/20160511flask11/</link>
+      <link>https://bzhou830.github.io/post/20160511flask11/</link>
       <pubDate>Wed, 11 May 2016 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/posts/20160511flask11/</guid>
+      <guid>https://bzhou830.github.io/post/20160511flask11/</guid>
       <description>11.1 重置密码流程分析 重置密码主要流程如下： 其中，发送重置密码邮件后的流程如下： 11.2 first_or_404和可调用对象 1.first_or_404 视图函数接受用户填写的email账号，如果不存在应该跳转到404界面，这个逻辑flask-sqlalchemy为我们提供了良好的封装，不需要手动去处理,只需要调用Q</description>
     </item>
     
     <item>
       <title>Flask 学习笔记|10 鱼书业务处理</title>
-      <link>https://bzhou830.github.io/posts/20160510flask10/</link>
+      <link>https://bzhou830.github.io/post/20160510flask10/</link>
       <pubDate>Tue, 10 May 2016 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/posts/20160510flask10/</guid>
+      <guid>https://bzhou830.github.io/post/20160510flask10/</guid>
       <description>10.1 最近的礼物 我们的首页会显示最近的赠送书籍列表。这个列表有三个限制条件： 1.数量不超过30 2.按照时间倒序排列，最新的排在最前面 3.去重，同一本书籍的礼物不重复出现 1.首先编写复杂SQL对应的ORM代码 由于是最近的礼物，所以应该编写在models/gift.py中 @classmethod def recent(cls): # 链式调用</description>
     </item>
     
     <item>
       <title>Flask 学习笔记|09 书籍交易模型（数据库事务、重写Flask中的对象）</title>
-      <link>https://bzhou830.github.io/posts/20160509flask09/</link>
+      <link>https://bzhou830.github.io/post/20160509flask09/</link>
       <pubDate>Mon, 09 May 2016 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/posts/20160509flask09/</guid>
+      <guid>https://bzhou830.github.io/post/20160509flask09/</guid>
       <description>本章是一个综合应用章节。我们将看到如何使用多个Python的知识点综合解决问题。我们将进一步的使用@contextmanager来改善前面所学到的上下文管理器，并结合yield来优化数据库事务。此外，我们还将重写Flask中的一些对象的方法，来实现我们自己的业务逻辑 9.1 鱼豆 我们的鱼</description>
     </item>
     
     <item>
       <title>Flask 学习笔记|08 用户登录与注册</title>
-      <link>https://bzhou830.github.io/posts/20160508flask08/</link>
+      <link>https://bzhou830.github.io/post/20160508flask08/</link>
       <pubDate>Sun, 08 May 2016 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/posts/20160508flask08/</guid>
+      <guid>https://bzhou830.github.io/post/20160508flask08/</guid>
       <description>8.1 viewmodel意义的体现与filter函数的巧妙应用 在搜索书籍页面里，需要将每一条结果的作者，出版社，价格在一行展示，并以”/“分割。由于这三个属性还有可能为空，所以在html模板里处理不太方便。我们选择将这些数据处理的工作放在viewmodel中。 简单粗暴一点的方法是写一</description>
     </item>
     
     <item>
       <title>Flask 学习笔记|07 静态文件、模板、消息闪现与Jinja2</title>
-      <link>https://bzhou830.github.io/posts/20160507flask07/</link>
+      <link>https://bzhou830.github.io/post/20160507flask07/</link>
       <pubDate>Sat, 07 May 2016 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/posts/20160507flask07/</guid>
+      <guid>https://bzhou830.github.io/post/20160507flask07/</guid>
       <description>本章，我们将通过借助学习flask的模板来间接学习：列表推导式的应用、三元表达式的应用、@Property属性描述符、filter函数的应用、管道过滤器 7.1 静态文件访问原理 1.默认访问方法 Flask访问静态文件非常简单，只需要在项目根目录建立static文件夹。将静态资源文件放入s</description>
     </item>
     
     <item>
       <title>Flask 学习笔记|06 书籍详情页面的构建</title>
-      <link>https://bzhou830.github.io/posts/20160506flask06/</link>
+      <link>https://bzhou830.github.io/post/20160506flask06/</link>
       <pubDate>Fri, 06 May 2016 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/posts/20160506flask06/</guid>
+      <guid>https://bzhou830.github.io/post/20160506flask06/</guid>
       <description>本章我们提出一个概念ViewModel，并详细解释ViewModel的意义。此外面向对象虽然是老生常谈，但你真的理解面向对象吗？我们将在本章中通过重构来一步步揭示到底什么才是对象，如何写出面向对象的代码来。思维的训练，永远比业务要重要 6.1 ViewModel的基本概念 大多时候，我们从</description>
     </item>
     
     <item>
       <title>Flask 学习笔记|05 Flask中的多线程与线程隔离技术</title>
-      <link>https://bzhou830.github.io/posts/20160505flask05/</link>
+      <link>https://bzhou830.github.io/post/20160505flask05/</link>
       <pubDate>Thu, 05 May 2016 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/posts/20160505flask05/</guid>
+      <guid>https://bzhou830.github.io/post/20160505flask05/</guid>
       <description>5.1 线程进程与多线程 1.进程 资源是稀缺的，进程是竞争计算机资源的基本单位。 一台计算机至少要有一个进程。 单核CPU用眼只能执行一个应用程序吗？No，他可以在不同的应用程序直接进行切换。由于切换的时间非常短，短到人类无法感知到，所以造成了一种假象，一个进程可以同时执行多个进程。 多核CP</description>
     </item>
     
     <item>
       <title>Flask 学习笔记|04 flask核心机制</title>
-      <link>https://bzhou830.github.io/posts/20160504flask04/</link>
+      <link>https://bzhou830.github.io/post/20160504flask04/</link>
       <pubDate>Wed, 04 May 2016 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/posts/20160504flask04/</guid>
+      <guid>https://bzhou830.github.io/post/20160504flask04/</guid>
       <description>flask最核心的是两个上下文，而这两个上下中包含大量的Python高级编程应用。我们需要理解上下文的意义，并且通过借鉴flask的下文机制，学习Python的上下文管理器（With）、栈结构的应用。我们还将学习，到底如何通过阅读源码来解决问题 4.1 flask中经典错误 working outside application context 在 3.</description>
     </item>
     
     <item>
       <title>Flask 学习笔记|03 蓝图、模型与CodeFirst</title>
-      <link>https://bzhou830.github.io/posts/20160503flask03/</link>
+      <link>https://bzhou830.github.io/post/20160503flask03/</link>
       <pubDate>Tue, 03 May 2016 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/posts/20160503flask03/</guid>
+      <guid>https://bzhou830.github.io/post/20160503flask03/</guid>
       <description>3.蓝图、模型与CodeFirst 本章我们尝试把单文件的flask重构为具有模块意义的分文件模型，接着我们会探讨如何使用CodeFirst的思想来创建数据库表。 3.1 应用、蓝图与视图函数 1.Flask的层级关系 Flask最上层是app核心对象 在这个核心对象上可以插入很多蓝图，这个蓝图</description>
     </item>
     
     <item>
       <title>Flask 学习笔记|02 数据和路由</title>
-      <link>https://bzhou830.github.io/posts/20160502flask02/</link>
+      <link>https://bzhou830.github.io/post/20160502flask02/</link>
       <pubDate>Mon, 02 May 2016 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/posts/20160502flask02/</guid>
+      <guid>https://bzhou830.github.io/post/20160502flask02/</guid>
       <description>2.数据和路由 鱼书项目中的图书数据并不是使用自己构建的数据库的，构建这么多的图书数据需要花费很大的力气。当然可以通过数据爬取的方式来构建，但是这和课程的核心内容就有点冲突了。课程中使用调用web api的方式获取数据，下面的api中其中yushu的api都是课程老师七月构建的，个人</description>
     </item>
     
     <item>
       <title>Flask 学习笔记|01 Flask入门基础</title>
-      <link>https://bzhou830.github.io/posts/20160501flask01/</link>
+      <link>https://bzhou830.github.io/post/20160501flask01/</link>
       <pubDate>Sun, 01 May 2016 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/posts/20160501flask01/</guid>
+      <guid>https://bzhou830.github.io/post/20160501flask01/</guid>
       <description>1.0 pipenv 的安装与使用 # 安装pipenv pip install pipenv # 进入虚拟环境（需要在项目目录上执行，如果当前目录没有虚拟环境，则会新建虚拟环境，如果有则启用该虚拟环境） pipenv shell # 退出虚拟环境 exit # 使用pipenv安装Python包 pipenv install #{package} # 卸载Python包 pipenv uninstall #{package} # 查看按照包的依赖关系 pipenv graph # 查看虚拟环境执行文</description>
     </item>
     

@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Binean&#39;s Blog | 杏花疏影里，吹笛到天明</title>
-    <meta property="og:title" content="Binean&#39;s Blog | 杏花疏影里，吹笛到天明">
+    <title>菠萝蜜 | 选择去发光，而不是被照亮</title>
+    <meta property="og:title" content="菠萝蜜 | 选择去发光，而不是被照亮">
     <meta property="og:type" content="website">
     <meta name="Keywords" content="C/C&#43;&#43;, GPU, Windows驱动开发, OpenCV, 图像处理">
     <meta name="description" content="专注于C/C&#43;&#43;, GPU, Windows驱动开发, OpenCV, 图像处理">
@@ -17,7 +17,7 @@
     <link rel="stylesheet" href='/css/normalize.css'>
     
     <link rel="stylesheet" href='/css/style.css'>
-    <link rel="alternate" type="application/rss+xml+xml" href="https://bzhou830.github.io/index.xml" title="Binean's Blog" />
+    <link rel="alternate" type="application/rss+xml+xml" href="https://bzhou830.github.io/index.xml" title="菠萝蜜" />
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     
@@ -36,15 +36,21 @@
                 
                     
                         <a id="logo" href="https://bzhou830.github.io/">
-                            Binean&#39;s Blog
+                            菠萝蜜
                         </a>
                     
                 
-                <p class="description">杏花疏影里，吹笛到天明</p>
+                <p class="description">选择去发光，而不是被照亮</p>
             </div>
             <div>
                 <nav id="nav-menu" class="clearfix">
                     <a class="current" href="https://bzhou830.github.io/">首页</a>
+                    
+                    <a  href="https://bzhou830.github.io/GPU/" title="GPU">GPU</a>
+                    
+                    <a  href="https://bzhou830.github.io/USB/" title="USB">USB</a>
+                    
+                    <a  href="https://bzhou830.github.io/raspberrypi/" title="树莓派">树莓派</a>
                     
                     <a  href="https://bzhou830.github.io/archives/" title="归档">归档</a>
                     
@@ -67,218 +73,172 @@
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="https://bzhou830.github.io/posts/20190805%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8509/" title="渲染管线之旅|09 像素处理之联合">渲染管线之旅|09 像素处理之联合</a>
+                <a href="https://bzhou830.github.io/post/20200229Games101_05/" title="Games101笔记|Shading">Games101笔记|Shading</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
-            2019年8月5日
+            2020年2月29日
         </date>
         
         <div class="post-meta">
             <span>|</span>
             
-            <span class="meta-category"><a href='https://bzhou830.github.io/categories/GPU'>GPU</a></span>
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6'>图形学</a></span>
             
         </div>
         
         <div class="post-content">
-            Welcome back! This post deals with the second half of pixel processing, the “join phase”. The previous phase was all about taking a small number of input streams and turning them into lots of independent tasks for the shader units. Now we need to fold that large number of independent computations back into one (correctly ordered) stream of memory operations. As I already did in the posts on rasterization and early Z, I’ll first give a quick description of what needs to be done on a general level, and then I’ll go into how this is mapped to hardware. Merging pixels again: blend and late Z At the bottom of the pipeline (in what D3D calls the “Output……
+            当这些物体都变成三角形之后，变成屏幕上的一个个像素点之后，这些像素的值和颜色应该是什么呢？这个就是着色的功能。下一步操作为着色。 挪动一下光源后，物体并没有发生变化，但是物体的颜色却发生了变化。这个问题应该如何解决，就是着色的作用。 这门课中着色的定义：对不同的物体应用不同的材质这样……
         </div>
-        <p class="readmore"><a href="https://bzhou830.github.io/posts/20190805%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8509/">阅读全文</a></p>
+        <p class="readmore"><a href="https://bzhou830.github.io/post/20200229Games101_05/">阅读全文</a></p>
     </article>
     
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="https://bzhou830.github.io/posts/20190801%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8508/" title="渲染管线之旅|08 像素处理之&#34;fork&#34;">渲染管线之旅|08 像素处理之&#34;fork&#34;</a>
+                <a href="https://bzhou830.github.io/post/20200222Games101_04/" title="Games101笔记|Z-Buffer(深度缓冲)">Games101笔记|Z-Buffer(深度缓冲)</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
-            2019年8月1日
+            2020年2月22日
         </date>
         
         <div class="post-meta">
             <span>|</span>
             
-            <span class="meta-category"><a href='https://bzhou830.github.io/categories/GPU'>GPU</a></span>
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6'>图形学</a></span>
             
         </div>
         
         <div class="post-content">
-            在这一部分中，我们来谈谈像素处理的前半部分:dispatch和实际的像素着色。事实上，这部分是大多数图形开发者在谈到PS stage时所关心的内容。有关alpha blend和Late-Z的内容放到下一篇文章中去探讨。后面我们会看到，硬件上PS stage的设计相是对比较复杂的。这也是……
+            2 可见性与遮挡 2.1 画家算法 原理 先对远处的物体进行光栅化，后逐步对近处的物体进行光删化操作。（画近处的物体时会覆盖掉之前画的远处的一些物体）这样就可以正确地处理遮挡的问题了。 涉及到一个问题 这里涉及到一个问题：当某些物体在深度上存在互相遮挡的情况，此时没有办法定义顺序关系，这样就无法使……
         </div>
-        <p class="readmore"><a href="https://bzhou830.github.io/posts/20190801%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8508/">阅读全文</a></p>
+        <p class="readmore"><a href="https://bzhou830.github.io/post/20200222Games101_04/">阅读全文</a></p>
     </article>
     
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="https://bzhou830.github.io/posts/20190730%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8507/" title="渲染管线之旅|07 深度处理、模板处理">渲染管线之旅|07 深度处理、模板处理</a>
+                <a href="https://bzhou830.github.io/post/20200216Games101_03/" title="Games101笔记|光栅化和反走样">Games101笔记|光栅化和反走样</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
-            2019年7月30日
+            2020年2月16日
         </date>
         
         <div class="post-meta">
             <span>|</span>
             
-            <span class="meta-category"><a href='https://bzhou830.github.io/categories/GPU'>GPU</a></span>
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6'>图形学</a></span>
             
         </div>
         
         <div class="post-content">
-            在这一篇中，我们来讨论Z-pipline的前端部分(简称它为early-Z), 以及它是在光栅化中怎么起作用的。和上一篇一样，本篇也不会按实际的管道顺序进行讨论；我将首先描述基础算法，然后再补充管线中的各个阶段（以相反的顺序可以更简单的解释这些内容）。 1.插值 Z通过三角形进行插值，……
+            在“MVP变换矩阵推导”中首先进行了Model transformation, 也就是摆放好物体（对象）；然后就是View transformation摆放好相机（位置，拍摄方向，视场角等）；最后就是Projection transformation, 这里面包含有正交投影（Orthogtaphic projection）它是将长方体(cuboi……
         </div>
-        <p class="readmore"><a href="https://bzhou830.github.io/posts/20190730%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8507/">阅读全文</a></p>
+        <p class="readmore"><a href="https://bzhou830.github.io/post/20200216Games101_03/">阅读全文</a></p>
     </article>
     
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="https://bzhou830.github.io/posts/20190725%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8506/" title="渲染管线之旅|06 三角形的生成和建立">渲染管线之旅|06 三角形的生成和建立</a>
+                <a href="https://bzhou830.github.io/post/20200215Games101_02/" title="Games101笔记|MVP变换矩阵推导">Games101笔记|MVP变换矩阵推导</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
-            2019年7月25日
+            2020年2月15日
         </date>
         
         <div class="post-meta">
             <span>|</span>
             
-            <span class="meta-category"><a href='https://bzhou830.github.io/categories/GPU'>GPU</a></span>
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6'>图形学</a></span>
             
         </div>
         
         <div class="post-content">
-            欢迎回来。这次我们去看看三角形的光栅化。但在光栅化三角形之前，我们需要执行三角形设置，并且在设置三角形之前，我还要解释一下我们做的准备是为了什么，最后我们来聊聊三角形硬件光栅化算法。 1.如何画一个三角形 首先，给很熟悉这部分并自己写过软纹理映射的人一点小提示：三角形光栅器一次要处理……
+            本文是games101课程的第3，4课的相关笔记，这篇内容对于CG非常的重要！！！特别是推导的过程，非常有必要手推一遍！。所谓的MVP变换就是：model-view-project变换。本文中使用的向量均表示的是列向量，在公式推导的过程中要注意第一点。 首先我们回想下我们在拍班级毕……
         </div>
-        <p class="readmore"><a href="https://bzhou830.github.io/posts/20190725%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8506/">阅读全文</a></p>
+        <p class="readmore"><a href="https://bzhou830.github.io/post/20200215Games101_02/">阅读全文</a></p>
     </article>
     
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="https://bzhou830.github.io/posts/20190720%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8505/" title="渲染管线之旅|05 图元处理、Clip/Cull, 投影和视图变换">渲染管线之旅|05 图元处理、Clip/Cull, 投影和视图变换</a>
+                <a href="https://bzhou830.github.io/post/20200206Games101_01/" title="Games101笔记|概述和线性代数">Games101笔记|概述和线性代数</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
-            2019年7月20日
+            2020年2月6日
         </date>
         
         <div class="post-meta">
             <span>|</span>
             
-            <span class="meta-category"><a href='https://bzhou830.github.io/categories/GPU'>GPU</a></span>
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6'>图形学</a></span>
             
         </div>
         
         <div class="post-content">
-            上一篇中我们讨论了关于“纹理和采样”，这一篇我们回到3D管线的前端。在执行完顶点着色之后，就可以实际的渲染东西了，对吗？暂时还不行， 因为在我们实际开始光栅化图元之前，仍然还有很多事要做。所以在本篇里我们不会看到任何光栅化内容——还得等到下次再讲。 1. 图元装载 当我们离开顶点处理流水线……
+            本文是games101课程的第1，2课的相关笔记。这两课的内容比较基础，大学中有线性代数的学习经验就相对非常容易理解。 1. 计算机图形学概述 计算机图形学（Computer Graphics，CG）是研究计算机在硬件和软件的帮助下创建计算机图形的学科，是计算机科学的一个分支领域，主要关注……
         </div>
-        <p class="readmore"><a href="https://bzhou830.github.io/posts/20190720%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8505/">阅读全文</a></p>
+        <p class="readmore"><a href="https://bzhou830.github.io/post/20200206Games101_01/">阅读全文</a></p>
     </article>
     
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="https://bzhou830.github.io/posts/20190715%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8504/" title="渲染管线之旅|04 纹理和采样">渲染管线之旅|04 纹理和采样</a>
+                <a href="https://bzhou830.github.io/post/20200205CppSplit/" title="C&#43;&#43;中的字符串split">C&#43;&#43;中的字符串split</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
-            2019年7月15日
+            2020年2月5日
         </date>
         
         <div class="post-meta">
             <span>|</span>
             
-            <span class="meta-category"><a href='https://bzhou830.github.io/categories/GPU'>GPU</a></span>
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/C/C&#43;&#43;'>C/C&#43;&#43;</a></span>
             
         </div>
         
         <div class="post-content">
-            上一篇讨论了顶点着色器,涵盖了GPU通用着色器处理单元的一些内容。它们都仅仅是向量处理单元, 但是当我们在访问Resource的时候,通常都不是这种向量的形式,所以GPU中还需要另一个专门用来在Pipeline中处理整数的单元：Texture Sampler. 这个单元内部相对比较复杂,复杂(也很有……
+            使用过Java, Python或者go这些语言然后切换到C++的同学很可能遇到一个问题就是：为什么在C++的string类里面为什么没有提供一个split函数呢？ 猜测可能有下面几个原因： split之后的结果存放在哪里呢？vector？但是string类中引入vector势必会造成s……
         </div>
-        <p class="readmore"><a href="https://bzhou830.github.io/posts/20190715%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8504/">阅读全文</a></p>
+        <p class="readmore"><a href="https://bzhou830.github.io/post/20200205CppSplit/">阅读全文</a></p>
     </article>
     
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="https://bzhou830.github.io/posts/20190710%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8503/" title="渲染管线之旅|03 图形管线概览及GPU中顶点处理">渲染管线之旅|03 图形管线概览及GPU中顶点处理</a>
+                <a href="https://bzhou830.github.io/post/20200202cpp11%E5%A4%9A%E7%BA%BF%E7%A8%8B/" title="C&#43;&#43;11中的多线程库">C&#43;&#43;11中的多线程库</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
-            2019年7月10日
+            2020年2月2日
         </date>
         
         <div class="post-meta">
             <span>|</span>
             
-            <span class="meta-category"><a href='https://bzhou830.github.io/categories/GPU'>GPU</a></span>
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/C/C&#43;&#43;'>C/C&#43;&#43;</a></span>
             
         </div>
         
         <div class="post-content">
-            通过前面几篇的内容，我们知道，应用程序中的Draw API调用会经过D3D Runtime, 用户态驱动等等各个层级，最终将命令传到GPU的命令解释器，GPU就会根据命令的内容来进行图形的计算和处理。那么这一篇我们就来看看顶点的处理流程。 1. 开胃菜 在介绍GPU的顶点处理之前，我们先看看3D渲染管线。3……
+            1. 线程的创建 C++11中提供了thread类可以直接用来创建线程，创建步骤： 包含thread所在的头文件 #include &lt;thread&gt; 在需要的地方直接创建一个thread对象，构造函数中传入一个线程入口函数（或者是一个可调对象）。（普通函数，lambda表达式，重载了()的类都可以传入，普通类成员函数也可……
         </div>
-        <p class="readmore"><a href="https://bzhou830.github.io/posts/20190710%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8503/">阅读全文</a></p>
+        <p class="readmore"><a href="https://bzhou830.github.io/post/20200202cpp11%E5%A4%9A%E7%BA%BF%E7%A8%8B/">阅读全文</a></p>
     </article>
     
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="https://bzhou830.github.io/posts/20190705%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8502/" title="渲染管线之旅|02 GPU存储架构和命令处理器">渲染管线之旅|02 GPU存储架构和命令处理器</a>
+                <a href="https://bzhou830.github.io/post/20200103%E5%8F%8C%E7%9B%AE%E6%B5%8B%E8%B7%9D02/" title="双目测距2">双目测距2</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
-            2019年7月5日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='https://bzhou830.github.io/categories/GPU'>GPU</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            上一篇中主要介绍了3D渲染命令到达GPU之前经历过的各个阶段。用下图可以概括上一篇中所讲的内容，当然其中很多细节没有出现在图中。之前我们说KMD将命令送给了硬件，这个简单的“送”的过程实际上并不是那么简单的。我们知道显卡都是通过信号线连在主板上的，所以我们送命令都是需要走这些信号……
-        </div>
-        <p class="readmore"><a href="https://bzhou830.github.io/posts/20190705%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8502/">阅读全文</a></p>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="https://bzhou830.github.io/posts/20190703%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8501/" title="渲染管线之旅|01 软件调用栈">渲染管线之旅|01 软件调用栈</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2019年7月3日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='https://bzhou830.github.io/categories/GPU'>GPU</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            简介 通常我们可以很容易的找到我们的个人电脑中显卡驱动软件调用栈的相关内容（attache到进程上，查看进程调用的dll。），但是这些调用关系是如何工作？它们又是为什么要这样做呢？这些问题就不那么容易找到答案了。我会尽量填补空白，而不会对特定的硬件进行具体的描述。我将主要讨论在Wi……
-        </div>
-        <p class="readmore"><a href="https://bzhou830.github.io/posts/20190703%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8501/">阅读全文</a></p>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="https://bzhou830.github.io/posts/20190620Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" title="Git快速入门手册">Git快速入门手册</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2019年6月29日
+            2020年1月3日
         </date>
         
         <div class="post-meta">
@@ -289,9 +249,55 @@
         </div>
         
         <div class="post-content">
-            本文作为版本控制软件git的入门指导和常用命令整理。 首先用一张图来总结基本的使用的流程，后文中都有详细的解释。 1.git的安装 自诞生于 2005 年以来，Git 日臻成熟完善，在高度易用的同时，仍然保留着初期设定的目标。它的速度飞快，极其适合管理大项目 。Git可以在windows、Mac、L……
+            简介： 首先进行双目摄像头定标，获取双目摄像头内部的参数后，进行测距；本文的双目视觉测距是基于BM算法。注意：双目定标的效果会影响测距的精准度，建议大家在做双目定标时，做好一些（尽量让误差小）。 前言 首先进行双目摄像头定标，获取双目摄像头内部的参数后，进行测距；本文的双目视觉测距是基……
         </div>
-        <p class="readmore"><a href="https://bzhou830.github.io/posts/20190620Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/">阅读全文</a></p>
+        <p class="readmore"><a href="https://bzhou830.github.io/post/20200103%E5%8F%8C%E7%9B%AE%E6%B5%8B%E8%B7%9D02/">阅读全文</a></p>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://bzhou830.github.io/post/20200104%E5%8F%8C%E7%9B%AE%E6%B5%8B%E8%B7%9D03/" title="双目测距3">双目测距3</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2020年1月3日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/Misc'>Misc</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            在双目立体匹配中，有基于SAD算法的BM、SGBM、GC立体匹配技术，但是在OpenCv3.0以后，GC算法就从legacy中去除掉了。为了查看三种算法的匹配效果及运算性能，我在Windows10中安装了OpenCv2.4.9，并以VsCode为IDE进行程序编写。 一、VsCod……
+        </div>
+        <p class="readmore"><a href="https://bzhou830.github.io/post/20200104%E5%8F%8C%E7%9B%AE%E6%B5%8B%E8%B7%9D03/">阅读全文</a></p>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://bzhou830.github.io/post/20200101%E5%8F%8C%E7%9B%AE%E6%B5%8B%E8%B7%9D01/" title="双目测距1">双目测距1</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2020年1月1日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/Misc'>Misc</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            准备双目摄像头： 准备标定板 标定的开始阶段最需要用到的标定板，可以直接从opencv官网上能下载到： http://docs.opencv.org/2.4/_downloads/pattern.png 具体如下： 然后，建议固定到盒子上，方便等下拍照。 采集图片 建议左右摄像头，同时拍照，分别保存起来，可以参考 opencv 双目摄像头拍照 保存大约20到30张图片，MATLAB2016的这个工具十分……
+        </div>
+        <p class="readmore"><a href="https://bzhou830.github.io/post/20200101%E5%8F%8C%E7%9B%AE%E6%B5%8B%E8%B7%9D01/">阅读全文</a></p>
     </article>
     
     
@@ -357,7 +363,7 @@
         
         
         <li >
-            <a href="https://bzhou830.github.io/page/11/">11</a>
+            <a href="https://bzhou830.github.io/page/13/">13</a>
         </li>
         
     
@@ -448,35 +454,39 @@
         <h3 class="widget-title">分类</h3>
 <ul class="widget-list">
     
-    <li><a href="https://bzhou830.github.io/categories/">Categories (2)</a></li>
+    <li><a href="https://bzhou830.github.io/categories/">Categories (3)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/C&#43;&#43;/">C&#43;&#43; (3)</a></li>
-    
-    <li><a href="https://bzhou830.github.io/categories/C/C&#43;&#43;/">C/C&#43;&#43; (10)</a></li>
+    <li><a href="https://bzhou830.github.io/categories/C/C&#43;&#43;/">C/C&#43;&#43; (12)</a></li>
     
     <li><a href="https://bzhou830.github.io/categories/Flask/">Flask (11)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/GPU/">GPU (16)</a></li>
+    <li><a href="https://bzhou830.github.io/categories/GPU/">GPU (18)</a></li>
     
     <li><a href="https://bzhou830.github.io/categories/Golang/">Golang (10)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/Misc/">Misc (9)</a></li>
+    <li><a href="https://bzhou830.github.io/categories/MCU/">MCU (1)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Misc/">Misc (13)</a></li>
     
     <li><a href="https://bzhou830.github.io/categories/OpenCV/">OpenCV (1)</a></li>
     
+    <li><a href="https://bzhou830.github.io/categories/PiCo/">PiCo (1)</a></li>
+    
     <li><a href="https://bzhou830.github.io/categories/Python/">Python (12)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/Windows%E9%A9%B1%E5%8A%A8/">Windows驱动 (4)</a></li>
+    <li><a href="https://bzhou830.github.io/categories/USB/">USB (5)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/WindowsKernel/">WindowsKernel (9)</a></li>
     
     <li><a href="https://bzhou830.github.io/categories/%E4%B8%B2%E5%8F%A3/">串口 (5)</a></li>
     
     <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理 (14)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学 (5)</a></li>
+    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学 (6)</a></li>
     
     <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E8%AE%BA/">图论 (12)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/%E6%88%90%E9%95%BF/">成长 (4)</a></li>
+    <li><a href="https://bzhou830.github.io/categories/%E6%88%90%E9%95%BF/">成长 (5)</a></li>
     
     <li><a href="https://bzhou830.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式 (1)</a></li>
     
@@ -488,43 +498,43 @@
 <ul class="widget-list">
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20210710imgui%E7%9A%84%E4%BD%BF%E7%94%A8/" title="imgui的使用">imgui的使用</a>
+        <a href="https://bzhou830.github.io/post/20220705Pico%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="PiCo| 开发环境搭建">PiCo| 开发环境搭建</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20210618Python_GrabScreen/" title="Python获取屏幕截图">Python获取屏幕截图</a>
+        <a href="https://bzhou830.github.io/post/20220420GD32USBEx/" title="USB探索| Flash 烧录器">USB探索| Flash 烧录器</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20210503DrawIo%E6%90%AD%E5%BB%BA/" title="Draw.io部署教程">Draw.io部署教程</a>
+        <a href="https://bzhou830.github.io/post/20220220GD32USB04/" title="USB探索|3.从USB键盘改造成USB鼠标">USB探索|3.从USB键盘改造成USB鼠标</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20210215GPUShader/" title="Shader在GPU中是如何执行的？">Shader在GPU中是如何执行的？</a>
+        <a href="https://bzhou830.github.io/post/20220213GD32USB03/" title="USB探索|2.USB键盘的实现">USB探索|2.USB键盘的实现</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20210112NES%E6%A8%A1%E6%8B%9F%E5%99%A8/" title="NES模拟器">NES模拟器</a>
+        <a href="https://bzhou830.github.io/post/20220212GD32USB02/" title="USB探索|1.USB协议基础">USB探索|1.USB协议基础</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20201226%E5%9C%A8%E6%AD%A6%E6%B1%89%E7%9A%842020/" title="2020，我在武汉的这一年的故事">2020，我在武汉的这一年的故事</a>
+        <a href="https://bzhou830.github.io/post/20220127GD32USB01/" title="USB探索|0.偶遇GD32L233">USB探索|0.偶遇GD32L233</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20200608opencv_squares/" title="谈谈OpenCV中的四边形">谈谈OpenCV中的四边形</a>
+        <a href="https://bzhou830.github.io/post/20211225%E4%BA%8C%E9%9B%B6%E4%BA%8C%E4%B8%80%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2021年终总结">2021年终总结</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20200515python_opencv_camera/" title="PyQt5&#43;OpenCV多线程显示摄像头数据">PyQt5&#43;OpenCV多线程显示摄像头数据</a>
+        <a href="https://bzhou830.github.io/post/20211207Windbg%E6%89%A9%E5%B1%95%E5%85%A5%E6%B4%BB/" title="Windbg扩展|01入活">Windbg扩展|01入活</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20200302RayTracingInOneWeekend/" title="Go语言实现RayTracing">Go语言实现RayTracing</a>
+        <a href="https://bzhou830.github.io/post/20211121%E8%BF%9C%E7%A8%8B%E9%87%8D%E5%90%AF%E5%B0%8F%E5%B7%A5%E5%85%B7/" title="远程重启小工具">远程重启小工具</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20200222Games101_04/" title="Games101笔记|Z-Buffer(深度缓冲)">Games101笔记|Z-Buffer(深度缓冲)</a>
+        <a href="https://bzhou830.github.io/post/20211024GPU-Tile-Based-Immediate/" title="GPU topic：Tile-Based Rendering vs. Immediate Mode Rendering">GPU topic：Tile-Based Rendering vs. Immediate Mode Rendering</a>
     </li>
     
 </ul>
@@ -623,7 +633,7 @@
     </div>
     <footer id="footer">
     <div class="container">
-        &copy; 2021 <a href="https://bzhou830.github.io/">Binean&#39;s Blog By Binean</a>.
+        &copy; 2022 <a href="https://bzhou830.github.io/">菠萝蜜 By Binean</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
         <br><a href="http://www.beian.miit.gov.cn/" target="_blank">鄂ICP备20004395号</a>. 

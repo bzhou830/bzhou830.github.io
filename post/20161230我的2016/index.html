@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>我的2016 | 菠萝蜜</title>
+    <meta property="og:title" content="我的2016 - 菠萝蜜">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2016-12-30T09:29:11&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2016-12-30T09:29:11&#43;08:00'>
+        
+    <meta name="Keywords" content="C/C&#43;&#43;, GPU, Windows驱动开发, OpenCV, 图像处理">
+    <meta name="description" content="我的2016">
+        
+    <meta name="author" content="Binean">
+    <meta property="og:url" content="https://bzhou830.github.io/post/20161230%E6%88%91%E7%9A%842016/">
+    <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href='/css/normalize.css'>
+    
+    <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://bzhou830.github.io/">
+                        菠萝蜜
+                    </a>
+                
+                <p class="description">选择去发光，而不是被照亮</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://bzhou830.github.io/">首页</a>
+                    
+                    <a  href="https://bzhou830.github.io/GPU/" title="GPU">GPU</a>
+                    
+                    <a  href="https://bzhou830.github.io/USB/" title="USB">USB</a>
+                    
+                    <a  href="https://bzhou830.github.io/raspberrypi/" title="树莓派">树莓派</a>
+                    
+                    <a  href="https://bzhou830.github.io/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://bzhou830.github.io/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    <style type="text/css">
+    .post-toc {
+        position: fixed;
+        width: 200px;
+        margin-left: -210px;
+        padding: 5px 10px;
+        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+        font-size: 12px;
+        border: 1px solid rgba(0, 0, 0, .07);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.98);
+        background-clip: padding-box;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        word-wrap: break-word;
+        white-space: nowrap;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 999;
+        cursor: pointer;
+        max-height: 70%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .post-toc .post-toc-title {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .post-toc .post-toc-content {
+        font-size: 15px;
+    }
+
+    .post-toc .post-toc-content>nav>ul {
+        margin: 10px 0;
+    }
+
+    .post-toc .post-toc-content ul {
+        padding-left: 20px;
+        list-style: square;
+        margin: 0.5em;
+        line-height: 1.8em;
+    }
+
+    .post-toc .post-toc-content ul ul {
+        padding-left: 15px;
+        display: none;
+    }
+
+    @media print,
+    screen and (max-width:1057px) {
+        .post-toc {
+            display: none;
+        }
+    }
+</style>
+<div class="post-toc" style="position: absolute; top: 188px;">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#0题外话">0.题外话</a></li>
+    <li><a href="#1实习相关">1.实习相关</a></li>
+    <li><a href="#22016华为软挑">2.2016华为软挑</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#3校招">3.校招</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#4-感谢你们">4. 感谢你们</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postToc = $(".post-toc");
+        if (postToc.length) {
+            var leftPos = $("#main").offset().left;
+            if(leftPos<220){
+                postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})
+            }
+
+            var t = postToc.offset().top - 20,
+                a = {
+                    start: {
+                        position: "absolute",
+                        top: t
+                    },
+                    process: {
+                        position: "fixed",
+                        top: 20
+                    },
+                };
+            $(window).scroll(function () {
+                var e = $(window).scrollTop();
+                e < t ? postToc.css(a.start) : postToc.css(a.process)
+            })
+        }
+    })
+</script>
+    <article class="post">
+        <header>
+            <h1 class="post-title">我的2016</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2016年12月30日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/%E6%88%90%E9%95%BF'>成长</a></span>
+            
+        </div>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <h2 id="0题外话">0.题外话</h2>
+<p>回想自己<strong>主动</strong>写年终总结还是在2012年，果然是人越来越懒了。2016年对我来说应该是比较有转折性的一年。首先对于一个研二到研三的学生来说最重要的恐怕就是秋季校招了。其次在导师公司从2016年3月到2016年6月这段时间基本就是在交接工作（比较消极的话来说就是接手烂摊子(^_^））。此外就是个人问题了，2016年这一年个人感情上逐渐稳定，和女友交流沟通也越来越顺畅，希望这种感觉能一直持续。哈哈，我不是来虐狗的！
+下面就来总结下2016年度比较重要的几件事。</p>
+<h2 id="1实习相关">1.实习相关</h2>
+<p>导师的公司主要是从事医疗应用系统开发的，2015年下半年基本上是在参与公司的<strong>病理科PACS</strong>系统开发，中间还在成都市某三甲医院参与项目上线两个月。2015年的工作内容比较固定和单纯。
+然而4月份由于公司员工流动，公司的一个程序员离职了。他主要从事图像处理算法和IOS端的一个应用软件开发，公司好像就他这一位ios开发的技术人员。承蒙导师的看重叫我接手他的工作('_')，好在这个应用软件是用cocos框架开发的，语言上问题不大。学了一个多星期的cocos，然后又熟悉了下xcode开发环境。前后弄了一个多月，对源码熟悉了些。
+到了5月份公司我所在部门的产品经理跟我讲，ios端的应用维护就好了。后面研究下，弄成web版本的。好嘛，这下又得搞web开发了，和室友两个使用DCM4CHEE，前后又搞了一个月流程上基本上跑通了。中间用了各种自己都笑话自己的手段！问题还是在于我们不够专业，我俩之前都是搞C/C++开发的，对于web这套东西根本不熟悉。
+今年的这段实习期间，技术深度上感觉自己没有很大的长进。凡事都得一分为二，实习下来对软件开发的其他领域有了些了解。相比仅仅在学校里面，真得感谢导师给了我们实习的机会，虽然有时候私下说压榨我们，哈哈！</p>
+<h2 id="22016华为软挑">2.2016华为软挑</h2>
+<h4 id="21-初赛"><strong>2.1 初赛</strong></h4>
+<p>2015年第一届的华为软挑我和室友还有一个大学的朋友YGH一起组队参加过，当时技术能力有限，预赛就被淘汰了。今年知道有这个比赛的时候一开始并没有打算参加的，一方面每天实习时间上不太够，另一方面觉得自己业余更应该看书补充基础知识。后来，YGH邀我参加，有想到华为绿卡，就答应了。直到预赛前一个星期我们的代码还没怎么开始（<em>_</em>）！
+偶然的一次跟朋友YQ聊天，他正在准备这个比赛，当时他们的排名在我看来就是神一般的级别。他说他们用开源的线性规划求解工具来做的，使用不复杂，效果杠杠的！听到这个我马上就跟YGH和另一个队员GQL交流，然后下班就开始尝试。每天下班我们和YGH聚在一起讨论，码代码，当时GQL在新疆出差只能和我们远程交流。
+经过一个星期的努力，终于拍到了排行榜中的Top10左右的位置了。当时想着能过初赛拿到绿卡就好了，就没怎么优化代码，不过还是以排名十几的成绩进入了复赛。</p>
+<h4 id="22-复赛">2.2 复赛</h4>
+<p>不得不说大华为就是有钱，成渝赛区的复赛是在青城山的某个五星级酒店举办的。复赛流程先是小组PK，臭手YGH抽签分到的小组里面三个队有两个都是熟人，一个大学同学组的队，一个我师弟组的队。复赛的算法还跟大学同学他们交流过。竞争之激烈可想而知。
+复赛的第一天在华为成研所玩完活动，到了青城山泡了温泉，晚上继续撸代码。当时有个很好的idea，晚上撸到快2点撸完跑了几个案例感觉还不错。然后就到头睡觉了。
+复赛第二天是现场调试，开赛后提交了代码，后台显示我们自己设计的案例自己跑出错了！！！真是自己挖坑埋了自己，只能现场改bug了。经过仔细排查，原来是改代码的时候多屏蔽了两行代码，程序运行状态没有及时恢复导致的！改好bug差不多都是11点多了，快接近结束了。因为后台服务器故障，又给加时了两个钟，后面基本上就没有修改代码了。四处逛了逛，吃点东西。后面小组赛排名第二进入下一轮小组赛，然后就终结了。位居16强，这个成绩我们几个还是比较满意的，毕竟都是在业余弄得。</p>
+<h4 id="23-总结">2.3 总结</h4>
+<p>复赛期间跟成渝赛区的神龙级人物（长期占据排行榜榜首）交流了下，感觉别人果然是实力派，而且使用的方法都是在比较厉害的期刊上找的，然后进行变形修改。
+比赛期间，看到了太多努力的人。一到酒店就闭门调代码的，彻夜奋战的，还有为比赛准备一个多月的。看到了别人的努力之后才会发现，别人的成功真的不是偶然，而是付出换来的！有兴趣的可以下载我们的源码<a href="https://github.com/bzhou830">点我下载</a>
+放上一张我们团队的挫照，有对两个队友（右边两个）有意的妹子快来呀！！</p>
+<p><img src="1.jpg" alt="这里写图片描述"></p>
+<h2 id="3校招">3.校招</h2>
+<h4 id="31-华为">3.1 华为</h4>
+<p>校招面试的第一家公司就是华为，竞赛场面试是在7月底。一面主要聊技术，讲竞赛过程使用的算法。目前记得比较清楚的一个问题就是面试官问：你们使用的相同功能的这些算法模块间你怎么去管理呢？之前看过《大话设计模式》，就讲可以使用抽象工厂模式（其实有更好的选择，当时记不得了）。二面聊得就比较泛了。整个过程还是挺轻松的。中秋节的时候顺利拿到了成渝赛区的第一批offer。</p>
+<h4 id="32-网易">3.2 网易</h4>
+<p>网易虐我千百遍，我待网易如初恋。春招的时候挂在了网易的笔试上，秋招终于过了笔试。网易的成都面试是在川大附近的酒店进行的。一面上前就让撸算法，第一个问题是二叉树相关的，第二个是序列比对的。撸完两个算法面试官问对技术的看法，然后又问如果让你转Java你怎么看？整个过程感觉没问什么就结束了。然后就挂了，一直很疑惑自己是怎么挂的。</p>
+<h4 id="33-阿里">3.3 阿里</h4>
+<p>阿里一面是电话面，当时参加的是内推，不知道怎么就把我推荐到搜索引擎这类岗位的，面试问的问题一面懵逼。把自己业余学的一点机器学习全部用上，还是觉得答不上。然后就是妥妥的挂了。</p>
+<h4 id="34-其他公司">3.4 其他公司</h4>
+<p>当时比较明确自己的就业地点选择是首选武汉，如果有好的公司可以考虑深圳，广州。所以很多公司的招聘都没有参加。武汉的公司基本上都投过简历，其中拿到深圳开立医疗，上海兆芯（工作地都是武汉）。后面拒面了好几家公司（全志科技，招银网络等）的面试，考虑自己拿到offer也很可能不会去。</p>
+<h4 id="34-总结">3.4 总结</h4>
+<p>回首整个校招，比较教研室的其他同学，参加的面试比较少。目的明确可能努力要少点，最后他们也拿到了很多让人羡慕的offer。
+校招很看技术基础，数据结构与算法，操作系统，如果互联网公司的话数据库也是必不可少的。此外交流沟通能力也是必不可少的。之前女友批评我说我电话面像半死不活的，让人没有精神。想想沟通能力确实很重要，没有好的沟通能力，面试官也不太容易发现你的才能。</p>
+<h2 id="4-感谢你们">4. 感谢你们</h2>
+<p>2016年里面，感觉自己还是长进了不少。校招那段时间看书学习，每天过的挺充实。这一年里面得感谢导师对我的信任，给我宽松的学习环境，给我学习机会。然后就是教研室的小伙伴们，一起上下班，一起吐槽，一起涮火锅。最后得感谢我的女友，在我找工作的那段时间，一直鼓励我，陪着我。
+上一张梵高风格照，哈哈</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTYxMjI4MTUxNTAzODAx?x-oss-process=image/format,png" alt="这里写图片描述">
+还有大学时候的铁哥们，他们在我之前工作，给我工作，学习提供了很多的帮助。
+感谢CSDN提醒我，及时总结，回顾过去，继续前行！
+<img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTYxMjI4MTU1MTAxMzUy?x-oss-process=image/format,png" alt="这里写图片描述"></p>
+
+        </div>
+
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="https://bzhou830.github.io/">Binean</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="https://bzhou830.github.io/post/20161230%E6%88%91%E7%9A%842016/">https://bzhou830.github.io/post/20161230%E6%88%91%E7%9A%842016/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
+    <center><image src= "https://bzhou830.github.io//about/wx.png" ></image></center>
+</div>
+<br/>
+
+
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/post/20161117DICOM%E5%BD%B1%E5%83%8F%E4%B8%AD%E7%9A%84%E7%AA%97%E5%AE%BD%E7%AA%97%E4%BD%8D/">DICOM影像中的窗宽窗位</a></li>
+        
+        <li><a href="/post/20161008DICOM%E9%80%9A%E4%BF%A1PDU%E6%95%B0%E6%8D%AE%E5%8C%852/">DICOM通信|PDU数据包（2）</a></li>
+        
+        <li><a href="/post/20161007DICOM%E9%80%9A%E4%BF%A1PDU%E6%95%B0%E6%8D%AE%E5%8C%851/">DICOM通信|PDU数据包（1）</a></li>
+        
+        <li><a href="/post/20160915DCMTK%E8%AF%BB%E5%8F%96DICOM%E6%96%87%E4%BB%B6/">DCMTK读取DICOM文件</a></li>
+        
+        <li><a href="/post/20160511flask11/">Flask 学习笔记|11 Python与Flask的结合应用</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='https://bzhou830.github.io/tags/'></a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "bzhou830/Blog"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    
+<section class="widget">
+    
+    <ul class="widget-list">
+        
+        <li>
+            <a href="https://bzhou830.github.io/" title="简介" target="_blank">
+                
+                
+                    <div>
+                        <div style="width: 200px; height: 200px; border-radius:100%; overflow:hidden;">
+                            <img src=https://bzhou830.github.io/about/touxiang.jpg >
+                        </div>
+                    </div>
+
+                    <div>
+                        <h2>Binean</h2>
+                    </div>
+                    
+                    <div>
+                        <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path><path fill="currentColor" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V18c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-1.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05.02.01.03.03.04.04 1.14.83 1.93 1.94 1.93 3.41V18c0 .35-.07.69-.18 1H22c.55 0 1-.45 1-1v-1.5c0-2.33-4.67-3.5-7-3.5z"></path></svg>
+                            ****
+                        </div>
+                    </div>
+
+                    <div>
+                        <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path><path fill="currentColor" d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm8.94 3c-.46-4.17-3.77-7.48-7.94-7.94V2c0-.55-.45-1-1-1s-1 .45-1 1v1.06C6.83 3.52 3.52 6.83 3.06 11H2c-.55 0-1 .45-1 1s.45 1 1 1h1.06c.46 4.17 3.77 7.48 7.94 7.94V22c0 .55.45 1 1 1s1-.45 1-1v-1.06c4.17-.46 7.48-3.77 7.94-7.94H22c.55 0 1-.45 1-1s-.45-1-1-1h-1.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"></path></svg>
+                        武汉
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div>      
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path><path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-.4 4.25l-7.07 4.42c-.32.2-.74.2-1.06 0L4.4 8.25c-.25-.16-.4-.43-.4-.72 0-.67.73-1.07 1.3-.72L12 11l6.7-4.19c.57-.35 1.3.05 1.3.72 0 .29-.15.56-.4.72z"></path></svg>
+                        <a href="mailto:bzhou830@qq.com">bzhou830@qq.com</a> 
+                        </div>
+                    </div>
+                
+            </a>
+        </li>
+        
+        <li>
+            <a href="https://bzhou830.github.io/about/" title="欢迎关注微信公众号" target="_blank">
+                
+                    <h3 class="widget-title">欢迎关注微信公众号</h3>
+                    <img src="https://bzhou830.github.io/about/qrcode.jpg" >
+                
+            </a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <form id="search" action='https://bzhou830.github.io/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://bzhou830.github.io/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://bzhou830.github.io/categories/">Categories (3)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/C/C&#43;&#43;/">C/C&#43;&#43; (12)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Flask/">Flask (11)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/GPU/">GPU (18)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Golang/">Golang (10)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/MCU/">MCU (1)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Misc/">Misc (13)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/OpenCV/">OpenCV (1)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/PiCo/">PiCo (1)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Python/">Python (12)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/USB/">USB (5)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/WindowsKernel/">WindowsKernel (9)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E4%B8%B2%E5%8F%A3/">串口 (5)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理 (14)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学 (6)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E8%AE%BA/">图论 (12)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E6%88%90%E9%95%BF/">成长 (5)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式 (1)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20220705Pico%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="PiCo| 开发环境搭建">PiCo| 开发环境搭建</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20220420GD32USBEx/" title="USB探索| Flash 烧录器">USB探索| Flash 烧录器</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20220220GD32USB04/" title="USB探索|3.从USB键盘改造成USB鼠标">USB探索|3.从USB键盘改造成USB鼠标</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20220213GD32USB03/" title="USB探索|2.USB键盘的实现">USB探索|2.USB键盘的实现</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20220212GD32USB02/" title="USB探索|1.USB协议基础">USB探索|1.USB协议基础</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20220127GD32USB01/" title="USB探索|0.偶遇GD32L233">USB探索|0.偶遇GD32L233</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20211225%E4%BA%8C%E9%9B%B6%E4%BA%8C%E4%B8%80%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2021年终总结">2021年终总结</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20211207Windbg%E6%89%A9%E5%B1%95%E5%85%A5%E6%B4%BB/" title="Windbg扩展|01入活">Windbg扩展|01入活</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20211121%E8%BF%9C%E7%A8%8B%E9%87%8D%E5%90%AF%E5%B0%8F%E5%B7%A5%E5%85%B7/" title="远程重启小工具">远程重启小工具</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20211024GPU-Tile-Based-Immediate/" title="GPU topic：Tile-Based Rendering vs. Immediate Mode Rendering">GPU topic：Tile-Based Rendering vs. Immediate Mode Rendering</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://bzhou830.github.io/" title="Binean’s">Binean’s</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://bzhou830.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://bzhou830.github.io/tags/">Tags</a>
+    
+    <a href="https://bzhou830.github.io/tags/C&#43;&#43;/">C&#43;&#43;</a>
+    
+    <a href="https://bzhou830.github.io/tags/C/C&#43;&#43;/">C/C&#43;&#43;</a>
+    
+    <a href="https://bzhou830.github.io/tags/DICOM/">DICOM</a>
+    
+    <a href="https://bzhou830.github.io/tags/Excel/">Excel</a>
+    
+    <a href="https://bzhou830.github.io/tags/Flask/">Flask</a>
+    
+    <a href="https://bzhou830.github.io/tags/GPU/">GPU</a>
+    
+    <a href="https://bzhou830.github.io/tags/Golang/">Golang</a>
+    
+    <a href="https://bzhou830.github.io/tags/OCR/">OCR</a>
+    
+    <a href="">OpenCV</a>
+    
+    <a href="https://bzhou830.github.io/tags/Python/">Python</a>
+    
+    <a href="https://bzhou830.github.io/tags/android/">android</a>
+    
+    <a href="https://bzhou830.github.io/tags/git/">git</a>
+    
+    <a href="https://bzhou830.github.io/tags/github/">github</a>
+    
+    <a href="https://bzhou830.github.io/tags/hexo/">hexo</a>
+    
+    <a href="https://bzhou830.github.io/tags/hugo/">hugo</a>
+    
+    <a href="https://bzhou830.github.io/tags/jni/">jni</a>
+    
+    <a href="https://bzhou830.github.io/tags/opencv/">opencv</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E4%B8%B2%E5%8F%A3/">串口</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%85%AC%E5%BC%8F/">公式</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">内存管理</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E6%96%87%E6%9C%AC%E6%A3%80%E6%B5%8B/">文本检测</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8/">驱动</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B/">驱动编程</a>
+    
+</div>
+    </section>
+
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2022 <a href="https://bzhou830.github.io/">菠萝蜜 By Binean</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        <br><a href="http://www.beian.miit.gov.cn/" target="_blank">鄂ICP备20004395号</a>. 
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function(){
+            $("pre code").parent().addClass("line-numbers")
+        }())
+    
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [ ['$','$'] ],
+                processEscapes: true
+            }
+        };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+    
+    
+    
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+
+</body>
+
+</html>

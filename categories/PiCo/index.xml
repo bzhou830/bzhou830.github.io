@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PiCo on 菠萝蜜</title>
+    <link>https://bzhou830.github.io/categories/PiCo/</link>
+    <description>Recent content in PiCo on 菠萝蜜</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 20 Jun 2022 19:16:34 +0800</lastBuildDate>
+    
+	<atom:link href="https://bzhou830.github.io/categories/PiCo/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>PiCo| 开发环境搭建</title>
+      <link>https://bzhou830.github.io/post/20220705Pico%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</link>
+      <pubDate>Mon, 20 Jun 2022 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/post/20220705Pico%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</guid>
+      <description>https://www.skyone.host/2021/02/23/win10-xia-pei-zhi-shu-mei-pai-pico-de-micropython-yu-c-huan-jing/ https://blog.csdn.net/m0_53777801/article/details/112982045</description>
+    </item>
+    
+  </channel>
+</rss>

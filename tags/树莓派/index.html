@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>树莓派 | Binean&#39;s Blog</title>
-    <meta property="og:title" content="树莓派 - Binean&#39;s Blog">
+    <title>树莓派 | 菠萝蜜</title>
+    <meta property="og:title" content="树莓派 - 菠萝蜜">
     <meta property="og:type" content="article">
         
         
@@ -20,7 +20,7 @@
     <link rel="stylesheet" href='/css/normalize.css'>
     
     <link rel="stylesheet" href='/css/style.css'>
-    <link rel="alternate" type="application/rss+xml+xml" href="https://bzhou830.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/index.xml" title="Binean's Blog" />
+    <link rel="alternate" type="application/rss+xml+xml" href="https://bzhou830.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/index.xml" title="菠萝蜜" />
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     
@@ -38,14 +38,20 @@
             <div class="site-name ">
                 
                     <a id="logo" href="https://bzhou830.github.io/">
-                        Binean&#39;s Blog
+                        菠萝蜜
                     </a>
                 
-                <p class="description">杏花疏影里，吹笛到天明</p>
+                <p class="description">选择去发光，而不是被照亮</p>
             </div>
             <div>
                 <nav id="nav-menu" class="clearfix">
                     <a class="" href="https://bzhou830.github.io/">首页</a>
+                    
+                    <a  href="https://bzhou830.github.io/GPU/" title="GPU">GPU</a>
+                    
+                    <a  href="https://bzhou830.github.io/USB/" title="USB">USB</a>
+                    
+                    <a  href="https://bzhou830.github.io/raspberrypi/" title="树莓派">树莓派</a>
                     
                     <a  href="https://bzhou830.github.io/archives/" title="归档">归档</a>
                     
@@ -76,7 +82,99 @@
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="https://bzhou830.github.io/posts/20190104PiCamera/">树莓派Camera的使用</a>
+                <a href="https://bzhou830.github.io/post/20200103%E5%8F%8C%E7%9B%AE%E6%B5%8B%E8%B7%9D02/">双目测距2</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2020年1月3日
+        </date>
+        
+        <div class="post-meta meta-category">
+            |
+            
+            <a href='https://bzhou830.github.io/categories/Misc'>Misc</a>
+            
+        </div>
+        
+        <div class="post-content">
+            简介： 首先进行双目摄像头定标，获取双目摄像头内部的参数后，进行测距；本文的双目视觉测距是基于BM算法。注意：双目定标的效果会影响测距的精准度，建议大家在做双目定标时，做好一些（尽量让误差小）。 前言 首先进行双目摄像头定标，获取双目摄像头内部的参数后，进行测距；本文的双目视觉测距是基……
+            <p class="readmore"><a href="https://bzhou830.github.io/post/20200103%E5%8F%8C%E7%9B%AE%E6%B5%8B%E8%B7%9D02/">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://bzhou830.github.io/post/20200104%E5%8F%8C%E7%9B%AE%E6%B5%8B%E8%B7%9D03/">双目测距3</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2020年1月3日
+        </date>
+        
+        <div class="post-meta meta-category">
+            |
+            
+            <a href='https://bzhou830.github.io/categories/Misc'>Misc</a>
+            
+        </div>
+        
+        <div class="post-content">
+            在双目立体匹配中，有基于SAD算法的BM、SGBM、GC立体匹配技术，但是在OpenCv3.0以后，GC算法就从legacy中去除掉了。为了查看三种算法的匹配效果及运算性能，我在Windows10中安装了OpenCv2.4.9，并以VsCode为IDE进行程序编写。 一、VsCod……
+            <p class="readmore"><a href="https://bzhou830.github.io/post/20200104%E5%8F%8C%E7%9B%AE%E6%B5%8B%E8%B7%9D03/">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://bzhou830.github.io/post/20200101%E5%8F%8C%E7%9B%AE%E6%B5%8B%E8%B7%9D01/">双目测距1</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2020年1月1日
+        </date>
+        
+        <div class="post-meta meta-category">
+            |
+            
+            <a href='https://bzhou830.github.io/categories/Misc'>Misc</a>
+            
+        </div>
+        
+        <div class="post-content">
+            准备双目摄像头： 准备标定板 标定的开始阶段最需要用到的标定板，可以直接从opencv官网上能下载到： http://docs.opencv.org/2.4/_downloads/pattern.png 具体如下： 然后，建议固定到盒子上，方便等下拍照。 采集图片 建议左右摄像头，同时拍照，分别保存起来，可以参考 opencv 双目摄像头拍照 保存大约20到30张图片，MATLAB2016的这个工具十分……
+            <p class="readmore"><a href="https://bzhou830.github.io/post/20200101%E5%8F%8C%E7%9B%AE%E6%B5%8B%E8%B7%9D01/">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://bzhou830.github.io/post/20190104%E6%A0%91%E8%8E%93%E6%B4%BE%E6%8E%A8%E6%B5%81/">树莓派推流</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2019年1月4日
+        </date>
+        
+        <div class="post-meta meta-category">
+            |
+            
+            <a href='https://bzhou830.github.io/categories/Misc'>Misc</a>
+            
+        </div>
+        
+        <div class="post-content">
+            1.检查USB摄像头 主要检查摄像头是否被树莓派检测到（同博主上一篇树莓派的博客） 如果没有你的摄像头的信息，那么有可能你的树莓派的电源无法供应足够的电力给你的摄像头。这时你可以给你的摄像头用独立的电源线，比如有源USB hub，并重新输入lsusb命令查看。如果摄像头还是不能被识别，……
+            <p class="readmore"><a href="https://bzhou830.github.io/post/20190104%E6%A0%91%E8%8E%93%E6%B4%BE%E6%8E%A8%E6%B5%81/">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://bzhou830.github.io/post/20190104PiCamera/">树莓派Camera的使用</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
@@ -92,14 +190,14 @@
         
         <div class="post-content">
             参考： Raspberry Pi：https://www.raspberrypi.org/ Index of Packages：https://pypi.python.org/pypi/picamera 最新版本是 picamera 1.13：http://picamera.readthedocs.io/en/release-1.13……
-            <p class="readmore"><a href="https://bzhou830.github.io/posts/20190104PiCamera/">阅读全文</a></p>
+            <p class="readmore"><a href="https://bzhou830.github.io/post/20190104PiCamera/">阅读全文</a></p>
         </div>
     </article>
     
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="https://bzhou830.github.io/posts/20190103%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9B%B8%E5%85%B3/">树莓派环境配置汇总</a>
+                <a href="https://bzhou830.github.io/post/20190103%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9B%B8%E5%85%B3/">树莓派环境配置汇总</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
@@ -115,7 +213,7 @@
         
         <div class="post-content">
             本文主要记录使用树莓派过程的一些问题和解决方案。系统是基于官方的Raspbian Stretch with desktop系统。 1.安装使用OpenCV 推荐使用16G或以上的卡，最好是class10以上，因为8G class6卡安装到35%就爆满了，推算安装完成要4.6G左右的空间。 OpenCV的安装可不……
-            <p class="readmore"><a href="https://bzhou830.github.io/posts/20190103%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9B%B8%E5%85%B3/">阅读全文</a></p>
+            <p class="readmore"><a href="https://bzhou830.github.io/post/20190103%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9B%B8%E5%85%B3/">阅读全文</a></p>
         </div>
     </article>
     
@@ -200,35 +298,39 @@
         <h3 class="widget-title">分类</h3>
 <ul class="widget-list">
     
-    <li><a href="https://bzhou830.github.io/categories/">Categories (2)</a></li>
+    <li><a href="https://bzhou830.github.io/categories/">Categories (3)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/C&#43;&#43;/">C&#43;&#43; (3)</a></li>
-    
-    <li><a href="https://bzhou830.github.io/categories/C/C&#43;&#43;/">C/C&#43;&#43; (10)</a></li>
+    <li><a href="https://bzhou830.github.io/categories/C/C&#43;&#43;/">C/C&#43;&#43; (12)</a></li>
     
     <li><a href="https://bzhou830.github.io/categories/Flask/">Flask (11)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/GPU/">GPU (16)</a></li>
+    <li><a href="https://bzhou830.github.io/categories/GPU/">GPU (18)</a></li>
     
     <li><a href="https://bzhou830.github.io/categories/Golang/">Golang (10)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/Misc/">Misc (9)</a></li>
+    <li><a href="https://bzhou830.github.io/categories/MCU/">MCU (1)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Misc/">Misc (13)</a></li>
     
     <li><a href="https://bzhou830.github.io/categories/OpenCV/">OpenCV (1)</a></li>
     
+    <li><a href="https://bzhou830.github.io/categories/PiCo/">PiCo (1)</a></li>
+    
     <li><a href="https://bzhou830.github.io/categories/Python/">Python (12)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/Windows%E9%A9%B1%E5%8A%A8/">Windows驱动 (4)</a></li>
+    <li><a href="https://bzhou830.github.io/categories/USB/">USB (5)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/WindowsKernel/">WindowsKernel (9)</a></li>
     
     <li><a href="https://bzhou830.github.io/categories/%E4%B8%B2%E5%8F%A3/">串口 (5)</a></li>
     
     <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理 (14)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学 (5)</a></li>
+    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学 (6)</a></li>
     
     <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E8%AE%BA/">图论 (12)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/%E6%88%90%E9%95%BF/">成长 (4)</a></li>
+    <li><a href="https://bzhou830.github.io/categories/%E6%88%90%E9%95%BF/">成长 (5)</a></li>
     
     <li><a href="https://bzhou830.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式 (1)</a></li>
     
@@ -240,43 +342,43 @@
 <ul class="widget-list">
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20210710imgui%E7%9A%84%E4%BD%BF%E7%94%A8/" title="imgui的使用">imgui的使用</a>
+        <a href="https://bzhou830.github.io/post/20220705Pico%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="PiCo| 开发环境搭建">PiCo| 开发环境搭建</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20210618Python_GrabScreen/" title="Python获取屏幕截图">Python获取屏幕截图</a>
+        <a href="https://bzhou830.github.io/post/20220420GD32USBEx/" title="USB探索| Flash 烧录器">USB探索| Flash 烧录器</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20210503DrawIo%E6%90%AD%E5%BB%BA/" title="Draw.io部署教程">Draw.io部署教程</a>
+        <a href="https://bzhou830.github.io/post/20220220GD32USB04/" title="USB探索|3.从USB键盘改造成USB鼠标">USB探索|3.从USB键盘改造成USB鼠标</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20210215GPUShader/" title="Shader在GPU中是如何执行的？">Shader在GPU中是如何执行的？</a>
+        <a href="https://bzhou830.github.io/post/20220213GD32USB03/" title="USB探索|2.USB键盘的实现">USB探索|2.USB键盘的实现</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20210112NES%E6%A8%A1%E6%8B%9F%E5%99%A8/" title="NES模拟器">NES模拟器</a>
+        <a href="https://bzhou830.github.io/post/20220212GD32USB02/" title="USB探索|1.USB协议基础">USB探索|1.USB协议基础</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20201226%E5%9C%A8%E6%AD%A6%E6%B1%89%E7%9A%842020/" title="2020，我在武汉的这一年的故事">2020，我在武汉的这一年的故事</a>
+        <a href="https://bzhou830.github.io/post/20220127GD32USB01/" title="USB探索|0.偶遇GD32L233">USB探索|0.偶遇GD32L233</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20200608opencv_squares/" title="谈谈OpenCV中的四边形">谈谈OpenCV中的四边形</a>
+        <a href="https://bzhou830.github.io/post/20211225%E4%BA%8C%E9%9B%B6%E4%BA%8C%E4%B8%80%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2021年终总结">2021年终总结</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20200515python_opencv_camera/" title="PyQt5&#43;OpenCV多线程显示摄像头数据">PyQt5&#43;OpenCV多线程显示摄像头数据</a>
+        <a href="https://bzhou830.github.io/post/20211207Windbg%E6%89%A9%E5%B1%95%E5%85%A5%E6%B4%BB/" title="Windbg扩展|01入活">Windbg扩展|01入活</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20200302RayTracingInOneWeekend/" title="Go语言实现RayTracing">Go语言实现RayTracing</a>
+        <a href="https://bzhou830.github.io/post/20211121%E8%BF%9C%E7%A8%8B%E9%87%8D%E5%90%AF%E5%B0%8F%E5%B7%A5%E5%85%B7/" title="远程重启小工具">远程重启小工具</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20200222Games101_04/" title="Games101笔记|Z-Buffer(深度缓冲)">Games101笔记|Z-Buffer(深度缓冲)</a>
+        <a href="https://bzhou830.github.io/post/20211024GPU-Tile-Based-Immediate/" title="GPU topic：Tile-Based Rendering vs. Immediate Mode Rendering">GPU topic：Tile-Based Rendering vs. Immediate Mode Rendering</a>
     </li>
     
 </ul>
@@ -375,7 +477,7 @@
     </div>
     <footer id="footer">
     <div class="container">
-        &copy; 2021 <a href="https://bzhou830.github.io/">Binean&#39;s Blog By Binean</a>.
+        &copy; 2022 <a href="https://bzhou830.github.io/">菠萝蜜 By Binean</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
         <br><a href="http://www.beian.miit.gov.cn/" target="_blank">鄂ICP备20004395号</a>. 

@@ -1,0 +1,637 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>渲染管线之旅|09 像素处理之联合 | 菠萝蜜</title>
+    <meta property="og:title" content="渲染管线之旅|09 像素处理之联合 - 菠萝蜜">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2019-08-05T09:16:34&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2019-08-05T09:16:34&#43;08:00'>
+        
+    <meta name="Keywords" content="C/C&#43;&#43;, GPU, Windows驱动开发, OpenCV, 图像处理">
+    <meta name="description" content="渲染管线之旅|09 像素处理之联合">
+        
+    <meta name="author" content="Binean">
+    <meta property="og:url" content="https://bzhou830.github.io/post/20190805%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8509/">
+    <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href='/css/normalize.css'>
+    
+    <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://bzhou830.github.io/">
+                        菠萝蜜
+                    </a>
+                
+                <p class="description">选择去发光，而不是被照亮</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://bzhou830.github.io/">首页</a>
+                    
+                    <a  href="https://bzhou830.github.io/GPU/" title="GPU">GPU</a>
+                    
+                    <a  href="https://bzhou830.github.io/USB/" title="USB">USB</a>
+                    
+                    <a  href="https://bzhou830.github.io/raspberrypi/" title="树莓派">树莓派</a>
+                    
+                    <a  href="https://bzhou830.github.io/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://bzhou830.github.io/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    <style type="text/css">
+    .post-toc {
+        position: fixed;
+        width: 200px;
+        margin-left: -210px;
+        padding: 5px 10px;
+        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+        font-size: 12px;
+        border: 1px solid rgba(0, 0, 0, .07);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.98);
+        background-clip: padding-box;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        word-wrap: break-word;
+        white-space: nowrap;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 999;
+        cursor: pointer;
+        max-height: 70%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .post-toc .post-toc-title {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .post-toc .post-toc-content {
+        font-size: 15px;
+    }
+
+    .post-toc .post-toc-content>nav>ul {
+        margin: 10px 0;
+    }
+
+    .post-toc .post-toc-content ul {
+        padding-left: 20px;
+        list-style: square;
+        margin: 0.5em;
+        line-height: 1.8em;
+    }
+
+    .post-toc .post-toc-content ul ul {
+        padding-left: 15px;
+        display: none;
+    }
+
+    @media print,
+    screen and (max-width:1057px) {
+        .post-toc {
+            display: none;
+        }
+    }
+</style>
+<div class="post-toc" style="position: absolute; top: 188px;">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+        <nav id="TableOfContents"></nav>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postToc = $(".post-toc");
+        if (postToc.length) {
+            var leftPos = $("#main").offset().left;
+            if(leftPos<220){
+                postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})
+            }
+
+            var t = postToc.offset().top - 20,
+                a = {
+                    start: {
+                        position: "absolute",
+                        top: t
+                    },
+                    process: {
+                        position: "fixed",
+                        top: 20
+                    },
+                };
+            $(window).scroll(function () {
+                var e = $(window).scrollTop();
+                e < t ? postToc.css(a.start) : postToc.css(a.process)
+            })
+        }
+    })
+</script>
+    <article class="post">
+        <header>
+            <h1 class="post-title">渲染管线之旅|09 像素处理之联合</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2019年8月5日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/GPU'>GPU</a></span>
+            
+        </div>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <p>这篇文章介绍了像素处理的后半部分，即“连接阶段”。 上一阶段的工作是将少量输入流转换成着色器单元的许多独立任务。 现在，我们需要将大量独立的计算折叠到一个（正确排序的）内存操作流中。 就像我在光栅化和Z早期的文章中已经做过的那样，我将首先简要介绍需要在一般级别上完成的工作，然后再介绍如何将其映射到硬件。
+再次合并像素：混合和延迟Z
+在流水线的底部（在D3D所称的“输出合并”阶段），我们有后期的Z/模板处理和混合。这两个操作在计算上都相对简单，它们都分别更新渲染目标/深度缓冲区。”这里的“更新”操作意味着它们属于读-修改-写类型。因为所有这一切都发生在每一个通过管道走这么远的四边形上，这也是带宽密集型的。最后，它是顺序敏感的（混合和Z处理都需要按API顺序进行），所以我们需要确保首先按顺序对处理过的四边形进行排序。
+我已经解释了Z-处理，而混合就是其中一种，它的工作原理和你所期望的差不多；它是一个固定的功能块，可以对每个渲染目标先执行乘法、乘法加法和减法运算。这一块故意保持简单；它是独立于着色器单元的，因此它需要自己的ALU，而且我们更希望它尽可能小：我们希望在着色器单元中的ALU上花费我们的芯片面积（和电源预算），这样它们可以使在GPU上运行的每一个代码受益，而不是只在像素管道末端使用的固定功能单元。而且，我们需要它有一个短的、可预测的延迟：管道的这一部分需要处理数据才能正确。这限制了我们的选择，就延迟交易吞吐量而言；我们仍然可以并行处理不重叠的四边形，但是如果我们画很多小三角形，我们会有多个四边形出现在每个屏幕位置，我们最好能尽快写出它们，否则我们所有的大规模并行像素处理都是徒劳的。</p>
+<p>Meet the ROPs</p>
+<p>ROPs are the hardware units that handle this part of the pipeline (as you can tell by the plural, there’s more than one). The acronym, depending on who you asks, stands for “Render OutPut unit”, “Raster Operations Pipeline”, or “Raster Operations Processor”. The actual name is fairly archaic – it derives from the days of pure 2D hardware acceleration, with hardware whose main purpose was to do fast Bit blits. The classic 2D ROP design has three inputs – the current (destination) pixel value in the frame buffer, the source data, and a mask input – then computes some function of the 3 values and writes the results back to the frame buffer. Note this is before true color displays: the image data was usually in bit plane format and the function was some binary logic function. Then at some point bit planes died out (in favor of “chunky” representations that keep the bits for a pixel together), true color became the norm, the on-off mask was replaced with an alpha channel and the bitwise operations with blends, but the name stuck. So even now in 2011, when about the last remnant of that original architecture is the “logic op” in OpenGL, we still call them ROPs.
+Meet the ROPs</p>
+<p>So what do we need to do, in hardware, for blend/late Z? A simple plan:</p>
+<pre><code>Read original render target/depth buffer contents from memory – memory access, long latency. Might also involve depth buffer and render target decompression! (I’ll explain render target compression later)
+Sort incoming shaded quads into the right (API) order. This takes some buffering so we don’t immediately stall when quads don’t finish in the right order (think loops/branches, discard, and variable texture fetch latency). Note we only need to sort based on primitive ID here – two quads from the same primitive can never overlap, and if they don’t overlap they don’t need to be sorted!
+Perform the actual blend/late Z/stencil operation. This is math – maybe a few dozen cycles worth, even with deeply pipelined units.
+Write the results back to memory again, compressing etc. along the way – long latency again, though this time we’re not waiting for results so it’s less of a problem at this end.
+</code></pre>
+<p>So, build the late-Z/blending unit, add some compression logic, wire it up to memory on one side and do some buffering of shaded quads on the other side and we’re done, right?</p>
+<p>Well, in theory anyway.</p>
+<p>Except we need to cover the long latencies somehow. And all this happens for every single pixel (well, quad, actually). So we need to worry about memory bandwidth too… memory bandwidth? Wasn’t there something about memory bandwidth? Watch closely now as I pull a bunny out of a hat after I put it there way back in part 2 (uh oh, that was more than a week ago – hope that critter is still OK in there…).
+Memory bandwidth redux: DRAM pages</p>
+<p>In part 2, I described the 2D layout of DRAM, and how it’s faster to stay within a single row because changing the active row takes time – so for ideal bandwidth you want to stay in the same row between accesses. Well, the thing is, single DRAM rows are kinda large. Individual DRAM chips go up into the Gigabit range in size these days, and while they’re not necessarily square (in fact a 2:1 aspect ratio seems to be preferred), you can still do a rough calculation of how many rows and columns there would be; for 512 Megabit (=64MB), we’d expect something like 16384×32768, i.e. a single row is about 32k bits or 4k bytes (or maybe 2k, or 8k, but somewhere in that ballpark – you get the idea). That’s a rather inconvenient size to be making memory transactions in.</p>
+<p>Hence, a compromise: the page. A DRAM page is some more conveniently sized slice of a row (by now, usually 256 or 512 bits) that’s commonly transferred in a single burst. Let’s take 512 bits (64 bytes) for now. At 32 bits per pixel – the standard for depth buffers and still fairly common for render targets although rendering workloads are definitely shifting towards 64 bit/pixel formats – that’s enough memory to fit data for 16 pixels in. Hey, that’s funny – we’re usually shading pixels in groups of 16 to 64! (NV is a bit closer to the smaller end, AMD favors the larger counts). In fact, the 8×8 tile size I’ve been quoting in the rasterizer / early Z parts comes from AMD; I wouldn’t be surprised if NV did coarse traversal (and hierarchical Z, which they dub “Z-cull”) on 4×4 tiles, though a quick web search turned up nothing to either confirm this or rule it out. Either way, the plot thickens. Could it be that we’re trying to traverse pixels in an order that gives good DRAM page coherency? You bet we are. Note that this has implications for internal render target layout too: we want to make sure pixels are stored such that a single DRAM page actually has a useful shape; for shading purposes, a 4×4 or 8×2 pixel DRAM page is a lot more useful than a 16×1 pixel one (remember – quads). Which is why render targets usually don’t have a fully linear layout in memory.</p>
+<p>ROPs是处理管道这一部分的硬件单元（从复数形式可以看出，有不止一个）。根据您的要求，缩写词代表“渲染输出单元”、“光栅操作管道”或“光栅操作处理器”。它的实际名称是相当古老的-它源于纯2D硬件加速的时代，硬件的主要目的是做快速位blit。经典的2D ROP设计有三个输入——帧缓冲区中的当前（目标）像素值、源数据和掩码输入——然后计算这三个值的函数并将结果写回帧缓冲区。注意这是在真彩色显示之前：图像数据通常是位平面格式，函数是一些二进制逻辑函数。然后在某个点位平面消失了（支持将像素的位保持在一起的“大块”表示法），真彩色成为常态，开-关遮罩被alpha通道取代，逐位操作被混合替换，但名称仍然存在。所以即使到了2011年，当原始架构的最后一部分是OpenGL中的“logic op”时，我们仍然称之为ROPs。</p>
+<p>那么，对于blend/late Z，我们需要在硬件方面做些什么呢？一个简单的计划：
+从内存读取原始渲染目标/深度缓冲区内容–内存访问，长延迟。可能还涉及深度缓冲和渲染目标解压缩(稍后我将解释渲染目标压缩）
+将传入的着色四边形按正确的（API）顺序排序。这需要一些缓冲，所以当四边形没有以正确的顺序完成时（考虑循环/分支、丢弃和可变纹理获取延迟），我们不会立即暂停。注意，我们只需要在这里根据原语ID进行排序–来自同一原语的两个四边形永远不能重叠，如果它们不重叠，就不需要排序！
+执行实际的混合/后期Z/模具操作。这是一个数学问题——可能值几十个周期，即使是使用深度流水线的单元。
+再次将结果写回内存，压缩等等。一路上，再次出现长延迟，尽管这次我们不等待结果，所以这方面的问题较少。
+所以，构建后期Z/混合单元，添加一些压缩逻辑，在一边连接到内存，在另一边做一些着色四边形的缓冲，我们就完成了，对吧？
+好吧，理论上来说。
+但我们需要覆盖长时间的延迟。所有这些都发生在每一个像素上（实际上是四像素）。所以我们也需要担心内存带宽…内存带宽？内存带宽不是有问题吗？现在仔细观察，当我把兔子从帽子里拉出来后，我把它放在第二部分（哦，那是一个多星期前-希望小动物在那里仍然是好的…）。
+内存带宽redux:DRAM页
+在第2部分中，我描述了DRAM的2D布局，以及如何更快地保持在一行中，因为更改活动行需要时间，因此对于理想的带宽，您希望在访问之间保持在同一行中。好吧，问题是，单DRAM行有点大。如今，单个DRAM芯片的尺寸已经达到了千兆位，虽然它们不一定是正方形（事实上，2:1的纵横比似乎是首选），但您仍然可以粗略地计算出会有多少行和多少列；对于512兆位（=64MB），我们期望类似16384的数据×32768，也就是说，一行大约是32k位或4k字节（或者可能是2k或8k，但在这个大概范围内的某个地方——你就知道了）。这对于进行内存事务来说是一个相当不方便的大小。
+因此，有一个折衷方案：页面。DRAM页是一行中大小更为方便的部分（到目前为止，通常是256或512位），通常在单个突发中传输。现在让我们取512位（64字节）。每像素32位是深度缓冲区的标准，对于渲染目标来说仍然相当常见，尽管渲染工作负载肯定会转向64位/像素格式，但这足够存储16个像素的数据。嘿，这很有趣-我们通常以16到64个像素为一组对像素进行着色处理(NV更接近于较小的一端，AMD更倾向于较大的计数）。事实上，8×8瓷砖大小我已经在光栅/早期的Z部分报价来自AMD；如果NV对4进行粗略遍历（和层次Z，他们称之为“Z-cull”），我也不会感到惊讶×4瓷砖，虽然快速的网络搜索没有找到任何结果，要么证实这一点，要么排除它。不管怎样，情节越来越复杂。是不是我们正试图以一种顺序遍历像素，以提供良好的DRAM页面一致性？我们当然是。请注意，这对内部呈现目标布局也有影响：我们希望确保像素的存储使得单个DRAM页实际上具有有用的形状；出于着色目的，4×4或8×2像素DRAM页面比16像素DRAM页面有用得多×1像素1（记住–四边形）。这就是为什么渲染目标在内存中通常没有完全线性的布局。</p>
+<p>That gives us yet another reason to shade pixels in groups, and also yet another reason to do a two-level traversal. But can we milk this some more? You bet we can: we still have the memory latency to cover. Usual disclaimer: This is one of the places where I don’t have detailed information on what GPUs actually do, so what I’m describing here is a guess, not a fact. Anyway, as soon as we’ve rasterized a tile, we know whether it generates any pixels or not. At that point, we can select a ROP to handle our quads for that tile, and queue a command to fetch the associated frame buffer data into a buffer. By the point we get shaded quads back from the shader units, that data should be there, and we can start blending without delay (of course, if blending is off or identity, we can skip this load altogether). Similarly for Z data – if we run early Z before the pixel shader, we might need to allocate a ROP and fetch depth/stencil data earlier, maybe as soon as a tile has passes the coarse Z test. If we run late Z, we can just prefetch the depth buffer data at the same time we grab the framebuffer pixels (unless Z is off completely, that is).</p>
+<p>All of this is early enough to avoid latency stalls for all but the fastest pixel shaders (which are usually memory bandwidth-bound anyway). There’s also the issue of pixel shaders that output to multiple render targets, but that depends on how exactly that feature is implemented. You could run the shader multiple times (not efficient but easiest if you have fixed-size output buffers), or you could run all the render targets through the same ROP (but up to 8 rendertargets with up to 128 bits/pixels – that’s a lot of buffer space we’re talking), or you could allocate one ROP per output render target.</p>
+<p>An of course, if we have these buffers in the ROPs anyway, we might as well treat them as a small cache (i.e. keep them around for a while). This would help if you’re drawing lots of small triangles – as long as they’re spatially localized, anyway. Again, I’m not sure if GPUs actually do this, but it seems like a reasonable thing to do (you’d probably want to flush these buffers something like once per batch or so though, to avoid the synchronization/coherency issues that full write-back caches bring).</p>
+<p>Okay, that explains the memory side of things, and the computational part we’ve already covered. Next up: Compression!
+这给了我们另一个理由对像素进行分组着色，也给了我们另一个理由进行两级遍历。但我们能再挤点牛奶吗？你敢打赌我们可以：我们仍然有记忆延迟要覆盖。通常的免责声明：这是一个地方，我没有什么GPU实际做的详细信息，所以我在这里描述的是猜测，而不是事实。不管怎样，一旦我们光栅化了一块瓷砖，我们就知道它是否产生了像素。在这一点上，我们可以选择一个ROP来处理该图块的四边形，并将一个命令排队以将相关的帧缓冲区数据提取到缓冲区中。当我们从着色器单元得到着色四边形时，数据应该在那里，并且我们可以毫不延迟地开始混合（当然，如果“混合”处于禁用状态或“标识”，我们可以完全跳过此加载）。类似地，对于Z数据-如果我们在像素着色器之前运行早期Z，我们可能需要分配ROP并更早地获取深度/模具数据，可能是在平铺通过粗略的Z测试之后。如果我们运行延迟Z，我们可以在获取帧缓冲区像素的同时预取深度缓冲区数据（除非Z完全关闭）。
+所有这些都足够早，可以避免除了最快的像素着色器（通常是内存带宽限制）之外的所有延迟暂停。还有一个问题是像素着色器输出到多个渲染目标，但这取决于该功能的具体实现方式。可以多次运行着色器（效率不高，但如果输出缓冲区大小固定，则最简单），也可以通过同一ROP运行所有渲染目标（但最多可运行8个渲染目标，最高可达128位/像素–这是我们讨论的大量缓冲区空间），或者可以为每个输出渲染目标分配一个ROP。
+当然，如果我们在ROPs中有这些缓冲区，我们也可以把它们当作一个小缓存（即，让它们保持一段时间）。如果你画了很多小三角形，这会很有帮助，只要它们在空间上是局部的。同样，我不确定gpu是否真的这样做了，但这似乎是一个合理的做法（您可能希望每批刷新这些缓冲区一次左右，以避免完全写回缓存带来的同步/一致性问题）。
+好吧，这就解释了事情的记忆方面，以及我们已经讨论过的计算部分。下一步：压缩！</p>
+<p>Depth buffer and color buffer compression</p>
+<p>I already explained the basic workings of this in part 7 while talking about Z; in fact, I don’t have much to add about depth buffer compression here. But all the bandwidth issues I mentioned there exist for color values too; it’s not so bad for regular rendering (unless the Pixel Shaders output pixels fast enough to hit memory bandwidth limits), but it is a serious issue for MSAA, where we suddenly store somewhere between 2 and 8 samples per pixel. Like Z, we want some lossless compression scheme to save bandwidth in common cases. Unlike Z, plane equations per tile are not a good fit to textured pixel data.</p>
+<p>However, that’s no problem, because actually, MSAA pixel data is even easier to optimize for: Remember that pixel shaders only run once per pixel, not per sample – unless you’re using sample-frequency shading anyway, but that’s a D3D11 feature and not commonly used (yet?). Hence, for all pixels that are fully covered by a single primitive, the 2-8 samples stored will usually be the same. And that’s the idea behind the common color buffer compression schemes: Write a flag bit (either per pixel, or per quad, or on an even larger granularity) that denotes whether for all the pixels in a compression block, all the per-sample colors are in fact the same. And if that’s the case, we only need to store the color once per pixel after all. This is fairly simple to detect during write-back, and again (much like depth compression), it requires some tag bits that we can store in a small on-chip SRAM. If there’s an edge crossing the pixels, we need the full bandwidth, but if the triangles aren’t too small (and they’re basically never all small), we can save a good deal of bandwidth on at least part of the frame. And again, we can use the same machinery to accelerate clears.</p>
+<p>On the subject of clears and compression, there’s another thing to mention: Some GPUs have “hierarchical Z”-like mechanisms that store, for a large block of pixels (a rasterizer tile, maybe even larger) that the block was recently cleared. Then you only need to store one color value for the whole tile (or larger block) in memory. This gives you very fast color clears for some buffers (again, you need some tag bits for this!). However, as soon as any pixel with non-clear color is written to the tile (or larger block), the “this was just cleared” flag needs to be… well, cleared. But we do save a lot of memory bandwidth on the clear itself and the first time a tile is read from memory.</p>
+<p>And that’s it for our first rendering data path: just Vertex and Pixel Shaders (the most common path). In the next part, I’ll talk about Geometry Shaders and how that pipeline looks. But before I conclude this post, I have a small bonus topic that fits into this section.</p>
+<p>深度缓冲和颜色缓冲压缩
+我已经在第7部分中解释了这个的基本工作原理，同时讨论了Z；实际上，关于深度缓冲区压缩，我没有太多补充。但是我提到的所有带宽问题也存在着颜色值；这对于常规渲染来说并不是那么糟糕（除非像素着色器输出像素的速度足够快以达到内存带宽限制），但是对于MSAA来说却是一个严重的问题，在MSAA中，我们突然将每个像素存储2到8个样本。像Z一样，我们需要一些无损压缩方案来在常见情况下节省带宽。与Z不同，每个平铺的平面方程不适合纹理像素数据。
+然而，这不是问题，因为实际上，MSAA像素数据更容易优化：记住，像素着色器仅在每个像素上运行一次，而不是每个采样-除非您使用采样频率着色，但这是一个D3D11功能，不常用（尚未？）。因此，对于被单个原语完全覆盖的所有像素，存储的2-8个样本通常是相同的。这就是常见的颜色缓冲区压缩方案背后的思想：写一个标志位（每像素，或每四元，或更大的粒度），它表示对于压缩块中的所有像素，每采样的所有颜色实际上是否相同。如果是这样的话，我们只需要每像素存储一次颜色。这在写回时很容易检测，同样（很像深度压缩），它需要一些标签位，我们可以将它们存储在一个小型片上SRAM中。如果有一个边缘穿过像素，我们需要全部的带宽，但是如果三角形不是太小（而且它们基本上从不都是小的），我们至少可以在部分帧上节省大量的带宽。同样，我们可以用同样的机器来加速清理。
+关于清除和压缩的主题，还有一件事要提：一些gpu有类似于“分层Z”的机制，用于存储最近清除的一大块像素（光栅化块，可能更大）。然后只需要在内存中为整个tile（或更大的块）存储一个颜色值。这将为一些缓冲区提供非常快速的颜色清除（同样，您需要一些标记位）。但是，一旦任何非清晰颜色的像素被写入平铺（或更大的块）中，“this was just cleared”标志就需要被清除。但我们确实在清除本身和第一次从内存读取磁贴时节省了大量内存带宽。
+这就是我们的第一个渲染数据路径：只是顶点和像素着色器（最常见的路径）。在下一部分中，我将讨论几何体着色器以及该管道的外观。但在我结束这篇文章之前，我有一个适合这一部分的小奖励主题。</p>
+<p>Aside: Why no fully programmable blend?</p>
+<p>Everyone who writes rendering code wonders about this at some point – the regular blend pipeline a serious pain to work with sometimes. So why can’t we get fully programmable blend? We have fully programmable shading, after all! Well, we now have the necessary framework to look into this properly. There’s two main proposals for this that I’ve seen – let’s look at the both in turn:</p>
+<pre><code>Blend in Pixel Shader – i.e. Pixel Shader reads framebuffer, computes blend equation, writes new output value.
+Programmable Blend Unit – “Blend Shaders”, with subset of full shader instruction set if necessary. Happen in separate stage after PS.
+</code></pre>
+<p>旁白：为什么没有完全可编程的混合？
+每一个编写渲染代码的人都会在某个时候对这一点产生疑问——经常使用的混合管道有时会带来很大的麻烦。那么为什么我们不能得到完全可编程的混合呢？毕竟，我们有完全可编程的阴影！好吧，我们现在有了必要的框架来研究这个问题。对于这一点，我看到了两个主要的建议——让我们依次来看这两个建议：
+混合在像素着色器-即像素着色器读取帧缓冲区，计算混合方程，写入新的输出值。
+可编程混合单元–“混合着色器”，必要时提供完整着色器指令集的子集。发生在PS后的单独阶段。</p>
+<ol>
+<li>Blend in Pixel Shader</li>
+</ol>
+<p>This seems like a no-brainer: after all, we have loads and texture samples in shaders already, right? So why not just allow a read to the current render target? Turns out that unconstrained reads are a really bad idea, because it means that every pixel being shaded could (potentially) influence every other pixel being shaded. So what if I reference a pixel in the quad over to the left? Well, a shader for that quad could be running this instant. Or I could be sampling half of my current quad and half of another quads that’s currently active – what do I do now? What exactly would be the correct results in that regard, never mind that we’d probably have to shade all quads sequentially to reliably get them? No, that’s a can of worms. Unconstrained reads from the frame buffer in Pixel Shaders are out. But what if we get a special render target read instruction that samples one of the active render targets at the current location? Now, that’s a lot better – now we only need to worry about writes to the location of the current quad, which is a way more tractable problem.</p>
+<p>However, it still introduces ordering constraints; we have to check all quads generated by the rasterizer vs. the quads currently being pixel-shaded. If a quad just generated by the rasterizer wants to write to a sample that’ll be written by one of the Pixel Shaders that are currently in flight, we need to wait until that PS is completed before we can dispatch the new quad. This doesn’t sound too bad, but how do we track this? We could just have a “this sample is currently being shaded” bit flag… so how many of these bits do we need? At 1920×1080 with 8x MSAA, about 2MB worth of them (that’s bytes not bits) – and that memory is global, shared and determines the rate at which we can issue new quads (since we need to mark a quad as busy before we can issue it). Worse, with the hierarchical Z etc. tag bits, they were just a hint; if we ran out of them, we could still render, albeit more slowly. But this memory is not optional. We can’t guarantee correctness unless we’re really tracking every sample! What if we just tracked the “busy” state per pixel (or even quad), and any write to a pixel would block all other such writes? That would work, but it would massively harm our MSAA performance: If we track per sample, we can shade adjacent, non-overlapping triangles in parallel, no problem. But if we track per pixel (or at lower granularity), we effectively serialize all the edge quads. And what happens to our fill rate for e.g. particle systems with lots of overdraw? With the pipeline I described, these render (more or less) as fast as the ROPs can merge the incoming pixels into the store buffers. But if we need to avoid conflicts, we really end up shading the individual overlapping particles in order. This isn’t good news for our shader units that are designed to trade latency for throughput, not at all.</p>
+<p>Okay, so this whole tracking thing is a problem. What if we just force shading to execute in order? That is, keep the whole thing pipelined and all shaders running in lockstep; now we don’t need tracking because pixels will finish in the same order we put them into the pipeline! But the problem here is that we need to make sure the shaders in a batch actually always take the exact same time, which has unfortunate consequences: You always have to wait the worst-case delay time for every texture sample, need to always execute both sides of every branch (someone might at some point need the then/else branches, and we need everything to take the same time!), always runs all loops through for the same number of iterations, can’t stop shading on discard… no, that doesn’t sound like a winner either.</p>
+<p>Okay, time to face the music: Pixel Shader blend in the architecture I’ve described comes with a bunch of seriously tricky problems. So what about the second approach?
+1.混合像素着色器
+这似乎是一个无需思考的问题：毕竟，我们在着色器中已经有了加载和纹理样本，对吗？那么为什么不允许读取当前渲染目标呢？结果表明，无约束读取是一个非常糟糕的主意，因为这意味着每个被着色的像素都可能（潜在地）影响其他被着色的像素。所以如果我把四元组中的一个像素引用到左边呢？好吧，这个四元组的着色器可能马上就要运行了。&mdash;？？？？？？？？？？&mdash;？在这方面，正确的结果到底是什么呢？更不用说我们可能必须按顺序对所有四边形进行着色，才能可靠地得到它们？不，那是一罐虫子。从像素着色器中的帧缓冲区进行的无约束读取将被输出。但是，如果我们得到一个特殊的渲染目标读取指令，对当前位置的一个活动渲染目标进行采样，会怎么样？现在，情况好多了–现在我们只需要担心写入当前四元组的位置，这是一个更容易处理的问题。
+但是，它仍然引入了排序约束；我们必须检查由光栅化器生成的所有四边形与当前像素着色的四边形。如果光栅化器刚刚生成的四边形要写入将由当前正在运行的某个像素着色器写入的样本，我们需要等到PS完成后才能分派新的四边形。这听起来不算太糟，但我们怎么追踪呢？我们可以有一个“这个样本当前正在着色”的位标志…那么我们需要多少位呢？1920年×1080和8xMSAA，大约2MB的内存（字节而不是位）–内存是全局的，共享的，并决定了我们可以发出新的四元组的速率（因为我们需要在发出之前将四元组标记为忙碌）。更糟的是，对于分级的Z等标记位，它们只是一个提示；如果我们用完了它们，我们仍然可以渲染，尽管要慢一些。但这种记忆不是可选的。我们不能保证正确性，除非我们真的跟踪每一个样本！如果我们只跟踪每个像素（甚至四像素）的“忙”状态，对一个像素的任何写入都会阻止所有其他这样的写入呢？这是可行的，但它会极大地损害我们的MSAA性能：如果我们跟踪每个样本，我们就可以并行地对相邻的、不重叠的三角形进行着色，没问题。但是如果我们跟踪每像素（或在较低的粒度），我们有效地序列化所有的边缘四边形。我们的填充率会发生什么变化，例如粒子系统有大量的透支？使用我描述的管道，这些渲染（或多或少）与ROPs将传入像素合并到存储缓冲区的速度一样快。但如果我们需要避免冲突，我们最终会按顺序对单个重叠粒子进行着色。对于我们的着色器单元来说，这并不是一个好消息，它们的设计是用延迟来换取吞吐量，一点也不。
+好吧，所以整个追踪工作是个问题。如果我们强制着色按顺序执行呢？也就是说，保持整个事情流水线化，所有着色器同步运行；现在，我们不需要跟踪，因为像素将以我们放入管道的相同顺序完成！但这里的问题是，我们需要确保批处理中的着色器实际上总是采用完全相同的时间，这会产生不幸的后果：对于每个纹理样本，总是要等待最坏情况下的延迟时间，总是需要执行每个分支的两侧（某些人可能在某个时候需要then/else分支，我们需要所有的东西都花在同一时间，总是在相同的迭代次数下运行所有循环，不能在放弃时停止着色…不，听起来也不像是赢家。
+好吧，是时候面对现实了：我所描述的体系结构中的像素着色器混合带来了一系列非常棘手的问题。那么第二种方法呢？</p>
+<ol start="2">
+<li>“Blend Shaders”</li>
+</ol>
+<p>I’ll say it right now: This can be made to work, but…</p>
+<p>Let’s just say it has its own problems. For once, we now need another full ALU + instruction decoder/sequencer etc. in the ROPs. This is not a small change – not in design effort, nor in area, nor in power. Second, as I mentioned near the start of this post, our regular “just go wide” tactics don’t work so well for blend, because this is a place where we might well get a bunch of quads hitting the same pixels in a row and need to process them in order, so we want low latency. That’s a very different design point than our regular unified shader units – so we can’t use them for this (it also means texture sampling/memory access in Blend Shaders is a big no, but I doubt that shocks anyone at this point). Third, pure serial execution is out at this point – too low throughput. So we need to pipeline it. But to pipeline it, we need to know how long the pipeline is! For a regular blend unit, it’s a fixed length, so it’s easy. A blend shader would probably be the same. In fact, due to the design constraints, you’re unlikely to get a blend shader – more like a blend register combiner, really, completely with a (presumably relatively low) upper limit on the number of instructions, as determined by the length of the pipeline.</p>
+<p>Point being, the serial execution here really constrains us to designs that are still relatively low-level; nowhere near the fully programmable shader units we’ve come to love. A nicer blend unit with some extra blend modes, you can definitely get; a more open register combiner-style design, possibly, though neither the API guys nor the hardware guys will like it much (the API because it’s a fixed function block, the hardware guys because it’s big and needs a big ALU+control logic where they’d rather not have it). Fully programmable, with branches, loops, etc. – not going to happen. At that point you might as well bite the bullet and do what it takes to get the “Blend in Pixel Shader” scenario to work properly.</p>
+<p>2.“混合着色器”
+我现在就说：这是可行的，但是…
+我们就说它有自己的问题。这一次，我们现在需要另一个完整的ALU+指令解码器/序列器等在ROPs。这不是一个很小的变化-不是在设计上的努力，也不是在面积上，也不是在权力上。第二，正如我在这篇文章的开头提到的，我们常规的“只需扩展”策略对blend不太适用，因为这是一个我们可能会让一堆四边形连续命中相同像素，并且需要按顺序处理它们的地方，所以我们需要低延迟。这是一个非常不同的设计点，比我们的常规统一着色器单位-所以我们不能使用他们为这个（这也意味着纹理采样/内存访问混合着色器是一个很大的不，但我怀疑这冲击任何人在这一点上）。第三，此时纯串行执行已经过时——吞吐量太低。所以我们需要用管道输送。但要把它输送出去，我们需要知道输送线有多长！对于一个普通的混合单元，它是一个固定的长度，所以很容易。混合着色器可能是相同的。事实上，由于设计限制，您不太可能获得混合着色器—更像是混合寄存器组合器，实际上，指令数的上限（可能相对较低）完全由管道长度决定。
+关键是，这里的串行执行确实限制了我们对仍然相对低级的设计的使用；离我们喜欢的完全可编程的着色单元还差得远。一个更好的混合单位与一些额外的混合模式，你一定可以得到；一个更开放的寄存器组合器风格的设计，可能，虽然无论是API的人还是硬件的人都不会喜欢它（API，因为它是一个固定的功能块，硬件的人，因为它是大的，需要一个大的ALU+控制逻辑，他们宁愿没有它）。完全可编程，具有分支、循环等–不会发生。在这一点上，您不妨咬紧牙关，尽一切努力让“混合像素着色器”场景正常工作。</p>
+<p>…and that’s it for this post! See you next time.
+…这篇文章到此为止！下次见。</p>
+
+        </div>
+
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="https://bzhou830.github.io/">Binean</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="https://bzhou830.github.io/post/20190805%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8509/">https://bzhou830.github.io/post/20190805%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8509/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
+    <center><image src= "https://bzhou830.github.io//about/wx.png" ></image></center>
+</div>
+<br/>
+
+
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/post/20190801%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8508/">渲染管线之旅|08 像素处理之&#34;fork&#34;</a></li>
+        
+        <li><a href="/post/20190730%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8507/">渲染管线之旅|07 深度处理、模板处理</a></li>
+        
+        <li><a href="/post/20190725%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8506/">渲染管线之旅|06 三角形的生成和建立</a></li>
+        
+        <li><a href="/post/20190720%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8505/">渲染管线之旅|05 图元处理、Clip/Cull, 投影和视图变换</a></li>
+        
+        <li><a href="/post/20190715%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8504/">渲染管线之旅|04 纹理和采样</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='https://bzhou830.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6'>图形学</a></li>
+                
+                <li><a href='https://bzhou830.github.io/tags/GPU'>GPU</a></li>
+                
+                <li><a href='https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8'>驱动</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "bzhou830/Blog"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    
+<section class="widget">
+    
+    <ul class="widget-list">
+        
+        <li>
+            <a href="https://bzhou830.github.io/" title="简介" target="_blank">
+                
+                
+                    <div>
+                        <div style="width: 200px; height: 200px; border-radius:100%; overflow:hidden;">
+                            <img src=https://bzhou830.github.io/about/touxiang.jpg >
+                        </div>
+                    </div>
+
+                    <div>
+                        <h2>Binean</h2>
+                    </div>
+                    
+                    <div>
+                        <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path><path fill="currentColor" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V18c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-1.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05.02.01.03.03.04.04 1.14.83 1.93 1.94 1.93 3.41V18c0 .35-.07.69-.18 1H22c.55 0 1-.45 1-1v-1.5c0-2.33-4.67-3.5-7-3.5z"></path></svg>
+                            ****
+                        </div>
+                    </div>
+
+                    <div>
+                        <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path><path fill="currentColor" d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm8.94 3c-.46-4.17-3.77-7.48-7.94-7.94V2c0-.55-.45-1-1-1s-1 .45-1 1v1.06C6.83 3.52 3.52 6.83 3.06 11H2c-.55 0-1 .45-1 1s.45 1 1 1h1.06c.46 4.17 3.77 7.48 7.94 7.94V22c0 .55.45 1 1 1s1-.45 1-1v-1.06c4.17-.46 7.48-3.77 7.94-7.94H22c.55 0 1-.45 1-1s-.45-1-1-1h-1.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"></path></svg>
+                        武汉
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div>      
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path><path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-.4 4.25l-7.07 4.42c-.32.2-.74.2-1.06 0L4.4 8.25c-.25-.16-.4-.43-.4-.72 0-.67.73-1.07 1.3-.72L12 11l6.7-4.19c.57-.35 1.3.05 1.3.72 0 .29-.15.56-.4.72z"></path></svg>
+                        <a href="mailto:bzhou830@qq.com">bzhou830@qq.com</a> 
+                        </div>
+                    </div>
+                
+            </a>
+        </li>
+        
+        <li>
+            <a href="https://bzhou830.github.io/about/" title="欢迎关注微信公众号" target="_blank">
+                
+                    <h3 class="widget-title">欢迎关注微信公众号</h3>
+                    <img src="https://bzhou830.github.io/about/qrcode.jpg" >
+                
+            </a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <form id="search" action='https://bzhou830.github.io/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://bzhou830.github.io/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://bzhou830.github.io/categories/">Categories (3)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/C/C&#43;&#43;/">C/C&#43;&#43; (12)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Flask/">Flask (11)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/GPU/">GPU (18)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Golang/">Golang (10)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/MCU/">MCU (1)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Misc/">Misc (13)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/OpenCV/">OpenCV (1)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/PiCo/">PiCo (1)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Python/">Python (12)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/USB/">USB (5)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/WindowsKernel/">WindowsKernel (9)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E4%B8%B2%E5%8F%A3/">串口 (5)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理 (14)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学 (6)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E8%AE%BA/">图论 (12)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E6%88%90%E9%95%BF/">成长 (5)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式 (1)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20220705Pico%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="PiCo| 开发环境搭建">PiCo| 开发环境搭建</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20220420GD32USBEx/" title="USB探索| Flash 烧录器">USB探索| Flash 烧录器</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20220220GD32USB04/" title="USB探索|3.从USB键盘改造成USB鼠标">USB探索|3.从USB键盘改造成USB鼠标</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20220213GD32USB03/" title="USB探索|2.USB键盘的实现">USB探索|2.USB键盘的实现</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20220212GD32USB02/" title="USB探索|1.USB协议基础">USB探索|1.USB协议基础</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20220127GD32USB01/" title="USB探索|0.偶遇GD32L233">USB探索|0.偶遇GD32L233</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20211225%E4%BA%8C%E9%9B%B6%E4%BA%8C%E4%B8%80%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2021年终总结">2021年终总结</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20211207Windbg%E6%89%A9%E5%B1%95%E5%85%A5%E6%B4%BB/" title="Windbg扩展|01入活">Windbg扩展|01入活</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20211121%E8%BF%9C%E7%A8%8B%E9%87%8D%E5%90%AF%E5%B0%8F%E5%B7%A5%E5%85%B7/" title="远程重启小工具">远程重启小工具</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20211024GPU-Tile-Based-Immediate/" title="GPU topic：Tile-Based Rendering vs. Immediate Mode Rendering">GPU topic：Tile-Based Rendering vs. Immediate Mode Rendering</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://bzhou830.github.io/" title="Binean’s">Binean’s</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://bzhou830.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://bzhou830.github.io/tags/">Tags</a>
+    
+    <a href="https://bzhou830.github.io/tags/C&#43;&#43;/">C&#43;&#43;</a>
+    
+    <a href="https://bzhou830.github.io/tags/C/C&#43;&#43;/">C/C&#43;&#43;</a>
+    
+    <a href="https://bzhou830.github.io/tags/DICOM/">DICOM</a>
+    
+    <a href="https://bzhou830.github.io/tags/Excel/">Excel</a>
+    
+    <a href="https://bzhou830.github.io/tags/Flask/">Flask</a>
+    
+    <a href="https://bzhou830.github.io/tags/GPU/">GPU</a>
+    
+    <a href="https://bzhou830.github.io/tags/Golang/">Golang</a>
+    
+    <a href="https://bzhou830.github.io/tags/OCR/">OCR</a>
+    
+    <a href="">OpenCV</a>
+    
+    <a href="https://bzhou830.github.io/tags/Python/">Python</a>
+    
+    <a href="https://bzhou830.github.io/tags/android/">android</a>
+    
+    <a href="https://bzhou830.github.io/tags/git/">git</a>
+    
+    <a href="https://bzhou830.github.io/tags/github/">github</a>
+    
+    <a href="https://bzhou830.github.io/tags/hexo/">hexo</a>
+    
+    <a href="https://bzhou830.github.io/tags/hugo/">hugo</a>
+    
+    <a href="https://bzhou830.github.io/tags/jni/">jni</a>
+    
+    <a href="https://bzhou830.github.io/tags/opencv/">opencv</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E4%B8%B2%E5%8F%A3/">串口</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%85%AC%E5%BC%8F/">公式</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">内存管理</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E6%96%87%E6%9C%AC%E6%A3%80%E6%B5%8B/">文本检测</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8/">驱动</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B/">驱动编程</a>
+    
+</div>
+    </section>
+
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2022 <a href="https://bzhou830.github.io/">菠萝蜜 By Binean</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        <br><a href="http://www.beian.miit.gov.cn/" target="_blank">鄂ICP备20004395号</a>. 
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function(){
+            $("pre code").parent().addClass("line-numbers")
+        }())
+    
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [ ['$','$'] ],
+                processEscapes: true
+            }
+        };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+    
+    
+    
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+
+</body>
+
+</html>

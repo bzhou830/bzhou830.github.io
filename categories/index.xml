@@ -1,49 +1,76 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on Binean&#39;s Blog</title>
+    <title>Categories on 菠萝蜜</title>
     <link>https://bzhou830.github.io/categories/</link>
-    <description>Recent content in Categories on Binean&#39;s Blog</description>
+    <description>Recent content in Categories on 菠萝蜜</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 10 Jul 2021 19:16:34 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 20 Jun 2022 19:16:34 +0800</lastBuildDate>
     
 	<atom:link href="https://bzhou830.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Python</title>
-      <link>https://bzhou830.github.io/categories/Python/</link>
-      <pubDate>Fri, 18 Jun 2021 09:16:34 +0800</pubDate>
+      <title>PiCo</title>
+      <link>https://bzhou830.github.io/categories/PiCo/</link>
+      <pubDate>Mon, 20 Jun 2022 19:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/categories/Python/</guid>
+      <guid>https://bzhou830.github.io/categories/PiCo/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>GPU</title>
-      <link>https://bzhou830.github.io/categories/GPU/</link>
-      <pubDate>Mon, 15 Feb 2021 19:16:34 +0800</pubDate>
+      <title>USB</title>
+      <link>https://bzhou830.github.io/categories/USB/</link>
+      <pubDate>Wed, 20 Apr 2022 19:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/categories/GPU/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>C&#43;&#43;</title>
-      <link>https://bzhou830.github.io/categories/C&#43;&#43;/</link>
-      <pubDate>Tue, 12 Jan 2021 19:16:34 +0800</pubDate>
-      
-      <guid>https://bzhou830.github.io/categories/C&#43;&#43;/</guid>
+      <guid>https://bzhou830.github.io/categories/USB/</guid>
       <description></description>
     </item>
     
     <item>
       <title>成长</title>
       <link>https://bzhou830.github.io/categories/%E6%88%90%E9%95%BF/</link>
-      <pubDate>Sat, 26 Dec 2020 19:16:34 +0800</pubDate>
+      <pubDate>Sat, 25 Dec 2021 19:16:34 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/categories/%E6%88%90%E9%95%BF/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>WindowsKernel</title>
+      <link>https://bzhou830.github.io/categories/WindowsKernel/</link>
+      <pubDate>Mon, 06 Dec 2021 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/categories/WindowsKernel/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MCU</title>
+      <link>https://bzhou830.github.io/categories/MCU/</link>
+      <pubDate>Sat, 20 Nov 2021 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/categories/MCU/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GPU</title>
+      <link>https://bzhou830.github.io/categories/GPU/</link>
+      <pubDate>Sat, 23 Oct 2021 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/categories/GPU/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>C/C&#43;&#43;</title>
+      <link>https://bzhou830.github.io/categories/C/C&#43;&#43;/</link>
+      <pubDate>Tue, 12 Jan 2021 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/categories/C/C&#43;&#43;/</guid>
       <description></description>
     </item>
     
@@ -66,29 +93,20 @@
     </item>
     
     <item>
-      <title>C/C&#43;&#43;</title>
-      <link>https://bzhou830.github.io/categories/C/C&#43;&#43;/</link>
-      <pubDate>Sun, 05 Jan 2020 19:16:34 +0800</pubDate>
-      
-      <guid>https://bzhou830.github.io/categories/C/C&#43;&#43;/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Misc</title>
       <link>https://bzhou830.github.io/categories/Misc/</link>
-      <pubDate>Sat, 29 Jun 2019 09:16:34 +0800</pubDate>
+      <pubDate>Fri, 03 Jan 2020 09:16:34 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/categories/Misc/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Windows驱动</title>
-      <link>https://bzhou830.github.io/categories/Windows%E9%A9%B1%E5%8A%A8/</link>
-      <pubDate>Sat, 06 Apr 2019 09:16:34 +0800</pubDate>
+      <title>Python</title>
+      <link>https://bzhou830.github.io/categories/Python/</link>
+      <pubDate>Mon, 18 Jun 2018 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/categories/Windows%E9%A9%B1%E5%8A%A8/</guid>
+      <guid>https://bzhou830.github.io/categories/Python/</guid>
       <description></description>
     </item>
     

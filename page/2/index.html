@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Binean&#39;s Blog | 杏花疏影里，吹笛到天明</title>
-    <meta property="og:title" content="Binean&#39;s Blog | 杏花疏影里，吹笛到天明">
+    <title>菠萝蜜 | 选择去发光，而不是被照亮</title>
+    <meta property="og:title" content="菠萝蜜 | 选择去发光，而不是被照亮">
     <meta property="og:type" content="website">
     <meta name="Keywords" content="C/C&#43;&#43;, GPU, Windows驱动开发, OpenCV, 图像处理">
     <meta name="description" content="专注于C/C&#43;&#43;, GPU, Windows驱动开发, OpenCV, 图像处理">
@@ -17,7 +17,7 @@
     <link rel="stylesheet" href='/css/normalize.css'>
     
     <link rel="stylesheet" href='/css/style.css'>
-    <link rel="alternate" type="application/rss+xml+xml" href="https://bzhou830.github.io/index.xml" title="Binean's Blog" />
+    <link rel="alternate" type="application/rss+xml+xml" href="https://bzhou830.github.io/index.xml" title="菠萝蜜" />
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     
@@ -36,15 +36,21 @@
                 
                     
                         <a id="logo" href="https://bzhou830.github.io/">
-                            Binean&#39;s Blog
+                            菠萝蜜
                         </a>
                     
                 
-                <p class="description">杏花疏影里，吹笛到天明</p>
+                <p class="description">选择去发光，而不是被照亮</p>
             </div>
             <div>
                 <nav id="nav-menu" class="clearfix">
                     <a class="current" href="https://bzhou830.github.io/">首页</a>
+                    
+                    <a  href="https://bzhou830.github.io/GPU/" title="GPU">GPU</a>
+                    
+                    <a  href="https://bzhou830.github.io/USB/" title="USB">USB</a>
+                    
+                    <a  href="https://bzhou830.github.io/raspberrypi/" title="树莓派">树莓派</a>
                     
                     <a  href="https://bzhou830.github.io/archives/" title="归档">归档</a>
                     
@@ -67,80 +73,103 @@
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="https://bzhou830.github.io/posts/20200216Games101_03/" title="Games101笔记|光栅化和反走样">Games101笔记|光栅化和反走样</a>
+                <a href="https://bzhou830.github.io/post/20210710imgui%E7%9A%84%E4%BD%BF%E7%94%A8/" title="imgui的使用">imgui的使用</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
-            2020年2月16日
+            2021年7月10日
         </date>
         
         <div class="post-meta">
             <span>|</span>
             
-            <span class="meta-category"><a href='https://bzhou830.github.io/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6'>图形学</a></span>
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/'></a></span>
             
         </div>
         
         <div class="post-content">
-            在“MVP变换矩阵推导”中首先进行了Model transformation, 也就是摆放好物体（对象）；然后就是View transformation摆放好相机（位置，拍摄方向，视场角等）；最后就是Projection transformation, 这里面包含有正交投影（Orthogtaphic projection）它是将长方体(cuboi……
+            首先可以看看imgui的目录结构： backends中的文件： 这里举例在一个简单的工程中使用imgui。 首先下图中框中的文件就是从上述的两个图中复制过来的。原本的工程中只有一个Transformation.cpp。 包含头文件 #include &quot;imgui/imgui.h&quot; #include &quot;imgui/imgui_impl_win32.h&quot; #include &quot;imgui/imgui_impl_dx11.h&quot; 在进入消息循环之前 // Setup Dear ImGui context IMGUI_CHECKVERSION(); ImGui::CreateContext(); ImGuiIO&amp; io = ImGui::GetIO(); io.ConfigFlags |= ImGuiConfigFlags_NavEnableSetMousePos;……
         </div>
-        <p class="readmore"><a href="https://bzhou830.github.io/posts/20200216Games101_03/">阅读全文</a></p>
+        <p class="readmore"><a href="https://bzhou830.github.io/post/20210710imgui%E7%9A%84%E4%BD%BF%E7%94%A8/">阅读全文</a></p>
     </article>
     
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="https://bzhou830.github.io/posts/20200215Games101_02/" title="Games101笔记|MVP变换矩阵推导">Games101笔记|MVP变换矩阵推导</a>
+                <a href="https://bzhou830.github.io/post/20210523GPU-%E5%BB%B6%E8%BF%9F-%E5%B8%A6%E5%AE%BD-%E5%90%9E%E5%90%90%E9%87%8F/" title="GPU topic：延迟 vs. 带宽 vs. 吞吐量">GPU topic：延迟 vs. 带宽 vs. 吞吐量</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
-            2020年2月15日
+            2021年5月23日
         </date>
         
         <div class="post-meta">
             <span>|</span>
             
-            <span class="meta-category"><a href='https://bzhou830.github.io/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6'>图形学</a></span>
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/GPU'>GPU</a></span>
             
         </div>
         
         <div class="post-content">
-            本文是games101课程的第3，4课的相关笔记，这篇内容对于CG非常的重要！！！特别是推导的过程，非常有必要手推一遍！。所谓的MVP变换就是：model-view-project变换。本文中使用的向量均表示的是列向量，在公式推导的过程中要注意第一点。 首先我们回想下我们在拍班级毕……
+            再谈延迟，带宽和吞吐量之前，先看看在之前分享的文章中我们说过这样的一个例子： GPU内存架构和命令的处理 上面的例子以同时期的i7-2600k和GeForce GTX480来进行对比。i7-2600k的存储带宽在表现好的时候可以达到19GB/s, GTX480的存储带宽则是将近180GB……
         </div>
-        <p class="readmore"><a href="https://bzhou830.github.io/posts/20200215Games101_02/">阅读全文</a></p>
+        <p class="readmore"><a href="https://bzhou830.github.io/post/20210523GPU-%E5%BB%B6%E8%BF%9F-%E5%B8%A6%E5%AE%BD-%E5%90%9E%E5%90%90%E9%87%8F/">阅读全文</a></p>
     </article>
     
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="https://bzhou830.github.io/posts/20200203Games101_01/" title="Games101笔记|概述和线性代数">Games101笔记|概述和线性代数</a>
+                <a href="https://bzhou830.github.io/post/20210503DrawIo%E6%90%AD%E5%BB%BA/" title="Draw.io部署教程">Draw.io部署教程</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
-            2020年2月3日
+            2021年2月15日
         </date>
         
         <div class="post-meta">
             <span>|</span>
             
-            <span class="meta-category"><a href='https://bzhou830.github.io/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6'>图形学</a></span>
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/'></a></span>
             
         </div>
         
         <div class="post-content">
-            本文是games101课程的第1，2课的相关笔记。这两课的内容比较基础，大学中有线性代数的学习经验就相对非常容易理解。 1. 计算机图形学概述 计算机图形学（Computer Graphics，CG）是研究计算机在硬件和软件的帮助下创建计算机图形的学科，是计算机科学的一个分支领域，主要关注……
+            Draw.io是GitHub上的一个开源的免费流程图绘制工具，功能非常的丰富，使用上和ProcessOn基本上是一致的，但是ProcessOn是收费的。 Draw.io也有在线网页版，可以直接访问（https://www.draw.io/）进行使用。也有桌面版，桌面版下载地址：ht……
         </div>
-        <p class="readmore"><a href="https://bzhou830.github.io/posts/20200203Games101_01/">阅读全文</a></p>
+        <p class="readmore"><a href="https://bzhou830.github.io/post/20210503DrawIo%E6%90%AD%E5%BB%BA/">阅读全文</a></p>
     </article>
     
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="https://bzhou830.github.io/posts/20200105CppSplit/" title="C&#43;&#43;中的字符串split">C&#43;&#43;中的字符串split</a>
+                <a href="https://bzhou830.github.io/post/20210215GPUShader/" title="Shader在GPU中是如何执行的？">Shader在GPU中是如何执行的？</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
-            2020年1月5日
+            2021年2月15日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/GPU'>GPU</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            首先，我想说明一下，虽然文章的标题是 How GPU Works，但是我无意再去重复GPU工作的各个stage，流水线这些概念。本文会深入到更底层一点：GPU是如何执行shader的。在本文中，我除了GPU执行shader的方式之外，还有稍微涉及一些多核心，SIMD，超线程这些过去大家看上去貌……
+        </div>
+        <p class="readmore"><a href="https://bzhou830.github.io/post/20210215GPUShader/">阅读全文</a></p>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://bzhou830.github.io/post/20210112NES%E6%A8%A1%E6%8B%9F%E5%99%A8/" title="NES模拟器">NES模拟器</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2021年1月12日
         </date>
         
         <div class="post-meta">
@@ -151,147 +180,124 @@
         </div>
         
         <div class="post-content">
-            使用过Java, Python或者go这些语言然后切换到C++的同学很可能遇到一个问题就是：为什么在C++的string类里面为什么没有提供一个split函数呢？ 猜测可能有下面几个原因： split之后的结果存放在哪里呢？vector？但是string类中引入vector势必会造成s……
+            前段时间把以前上传到优酷上的视频搬到了B站上，里面包含一个用STM32F407单片机上移植Nes模拟器玩超级玛丽的视频。视频大概是下面这个样子的。当时一只手玩，另一只手拿着HTC安卓手机拍的，那时候还是安卓手机刚刚兴起，好像小米也才刚发布第一款手机。所以拍摄的效果并不好，仅仅用作……
         </div>
-        <p class="readmore"><a href="https://bzhou830.github.io/posts/20200105CppSplit/">阅读全文</a></p>
+        <p class="readmore"><a href="https://bzhou830.github.io/post/20210112NES%E6%A8%A1%E6%8B%9F%E5%99%A8/">阅读全文</a></p>
     </article>
     
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="https://bzhou830.github.io/posts/20200102cpp11%E5%A4%9A%E7%BA%BF%E7%A8%8B/" title="从例子中学C&#43;&#43;11多线程">从例子中学C&#43;&#43;11多线程</a>
+                <a href="https://bzhou830.github.io/post/20201226%E5%9C%A8%E6%AD%A6%E6%B1%89%E7%9A%842020/" title="2020，我在武汉的这一年的故事">2020，我在武汉的这一年的故事</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
-            2020年1月2日
+            2020年12月26日
         </date>
         
         <div class="post-meta">
             <span>|</span>
             
-            <span class="meta-category"><a href='https://bzhou830.github.io/categories/C/C&#43;&#43;'>C/C&#43;&#43;</a></span>
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/%E6%88%90%E9%95%BF'>成长</a></span>
             
         </div>
         
         <div class="post-content">
-            1. 线程的创建 C++11中提供了thread类可以直接用来创建线程，创建步骤： 包含thread所在的头文件 #include &lt;thread&gt; 在需要的地方直接创建一个thread对象，构造函数中传入一个线程入口函数（或者是一个可调对象）。（普通函数，lambda表达式，重载了()的类都可以传入，普通类成员函数也可……
+            缘起 距离上一次写年度总结已经有4年了，毕业工作后整个人似乎就总是处于慌慌张张的生活状态当中，忙着工作，忙着买房，忙着结婚&hellip;回看几年前记录下的文字不免想到，要是这几年能抽时间记录下自己的生活状态，对自己的认识是否会更深几分？ 作为小市民阶级，2020年的确极具魔幻现实风……
         </div>
-        <p class="readmore"><a href="https://bzhou830.github.io/posts/20200102cpp11%E5%A4%9A%E7%BA%BF%E7%A8%8B/">阅读全文</a></p>
+        <p class="readmore"><a href="https://bzhou830.github.io/post/20201226%E5%9C%A8%E6%AD%A6%E6%B1%89%E7%9A%842020/">阅读全文</a></p>
     </article>
     
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="https://bzhou830.github.io/posts/20190830%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8514/" title="渲染管线之旅|14 索引页">渲染管线之旅|14 索引页</a>
+                <a href="https://bzhou830.github.io/post/20180608opencv_squares/" title="谈谈OpenCV中的四边形">谈谈OpenCV中的四边形</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
-            2019年8月30日
+            2020年6月8日
         </date>
         
         <div class="post-meta">
             <span>|</span>
             
-            <span class="meta-category"><a href='https://bzhou830.github.io/categories/GPU'>GPU</a></span>
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86'>图像处理</a></span>
             
         </div>
         
         <div class="post-content">
-            A trip through the Graphics Pipeline 2011 是发布在博客 http://fgiesen.wordpress.com 上的系列文章。主要涉及图形流水线在GPU中实现的方方面面。包括D3D/OpenGL app, UMD Driver, KMD Driver, GPU 硬件流水线设计等等。是非常好的学习图形学应用，GPU驱动等相关领域的资料。翻译的目的一方面是对学习的总结；另一方面是为了分享，因为国内在图形学， GPU相关的资……
+            首先抛出一个问题，给定一系列二维平面上的的点，这些点是可以组成一个封闭的二维图形。因为这些点是矩形区域拍摄图像后识别得到的图形的边界点，所以我们要抽象出来这个矩形，也就是我们要反映出这个矩形。问题是在拍照的时候摄像头可能不是正对着图形的，那么矩形就必然在图像上反映为一个四边形, 如……
         </div>
-        <p class="readmore"><a href="https://bzhou830.github.io/posts/20190830%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8514/">阅读全文</a></p>
+        <p class="readmore"><a href="https://bzhou830.github.io/post/20180608opencv_squares/">阅读全文</a></p>
     </article>
     
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="https://bzhou830.github.io/posts/20190825%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8513/" title="渲染管线之旅|13 计算着色器">渲染管线之旅|13 计算着色器</a>
+                <a href="https://bzhou830.github.io/post/20160515python_opencv_camera/" title="PyQt5&#43;OpenCV多线程显示摄像头数据">PyQt5&#43;OpenCV多线程显示摄像头数据</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
-            2019年8月25日
+            2020年5月15日
         </date>
         
         <div class="post-meta">
             <span>|</span>
             
-            <span class="meta-category"><a href='https://bzhou830.github.io/categories/GPU'>GPU</a></span>
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86'>图像处理</a></span>
             
         </div>
         
         <div class="post-content">
-            欢迎回到&quot;渲染管线之旅&quot;系列，本篇是“渲染管线之旅”的最后部分。这个系列已经够长了，后面可能写更多与GPU相关的文章。 之前我们一直遨游在图形渲染管线的所有常规部分，以及不同层级的具体细节。这篇我们来看DX11中引入的一项重要新功能：计算着色器（Computer……
+            pyqt5是一套Python绑定Digia QT5应用的框架。它可用于Python 2和3。Qt库是最强大的GUI库之一。pyqt5很大的优势就是跨平台，而且使用起来非常的方便，编写的代码比较精简，又能实现比较复杂的界面。在很多视觉程序中都需要GUI, 搭配OpenCV, pyqt5可方……
         </div>
-        <p class="readmore"><a href="https://bzhou830.github.io/posts/20190825%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8513/">阅读全文</a></p>
+        <p class="readmore"><a href="https://bzhou830.github.io/post/20160515python_opencv_camera/">阅读全文</a></p>
     </article>
     
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="https://bzhou830.github.io/posts/20190820%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8512/" title="渲染管线之旅|12 曲面细分">渲染管线之旅|12 曲面细分</a>
+                <a href="https://bzhou830.github.io/post/20200420VsCodeDebug/" title="VS Code远程开发配置">VS Code远程开发配置</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
-            2019年8月20日
+            2020年4月20日
         </date>
         
         <div class="post-meta">
             <span>|</span>
             
-            <span class="meta-category"><a href='https://bzhou830.github.io/categories/GPU'>GPU</a></span>
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/'></a></span>
             
         </div>
         
         <div class="post-content">
-            欢迎回来！这次，我们将研究D3D11 / Shader 5.x硬件世代所引入的“海报男孩”功能：细分。这个很有趣，既因为它是一个有趣的话题，又因为它标志着很长一段时间以来的第一次，这是一个重要的用户可见的组件已被添加到不可编程的图形管道中。 与从概念上讲很简单的“几何着色器”（它是一个可以看到整个……
+            前言 北京时间2019年5月3日，在 PyCon 2019 大会上，微软发布了 VS Code Remote，开启了远程开发的新时代！这次发布包含了三款核心的全新插件，它们可以帮助开发者在容器，物理或虚拟机，以及 Windows Subsystem for Linux (WSL) 中实现无缝的远程开发。通过安装 Remote Development Extension Pack ，你可以快速上手远程开发。 Visual Studio Code Remote 允许开发者将容器，远程……
         </div>
-        <p class="readmore"><a href="https://bzhou830.github.io/posts/20190820%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8512/">阅读全文</a></p>
+        <p class="readmore"><a href="https://bzhou830.github.io/post/20200420VsCodeDebug/">阅读全文</a></p>
     </article>
     
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="https://bzhou830.github.io/posts/20190815%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8511/" title="渲染管线之旅|11 流输出">渲染管线之旅|11 流输出</a>
+                <a href="https://bzhou830.github.io/post/20200302RayTracingInOneWeekend/" title="Go语言实现RayTracing">Go语言实现RayTracing</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
-            2019年8月15日
+            2020年3月2日
         </date>
         
         <div class="post-meta">
             <span>|</span>
             
-            <span class="meta-category"><a href='https://bzhou830.github.io/categories/GPU'>GPU</a></span>
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6'>图形学</a></span>
             
         </div>
         
         <div class="post-content">
-            欢迎回来！ 这次，重点将放在流出（SO）上。 这是一种用于将“几何着色器”阶段的输出存储到内存中，而不是将其沿管道的其余部分发送的功能。 这可以用于例如 在D3D10级别的硬件上使用D3D10 API缓存外观化的顶点数据，或作为穷人的Compute Shader（请注意，使用D3D11，即使……
+            Ray Tracing in one weekend是Peter Shirley ray tracing系列三部曲的第一本，也是学习ray tracing入门比较容易的一本书，原书中附带的有C++版本的code，最近在学习golang, golang中正好有image包，可以直接生成渲染好的jpg文件，那么就用golang来改写了一遍……
         </div>
-        <p class="readmore"><a href="https://bzhou830.github.io/posts/20190815%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8511/">阅读全文</a></p>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="https://bzhou830.github.io/posts/20190810%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8510/" title="渲染管线之旅|10 几何着色器">渲染管线之旅|10 几何着色器</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2019年8月10日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='https://bzhou830.github.io/categories/GPU'>GPU</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            欢迎回来。 上一次，我们深入到像素管线的底端。 这次，我们将切换回管道的中间，以查看D3D10：几何着色器可能是最明显的附加功能。 但是首先，我要进一步讲解如何分解本系列中的图形管道，以及与API呈现给你的视图有何不同。 Welcome back. Last time, we dove into bottom end of the pixel pipeline. This time, we’ll switch back to the middle of the pipeline to look at what is……
-        </div>
-        <p class="readmore"><a href="https://bzhou830.github.io/posts/20190810%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8510/">阅读全文</a></p>
+        <p class="readmore"><a href="https://bzhou830.github.io/post/20200302RayTracingInOneWeekend/">阅读全文</a></p>
     </article>
     
     
@@ -350,7 +356,7 @@
         
         
         <li >
-            <a href="https://bzhou830.github.io/page/11/">11</a>
+            <a href="https://bzhou830.github.io/page/13/">13</a>
         </li>
         
     
@@ -441,35 +447,39 @@
         <h3 class="widget-title">分类</h3>
 <ul class="widget-list">
     
-    <li><a href="https://bzhou830.github.io/categories/">Categories (2)</a></li>
+    <li><a href="https://bzhou830.github.io/categories/">Categories (3)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/C&#43;&#43;/">C&#43;&#43; (3)</a></li>
-    
-    <li><a href="https://bzhou830.github.io/categories/C/C&#43;&#43;/">C/C&#43;&#43; (10)</a></li>
+    <li><a href="https://bzhou830.github.io/categories/C/C&#43;&#43;/">C/C&#43;&#43; (12)</a></li>
     
     <li><a href="https://bzhou830.github.io/categories/Flask/">Flask (11)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/GPU/">GPU (16)</a></li>
+    <li><a href="https://bzhou830.github.io/categories/GPU/">GPU (18)</a></li>
     
     <li><a href="https://bzhou830.github.io/categories/Golang/">Golang (10)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/Misc/">Misc (9)</a></li>
+    <li><a href="https://bzhou830.github.io/categories/MCU/">MCU (1)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Misc/">Misc (13)</a></li>
     
     <li><a href="https://bzhou830.github.io/categories/OpenCV/">OpenCV (1)</a></li>
     
+    <li><a href="https://bzhou830.github.io/categories/PiCo/">PiCo (1)</a></li>
+    
     <li><a href="https://bzhou830.github.io/categories/Python/">Python (12)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/Windows%E9%A9%B1%E5%8A%A8/">Windows驱动 (4)</a></li>
+    <li><a href="https://bzhou830.github.io/categories/USB/">USB (5)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/WindowsKernel/">WindowsKernel (9)</a></li>
     
     <li><a href="https://bzhou830.github.io/categories/%E4%B8%B2%E5%8F%A3/">串口 (5)</a></li>
     
     <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理 (14)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学 (5)</a></li>
+    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学 (6)</a></li>
     
     <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E8%AE%BA/">图论 (12)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/%E6%88%90%E9%95%BF/">成长 (4)</a></li>
+    <li><a href="https://bzhou830.github.io/categories/%E6%88%90%E9%95%BF/">成长 (5)</a></li>
     
     <li><a href="https://bzhou830.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式 (1)</a></li>
     
@@ -481,43 +491,43 @@
 <ul class="widget-list">
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20210710imgui%E7%9A%84%E4%BD%BF%E7%94%A8/" title="imgui的使用">imgui的使用</a>
+        <a href="https://bzhou830.github.io/post/20220705Pico%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="PiCo| 开发环境搭建">PiCo| 开发环境搭建</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20210618Python_GrabScreen/" title="Python获取屏幕截图">Python获取屏幕截图</a>
+        <a href="https://bzhou830.github.io/post/20220420GD32USBEx/" title="USB探索| Flash 烧录器">USB探索| Flash 烧录器</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20210503DrawIo%E6%90%AD%E5%BB%BA/" title="Draw.io部署教程">Draw.io部署教程</a>
+        <a href="https://bzhou830.github.io/post/20220220GD32USB04/" title="USB探索|3.从USB键盘改造成USB鼠标">USB探索|3.从USB键盘改造成USB鼠标</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20210215GPUShader/" title="Shader在GPU中是如何执行的？">Shader在GPU中是如何执行的？</a>
+        <a href="https://bzhou830.github.io/post/20220213GD32USB03/" title="USB探索|2.USB键盘的实现">USB探索|2.USB键盘的实现</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20210112NES%E6%A8%A1%E6%8B%9F%E5%99%A8/" title="NES模拟器">NES模拟器</a>
+        <a href="https://bzhou830.github.io/post/20220212GD32USB02/" title="USB探索|1.USB协议基础">USB探索|1.USB协议基础</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20201226%E5%9C%A8%E6%AD%A6%E6%B1%89%E7%9A%842020/" title="2020，我在武汉的这一年的故事">2020，我在武汉的这一年的故事</a>
+        <a href="https://bzhou830.github.io/post/20220127GD32USB01/" title="USB探索|0.偶遇GD32L233">USB探索|0.偶遇GD32L233</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20200608opencv_squares/" title="谈谈OpenCV中的四边形">谈谈OpenCV中的四边形</a>
+        <a href="https://bzhou830.github.io/post/20211225%E4%BA%8C%E9%9B%B6%E4%BA%8C%E4%B8%80%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2021年终总结">2021年终总结</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20200515python_opencv_camera/" title="PyQt5&#43;OpenCV多线程显示摄像头数据">PyQt5&#43;OpenCV多线程显示摄像头数据</a>
+        <a href="https://bzhou830.github.io/post/20211207Windbg%E6%89%A9%E5%B1%95%E5%85%A5%E6%B4%BB/" title="Windbg扩展|01入活">Windbg扩展|01入活</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20200302RayTracingInOneWeekend/" title="Go语言实现RayTracing">Go语言实现RayTracing</a>
+        <a href="https://bzhou830.github.io/post/20211121%E8%BF%9C%E7%A8%8B%E9%87%8D%E5%90%AF%E5%B0%8F%E5%B7%A5%E5%85%B7/" title="远程重启小工具">远程重启小工具</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20200222Games101_04/" title="Games101笔记|Z-Buffer(深度缓冲)">Games101笔记|Z-Buffer(深度缓冲)</a>
+        <a href="https://bzhou830.github.io/post/20211024GPU-Tile-Based-Immediate/" title="GPU topic：Tile-Based Rendering vs. Immediate Mode Rendering">GPU topic：Tile-Based Rendering vs. Immediate Mode Rendering</a>
     </li>
     
 </ul>
@@ -616,7 +626,7 @@
     </div>
     <footer id="footer">
     <div class="container">
-        &copy; 2021 <a href="https://bzhou830.github.io/">Binean&#39;s Blog By Binean</a>.
+        &copy; 2022 <a href="https://bzhou830.github.io/">菠萝蜜 By Binean</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
         <br><a href="http://www.beian.miit.gov.cn/" target="_blank">鄂ICP备20004395号</a>. 

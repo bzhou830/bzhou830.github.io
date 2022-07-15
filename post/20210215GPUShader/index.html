@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Shader在GPU中是如何执行的？ | 菠萝蜜</title>
+    <meta property="og:title" content="Shader在GPU中是如何执行的？ - 菠萝蜜">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2021-02-15T19:16:34&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2021-02-15T19:16:34&#43;08:00'>
+        
+    <meta name="Keywords" content="C/C&#43;&#43;, GPU, Windows驱动开发, OpenCV, 图像处理">
+    <meta name="description" content="Shader在GPU中是如何执行的？">
+        
+    <meta name="author" content="Binean">
+    <meta property="og:url" content="https://bzhou830.github.io/post/20210215GPUShader/">
+    <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href='/css/normalize.css'>
+    
+    <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://bzhou830.github.io/">
+                        菠萝蜜
+                    </a>
+                
+                <p class="description">选择去发光，而不是被照亮</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://bzhou830.github.io/">首页</a>
+                    
+                    <a  href="https://bzhou830.github.io/GPU/" title="GPU">GPU</a>
+                    
+                    <a  href="https://bzhou830.github.io/USB/" title="USB">USB</a>
+                    
+                    <a  href="https://bzhou830.github.io/raspberrypi/" title="树莓派">树莓派</a>
+                    
+                    <a  href="https://bzhou830.github.io/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://bzhou830.github.io/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    <style type="text/css">
+    .post-toc {
+        position: fixed;
+        width: 200px;
+        margin-left: -210px;
+        padding: 5px 10px;
+        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+        font-size: 12px;
+        border: 1px solid rgba(0, 0, 0, .07);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.98);
+        background-clip: padding-box;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        word-wrap: break-word;
+        white-space: nowrap;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 999;
+        cursor: pointer;
+        max-height: 70%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .post-toc .post-toc-title {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .post-toc .post-toc-content {
+        font-size: 15px;
+    }
+
+    .post-toc .post-toc-content>nav>ul {
+        margin: 10px 0;
+    }
+
+    .post-toc .post-toc-content ul {
+        padding-left: 20px;
+        list-style: square;
+        margin: 0.5em;
+        line-height: 1.8em;
+    }
+
+    .post-toc .post-toc-content ul ul {
+        padding-left: 15px;
+        display: none;
+    }
+
+    @media print,
+    screen and (max-width:1057px) {
+        .post-toc {
+            display: none;
+        }
+    }
+</style>
+<div class="post-toc" style="position: absolute; top: 188px;">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#一个简单shader">一个简单shader</a></li>
+    <li><a href="#代码运行的方式">代码运行的方式</a></li>
+    <li><a href="#cpu和gpu架构对比">CPU和GPU架构对比</a></li>
+    <li><a href="#指令流共享">指令流共享</a></li>
+    <li><a href="#分支运算">分支运算</a></li>
+    <li><a href="#stalls">Stalls</a></li>
+    <li><a href="#实例gtx480">实例：GTX480</a></li>
+    <li><a href="#结语">结语</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postToc = $(".post-toc");
+        if (postToc.length) {
+            var leftPos = $("#main").offset().left;
+            if(leftPos<220){
+                postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})
+            }
+
+            var t = postToc.offset().top - 20,
+                a = {
+                    start: {
+                        position: "absolute",
+                        top: t
+                    },
+                    process: {
+                        position: "fixed",
+                        top: 20
+                    },
+                };
+            $(window).scroll(function () {
+                var e = $(window).scrollTop();
+                e < t ? postToc.css(a.start) : postToc.css(a.process)
+            })
+        }
+    })
+</script>
+    <article class="post">
+        <header>
+            <h1 class="post-title">Shader在GPU中是如何执行的？</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2021年2月15日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/GPU'>GPU</a></span>
+            
+        </div>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <p>首先，我想说明一下，虽然文章的标题是 How GPU Works，但是我无意再去重复GPU工作的各个stage，流水线这些概念。本文会深入到更底层一点：GPU是如何执行shader的。在本文中，我除了GPU执行shader的方式之外，还有稍微涉及一些多核心，SIMD，超线程这些过去大家看上去貌似非常高大上的概念。</p>
+<h2 id="一个简单shader">一个简单shader</h2>
+<p><img src="image-20210330135230031.png" alt="image-20210330141223637">
+这就是一个非常简单的diffuse shader(HLSL)，是fragment(pixel) shader，每个片元着色器是独立执行的，并不需要特地的去执行并行编程(像CPU多线程那样)，但是每个片元着色器确实有自己单独的逻辑控制流。</p>
+<h2 id="代码运行的方式">代码运行的方式</h2>
+<p>GPU和CPU运行shader的方式差不多，都是先编译成汇编，然后单步执行。
+<img src="image-20210330135356675.png" alt="image-20210330141223637">
+<img src="image-20210330135518628.png" alt="image-20210330135518628.png"></p>
+<p>然后逐步执行</p>
+<p><img src="image-20210330141223637.png" alt="image-20210330141223637"></p>
+<h2 id="cpu和gpu架构对比">CPU和GPU架构对比</h2>
+<p><img src="image-20210330141529598.png" alt="CPU core vs GPU core" style="zoom:67%;" /></p>
+<p>两者对比可以发现，GPU core相比CPU core，去掉了乱序执行，分支预测和内存预取的功能，并去掉了大块的缓存，使相同面积可以容纳更多的核心。而且去除了分支预测，乱序等功能之后也能使程序顺序执行时更高效(代价是分支效率下降，后文会提)。</p>
+<p><img src="4dbb22e914ed43ce6d15a916f87f5c37148c54d4.png@1320w_570h.webp" alt="Two cores (two fragments in parallel)"></p>
+<p><img src="bd52294dcaecc59a81f99b8cc2f6d593559657b8.png@1320w_756h.webp" alt="Two cores (two fragments in parallel)"></p>
+<p><img src="9dabe8137dd288b5cec2f0c1b8fac85dd41ace16.png@1320w_704h.webp" alt="Sixteen cores (sixteen fragments in parallel)"></p>
+<h2 id="指令流共享">指令流共享</h2>
+<p>到此我们可以发现一个现象，就是每个片元执行的代码都是相同的，GPU cores完全可以复用一套指令。为此，GPU工程师们发明了一个极具想象力的设计。</p>
+<p><img src="4e90b84dcc380542d0feb23e728b0e0178aaa180.png@1320w_648h.webp" alt="SIMD processing"></p>
+<p>将ALU和Context增加，使用一个指令来控制多个ALU进行计算。这种技术在CPU那边有个学名，叫 SIMD ，也就是通过一条汇编指令控制多个计算。</p>
+<p><img src="afdf3ef0f97881f0112d339e7e3e08d1e79971e9.png@1320w_616h.webp" alt="img"></p>
+<p>这样，就实现了译码器和ALU一对多的映射。</p>
+<p><img src="86d42fd2288801e78ae96f6cebc0d58953a402b7.png@1320w_762h.webp" alt="img"></p>
+<p><img src="be6075c88545d993f6715c0effe7a0892d489ffc.png@1320w_810h.webp" alt="img"></p>
+<p><img src="1565e08edfd4455319410bc8021ee02c4f4e11ba.png@1320w_788h.webp" alt="img"></p>
+<p>各种GPU运算都是这样的</p>
+<p><img src="ad248a3c2d7b829c92e4ca6f238ed3d29c5ab2a4.png@1320w_322h.webp" alt="img"></p>
+<p>在现代GPU中，一般16到64个ALU共享一个指令流</p>
+<h2 id="分支运算">分支运算</h2>
+<p>上文提到过GPU core相比CPU core，是简化过的，简化掉了分支分支预测的功能，那GPU是如何执行分支语句的呢。了解shader的同学可能也了解，分支语句会让shader的性能极剧下降，在此我也会一起解释。</p>
+<p><img src="1f4b5e28120be6d2cc0b6b1d01e1425c80962db3.png@1320w_738h.webp" alt="img"></p>
+<p>分支语句的位置</p>
+<p><img src="f0c9f71f3c601c635bb186d52b860959fa50620a.png@1320w_752h.webp" alt="img"></p>
+<p>GPU在编译时会找到分支语句的位置，然后在执行时，对于分支语句，会将各分支分配给不同的ALU来执行。</p>
+<p><img src="84f9c0dc68f5dd84615aa539b8d2341da2c808fc.png@1320w_762h.webp" alt="img"></p>
+<p>并不是每个ALU的计算结果都有效，而无效的结果Context会负责舍弃。也就是说在最坏情况下，分支语句相比无分支语句仅有1/8的的性能(取决于ALU数)。期望值是1/2，也就是平常大家常说的分支语句会令shader性能折半。</p>
+<h2 id="stalls">Stalls</h2>
+<p>Stalls是一个硬件术语，指芯片因为上一条指令执行过慢，而无事可做的情况。回到之前的diffuseshader上。</p>
+<p><img src="eaa54d290ca13665fc9c90261f1a62aa7686064b.png@1320w_560h.webp" alt="img"></p>
+<p>采样是GPU从显存中读取贴图信息的过程，有大量延迟，一般在100到1000个时钟周期。为了防止这个问题，CPU通常采用超大的缓存+超大带宽的方式来减小io时的stalls。</p>
+<p><img src="ed143d49cfa47f5efb41f5d12b13459865946aae.png@1320w_636h.webp" alt="img"></p>
+<p>这里又是CPU和GPU硬件设计上截然不同的地方，因为Cache不命中会使 Stall 发生(必须从主存储器取值)，所以GPU设计时索性去掉了big data cache和Memory pre-fetcher，取而代之的是一种非常巧妙的方法。</p>
+<p><img src="e63080600a921b2a1ff66a0cc069b60c3af4092b.png@1320w_644h.webp" alt="img"></p>
+<p>对于一个GPU core，所需拥有的Context数是ALU数目的数倍。这样，当其中一组Context遭遇采样io时，迅速切换到下一组Context。等到IO结束之后，前一组Context余下的指令才继续执行。大家一般谈论的CPU超线程其实也是这个原理，两个Context共享一个physics core。</p>
+<p><img src="3fc34cc96a0455f9f0efa4f996c1e680180ce560.png@1320w_696h.webp" alt="img"></p>
+<p>发生中断时切换Context</p>
+<p><img src="718e74aa436ce49df721fc6117a8524521c6c2c9.png@1320w_716h.webp" alt="img"></p>
+<p>中断结束后继续执行
+图像采样需要数百时钟周期，是通常指令执行的数十到数百倍，因此一个GPU core上拥有的Context数也是ALU的数十倍。刚好符合了实际情况：屏幕像素数远远多于GPU流处理器个数。</p>
+<p><img src="a17e13a274d7e07cd6fa2292ef81ede8818c3e98.png@1320w_744h.webp" alt="img"></p>
+<p>Multi Contexts</p>
+<h2 id="实例gtx480">实例：GTX480</h2>
+<p><img src="81e2990451170bdd70558771b02b14c31c471f2d.png@1320w_592h.webp" alt="img"></p>
+<p><img src="268c99fe8e4da6224a555ee8bcf3b339438b1b20.png@1320w_738h.webp" alt="img"></p>
+<p>NVIDIA管一个GPU core叫一组SM，一个ALU叫一个CUDA core，CUDA core可以在一个时钟周期内执行一个乘法和一个加法(即一个MAD，Multiply &amp; Add指令)。一组SM有两个Fetch/Decode单元，个人猜测这样就可以在执行分支语句时一人一半。一组SM有48组Context，也就是说，一组SM，可以同时执行 32 * 48 = 1536 个 CUDA 线程。</p>
+<p>GTX480一共有15组SM，也就是说GTX480同时可以执行多达 1536 * 15 = 23,040 个 CUDA 线程。可以说非常惊人了。</p>
+<p><img src="7444e26be0297d59a25fc8b51ff99cdf8f783de2.png@1320w_706h.webp" alt="img"></p>
+<h2 id="结语">结语</h2>
+<p>本文介绍了一下DX10/openGL 3.x时代的显卡，也就是SM4.0统一着色架构下的显卡设计。在tensorFlow和RTX相继问世后，NVIDIA也发布了拥有tensor core的titan V和拥有RTX core的RTX2080/2080Ti，面对机器学习和光线追踪这两个if else遍地的情况，GPU的设计也作出了很大的变化，最直接的感受就是分支语句没有性能损失了。相信GPU的设计也更接近CPU了。从当年的Silicon Graphics RealityEngine的众CPU开始，到RTX/tensor core，图形硬件的发展，不也是一种循环吗。</p>
+<p>引用： 
+<a href="https://www.tu-ilmenau.de/fileadmin/media/gdv/Lehre/Computergrafik_II/Lehre/03-fatahalian_gpuArchTeraflop_BPS_SIGGRAPH2010.pdf">https://www.tu-ilmenau.de/fileadmin/media/gdv/Lehre/Computergrafik_II/Lehre/03-fatahalian_gpuArchTeraflop_BPS_SIGGRAPH2010.pdf</a></p>
+<p><a href="https://www.cs.cmu.edu/afs/cs/academic/class/15462-f11/www/lec_slides/lec19.pdf">https://www.cs.cmu.edu/afs/cs/academic/class/15462-f11/www/lec_slides/lec19.pdf</a></p>
+<p><a href="http://www.cs.cmu.edu/afs/cs/academic/class/15462-f12/www/lec_slides/462_gpus.pdf">http://www.cs.cmu.edu/afs/cs/academic/class/15462-f12/www/lec_slides/462_gpus.pdf</a></p>
+
+        </div>
+
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="https://bzhou830.github.io/">Binean</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="https://bzhou830.github.io/post/20210215GPUShader/">https://bzhou830.github.io/post/20210215GPUShader/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
+    <center><image src= "https://bzhou830.github.io//about/wx.png" ></image></center>
+</div>
+<br/>
+
+
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/post/20190830%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8514/">渲染管线之旅|14 索引页</a></li>
+        
+        <li><a href="/post/20190825%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8513/">渲染管线之旅|13 计算着色器</a></li>
+        
+        <li><a href="/post/20190820%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8512/">渲染管线之旅|12 曲面细分</a></li>
+        
+        <li><a href="/post/20190815%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8511/">渲染管线之旅|11 流输出</a></li>
+        
+        <li><a href="/post/20190810%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8510/">渲染管线之旅|10 几何着色器</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='https://bzhou830.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6'>图形学</a></li>
+                
+                <li><a href='https://bzhou830.github.io/tags/GPU'>GPU</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "bzhou830/Blog"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    
+<section class="widget">
+    
+    <ul class="widget-list">
+        
+        <li>
+            <a href="https://bzhou830.github.io/" title="简介" target="_blank">
+                
+                
+                    <div>
+                        <div style="width: 200px; height: 200px; border-radius:100%; overflow:hidden;">
+                            <img src=https://bzhou830.github.io/about/touxiang.jpg >
+                        </div>
+                    </div>
+
+                    <div>
+                        <h2>Binean</h2>
+                    </div>
+                    
+                    <div>
+                        <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path><path fill="currentColor" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V18c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-1.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05.02.01.03.03.04.04 1.14.83 1.93 1.94 1.93 3.41V18c0 .35-.07.69-.18 1H22c.55 0 1-.45 1-1v-1.5c0-2.33-4.67-3.5-7-3.5z"></path></svg>
+                            ****
+                        </div>
+                    </div>
+
+                    <div>
+                        <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path><path fill="currentColor" d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm8.94 3c-.46-4.17-3.77-7.48-7.94-7.94V2c0-.55-.45-1-1-1s-1 .45-1 1v1.06C6.83 3.52 3.52 6.83 3.06 11H2c-.55 0-1 .45-1 1s.45 1 1 1h1.06c.46 4.17 3.77 7.48 7.94 7.94V22c0 .55.45 1 1 1s1-.45 1-1v-1.06c4.17-.46 7.48-3.77 7.94-7.94H22c.55 0 1-.45 1-1s-.45-1-1-1h-1.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"></path></svg>
+                        武汉
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div>      
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path><path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-.4 4.25l-7.07 4.42c-.32.2-.74.2-1.06 0L4.4 8.25c-.25-.16-.4-.43-.4-.72 0-.67.73-1.07 1.3-.72L12 11l6.7-4.19c.57-.35 1.3.05 1.3.72 0 .29-.15.56-.4.72z"></path></svg>
+                        <a href="mailto:bzhou830@qq.com">bzhou830@qq.com</a> 
+                        </div>
+                    </div>
+                
+            </a>
+        </li>
+        
+        <li>
+            <a href="https://bzhou830.github.io/about/" title="欢迎关注微信公众号" target="_blank">
+                
+                    <h3 class="widget-title">欢迎关注微信公众号</h3>
+                    <img src="https://bzhou830.github.io/about/qrcode.jpg" >
+                
+            </a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <form id="search" action='https://bzhou830.github.io/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://bzhou830.github.io/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://bzhou830.github.io/categories/">Categories (3)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/C/C&#43;&#43;/">C/C&#43;&#43; (12)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Flask/">Flask (11)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/GPU/">GPU (18)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Golang/">Golang (10)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/MCU/">MCU (1)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Misc/">Misc (13)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/OpenCV/">OpenCV (1)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/PiCo/">PiCo (1)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Python/">Python (12)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/USB/">USB (5)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/WindowsKernel/">WindowsKernel (9)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E4%B8%B2%E5%8F%A3/">串口 (5)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理 (14)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学 (6)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E8%AE%BA/">图论 (12)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E6%88%90%E9%95%BF/">成长 (5)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式 (1)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20220705Pico%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="PiCo| 开发环境搭建">PiCo| 开发环境搭建</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20220420GD32USBEx/" title="USB探索| Flash 烧录器">USB探索| Flash 烧录器</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20220220GD32USB04/" title="USB探索|3.从USB键盘改造成USB鼠标">USB探索|3.从USB键盘改造成USB鼠标</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20220213GD32USB03/" title="USB探索|2.USB键盘的实现">USB探索|2.USB键盘的实现</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20220212GD32USB02/" title="USB探索|1.USB协议基础">USB探索|1.USB协议基础</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20220127GD32USB01/" title="USB探索|0.偶遇GD32L233">USB探索|0.偶遇GD32L233</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20211225%E4%BA%8C%E9%9B%B6%E4%BA%8C%E4%B8%80%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2021年终总结">2021年终总结</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20211207Windbg%E6%89%A9%E5%B1%95%E5%85%A5%E6%B4%BB/" title="Windbg扩展|01入活">Windbg扩展|01入活</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20211121%E8%BF%9C%E7%A8%8B%E9%87%8D%E5%90%AF%E5%B0%8F%E5%B7%A5%E5%85%B7/" title="远程重启小工具">远程重启小工具</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20211024GPU-Tile-Based-Immediate/" title="GPU topic：Tile-Based Rendering vs. Immediate Mode Rendering">GPU topic：Tile-Based Rendering vs. Immediate Mode Rendering</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://bzhou830.github.io/" title="Binean’s">Binean’s</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://bzhou830.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://bzhou830.github.io/tags/">Tags</a>
+    
+    <a href="https://bzhou830.github.io/tags/C&#43;&#43;/">C&#43;&#43;</a>
+    
+    <a href="https://bzhou830.github.io/tags/C/C&#43;&#43;/">C/C&#43;&#43;</a>
+    
+    <a href="https://bzhou830.github.io/tags/DICOM/">DICOM</a>
+    
+    <a href="https://bzhou830.github.io/tags/Excel/">Excel</a>
+    
+    <a href="https://bzhou830.github.io/tags/Flask/">Flask</a>
+    
+    <a href="https://bzhou830.github.io/tags/GPU/">GPU</a>
+    
+    <a href="https://bzhou830.github.io/tags/Golang/">Golang</a>
+    
+    <a href="https://bzhou830.github.io/tags/OCR/">OCR</a>
+    
+    <a href="">OpenCV</a>
+    
+    <a href="https://bzhou830.github.io/tags/Python/">Python</a>
+    
+    <a href="https://bzhou830.github.io/tags/android/">android</a>
+    
+    <a href="https://bzhou830.github.io/tags/git/">git</a>
+    
+    <a href="https://bzhou830.github.io/tags/github/">github</a>
+    
+    <a href="https://bzhou830.github.io/tags/hexo/">hexo</a>
+    
+    <a href="https://bzhou830.github.io/tags/hugo/">hugo</a>
+    
+    <a href="https://bzhou830.github.io/tags/jni/">jni</a>
+    
+    <a href="https://bzhou830.github.io/tags/opencv/">opencv</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E4%B8%B2%E5%8F%A3/">串口</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%85%AC%E5%BC%8F/">公式</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">内存管理</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E6%96%87%E6%9C%AC%E6%A3%80%E6%B5%8B/">文本检测</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8/">驱动</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B/">驱动编程</a>
+    
+</div>
+    </section>
+
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2022 <a href="https://bzhou830.github.io/">菠萝蜜 By Binean</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        <br><a href="http://www.beian.miit.gov.cn/" target="_blank">鄂ICP备20004395号</a>. 
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function(){
+            $("pre code").parent().addClass("line-numbers")
+        }())
+    
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [ ['$','$'] ],
+                processEscapes: true
+            }
+        };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+    
+    
+    
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+
+</body>
+
+</html>

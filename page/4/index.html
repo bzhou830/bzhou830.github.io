@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Binean&#39;s Blog | 杏花疏影里，吹笛到天明</title>
-    <meta property="og:title" content="Binean&#39;s Blog | 杏花疏影里，吹笛到天明">
+    <title>菠萝蜜 | 选择去发光，而不是被照亮</title>
+    <meta property="og:title" content="菠萝蜜 | 选择去发光，而不是被照亮">
     <meta property="og:type" content="website">
     <meta name="Keywords" content="C/C&#43;&#43;, GPU, Windows驱动开发, OpenCV, 图像处理">
     <meta name="description" content="专注于C/C&#43;&#43;, GPU, Windows驱动开发, OpenCV, 图像处理">
@@ -17,7 +17,7 @@
     <link rel="stylesheet" href='/css/normalize.css'>
     
     <link rel="stylesheet" href='/css/style.css'>
-    <link rel="alternate" type="application/rss+xml+xml" href="https://bzhou830.github.io/index.xml" title="Binean's Blog" />
+    <link rel="alternate" type="application/rss+xml+xml" href="https://bzhou830.github.io/index.xml" title="菠萝蜜" />
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     
@@ -36,15 +36,21 @@
                 
                     
                         <a id="logo" href="https://bzhou830.github.io/">
-                            Binean&#39;s Blog
+                            菠萝蜜
                         </a>
                     
                 
-                <p class="description">杏花疏影里，吹笛到天明</p>
+                <p class="description">选择去发光，而不是被照亮</p>
             </div>
             <div>
                 <nav id="nav-menu" class="clearfix">
                     <a class="current" href="https://bzhou830.github.io/">首页</a>
+                    
+                    <a  href="https://bzhou830.github.io/GPU/" title="GPU">GPU</a>
+                    
+                    <a  href="https://bzhou830.github.io/USB/" title="USB">USB</a>
+                    
+                    <a  href="https://bzhou830.github.io/raspberrypi/" title="树莓派">树莓派</a>
                     
                     <a  href="https://bzhou830.github.io/archives/" title="归档">归档</a>
                     
@@ -67,231 +73,231 @@
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="https://bzhou830.github.io/posts/20190611B%E7%AB%99%E7%BC%93%E5%AD%98%E8%A7%86%E9%A2%91%E5%92%8C%E5%8E%8B%E7%BC%A9/" title="B站缓存视频和压缩">B站缓存视频和压缩</a>
+                <a href="https://bzhou830.github.io/post/20191231WindowsKernelPrograming05Debugging/" title="Windows内核编程05|调试">Windows内核编程05|调试</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
-            2019年6月11日
+            2019年12月31日
         </date>
         
         <div class="post-meta">
             <span>|</span>
             
-            <span class="meta-category"><a href='https://bzhou830.github.io/categories/Misc'>Misc</a></span>
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/WindowsKernel'>WindowsKernel</a></span>
             
         </div>
         
         <div class="post-content">
-            手机上Bilibili缓存的视频存在于Android/data/tv.danmaku.bili/download下面。然后可以拷贝出来到PC上，因为视频和音频是分开保存的，所以要进行合并的操作。根据自己缓存时候选择的分辨率修改下合并的代码中的路径（16，64这些数字代表的就是路径……
+            ……
         </div>
-        <p class="readmore"><a href="https://bzhou830.github.io/posts/20190611B%E7%AB%99%E7%BC%93%E5%AD%98%E8%A7%86%E9%A2%91%E5%92%8C%E5%8E%8B%E7%BC%A9/">阅读全文</a></p>
+        <p class="readmore"><a href="https://bzhou830.github.io/post/20191231WindowsKernelPrograming05Debugging/">阅读全文</a></p>
     </article>
     
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="https://bzhou830.github.io/posts/20190610Python%E8%AF%BB%E5%86%99Excel/" title="Python读写Excel">Python读写Excel</a>
+                <a href="https://bzhou830.github.io/post/20191230WindowsKernelPrograming04KernelFlow/" title="Windows内核编程04|内核工作流程">Windows内核编程04|内核工作流程</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
-            2019年6月10日
+            2019年12月30日
         </date>
         
         <div class="post-meta">
             <span>|</span>
             
-            <span class="meta-category"><a href='https://bzhou830.github.io/categories/Misc'>Misc</a></span>
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/WindowsKernel'>WindowsKernel</a></span>
             
         </div>
         
         <div class="post-content">
-            Python3使用xlrd，xlwt, xlutils进行Excel文件的读写操作 操作之前，需要先理解excel的结构。 首先需要安装几个库。 xlrd, 这个是用于读取excel xlwt, 这个是用于写入excel xlutils, 里面有一些对excel操作的东西 pip install xlrd pip install xlwt pip install xlutils 1. 读取excel # 读取excel中的内……
+            1 简介 在应用层利用SetThreadPriority等API设置线程优先级是受到进程优先级限制的，所以本节就计划通过编写一个驱动程序和应用程序相结合突破这种限制。本节代码放在了Github上访问此链接 2 驱动程序初始化 先按照上一节的介绍来了解一下创建一个驱动程序的基本流程：入口函数……
         </div>
-        <p class="readmore"><a href="https://bzhou830.github.io/posts/20190610Python%E8%AF%BB%E5%86%99Excel/">阅读全文</a></p>
+        <p class="readmore"><a href="https://bzhou830.github.io/post/20191230WindowsKernelPrograming04KernelFlow/">阅读全文</a></p>
     </article>
     
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="https://bzhou830.github.io/posts/20190610VC%E4%B8%AD%E8%8E%B7%E5%8F%96%E6%A8%A1%E5%9D%97%E8%B7%AF%E5%BE%84/" title="VC中获取模块路径">VC中获取模块路径</a>
+                <a href="https://bzhou830.github.io/post/20191229WindowsKernelPrograming03KernelBasic/" title="Windows内核编程03|内核编程基础">Windows内核编程03|内核编程基础</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
-            2019年6月10日
+            2019年12月29日
         </date>
         
         <div class="post-meta">
             <span>|</span>
             
-            <span class="meta-category"><a href='https://bzhou830.github.io/categories/Misc'>Misc</a></span>
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/WindowsKernel'>WindowsKernel</a></span>
             
         </div>
         
         <div class="post-content">
-            进程加载DLL，或者加载OCX控件等模块。在开发这些模块的时候不可避免要使用一些外部的配置文件，最简单的方式就是存放在固定的一个路径下面，但是这样对于安装配置的时候就不是很友好，所以往往把这些配置文件和.dll放在一起，然后由dll/ocx它们告诉进程它们所在的路径，然后进程就到……
+            1. 内核编程一般准则 用户编程和内核编程之间的差别 1.1 未处理的异常 在用户模式下如果程序出现未处理的异常，整个程序会直接中止；在内核模式下出现未处理的异常，会造成系统奔溃，出现BSOD（蓝屏）。所以内核代码得非常小心，编译时绝对不能跳过任何细节和错误检查。 1.2 终止 当用户进程终止时不管是否正……
         </div>
-        <p class="readmore"><a href="https://bzhou830.github.io/posts/20190610VC%E4%B8%AD%E8%8E%B7%E5%8F%96%E6%A8%A1%E5%9D%97%E8%B7%AF%E5%BE%84/">阅读全文</a></p>
+        <p class="readmore"><a href="https://bzhou830.github.io/post/20191229WindowsKernelPrograming03KernelBasic/">阅读全文</a></p>
     </article>
     
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="https://bzhou830.github.io/posts/20190601%E9%9B%86%E8%A3%85%E7%AE%B1OCR%E4%BD%BF%E7%94%A8EAST%E5%92%8Ctesseract/" title="集装箱OCR：使用EAST和Tesseract">集装箱OCR：使用EAST和Tesseract</a>
+                <a href="https://bzhou830.github.io/post/20191228WindowsKernelPrograming02EnvSetup/" title="Windows内核编程02|环境搭建和部署测试">Windows内核编程02|环境搭建和部署测试</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
-            2019年6月1日
+            2019年12月28日
         </date>
         
         <div class="post-meta">
             <span>|</span>
             
-            <span class="meta-category"><a href='https://bzhou830.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86'>图像处理</a></span>
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/WindowsKernel'>WindowsKernel</a></span>
             
         </div>
         
         <div class="post-content">
-            本篇文章主要记录下使用EAST和Tesseract做自然场景中集装箱上字符OCR的一个简单的实现。 在看具体问题之前先来谈谈自然场景中文本检测这个领域。自然场景的文本检测和识别一直以来都是一个比较难的问题，在深度学习走红之前，都是绞尽脑汁的变着法子提取有用的特征，然后做定位检测。得……
+            1.安装VisualStudio2019 2.安装WindowsDriverKit 3.创建项目 4.添加代码 // driver.c #include &lt;ntddk.h&gt; // DriverEntry Routine DRIVER_INITIALIZE DriverEntry; // Unload Routine DRIVER_UNLOAD DriverUnload; // DriverEntry: 驱动程序的入口点 // DriverObject: 驱动程序对象 // RegistryPath: 注册表中的路径(驱动程序路径) NTSTATUS DriverEntry( _In_ PDRIVER_OBJECT DriverObject, _In_ PUNICODE_STRING RegistryPath ) { // 编译器默认的警告等级为 /W4， // 并且开启 /WX 将警告视为错误……
         </div>
-        <p class="readmore"><a href="https://bzhou830.github.io/posts/20190601%E9%9B%86%E8%A3%85%E7%AE%B1OCR%E4%BD%BF%E7%94%A8EAST%E5%92%8Ctesseract/">阅读全文</a></p>
+        <p class="readmore"><a href="https://bzhou830.github.io/post/20191228WindowsKernelPrograming02EnvSetup/">阅读全文</a></p>
     </article>
     
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="https://bzhou830.github.io/posts/20190506Windows%E5%B8%B8%E7%94%A8Tips/" title="Windows常用Tips">Windows常用Tips</a>
+                <a href="https://bzhou830.github.io/post/20191227WindowsKernelPrograming01Process/" title="Windows内核编程01|Process">Windows内核编程01|Process</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
-            2019年5月6日
+            2019年12月27日
         </date>
         
         <div class="post-meta">
             <span>|</span>
             
-            <span class="meta-category"><a href='https://bzhou830.github.io/categories/Misc'>Misc</a></span>
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/WindowsKernel'>WindowsKernel</a></span>
             
         </div>
         
         <div class="post-content">
-            1. 常用快捷键 win10自带输入法切换简体繁体快捷键: Ctrl+Shift+F Win10自带的截图工具: Win+Shift+S 快速关闭窗口和计算机：Alt + F4 快速回到桌面 Win + D 快速打开运行 Win + R 切换窗口：Alt + Tab 任务视图：Win + Tab(松开键盘界面不会消失) 任务管理器： Ctrl + Alt + Del 查看win10激活信息：slmgr.vb……
+            1.1 进程 进程拥有的内容： 一个可执行程序。包含用来在进程中执行的原始的代码和数据（PE格式的文件）。 一段虚拟地址空间。进程中的代码不管出于何种目的要分配内存时，都从这里分配。 一个主令牌。它是一个保存进程默认安全上下文的对象，在进程内执行代码的线程会用到它，除非某个线程通过身份扮演（i……
         </div>
-        <p class="readmore"><a href="https://bzhou830.github.io/posts/20190506Windows%E5%B8%B8%E7%94%A8Tips/">阅读全文</a></p>
+        <p class="readmore"><a href="https://bzhou830.github.io/post/20191227WindowsKernelPrograming01Process/">阅读全文</a></p>
     </article>
     
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="https://bzhou830.github.io/posts/20190406WindowsKernelProgram/" title="Windows Kernel Program">Windows Kernel Program</a>
+                <a href="https://bzhou830.github.io/post/20191224WindowsKernelProgramingSummer02/" title="Windows内核开发总结(二)">Windows内核开发总结(二)</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
-            2019年4月6日
+            2019年12月24日
         </date>
         
         <div class="post-meta">
             <span>|</span>
             
-            <span class="meta-category"><a href='https://bzhou830.github.io/categories/Windows%E9%A9%B1%E5%8A%A8'>Windows驱动</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            Chapter 1: Windows内部概述 本章描述了Windows内部工作原理中最重要的概念。一些主题将在本书后面更详细地描述，它与当前的主题密切相关。确保你理解了本章的概念，因为这些是任何驱动程序甚至是用户模式底层代码的基础。 进程 虚拟内存 线程 系统服务 系统架构 句柄和对象 1. 进程 进程表示的是正在运行……
-        </div>
-        <p class="readmore"><a href="https://bzhou830.github.io/posts/20190406WindowsKernelProgram/">阅读全文</a></p>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="https://bzhou830.github.io/posts/20190306Windows%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93%E4%BA%8C/" title="Windows驱动开发总结(二)">Windows驱动开发总结(二)</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2019年3月6日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='https://bzhou830.github.io/categories/Windows%E9%A9%B1%E5%8A%A8'>Windows驱动</a></span>
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/WindowsKernel'>WindowsKernel</a></span>
             
         </div>
         
         <div class="post-content">
             同步异步的两种用法 FILE_FLAG_OVERLAPPED异步打开参数 在CreateFile打开设备对象时 HANDLE CreateFile( LPCSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, //FILE_FLAG_OVERLAPPED HANDLE hTemplateFile ); 加入FILE_FLAG_OVERLAPPED参数就是以异步的方式打开驱动的设备对象 与驱动通讯时如下的调用界面及异步结构，需要设置一个OVE……
         </div>
-        <p class="readmore"><a href="https://bzhou830.github.io/posts/20190306Windows%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93%E4%BA%8C/">阅读全文</a></p>
+        <p class="readmore"><a href="https://bzhou830.github.io/post/20191224WindowsKernelProgramingSummer02/">阅读全文</a></p>
     </article>
     
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="https://bzhou830.github.io/posts/20190305Windows%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93%E4%B8%80/" title="Windows驱动开发总结(一)">Windows驱动开发总结(一)</a>
+                <a href="https://bzhou830.github.io/post/20191223WindowsKernelProgramingSummer01/" title="Windows内核开发总结(一)">Windows内核开发总结(一)</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
-            2019年3月5日
+            2019年12月23日
         </date>
         
         <div class="post-meta">
             <span>|</span>
             
-            <span class="meta-category"><a href='https://bzhou830.github.io/categories/Windows%E9%A9%B1%E5%8A%A8'>Windows驱动</a></span>
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/WindowsKernel'>WindowsKernel</a></span>
             
         </div>
         
         <div class="post-content">
             1. windows内核对象 每个对象都有对象头和对象体组成。所有类型的对象头结构都是相同的，而结构体部分却各不相同的。下面是内核对象的结构图： 进程句柄表 dt nt!_EPROCESS +0x000 Pcb : _KPROCESS +0x06c ProcessLock : _EX_PUSH_LOCK +0x070 CreateTime : _LARGE_INTEGER +0x078 ExitTime : _LARGE_INTEGER +0x080 RundownProtect : _EX_RUNDOWN_REF +0x084 UniqueProcessId : Ptr32 Void +0x088 ActiveProcessLinks : _LIST_ENTRY +0x090 QuotaUsage : [3] Uint4B +0x09c QuotaPeak : [3] Uint4B +0x0a8 CommitCharge : Uint4B +0x0ac PeakVirtualSize : Uint4B +0x0b0 VirtualSize : Uint4B +0x0b4 SessionProcessLinks : _LIST_ENTRY +0x0bc DebugPort : Ptr32 Void +0x0c0 ExceptionPort : Ptr32……
         </div>
-        <p class="readmore"><a href="https://bzhou830.github.io/posts/20190305Windows%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93%E4%B8%80/">阅读全文</a></p>
+        <p class="readmore"><a href="https://bzhou830.github.io/post/20191223WindowsKernelProgramingSummer01/">阅读全文</a></p>
     </article>
     
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="https://bzhou830.github.io/posts/20190226Windows%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B1/" title="Windows驱动编程(1)：第一个驱动程序">Windows驱动编程(1)：第一个驱动程序</a>
+                <a href="https://bzhou830.github.io/post/20191220IRP%E6%B4%BE%E9%81%A3%E5%87%BD%E6%95%B0/" title="IRP和派遣函数">IRP和派遣函数</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
-            2019年2月26日
+            2019年12月20日
         </date>
         
         <div class="post-meta">
             <span>|</span>
             
-            <span class="meta-category"><a href='https://bzhou830.github.io/categories/Windows%E9%A9%B1%E5%8A%A8'>Windows驱动</a></span>
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/WindowsKernel'>WindowsKernel</a></span>
             
         </div>
         
         <div class="post-content">
-            本篇主要介绍在VS2013环境下使用WDK8.1开发KMD驱动的一个简单的demo. 开发环境：VS2013, WDK8.1 需要使用的工具：vmware player(安装windows xp作为实验环境),DriverMonitor(加载驱动的工具), DbgView(捕获内核的信息输出) 1. 搭建开……
+            什么是派遣函数? 派遣函数是 WIndows 驱动程序中的重要概念。驱动程序的主要功能是负责处理I/O请求，其中大部分I/O请求是在派遣函数中处理的。也就是说，派遣函数是用来处理驱动程序提交过来的 I/O 请求。 那什么是 I/O 请求呢？ 上层程序与驱动程序之间通信时，上层会发出I/O请求，即输入输出请求包（I/O……
         </div>
-        <p class="readmore"><a href="https://bzhou830.github.io/posts/20190226Windows%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B1/">阅读全文</a></p>
+        <p class="readmore"><a href="https://bzhou830.github.io/post/20191220IRP%E6%B4%BE%E9%81%A3%E5%87%BD%E6%95%B0/">阅读全文</a></p>
     </article>
     
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="https://bzhou830.github.io/posts/20190104PiCamera/" title="树莓派Camera的使用">树莓派Camera的使用</a>
+                <a href="https://bzhou830.github.io/post/20190830%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8514/" title="渲染管线之旅|14 索引页">渲染管线之旅|14 索引页</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
-            2019年1月4日
+            2019年8月30日
         </date>
         
         <div class="post-meta">
             <span>|</span>
             
-            <span class="meta-category"><a href='https://bzhou830.github.io/categories/Misc'>Misc</a></span>
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/GPU'>GPU</a></span>
             
         </div>
         
         <div class="post-content">
-            参考： Raspberry Pi：https://www.raspberrypi.org/ Index of Packages：https://pypi.python.org/pypi/picamera 最新版本是 picamera 1.13：http://picamera.readthedocs.io/en/release-1.13……
+            A trip through the Graphics Pipeline 2011 是发布在博客 http://fgiesen.wordpress.com 上的系列文章。主要涉及图形流水线在GPU中实现的方方面面。包括D3D/OpenGL app, UMD Driver, KMD Driver, GPU 硬件流水线设计等等。是非常好的学习图形学应用，GPU驱动等相关领域的资料。翻译的目的一方面是对学习的总结；另一方面是为了分享，因为国内在图形学， GPU相关的资……
         </div>
-        <p class="readmore"><a href="https://bzhou830.github.io/posts/20190104PiCamera/">阅读全文</a></p>
+        <p class="readmore"><a href="https://bzhou830.github.io/post/20190830%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8514/">阅读全文</a></p>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://bzhou830.github.io/post/20190825%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8513/" title="渲染管线之旅|13 计算着色器">渲染管线之旅|13 计算着色器</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2019年8月25日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/GPU'>GPU</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            欢迎回到&quot;渲染管线之旅&quot;系列，本篇是“渲染管线之旅”的最后部分。这个系列已经够长了，后面可能写更多与GPU相关的文章。 之前我们一直遨游在图形渲染管线的所有常规部分，以及不同层级的具体细节。这篇我们来看DX11中引入的一项重要新功能：计算着色器（Computer……
+        </div>
+        <p class="readmore"><a href="https://bzhou830.github.io/post/20190825%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8513/">阅读全文</a></p>
     </article>
     
     
@@ -371,7 +377,7 @@
         
         
         <li >
-            <a href="https://bzhou830.github.io/page/11/">11</a>
+            <a href="https://bzhou830.github.io/page/13/">13</a>
         </li>
         
     
@@ -462,35 +468,39 @@
         <h3 class="widget-title">分类</h3>
 <ul class="widget-list">
     
-    <li><a href="https://bzhou830.github.io/categories/">Categories (2)</a></li>
+    <li><a href="https://bzhou830.github.io/categories/">Categories (3)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/C&#43;&#43;/">C&#43;&#43; (3)</a></li>
-    
-    <li><a href="https://bzhou830.github.io/categories/C/C&#43;&#43;/">C/C&#43;&#43; (10)</a></li>
+    <li><a href="https://bzhou830.github.io/categories/C/C&#43;&#43;/">C/C&#43;&#43; (12)</a></li>
     
     <li><a href="https://bzhou830.github.io/categories/Flask/">Flask (11)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/GPU/">GPU (16)</a></li>
+    <li><a href="https://bzhou830.github.io/categories/GPU/">GPU (18)</a></li>
     
     <li><a href="https://bzhou830.github.io/categories/Golang/">Golang (10)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/Misc/">Misc (9)</a></li>
+    <li><a href="https://bzhou830.github.io/categories/MCU/">MCU (1)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Misc/">Misc (13)</a></li>
     
     <li><a href="https://bzhou830.github.io/categories/OpenCV/">OpenCV (1)</a></li>
     
+    <li><a href="https://bzhou830.github.io/categories/PiCo/">PiCo (1)</a></li>
+    
     <li><a href="https://bzhou830.github.io/categories/Python/">Python (12)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/Windows%E9%A9%B1%E5%8A%A8/">Windows驱动 (4)</a></li>
+    <li><a href="https://bzhou830.github.io/categories/USB/">USB (5)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/WindowsKernel/">WindowsKernel (9)</a></li>
     
     <li><a href="https://bzhou830.github.io/categories/%E4%B8%B2%E5%8F%A3/">串口 (5)</a></li>
     
     <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理 (14)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学 (5)</a></li>
+    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学 (6)</a></li>
     
     <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E8%AE%BA/">图论 (12)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/%E6%88%90%E9%95%BF/">成长 (4)</a></li>
+    <li><a href="https://bzhou830.github.io/categories/%E6%88%90%E9%95%BF/">成长 (5)</a></li>
     
     <li><a href="https://bzhou830.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式 (1)</a></li>
     
@@ -502,43 +512,43 @@
 <ul class="widget-list">
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20210710imgui%E7%9A%84%E4%BD%BF%E7%94%A8/" title="imgui的使用">imgui的使用</a>
+        <a href="https://bzhou830.github.io/post/20220705Pico%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="PiCo| 开发环境搭建">PiCo| 开发环境搭建</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20210618Python_GrabScreen/" title="Python获取屏幕截图">Python获取屏幕截图</a>
+        <a href="https://bzhou830.github.io/post/20220420GD32USBEx/" title="USB探索| Flash 烧录器">USB探索| Flash 烧录器</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20210503DrawIo%E6%90%AD%E5%BB%BA/" title="Draw.io部署教程">Draw.io部署教程</a>
+        <a href="https://bzhou830.github.io/post/20220220GD32USB04/" title="USB探索|3.从USB键盘改造成USB鼠标">USB探索|3.从USB键盘改造成USB鼠标</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20210215GPUShader/" title="Shader在GPU中是如何执行的？">Shader在GPU中是如何执行的？</a>
+        <a href="https://bzhou830.github.io/post/20220213GD32USB03/" title="USB探索|2.USB键盘的实现">USB探索|2.USB键盘的实现</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20210112NES%E6%A8%A1%E6%8B%9F%E5%99%A8/" title="NES模拟器">NES模拟器</a>
+        <a href="https://bzhou830.github.io/post/20220212GD32USB02/" title="USB探索|1.USB协议基础">USB探索|1.USB协议基础</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20201226%E5%9C%A8%E6%AD%A6%E6%B1%89%E7%9A%842020/" title="2020，我在武汉的这一年的故事">2020，我在武汉的这一年的故事</a>
+        <a href="https://bzhou830.github.io/post/20220127GD32USB01/" title="USB探索|0.偶遇GD32L233">USB探索|0.偶遇GD32L233</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20200608opencv_squares/" title="谈谈OpenCV中的四边形">谈谈OpenCV中的四边形</a>
+        <a href="https://bzhou830.github.io/post/20211225%E4%BA%8C%E9%9B%B6%E4%BA%8C%E4%B8%80%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2021年终总结">2021年终总结</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20200515python_opencv_camera/" title="PyQt5&#43;OpenCV多线程显示摄像头数据">PyQt5&#43;OpenCV多线程显示摄像头数据</a>
+        <a href="https://bzhou830.github.io/post/20211207Windbg%E6%89%A9%E5%B1%95%E5%85%A5%E6%B4%BB/" title="Windbg扩展|01入活">Windbg扩展|01入活</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20200302RayTracingInOneWeekend/" title="Go语言实现RayTracing">Go语言实现RayTracing</a>
+        <a href="https://bzhou830.github.io/post/20211121%E8%BF%9C%E7%A8%8B%E9%87%8D%E5%90%AF%E5%B0%8F%E5%B7%A5%E5%85%B7/" title="远程重启小工具">远程重启小工具</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/posts/20200222Games101_04/" title="Games101笔记|Z-Buffer(深度缓冲)">Games101笔记|Z-Buffer(深度缓冲)</a>
+        <a href="https://bzhou830.github.io/post/20211024GPU-Tile-Based-Immediate/" title="GPU topic：Tile-Based Rendering vs. Immediate Mode Rendering">GPU topic：Tile-Based Rendering vs. Immediate Mode Rendering</a>
     </li>
     
 </ul>
@@ -637,7 +647,7 @@
     </div>
     <footer id="footer">
     <div class="container">
-        &copy; 2021 <a href="https://bzhou830.github.io/">Binean&#39;s Blog By Binean</a>.
+        &copy; 2022 <a href="https://bzhou830.github.io/">菠萝蜜 By Binean</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
         <br><a href="http://www.beian.miit.gov.cn/" target="_blank">鄂ICP备20004395号</a>. 

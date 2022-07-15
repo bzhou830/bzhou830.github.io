@@ -1,0 +1,930 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Windows内核开发总结(一) | 菠萝蜜</title>
+    <meta property="og:title" content="Windows内核开发总结(一) - 菠萝蜜">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2019-12-23T09:16:34&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2019-12-23T09:16:34&#43;08:00'>
+        
+    <meta name="Keywords" content="C/C&#43;&#43;, GPU, Windows驱动开发, OpenCV, 图像处理">
+    <meta name="description" content="Windows内核开发总结(一)">
+        
+    <meta name="author" content="Binean">
+    <meta property="og:url" content="https://bzhou830.github.io/post/20191223WindowsKernelProgramingSummer01/">
+    <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href='/css/normalize.css'>
+    
+    <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href='/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://bzhou830.github.io/">
+                        菠萝蜜
+                    </a>
+                
+                <p class="description">选择去发光，而不是被照亮</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://bzhou830.github.io/">首页</a>
+                    
+                    <a  href="https://bzhou830.github.io/GPU/" title="GPU">GPU</a>
+                    
+                    <a  href="https://bzhou830.github.io/USB/" title="USB">USB</a>
+                    
+                    <a  href="https://bzhou830.github.io/raspberrypi/" title="树莓派">树莓派</a>
+                    
+                    <a  href="https://bzhou830.github.io/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://bzhou830.github.io/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    <style type="text/css">
+    .post-toc {
+        position: fixed;
+        width: 200px;
+        margin-left: -210px;
+        padding: 5px 10px;
+        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+        font-size: 12px;
+        border: 1px solid rgba(0, 0, 0, .07);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.98);
+        background-clip: padding-box;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        word-wrap: break-word;
+        white-space: nowrap;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 999;
+        cursor: pointer;
+        max-height: 70%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .post-toc .post-toc-title {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .post-toc .post-toc-content {
+        font-size: 15px;
+    }
+
+    .post-toc .post-toc-content>nav>ul {
+        margin: 10px 0;
+    }
+
+    .post-toc .post-toc-content ul {
+        padding-left: 20px;
+        list-style: square;
+        margin: 0.5em;
+        line-height: 1.8em;
+    }
+
+    .post-toc .post-toc-content ul ul {
+        padding-left: 15px;
+        display: none;
+    }
+
+    @media print,
+    screen and (max-width:1057px) {
+        .post-toc {
+            display: none;
+        }
+    }
+</style>
+<div class="post-toc" style="position: absolute; top: 188px;">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-windows内核对象">1. windows内核对象</a></li>
+    <li><a href="#2-r3层加载驱动的另一种方式">2. R3层加载驱动的另一种方式</a></li>
+    <li><a href="#3-应用层驱动一般通信方式">3. 应用层驱动一般通信方式</a></li>
+    <li><a href="#4-驱动对象和设备对象及设备对象扩展">4. 驱动对象和设备对象及设备对象扩展</a></li>
+    <li><a href="#5-驱动下的对象操作及内存分配">5. 驱动下的对象操作及内存分配</a></li>
+    <li><a href="#6-常用驱动系统api使用">6. 常用驱动系统API使用</a></li>
+    <li><a href="#7-内核线程及同步问题">7. 内核线程及同步问题</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postToc = $(".post-toc");
+        if (postToc.length) {
+            var leftPos = $("#main").offset().left;
+            if(leftPos<220){
+                postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})
+            }
+
+            var t = postToc.offset().top - 20,
+                a = {
+                    start: {
+                        position: "absolute",
+                        top: t
+                    },
+                    process: {
+                        position: "fixed",
+                        top: 20
+                    },
+                };
+            $(window).scroll(function () {
+                var e = $(window).scrollTop();
+                e < t ? postToc.css(a.start) : postToc.css(a.process)
+            })
+        }
+    })
+</script>
+    <article class="post">
+        <header>
+            <h1 class="post-title">Windows内核开发总结(一)</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2019年12月23日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/WindowsKernel'>WindowsKernel</a></span>
+            
+        </div>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <h2 id="1-windows内核对象">1. windows内核对象</h2>
+<p>每个对象都有对象头和对象体组成。所有类型的对象头结构都是相同的，而结构体部分却各不相同的。下面是内核对象的结构图：</p>
+<p><img src="https://oser.space/img/driver1/1.jpg" alt="内核对象的结构图"></p>
+<p>进程句柄表</p>
+<pre><code class="language-cpp">dt nt!_EPROCESS
+    +0x000 Pcb : _KPROCESS
+    +0x06c ProcessLock : _EX_PUSH_LOCK
+    +0x070 CreateTime : _LARGE_INTEGER
+    +0x078 ExitTime : _LARGE_INTEGER
+    +0x080 RundownProtect : _EX_RUNDOWN_REF
+    +0x084 UniqueProcessId : Ptr32 Void
+    +0x088 ActiveProcessLinks : _LIST_ENTRY
+    +0x090 QuotaUsage : [3] Uint4B
+    +0x09c QuotaPeak : [3] Uint4B
+    +0x0a8 CommitCharge : Uint4B
+    +0x0ac PeakVirtualSize : Uint4B
+    +0x0b0 VirtualSize : Uint4B
+    +0x0b4 SessionProcessLinks : _LIST_ENTRY
+    +0x0bc DebugPort : Ptr32 Void
+    +0x0c0 ExceptionPort : Ptr32 Void
+    +0x0c4 ObjectTable : Ptr32 _HANDLE_TABLE
+</code></pre>
+<p>不同操作系统的进程以<code>HANDLE_TABLE</code>索引句柄有不同的算法实现
+内核句柄和进程句柄不相同，内核句柄表在未导出变量PspCidTable中</p>
+<h2 id="2-r3层加载驱动的另一种方式">2. R3层加载驱动的另一种方式</h2>
+<ul>
+<li>初始化注册表项<code>HKLM\System\CurrentControlSet\Services\[服务名]</code></li>
+<li>未公开文档调用<code>zwloaddriver</code>(测试源码 R3DriverTest)</li>
+<li>参考下面链接中的源码</li>
+</ul>
+<h2 id="3-应用层驱动一般通信方式">3. 应用层驱动一般通信方式</h2>
+<ul>
+<li>
+<p><code>CreateFile</code>打开<code>symbollink</code>指向的设备对象获得句柄</p>
+</li>
+<li>
+<p>用<code>DeviceIoControl</code>进程驱动通信</p>
+</li>
+<li>
+<p>IOCTL自定义控制码,CTL_CODE定义如下</p>
+</li>
+</ul>
+<pre><code class="language-cpp">  #define CTL_CODE(DeviceType, Function, Method, Access) (
+    ((DeviceType) &lt;&lt; 16) | ((Access) &lt;&lt; 14) | ((Function) &lt;&lt; 2) | (Method)
+  )
+</code></pre>
+<p>NT式驱动DeviceType为FILE_DEVICE_UNKNOWN
+Function 一般取值范围为2048-4095
+Method 按传递buffer传递方式如下：</p>
+<ul>
+<li>METHOD_BUFFERED <strong>R3层拷贝buffer到内核</strong></li>
+<li>METHOD_IN_DIRECT <strong>R3层物理地址映射buffer到内核内存</strong></li>
+<li>METHOD_OUT_DIRECT <strong>同上</strong></li>
+<li>METHOD_NEITHER <strong>直接使用R3内存，需要try住</strong></li>
+</ul>
+<p>Access取值<code>FILE_ANY_ACCESS, FILE_READ_ACCESS, FILE_WRITE_ACCESS</code></p>
+<h2 id="4-驱动对象和设备对象及设备对象扩展">4. 驱动对象和设备对象及设备对象扩展</h2>
+<pre><code class="language-cpp">dt nt!_DRIVER_OBJECT
+   +0x000 Type             : Int2B
+   +0x002 Size             : Int2B
+   +0x004 DeviceObject     : Ptr32 _DEVICE_OBJECT
+   +0x008 Flags            : Uint4B
+   +0x00c DriverStart      : Ptr32 Void
+   +0x010 DriverSize       : Uint4B
+   +0x014 DriverSection    : Ptr32 Void
+   +0x018 DriverExtension  : Ptr32 _DRIVER_EXTENSION
+   +0x01c DriverName       : _UNICODE_STRING
+   +0x024 HardwareDatabase : Ptr32 _UNICODE_STRING
+   +0x028 FastIoDispatch   : Ptr32 _FAST_IO_DISPATCH
+   +0x02c DriverInit       : Ptr32     long
+   +0x030 DriverStartIo    : Ptr32     void
+   +0x034 DriverUnload     : Ptr32     void
+   +0x038 MajorFunction    : [28] Ptr32     long
+</code></pre>
+<ul>
+<li>DeviceObject 驱动会创建一个或多个设备对象，同一个驱动对象的设备对象是用链表链起的，最后一个设备对象指向空</li>
+<li>DriverName 驱动名 \Driver[驱动名]</li>
+<li>HardwareDataBase 注册表指向的硬件数据库名\REGISTRY\MACHINE\HARDWARE\DESCRIPTION\SYSTM</li>
+<li>DriverStartIo StartIo串行化处理例程</li>
+<li>DriverUnload 卸载驱动的回调</li>
+<li>MajorFunction 处理IRP的派遣函数</li>
+<li>FastIoDispatch 文件的快速Io处理，一般驱动不会涉及到</li>
+</ul>
+<pre><code class="language-cpp"> dt nt!_DEVICE_OBJECT
+   +0x000 Type             : Int2B
+   +0x002 Size             : Uint2B
+   +0x004 ReferenceCount   : Int4B
+   +0x008 DriverObject     : Ptr32 _DRIVER_OBJECT
+   +0x00c NextDevice       : Ptr32 _DEVICE_OBJECT
+   +0x010 AttachedDevice   : Ptr32 _DEVICE_OBJECT
+   +0x014 CurrentIrp       : Ptr32 _IRP
+   +0x018 Timer            : Ptr32 _IO_TIMER
+   +0x01c Flags            : Uint4B
+   +0x020 Characteristics  : Uint4B
+   +0x024 Vpb              : Ptr32 _VPB
+   +0x028 DeviceExtension  : Ptr32 Void
+   +0x02c DeviceType       : Uint4B
+   +0x030 StackSize        : Char
+   +0x034 Queue            : __unnamed
+   +0x05c AlignmentRequirement : Uint4B
+   +0x060 DeviceQueue      : _KDEVICE_QUEUE
+   +0x074 Dpc              : _KDPC
+   +0x094 ActiveThreadCount : Uint4B
+   +0x098 SecurityDescriptor : Ptr32 Void
+   +0x09c DeviceLock       : _KEVENT
+   +0x0ac SectorSize       : Uint2B
+   +0x0ae Spare1           : Uint2B
+   +0x0b0 DeviceObjectExtension : Ptr32 _DEVOBJ_EXTENSION
+   +0x0b4 Reserved         : Ptr32 Void
+</code></pre>
+<ul>
+<li>DrivefrObject 指向创建自身的驱动对象</li>
+<li>NextDevice 指向下一个设备对象，同属一个驱动对象的设备</li>
+<li>AttachedDevice 指向更高的栈设备对象</li>
+<li>CurrentIrp 使用StartIo时指向的当前处理的IRP结构</li>
+<li>Flags 不同缓冲模式及其他一些标志</li>
+<li>DeviceExtension 自定义的设备扩展对象，一般用于保存或传递全局变量</li>
+<li>DeviceType FILE_DEVICE_UNKNOWN</li>
+<li>StackSize 多层驱动的栈层数，设备对象从高层传递到底层</li>
+</ul>
+<p>winobj查看我们创建的对象</p>
+<p><img src="https://oser.space/img/driver1/2.jpg" alt="TestDriver设备对象"></p>
+<p>如果是打开文件，CreateFile -&gt; NtCreateFile需要对文件名进行NT路径转换</p>
+<h2 id="5-驱动下的对象操作及内存分配">5. 驱动下的对象操作及内存分配</h2>
+<ul>
+<li>分页与非分页内存</li>
+</ul>
+<p>驱动中的中断优先级如下</p>
+<pre><code class="language-cpp">#define PASSIVE_LEVEL                             0
+#define LOW_LEVEL                                 0
+#define APC_LEVEL                                 1
+#define DISPATCH_LEVEL                            2
+...
+#define PROFILE_LEVEL                             27
+#define CLOCK1_LEVEL                              28
+#define CLOCK2_LEVEL                              28
+#define IPI_LEVEL                                 29
+#define POWER_LEVEL                               30
+#define HIGH_LEVEL                                31
+</code></pre>
+<p>当代码运行在DISPATCH_LEVEL级别以上，只能用非分页内存
+代码节中的定义：
+定义分页内存 #define CODEPAGE code_seg(“PAGE”)
+定义非分页内存 #define LOCKEDPAGE code_seg()
+定义初始化内存 #define INITPAGE code_seg(“INIT”)
+数据类似，用 data_seg() 声明</p>
+<ul>
+<li>分配内核内存,标记分页及非分页参数</li>
+</ul>
+<pre><code class="language-c">  NTKERNELAPI PVOID ExAllocatePool(POOL_TYPE PoolType,SIZE_T NumberOfBytes);
+  NTKERNELAPI PVOID ExAllocatePoolWithTag(POOL_TYPE PoolType,SIZE_T NumberOfBytes, ULONG Tag)
+</code></pre>
+<p>POOL_TYPE参数为PagedPool, NonPagedPool
+例子：PVOID p = ExAllocatePoolWithTag(PagedPool, 42, ‘TEST’);</p>
+<ul>
+<li>对象操作调用</li>
+</ul>
+<pre><code class="language-cpp">NTKERNELAPI NTSTATUS ObReferenceObjectByHandle(
+  HANDLE                     Handle,
+  ACCESS_MASK                DesiredAccess,
+  POBJECT_TYPE               ObjectType,
+  KPROCESSOR_MODE            AccessMode,
+  PVOID                      *Object,
+  POBJECT_HANDLE_INFORMATION HandleInformation
+);
+  
+NTKERNELAPI LONG_PTR ObfReferenceObject(
+  PVOID Object
+);
+
+NTKERNELAPI NTSTATUS IoGetDeviceObjectPointer(
+  PUNICODE_STRING ObjectName,
+  ACCESS_MASK     DesiredAccess,
+  PFILE_OBJECT    *FileObject,
+  PDEVICE_OBJECT  *DeviceObject
+);
+</code></pre>
+<h2 id="6-常用驱动系统api使用">6. 常用驱动系统API使用</h2>
+<p>常用驱动操作</p>
+<ul>
+<li>链表</li>
+</ul>
+<pre><code class="language-c">typedef struct _LIST_ENTRY {
+    struct _LIST_ENTRY  *Flink;    // 指向下一个节点
+    struct _LIST_ENTRY  *Blink;    // 指向前一个节点
+} LIST_ENTRY, *PLIST_ENTRY;
+</code></pre>
+<p>InitializeListHead 初始化链表头
+IsListEmpty 判断链表是否为空
+InsertHeadList 从链表头部插入节点
+InsertTailList 从链表尾部插入节点
+RemoveHeadList 从链表头部删除节点
+RemoveTailList 从链表尾部删除节点
+CONTAINING_RECORD 指向链表中的特定成员</p>
+<p>示例代码</p>
+<pre><code class="language-c">#include &lt;ntddk.h&gt;
+typedef struct _MYDATASTRUCT 
+{
+    ULONG number;
+    LIST_ENTRY ListEntry;
+}MYDATASTRUCT, *PMYDATASTRUCT;
+
+VOID LinkListTest()
+{
+    LIST_ENTRY linkListHead;
+    //初始化链表
+    InitializeListHead(&amp;linkListHead);
+    PMYDATASTRUCT pData;
+    ULONG i = 0;
+    //在链表中插入10个元素
+    for(i=0; i&lt;10; i++)
+    {
+        //分配页内存
+        pData = (PMYDATASTRUCT)ExAllocatePool(PagedPool, sizeof(MYDATASTRUCT));
+        pData-&gt;number = i;
+        //从头部插入链表
+        InsertHeadList(&amp;linkListHead, &amp;pData-&gt;ListEntry);
+    }
+    //从链表中取出,并显示
+    while(!IsListEmpty(&amp;linkListHead))
+    {
+        //从尾部删除一个元素
+        PLIST_ENTRY pEntry = RemoveTailList(&amp;linkListHead); //返回删除结构中ListEntry的位置
+        pData = CONTAINING_RECORD(pEntry,MYDATASTRUCT,ListEntry);
+        ExFreePool(pData);
+    }
+}
+</code></pre>
+<p>可以看一下CONTAINING_RECORD的定义</p>
+<pre><code class="language-c">#define CONTAINING_RECORD(addr,type,field) ((type*)((unsigned char*)addr - (unsigned long)&amp;((type*)0)-&gt;field))
+</code></pre>
+<ul>
+<li>字符串</li>
+</ul>
+<pre><code class="language-c">typedef struct  _UNICODE_STRING {
+
+    USHORT Length;
+    USHORT MaximumLength;
+    PWCH   Buffer;
+} UNICODE_STRING;
+
+NTSYSAPI VOID RtlInitUnicodeString(
+  PUNICODE_STRING         DestinationString,
+  PCWSTR                  SourceString
+);
+NTSYSAPI LONG RtlCompareUnicodeString(
+  PCUNICODE_STRING String1,
+  PCUNICODE_STRING String2,
+  BOOLEAN          CaseInSensitive
+);
+NTSYSAPI NTSTATUS RtlUpcaseUnicodeString(
+  PUNICODE_STRING  DestinationString,
+  PCUNICODE_STRING SourceString,
+  BOOLEAN          AllocateDestinationString
+);
+NTSYSAPI NTSTATUS RtlUnicodeStringToInteger(
+  PCUNICODE_STRING String,
+  ULONG            Base,
+  PULONG           Value
+);
+NTSTATUS RtlUnicodeStringToAnsiString(
+  PANSI_STRING     DestinationString,
+  PCUNICODE_STRING SourceString,
+  BOOLEAN          AllocateDestinationString
+);
+</code></pre>
+<p>注意参数AllocateDestinationString，如果为TRUE则需要调用RtlFree*String</p>
+<ul>
+<li>文件和注册表</li>
+</ul>
+<pre><code class="language-c">NTSTATUS ZwCreateFile(
+  _Out_     PHANDLE FileHandle,
+  _In_      ACCESS_MASK DesiredAccess,
+  _In_      POBJECT_ATTRIBUTES ObjectAttributes,
+  _Out_     PIO_STATUS_BLOCK IoStatusBlock,
+  _In_opt_  PLARGE_INTEGER AllocationSize,
+  _In_      ULONG FileAttributes,
+  _In_      ULONG ShareAccess,
+  _In_      ULONG CreateDisposition,
+  _In_      ULONG CreateOptions,
+  _In_opt_  PVOID EaBuffer,
+  _In_      ULONG EaLength
+);
+
+NTSYSAPI NTSTATUS ZwCreateKey(
+  PHANDLE            KeyHandle,
+  ACCESS_MASK        DesiredAccess,
+  POBJECT_ATTRIBUTES ObjectAttributes,
+  ULONG              TitleIndex,
+  PUNICODE_STRING    Class,
+  ULONG              CreateOptions,
+  PULONG             Disposition
+);
+</code></pre>
+<p>关键点在初始化ObjectAttribute的结构</p>
+<p>参考源码
+<a href="https://oser.space/img/driver1/src2.zip">src2.zip</a></p>
+<ul>
+<li>系统</li>
+</ul>
+<p>SYSTEM_INFORMATION_CLASS 有大量非文档声明及特定的结构
+<a href="https://oser.space/img/driver1/undocument.txt">undocument.txt</a></p>
+<pre><code class="language-c">NTSTATUS WINAPI ZwQuerySystemInformation(
+  _In_       SYSTEM_INFORMATION_CLASS SystemInformationClass,
+  _Inout_    PVOID SystemInformation,
+  _In_       ULONG SystemInformationLength,
+  _Out_opt_  PULONG ReturnLength
+);
+</code></pre>
+<h2 id="7-内核线程及同步问题">7. 内核线程及同步问题</h2>
+<ul>
+<li>等待对象</li>
+</ul>
+<pre><code class="language-c">NTKERNELAPI NTSTATUS KeWaitForSingleObject(
+  PVOID  Object,
+  KWAIT_REASON WaitReason,
+  KPROCESSOR_MODE WaitMode,
+  BOOLEAN  Alertable,
+  PLARGE_INTEGER  Timeout
+);
+</code></pre>
+<p>KeWaitForMultipleObjects
+类似用户层WaitForSingleObjectEx</p>
+<ul>
+<li>内核事件</li>
+</ul>
+<pre><code class="language-c">    //初始化内核事件
+    KeInitializeEvent(&amp;kEvent,NotificationEvent,FALSE);
+    //第二个参数是事件的类型，“通知事件”参数是NotificationEvent。“同步事件”对应是SynchronizationEvent
+    //同步会在KeWaitForSingleObject后自动设置未激发态，通知需要调用KeSetEvent设置
+</code></pre>
+<p>互斥对象 KeInitizlizeMutex(略)</p>
+<p>自旋锁
+自旋锁相当于代码临界区
+线程在空转等待锁资源，所以占用锁的时间尽可能的要短</p>
+<pre><code class="language-c">//初始化自旋锁
+VOID KeInitializeSpinLock(
+_Out_ PKSPIN_LOCK SpinLock
+);
+//获取自旋锁
+VOID KeAcquireSpinLock(
+  _In_  PKSPIN_LOCK SpinLock,
+  _Out_ PKIRQL      OldIrql
+);
+//释放自旋锁
+VOID KeReleaseSpinLock(
+  _Inout_ PKSPIN_LOCK SpinLock,
+  _In_    KIRQL       NewIrql
+);
+</code></pre>
+<p>单核cpu和多核cpu实现自旋锁机制完全不同，单核cpu只是简单的提升到DISPATCH_LEVEL优先级，而多核则需要原子判断并置位判断</p>
+<ul>
+<li>内核线程</li>
+</ul>
+<pre><code class="language-c">NTSTATUS PsCreateSystemThread(
+  _Out_      PHANDLE ThreadHandle,
+  _In_       ULONG DesiredAccess,
+  _In_opt_   POBJECT_ATTRIBUTES ObjectAttributes,
+  _In_opt_   HANDLE ProcessHandle,
+  _Out_opt_  PCLIENT_ID ClientId,
+  _In_       PKSTART_ROUTINE StartRoutine,
+  _In_opt_   PVOID StartContext
+);
+
+//线程需要调用强制退出
+PsTerminateSystemThread(STATUS_SUCCESS);  
+</code></pre>
+
+        </div>
+
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="https://bzhou830.github.io/">Binean</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="https://bzhou830.github.io/post/20191223WindowsKernelProgramingSummer01/">https://bzhou830.github.io/post/20191223WindowsKernelProgramingSummer01/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
+    <center><image src= "https://bzhou830.github.io//about/wx.png" ></image></center>
+</div>
+<br/>
+
+
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/post/20191220IRP%E6%B4%BE%E9%81%A3%E5%87%BD%E6%95%B0/">IRP和派遣函数</a></li>
+        
+        <li><a href="/post/20180116C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8605/">C&#43;&#43;内存管理|05 各平台下std::allocator概览</a></li>
+        
+        <li><a href="/post/20180114C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8604/">C&#43;&#43;内存管理|04 内存池</a></li>
+        
+        <li><a href="/post/20180112C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8603/">C&#43;&#43;内存管理|03 重载</a></li>
+        
+        <li><a href="/post/20180110C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8602/">C&#43;&#43;内存管理|02 内存操作相关函数</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='https://bzhou830.github.io/tags/C/C&#43;&#43;'>C/C&#43;&#43;</a></li>
+                
+                <li><a href='https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B'>驱动编程</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "bzhou830/Blog"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    
+<section class="widget">
+    
+    <ul class="widget-list">
+        
+        <li>
+            <a href="https://bzhou830.github.io/" title="简介" target="_blank">
+                
+                
+                    <div>
+                        <div style="width: 200px; height: 200px; border-radius:100%; overflow:hidden;">
+                            <img src=https://bzhou830.github.io/about/touxiang.jpg >
+                        </div>
+                    </div>
+
+                    <div>
+                        <h2>Binean</h2>
+                    </div>
+                    
+                    <div>
+                        <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path><path fill="currentColor" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V18c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-1.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05.02.01.03.03.04.04 1.14.83 1.93 1.94 1.93 3.41V18c0 .35-.07.69-.18 1H22c.55 0 1-.45 1-1v-1.5c0-2.33-4.67-3.5-7-3.5z"></path></svg>
+                            ****
+                        </div>
+                    </div>
+
+                    <div>
+                        <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path><path fill="currentColor" d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm8.94 3c-.46-4.17-3.77-7.48-7.94-7.94V2c0-.55-.45-1-1-1s-1 .45-1 1v1.06C6.83 3.52 3.52 6.83 3.06 11H2c-.55 0-1 .45-1 1s.45 1 1 1h1.06c.46 4.17 3.77 7.48 7.94 7.94V22c0 .55.45 1 1 1s1-.45 1-1v-1.06c4.17-.46 7.48-3.77 7.94-7.94H22c.55 0 1-.45 1-1s-.45-1-1-1h-1.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"></path></svg>
+                        武汉
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div>      
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path><path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-.4 4.25l-7.07 4.42c-.32.2-.74.2-1.06 0L4.4 8.25c-.25-.16-.4-.43-.4-.72 0-.67.73-1.07 1.3-.72L12 11l6.7-4.19c.57-.35 1.3.05 1.3.72 0 .29-.15.56-.4.72z"></path></svg>
+                        <a href="mailto:bzhou830@qq.com">bzhou830@qq.com</a> 
+                        </div>
+                    </div>
+                
+            </a>
+        </li>
+        
+        <li>
+            <a href="https://bzhou830.github.io/about/" title="欢迎关注微信公众号" target="_blank">
+                
+                    <h3 class="widget-title">欢迎关注微信公众号</h3>
+                    <img src="https://bzhou830.github.io/about/qrcode.jpg" >
+                
+            </a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <form id="search" action='https://bzhou830.github.io/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://bzhou830.github.io/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://bzhou830.github.io/categories/">Categories (3)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/C/C&#43;&#43;/">C/C&#43;&#43; (12)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Flask/">Flask (11)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/GPU/">GPU (18)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Golang/">Golang (10)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/MCU/">MCU (1)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Misc/">Misc (13)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/OpenCV/">OpenCV (1)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/PiCo/">PiCo (1)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/Python/">Python (12)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/USB/">USB (5)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/WindowsKernel/">WindowsKernel (9)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E4%B8%B2%E5%8F%A3/">串口 (5)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理 (14)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学 (6)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E8%AE%BA/">图论 (12)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E6%88%90%E9%95%BF/">成长 (5)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式 (1)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20220705Pico%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="PiCo| 开发环境搭建">PiCo| 开发环境搭建</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20220420GD32USBEx/" title="USB探索| Flash 烧录器">USB探索| Flash 烧录器</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20220220GD32USB04/" title="USB探索|3.从USB键盘改造成USB鼠标">USB探索|3.从USB键盘改造成USB鼠标</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20220213GD32USB03/" title="USB探索|2.USB键盘的实现">USB探索|2.USB键盘的实现</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20220212GD32USB02/" title="USB探索|1.USB协议基础">USB探索|1.USB协议基础</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20220127GD32USB01/" title="USB探索|0.偶遇GD32L233">USB探索|0.偶遇GD32L233</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20211225%E4%BA%8C%E9%9B%B6%E4%BA%8C%E4%B8%80%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2021年终总结">2021年终总结</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20211207Windbg%E6%89%A9%E5%B1%95%E5%85%A5%E6%B4%BB/" title="Windbg扩展|01入活">Windbg扩展|01入活</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20211121%E8%BF%9C%E7%A8%8B%E9%87%8D%E5%90%AF%E5%B0%8F%E5%B7%A5%E5%85%B7/" title="远程重启小工具">远程重启小工具</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20211024GPU-Tile-Based-Immediate/" title="GPU topic：Tile-Based Rendering vs. Immediate Mode Rendering">GPU topic：Tile-Based Rendering vs. Immediate Mode Rendering</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://bzhou830.github.io/" title="Binean’s">Binean’s</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://bzhou830.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://bzhou830.github.io/tags/">Tags</a>
+    
+    <a href="https://bzhou830.github.io/tags/C&#43;&#43;/">C&#43;&#43;</a>
+    
+    <a href="https://bzhou830.github.io/tags/C/C&#43;&#43;/">C/C&#43;&#43;</a>
+    
+    <a href="https://bzhou830.github.io/tags/DICOM/">DICOM</a>
+    
+    <a href="https://bzhou830.github.io/tags/Excel/">Excel</a>
+    
+    <a href="https://bzhou830.github.io/tags/Flask/">Flask</a>
+    
+    <a href="https://bzhou830.github.io/tags/GPU/">GPU</a>
+    
+    <a href="https://bzhou830.github.io/tags/Golang/">Golang</a>
+    
+    <a href="https://bzhou830.github.io/tags/OCR/">OCR</a>
+    
+    <a href="">OpenCV</a>
+    
+    <a href="https://bzhou830.github.io/tags/Python/">Python</a>
+    
+    <a href="https://bzhou830.github.io/tags/android/">android</a>
+    
+    <a href="https://bzhou830.github.io/tags/git/">git</a>
+    
+    <a href="https://bzhou830.github.io/tags/github/">github</a>
+    
+    <a href="https://bzhou830.github.io/tags/hexo/">hexo</a>
+    
+    <a href="https://bzhou830.github.io/tags/hugo/">hugo</a>
+    
+    <a href="https://bzhou830.github.io/tags/jni/">jni</a>
+    
+    <a href="https://bzhou830.github.io/tags/opencv/">opencv</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E4%B8%B2%E5%8F%A3/">串口</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%85%AC%E5%BC%8F/">公式</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">内存管理</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E6%96%87%E6%9C%AC%E6%A3%80%E6%B5%8B/">文本检测</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8/">驱动</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B/">驱动编程</a>
+    
+</div>
+    </section>
+
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2022 <a href="https://bzhou830.github.io/">菠萝蜜 By Binean</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        <br><a href="http://www.beian.miit.gov.cn/" target="_blank">鄂ICP备20004395号</a>. 
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function(){
+            $("pre code").parent().addClass("line-numbers")
+        }())
+    
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [ ['$','$'] ],
+                processEscapes: true
+            }
+        };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+    
+    
+    
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+
+</body>
+
+</html>

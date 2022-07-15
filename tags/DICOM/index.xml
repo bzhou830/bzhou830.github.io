@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>DICOM on Binean&#39;s Blog</title>
+    <title>DICOM on 菠萝蜜</title>
     <link>https://bzhou830.github.io/tags/DICOM/</link>
-    <description>Recent content in DICOM on Binean&#39;s Blog</description>
+    <description>Recent content in DICOM on 菠萝蜜</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Thu, 17 Nov 2016 09:29:11 +0800</lastBuildDate>
@@ -13,37 +13,37 @@
     
     <item>
       <title>DICOM影像中的窗宽窗位</title>
-      <link>https://bzhou830.github.io/posts/20161117DICOM%E5%BD%B1%E5%83%8F%E4%B8%AD%E7%9A%84%E7%AA%97%E5%AE%BD%E7%AA%97%E4%BD%8D/</link>
+      <link>https://bzhou830.github.io/post/20161117DICOM%E5%BD%B1%E5%83%8F%E4%B8%AD%E7%9A%84%E7%AA%97%E5%AE%BD%E7%AA%97%E4%BD%8D/</link>
       <pubDate>Thu, 17 Nov 2016 09:29:11 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/posts/20161117DICOM%E5%BD%B1%E5%83%8F%E4%B8%AD%E7%9A%84%E7%AA%97%E5%AE%BD%E7%AA%97%E4%BD%8D/</guid>
+      <guid>https://bzhou830.github.io/post/20161117DICOM%E5%BD%B1%E5%83%8F%E4%B8%AD%E7%9A%84%E7%AA%97%E5%AE%BD%E7%AA%97%E4%BD%8D/</guid>
       <description>1.为什么有窗宽窗位? 医学图像领域的关键技术窗技术，是CT检查中用以观察不同密度的正常组织或病变的一种显示技术，包括窗宽(window width)和窗位(window level)。由于各种组织结构或病变具有不同的CT值，因此想要显示某一组织结构细节时，应该选择适合观察该组织或病变</description>
     </item>
     
     <item>
       <title>DICOM通信|PDU数据包（2）</title>
-      <link>https://bzhou830.github.io/posts/20161008DICOM%E9%80%9A%E4%BF%A1PDU%E6%95%B0%E6%8D%AE%E5%8C%852/</link>
+      <link>https://bzhou830.github.io/post/20161008DICOM%E9%80%9A%E4%BF%A1PDU%E6%95%B0%E6%8D%AE%E5%8C%852/</link>
       <pubDate>Sat, 08 Oct 2016 09:29:11 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/posts/20161008DICOM%E9%80%9A%E4%BF%A1PDU%E6%95%B0%E6%8D%AE%E5%8C%852/</guid>
+      <guid>https://bzhou830.github.io/post/20161008DICOM%E9%80%9A%E4%BF%A1PDU%E6%95%B0%E6%8D%AE%E5%8C%852/</guid>
       <description>DICOM通信-PDU数据包(1)中主要分析了DICOM通信协议的连接协商请求和连接协商应答。 在7个PDU数据包中还有5个数据包，从结构上来看，他们比协议的协商过程要简单明了一些。 这篇博客就来分析下剩下的5种数据包。 博客中使用的是WireShark抓包工具获取到的通信传输数据。 1</description>
     </item>
     
     <item>
       <title>DICOM通信|PDU数据包（1）</title>
-      <link>https://bzhou830.github.io/posts/20161007DICOM%E9%80%9A%E4%BF%A1PDU%E6%95%B0%E6%8D%AE%E5%8C%851/</link>
+      <link>https://bzhou830.github.io/post/20161007DICOM%E9%80%9A%E4%BF%A1PDU%E6%95%B0%E6%8D%AE%E5%8C%851/</link>
       <pubDate>Fri, 07 Oct 2016 09:29:11 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/posts/20161007DICOM%E9%80%9A%E4%BF%A1PDU%E6%95%B0%E6%8D%AE%E5%8C%851/</guid>
+      <guid>https://bzhou830.github.io/post/20161007DICOM%E9%80%9A%E4%BF%A1PDU%E6%95%B0%E6%8D%AE%E5%8C%851/</guid>
       <description>DICOM上层协议为DIMSE提供透明的网络数据传输服务，即以上层协议规定的协议数据单元传送接收DIMSE的命令流与数据流。上层协议中制定了上层服务以及协议数据单元(Protocol Data Unit，PDU)。 PDU是处在同一层的对等体用来交换的信息格式，DICOM根据上层服务定义了以</description>
     </item>
     
     <item>
       <title>DCMTK读取DICOM文件</title>
-      <link>https://bzhou830.github.io/posts/20160915DCMTK%E8%AF%BB%E5%8F%96DICOM%E6%96%87%E4%BB%B6/</link>
+      <link>https://bzhou830.github.io/post/20160915DCMTK%E8%AF%BB%E5%8F%96DICOM%E6%96%87%E4%BB%B6/</link>
       <pubDate>Thu, 15 Sep 2016 08:29:11 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/posts/20160915DCMTK%E8%AF%BB%E5%8F%96DICOM%E6%96%87%E4%BB%B6/</guid>
+      <guid>https://bzhou830.github.io/post/20160915DCMTK%E8%AF%BB%E5%8F%96DICOM%E6%96%87%E4%BB%B6/</guid>
       <description>//.h文件 #pragma once class dicomRead { public: dicomRead(void); ~dicomRead(void); private: const char* PatientName; const char* PatientSex; long PatientAge; long Width; long Height; long Depth; long WindowsLevel; long WindowsWidth; double space[2]; double spaceZ; double ImagePosition[3]; double ImageOrientation[6]; unsigned short* buffer; public: const char* GetPatientName(); const char* GetPatientSex(); long GetPatientAge(); long GetWidth(); long GetHeight(); long GetDepth(); long GetWindowsLevel(); long GetWindowsWidth(); double* GetSpace(); double GetSpaceZ(double orientation[6],double position1[3],double position2[3]); double* GetImagePosition(); double* GetImageOrientation(); unsigned short* GetBuffer(); void DicomRead(const char* path); void compressionDicom(const char* path,int repType); void decompressionDicom(const char* path); void readDICOMInfo(const char* path); }; #include &amp;quot;dicomRead.h&amp;quot; #include &amp;lt;map&amp;gt; #include &amp;lt;math.h&amp;gt; #include &amp;lt;iostream&amp;gt; #include &amp;lt;string&amp;gt; #include &amp;quot;dcmtk\config\osconfig.h&amp;quot; #include &amp;quot;dcmtk\dcmdata\dctk.h&amp;quot; #include &amp;quot;dcmtk\dcmdata\dcxfer.h&amp;quot; #include &amp;quot;dcmtk\dcmdata\dctag.h&amp;quot; #include &amp;quot;dcmtk\dcmdata\dctagkey.h&amp;quot; #include &amp;quot;dcmtk\dcmdata\dcpxitem.h&amp;quot; #include &amp;quot;dcmtk\oflog\config.h&amp;quot; #include &amp;quot;dcmtk\dcmimgle\dcmimage.h&amp;quot; #include &amp;quot;dcmtk\dcmjpeg\djdecode.h&amp;quot; #include &amp;quot;dcmtk\dcmjpeg\djdijg12.h&amp;quot; #include &amp;quot;dcmtk\dcmjpeg\djdijg8.h&amp;quot; #include &amp;quot;dcmtk\dcmjpeg\djdijg16.h&amp;quot; #include &amp;quot;dcmtk\dcmjpeg\djencode.h&amp;quot; #include &amp;quot;dcmtk\dcmjpeg\djrploss.h&amp;quot; #include &amp;quot;dcmtk\dcmjpeg\djrplol.h&amp;quot; #include &amp;quot;dcmtk\dcmdata\dcrleerg.h&amp;quot; #include &amp;quot;dcmtk\dcmdata\dcrledrg.h&amp;quot; using</description>
     </item>
     
