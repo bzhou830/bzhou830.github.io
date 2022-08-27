@@ -2,1245 +2,1245 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>菠萝蜜</title>
-    <link>https://bineanju.gitee.io/blog/</link>
+    <link>https://bzhou830.github.io/</link>
     <description>Recent content on 菠萝蜜</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Fri, 05 Aug 2022 19:16:34 +0800</lastBuildDate>
     
-	<atom:link href="https://bineanju.gitee.io/blog/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://bzhou830.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>【转载】GPU渲染管线和硬件架构浅谈</title>
-      <link>https://bineanju.gitee.io/blog/post/20220805GPU%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E5%92%8C%E7%A1%AC%E4%BB%B6%E6%9E%B6%E6%9E%84%E6%B5%85%E8%B0%88/</link>
+      <link>https://bzhou830.github.io/post/20220805GPU%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E5%92%8C%E7%A1%AC%E4%BB%B6%E6%9E%B6%E6%9E%84%E6%B5%85%E8%B0%88/</link>
       <pubDate>Fri, 05 Aug 2022 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20220805GPU%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E5%92%8C%E7%A1%AC%E4%BB%B6%E6%9E%B6%E6%9E%84%E6%B5%85%E8%B0%88/</guid>
+      <guid>https://bzhou830.github.io/post/20220805GPU%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E5%92%8C%E7%A1%AC%E4%BB%B6%E6%9E%B6%E6%9E%84%E6%B5%85%E8%B0%88/</guid>
       <description>作者：landonwang，腾讯 IEG 客户端开发工程师 本文简述了 GPU 的渲染管线和硬件架构，对一些常见问题进行了讨论和分析。特此分享出来，与君共勉。当然，由于本人并未从事过硬件开发的工作，文中有错漏之处在所难免，欢迎批评指正。另外本文内容量很大，总结下来有以下几点核心内容：（1）移动平台</description>
     </item>
     
     <item>
       <title>PiCo| 开发环境搭建</title>
-      <link>https://bineanju.gitee.io/blog/post/20220705Pico%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</link>
+      <link>https://bzhou830.github.io/post/20220705Pico%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</link>
       <pubDate>Mon, 20 Jun 2022 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20220705Pico%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</guid>
+      <guid>https://bzhou830.github.io/post/20220705Pico%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</guid>
       <description>https://www.skyone.host/2021/02/23/win10-xia-pei-zhi-shu-mei-pai-pico-de-micropython-yu-c-huan-jing/ https://blog.csdn.net/m0_53777801/article/details/112982045</description>
     </item>
     
     <item>
       <title>【转载】关于黑客泄漏nvidia Windows显卡驱动代码分析</title>
-      <link>https://bineanju.gitee.io/blog/post/20220501NV%E9%A9%B1%E5%8A%A8/</link>
+      <link>https://bzhou830.github.io/post/20220501NV%E9%A9%B1%E5%8A%A8/</link>
       <pubDate>Sun, 01 May 2022 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20220501NV%E9%A9%B1%E5%8A%A8/</guid>
+      <guid>https://bzhou830.github.io/post/20220501NV%E9%A9%B1%E5%8A%A8/</guid>
       <description>BTC挖矿让英伟达飞起来了，当然也与英伟达在并行计算机领域的强大技术能力有关。这次国外黑客把英伟达的代码公开给大家。让中国人有机会一睹英伟达的显卡驱动的芳容。 此贴就重点来研究一下英伟达windows驱动代码。显卡驱动对许多人来说还是比较神密的。首先做PC显卡的就那三家：nvidi</description>
     </item>
     
     <item>
       <title>USB探索| Flash 烧录器</title>
-      <link>https://bineanju.gitee.io/blog/post/20220420GD32USBEx/</link>
+      <link>https://bzhou830.github.io/post/20220420GD32USBEx/</link>
       <pubDate>Wed, 20 Apr 2022 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20220420GD32USBEx/</guid>
+      <guid>https://bzhou830.github.io/post/20220420GD32USBEx/</guid>
       <description>flash芯片26VF064B的memory layout可以从芯片手册看到。 有8个8K Bytes, 2个32K Bytes, 126个64K Bytes.总计就是8M的容量。所以就是将Flash整个Memory全部写一遍（8M 所以就是将Flash整个Memory全部写一遍（8M Bytes的空间），写完之后去</description>
     </item>
     
     <item>
       <title>USB探索|3.从USB键盘改造成USB鼠标</title>
-      <link>https://bineanju.gitee.io/blog/post/20220220GD32USB04/</link>
+      <link>https://bzhou830.github.io/post/20220220GD32USB04/</link>
       <pubDate>Sun, 20 Feb 2022 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20220220GD32USB04/</guid>
+      <guid>https://bzhou830.github.io/post/20220220GD32USB04/</guid>
       <description>1. 实现思路 有了前面实现USB键盘的基础，实现USB鼠标就变得相对非常的简单了。和USB键盘一样，USB鼠标也是HID设备。因此只需要修改HID报告描述符就能成功的把USB键盘改造成一个USB鼠标。 这里直接采用《圈圈带你玩USB》书中的鼠标案例中的HID报告描述符。内容如下： const uint8_t hid_report_desc[USB_HID_REPORT_DESC_LEN]</description>
     </item>
     
     <item>
       <title>USB探索|3.USB键盘的实现</title>
-      <link>https://bineanju.gitee.io/blog/post/20220213GD32USB03/</link>
+      <link>https://bzhou830.github.io/post/20220213GD32USB03/</link>
       <pubDate>Sun, 13 Feb 2022 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20220213GD32USB03/</guid>
+      <guid>https://bzhou830.github.io/post/20220213GD32USB03/</guid>
       <description>1. 实现思路 在GD32L233C-start板子的官方例程中有一个USB CDC的案例，此外就没有任何USB相关的案例了。但是，从GD32L233R_EVAL_Demo_Suites里面找到了有USB键盘的案例，所以最简单的实现方式就是将这个Demo移植过来到GD32L233C-st</description>
     </item>
     
     <item>
       <title>USB探索|2.设备的连接和枚举</title>
-      <link>https://bineanju.gitee.io/blog/post/20220212GD32USB03/</link>
+      <link>https://bzhou830.github.io/post/20220212GD32USB03/</link>
       <pubDate>Fri, 11 Feb 2022 22:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20220212GD32USB03/</guid>
+      <guid>https://bzhou830.github.io/post/20220212GD32USB03/</guid>
       <description>1. 主设备和从设备 USB通讯的两端分别称为:HOST(主设备/USB主机)和Device(从设备/USB设备)，最常见的主设备就是PC。 USB主设备一般有以下的功能： 检测USB设备的插拔动作 管理主从通讯之间的控制流 管理主从通讯之间的数据流 记录主机状态和设备动作信息 控制主控制器和US</description>
     </item>
     
     <item>
       <title>USB探索|1.认识USB协议</title>
-      <link>https://bineanju.gitee.io/blog/post/20220212GD32USB02/</link>
+      <link>https://bzhou830.github.io/post/20220212GD32USB02/</link>
       <pubDate>Fri, 11 Feb 2022 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20220212GD32USB02/</guid>
+      <guid>https://bzhou830.github.io/post/20220212GD32USB02/</guid>
       <description>1. USB接口特点 简单易用 使用统一制式电缆和连接进行外设扩展，即插即用，支持热插拔 稳定性佳 使用差分信号传输，较强的纠错能力，多种差错管理和恢复机制 速度选择 1.5Mbps/ 12Mbps/ 480Mbps/ 5Gbps/ 10Gbps/ 20Gbps多种等级 使用灵活 提供了适合各种应用的传输类型、协议 应用广泛 协议标准向下兼容，系统集成驱动，扩展性强，连接支</description>
     </item>
     
     <item>
       <title>USB探索|0.偶遇GD32L233</title>
-      <link>https://bineanju.gitee.io/blog/post/20220127GD32USB01/</link>
+      <link>https://bzhou830.github.io/post/20220127GD32USB01/</link>
       <pubDate>Thu, 27 Jan 2022 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20220127GD32USB01/</guid>
+      <guid>https://bzhou830.github.io/post/20220127GD32USB01/</guid>
       <description>1. 序章 早在除夕之夜说过自己萌生了设计一个简单的外设来进行Windows驱动探索的想法。并且看中了USB外设，因为USB接口使用方便，硬件设计也相对简单。 春节期间恰好遇到了电子工程世界上兆易创新做的评测活动，评测活板子使用MCU是GD32L233，这颗芯片支持USB2.0, 正好可以</description>
     </item>
     
     <item>
       <title>2021年终总结</title>
-      <link>https://bineanju.gitee.io/blog/post/20211225%E4%BA%8C%E9%9B%B6%E4%BA%8C%E4%B8%80%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/</link>
+      <link>https://bzhou830.github.io/post/20211225%E4%BA%8C%E9%9B%B6%E4%BA%8C%E4%B8%80%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/</link>
       <pubDate>Sat, 25 Dec 2021 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20211225%E4%BA%8C%E9%9B%B6%E4%BA%8C%E4%B8%80%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/</guid>
+      <guid>https://bzhou830.github.io/post/20211225%E4%BA%8C%E9%9B%B6%E4%BA%8C%E4%B8%80%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/</guid>
       <description>时间好像真的是具有加速度的，越发的觉得一年的时间越来越短。新冠疫情笼罩之下这两年的记忆感觉像是被挖空了一样。这一年的生活解节奏就是按部就班。 1. 工作和学习 能想起来的比较记忆深刻的事情大概就是上半年有点时间研究multi-gpu相关的技术，虽然没啥实质性的研究成果，但是对于WDDM框</description>
     </item>
     
     <item>
       <title>Windbg扩展|01入活</title>
-      <link>https://bineanju.gitee.io/blog/post/20211207Windbg%E6%89%A9%E5%B1%95%E5%85%A5%E6%B4%BB/</link>
+      <link>https://bzhou830.github.io/post/20211207Windbg%E6%89%A9%E5%B1%95%E5%85%A5%E6%B4%BB/</link>
       <pubDate>Mon, 06 Dec 2021 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20211207Windbg%E6%89%A9%E5%B1%95%E5%85%A5%E6%B4%BB/</guid>
+      <guid>https://bzhou830.github.io/post/20211207Windbg%E6%89%A9%E5%B1%95%E5%85%A5%E6%B4%BB/</guid>
       <description>1. WinDbg扩展有哪些用处？ 在使用WinDbg进行设备驱动调试时，有时候如果存在某些特定的工具那么会让我们的调试过程变得更加的顺畅。比如对于PCI设备，我们想去读取设备物理地址某一段的值然后把它保存下来。我们当然可以使用!dd这个命令来做，读取少量的数据当然也还没啥问题，如果读</description>
     </item>
     
     <item>
       <title>远程重启小工具</title>
-      <link>https://bineanju.gitee.io/blog/post/20211121%E8%BF%9C%E7%A8%8B%E9%87%8D%E5%90%AF%E5%B0%8F%E5%B7%A5%E5%85%B7/</link>
+      <link>https://bzhou830.github.io/post/20211121%E8%BF%9C%E7%A8%8B%E9%87%8D%E5%90%AF%E5%B0%8F%E5%B7%A5%E5%85%B7/</link>
       <pubDate>Sat, 20 Nov 2021 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20211121%E8%BF%9C%E7%A8%8B%E9%87%8D%E5%90%AF%E5%B0%8F%E5%B7%A5%E5%85%B7/</guid>
+      <guid>https://bzhou830.github.io/post/20211121%E8%BF%9C%E7%A8%8B%E9%87%8D%E5%90%AF%E5%B0%8F%E5%B7%A5%E5%85%B7/</guid>
       <description>对于Windows设备驱动开发者来说，经常就是一台调试机器和一台被调试机器，使用Debug Cable连接或者使用网络连接，就像下图的这种模式。 正常情况下这两台机器都是在我们身边的。那么重启Target机器也就非常的容易。但是有些特殊情况下，这两台机器都不在身边，是通过网络远程连接</description>
     </item>
     
     <item>
       <title>GPU topic：Tile-Based Rendering vs. Immediate Mode Rendering</title>
-      <link>https://bineanju.gitee.io/blog/post/20211024GPU-Tile-Based-Immediate/</link>
+      <link>https://bzhou830.github.io/post/20211024GPU-Tile-Based-Immediate/</link>
       <pubDate>Sat, 23 Oct 2021 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20211024GPU-Tile-Based-Immediate/</guid>
+      <guid>https://bzhou830.github.io/post/20211024GPU-Tile-Based-Immediate/</guid>
       <description>经典的GPU架构都是Immediate mode GPU.主要的流程就是vertex shader 和 pixel shader顺序执行。其数据流如下图所示： 执行流程可以用伪代码表示如下。 foreach(triangle) foreach(fragment) load FBO data (color, depth, ...) call fragment shader store new FBO data Immediate mode是Full Screen的，所以对于每个primitive都直接提交渲染。这样Pipeli</description>
     </item>
     
     <item>
       <title>imgui的使用</title>
-      <link>https://bineanju.gitee.io/blog/post/20210710imgui%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <link>https://bzhou830.github.io/post/20210710imgui%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
       <pubDate>Sat, 10 Jul 2021 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20210710imgui%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <guid>https://bzhou830.github.io/post/20210710imgui%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
       <description>首先可以看看imgui的目录结构： backends中的文件： 这里举例在一个简单的工程中使用imgui。 首先下图中框中的文件就是从上述的两个图中复制过来的。原本的工程中只有一个Transformation.cpp。 包含头文件 #include &amp;quot;imgui/imgui.h&amp;quot; #include &amp;quot;imgui/imgui_impl_win32.h&amp;quot; #include &amp;quot;imgui/imgui_impl_dx11.h&amp;quot; 在进入消息循环之前 // Setup Dear ImGui context IMGUI_CHECKVERSION(); ImGui::CreateContext(); ImGuiIO&amp;amp; io = ImGui::GetIO(); io.ConfigFlags |= ImGuiConfigFlags_NavEnableSetMousePos;</description>
     </item>
     
     <item>
       <title>GPU topic：延迟 vs. 带宽 vs. 吞吐量</title>
-      <link>https://bineanju.gitee.io/blog/post/20210523GPU-%E5%BB%B6%E8%BF%9F-%E5%B8%A6%E5%AE%BD-%E5%90%9E%E5%90%90%E9%87%8F/</link>
+      <link>https://bzhou830.github.io/post/20210523GPU-%E5%BB%B6%E8%BF%9F-%E5%B8%A6%E5%AE%BD-%E5%90%9E%E5%90%90%E9%87%8F/</link>
       <pubDate>Sun, 23 May 2021 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20210523GPU-%E5%BB%B6%E8%BF%9F-%E5%B8%A6%E5%AE%BD-%E5%90%9E%E5%90%90%E9%87%8F/</guid>
+      <guid>https://bzhou830.github.io/post/20210523GPU-%E5%BB%B6%E8%BF%9F-%E5%B8%A6%E5%AE%BD-%E5%90%9E%E5%90%90%E9%87%8F/</guid>
       <description>再谈延迟，带宽和吞吐量之前，先看看在之前分享的文章中我们说过这样的一个例子： GPU内存架构和命令的处理 上面的例子以同时期的i7-2600k和GeForce GTX480来进行对比。i7-2600k的存储带宽在表现好的时候可以达到19GB/s, GTX480的存储带宽则是将近180GB</description>
     </item>
     
     <item>
       <title>Draw.io部署教程</title>
-      <link>https://bineanju.gitee.io/blog/post/20210503DrawIo%E6%90%AD%E5%BB%BA/</link>
+      <link>https://bzhou830.github.io/post/20210503DrawIo%E6%90%AD%E5%BB%BA/</link>
       <pubDate>Mon, 15 Feb 2021 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20210503DrawIo%E6%90%AD%E5%BB%BA/</guid>
+      <guid>https://bzhou830.github.io/post/20210503DrawIo%E6%90%AD%E5%BB%BA/</guid>
       <description>Draw.io是GitHub上的一个开源的免费流程图绘制工具，功能非常的丰富，使用上和ProcessOn基本上是一致的，但是ProcessOn是收费的。 Draw.io也有在线网页版，可以直接访问（https://www.draw.io/）进行使用。也有桌面版，桌面版下载地址：ht</description>
     </item>
     
     <item>
       <title>Shader在GPU中是如何执行的？</title>
-      <link>https://bineanju.gitee.io/blog/post/20210215GPUShader/</link>
+      <link>https://bzhou830.github.io/post/20210215GPUShader/</link>
       <pubDate>Mon, 15 Feb 2021 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20210215GPUShader/</guid>
+      <guid>https://bzhou830.github.io/post/20210215GPUShader/</guid>
       <description>首先，我想说明一下，虽然文章的标题是 How GPU Works，但是我无意再去重复GPU工作的各个stage，流水线这些概念。本文会深入到更底层一点：GPU是如何执行shader的。在本文中，我除了GPU执行shader的方式之外，还有稍微涉及一些多核心，SIMD，超线程这些过去大家看上去貌</description>
     </item>
     
     <item>
       <title>NES模拟器</title>
-      <link>https://bineanju.gitee.io/blog/post/20210112NES%E6%A8%A1%E6%8B%9F%E5%99%A8/</link>
+      <link>https://bzhou830.github.io/post/20210112NES%E6%A8%A1%E6%8B%9F%E5%99%A8/</link>
       <pubDate>Tue, 12 Jan 2021 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20210112NES%E6%A8%A1%E6%8B%9F%E5%99%A8/</guid>
+      <guid>https://bzhou830.github.io/post/20210112NES%E6%A8%A1%E6%8B%9F%E5%99%A8/</guid>
       <description>前段时间把以前上传到优酷上的视频搬到了B站上，里面包含一个用STM32F407单片机上移植Nes模拟器玩超级玛丽的视频。视频大概是下面这个样子的。当时一只手玩，另一只手拿着HTC安卓手机拍的，那时候还是安卓手机刚刚兴起，好像小米也才刚发布第一款手机。所以拍摄的效果并不好，仅仅用作</description>
     </item>
     
     <item>
       <title>2020，我在武汉的这一年的故事</title>
-      <link>https://bineanju.gitee.io/blog/post/20201226%E5%9C%A8%E6%AD%A6%E6%B1%89%E7%9A%842020/</link>
+      <link>https://bzhou830.github.io/post/20201226%E5%9C%A8%E6%AD%A6%E6%B1%89%E7%9A%842020/</link>
       <pubDate>Sat, 26 Dec 2020 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20201226%E5%9C%A8%E6%AD%A6%E6%B1%89%E7%9A%842020/</guid>
+      <guid>https://bzhou830.github.io/post/20201226%E5%9C%A8%E6%AD%A6%E6%B1%89%E7%9A%842020/</guid>
       <description>缘起 距离上一次写年度总结已经有4年了，毕业工作后整个人似乎就总是处于慌慌张张的生活状态当中，忙着工作，忙着买房，忙着结婚&amp;hellip;回看几年前记录下的文字不免想到，要是这几年能抽时间记录下自己的生活状态，对自己的认识是否会更深几分？ 作为小市民阶级，2020年的确极具魔幻现实风</description>
     </item>
     
     <item>
       <title>谈谈OpenCV中的四边形</title>
-      <link>https://bineanju.gitee.io/blog/post/20180608opencv_squares/</link>
+      <link>https://bzhou830.github.io/post/20180608opencv_squares/</link>
       <pubDate>Mon, 08 Jun 2020 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20180608opencv_squares/</guid>
+      <guid>https://bzhou830.github.io/post/20180608opencv_squares/</guid>
       <description>首先抛出一个问题，给定一系列二维平面上的的点，这些点是可以组成一个封闭的二维图形。因为这些点是矩形区域拍摄图像后识别得到的图形的边界点，所以我们要抽象出来这个矩形，也就是我们要反映出这个矩形。问题是在拍照的时候摄像头可能不是正对着图形的，那么矩形就必然在图像上反映为一个四边形, 如</description>
     </item>
     
     <item>
       <title>PyQt5&#43;OpenCV多线程显示摄像头数据</title>
-      <link>https://bineanju.gitee.io/blog/post/20160515python_opencv_camera/</link>
+      <link>https://bzhou830.github.io/post/20160515python_opencv_camera/</link>
       <pubDate>Fri, 15 May 2020 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20160515python_opencv_camera/</guid>
+      <guid>https://bzhou830.github.io/post/20160515python_opencv_camera/</guid>
       <description>pyqt5是一套Python绑定Digia QT5应用的框架。它可用于Python 2和3。Qt库是最强大的GUI库之一。pyqt5很大的优势就是跨平台，而且使用起来非常的方便，编写的代码比较精简，又能实现比较复杂的界面。在很多视觉程序中都需要GUI, 搭配OpenCV, pyqt5可方</description>
     </item>
     
     <item>
       <title>VS Code远程开发配置</title>
-      <link>https://bineanju.gitee.io/blog/post/20200420VsCodeDebug/</link>
+      <link>https://bzhou830.github.io/post/20200420VsCodeDebug/</link>
       <pubDate>Mon, 20 Apr 2020 13:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20200420VsCodeDebug/</guid>
+      <guid>https://bzhou830.github.io/post/20200420VsCodeDebug/</guid>
       <description>前言 北京时间2019年5月3日，在 PyCon 2019 大会上，微软发布了 VS Code Remote，开启了远程开发的新时代！这次发布包含了三款核心的全新插件，它们可以帮助开发者在容器，物理或虚拟机，以及 Windows Subsystem for Linux (WSL) 中实现无缝的远程开发。通过安装 Remote Development Extension Pack ，你可以快速上手远程开发。 Visual Studio Code Remote 允许开发者将容器，远程</description>
     </item>
     
     <item>
       <title>Go语言实现RayTracing</title>
-      <link>https://bineanju.gitee.io/blog/post/20200302RayTracingInOneWeekend/</link>
+      <link>https://bzhou830.github.io/post/20200302RayTracingInOneWeekend/</link>
       <pubDate>Mon, 02 Mar 2020 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20200302RayTracingInOneWeekend/</guid>
+      <guid>https://bzhou830.github.io/post/20200302RayTracingInOneWeekend/</guid>
       <description>Ray Tracing in one weekend是Peter Shirley ray tracing系列三部曲的第一本，也是学习ray tracing入门比较容易的一本书，原书中附带的有C++版本的code，最近在学习golang, golang中正好有image包，可以直接生成渲染好的jpg文件，那么就用golang来改写了一遍</description>
     </item>
     
     <item>
       <title>Games101笔记|Shading</title>
-      <link>https://bineanju.gitee.io/blog/post/20200229Games101_05/</link>
+      <link>https://bzhou830.github.io/post/20200229Games101_05/</link>
       <pubDate>Sat, 29 Feb 2020 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20200229Games101_05/</guid>
+      <guid>https://bzhou830.github.io/post/20200229Games101_05/</guid>
       <description>当这些物体都变成三角形之后，变成屏幕上的一个个像素点之后，这些像素的值和颜色应该是什么呢？这个就是着色的功能。下一步操作为着色。 挪动一下光源后，物体并没有发生变化，但是物体的颜色却发生了变化。这个问题应该如何解决，就是着色的作用。 这门课中着色的定义：对不同的物体应用不同的材质这样</description>
     </item>
     
     <item>
       <title>Games101笔记|Z-Buffer(深度缓冲)</title>
-      <link>https://bineanju.gitee.io/blog/post/20200222Games101_04/</link>
+      <link>https://bzhou830.github.io/post/20200222Games101_04/</link>
       <pubDate>Sat, 22 Feb 2020 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20200222Games101_04/</guid>
+      <guid>https://bzhou830.github.io/post/20200222Games101_04/</guid>
       <description>2 可见性与遮挡 2.1 画家算法 原理 先对远处的物体进行光栅化，后逐步对近处的物体进行光删化操作。（画近处的物体时会覆盖掉之前画的远处的一些物体）这样就可以正确地处理遮挡的问题了。 涉及到一个问题 这里涉及到一个问题：当某些物体在深度上存在互相遮挡的情况，此时没有办法定义顺序关系，这样就无法使</description>
     </item>
     
     <item>
       <title>Games101笔记|光栅化和反走样</title>
-      <link>https://bineanju.gitee.io/blog/post/20200216Games101_03/</link>
+      <link>https://bzhou830.github.io/post/20200216Games101_03/</link>
       <pubDate>Sun, 16 Feb 2020 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20200216Games101_03/</guid>
+      <guid>https://bzhou830.github.io/post/20200216Games101_03/</guid>
       <description>在“MVP变换矩阵推导”中首先进行了Model transformation, 也就是摆放好物体（对象）；然后就是View transformation摆放好相机（位置，拍摄方向，视场角等）；最后就是Projection transformation, 这里面包含有正交投影（Orthogtaphic projection）它是将长方体(cuboi</description>
     </item>
     
     <item>
       <title>Games101笔记|MVP变换矩阵推导</title>
-      <link>https://bineanju.gitee.io/blog/post/20200215Games101_02/</link>
+      <link>https://bzhou830.github.io/post/20200215Games101_02/</link>
       <pubDate>Sat, 15 Feb 2020 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20200215Games101_02/</guid>
+      <guid>https://bzhou830.github.io/post/20200215Games101_02/</guid>
       <description>本文是games101课程的第3，4课的相关笔记，这篇内容对于CG非常的重要！！！特别是推导的过程，非常有必要手推一遍！。所谓的MVP变换就是：model-view-project变换。本文中使用的向量均表示的是列向量，在公式推导的过程中要注意第一点。 首先我们回想下我们在拍班级毕</description>
     </item>
     
     <item>
       <title>Games101笔记|概述和线性代数</title>
-      <link>https://bineanju.gitee.io/blog/post/20200206Games101_01/</link>
+      <link>https://bzhou830.github.io/post/20200206Games101_01/</link>
       <pubDate>Thu, 06 Feb 2020 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20200206Games101_01/</guid>
+      <guid>https://bzhou830.github.io/post/20200206Games101_01/</guid>
       <description>本文是games101课程的第1，2课的相关笔记。这两课的内容比较基础，大学中有线性代数的学习经验就相对非常容易理解。 1. 计算机图形学概述 计算机图形学（Computer Graphics，CG）是研究计算机在硬件和软件的帮助下创建计算机图形的学科，是计算机科学的一个分支领域，主要关注</description>
     </item>
     
     <item>
       <title>C&#43;&#43;中的字符串split</title>
-      <link>https://bineanju.gitee.io/blog/post/20200205CppSplit/</link>
+      <link>https://bzhou830.github.io/post/20200205CppSplit/</link>
       <pubDate>Wed, 05 Feb 2020 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20200205CppSplit/</guid>
+      <guid>https://bzhou830.github.io/post/20200205CppSplit/</guid>
       <description>使用过Java, Python或者go这些语言然后切换到C++的同学很可能遇到一个问题就是：为什么在C++的string类里面为什么没有提供一个split函数呢？ 猜测可能有下面几个原因： split之后的结果存放在哪里呢？vector？但是string类中引入vector势必会造成s</description>
     </item>
     
     <item>
       <title>C&#43;&#43;11中的多线程库</title>
-      <link>https://bineanju.gitee.io/blog/post/20200202cpp11%E5%A4%9A%E7%BA%BF%E7%A8%8B/</link>
+      <link>https://bzhou830.github.io/post/20200202cpp11%E5%A4%9A%E7%BA%BF%E7%A8%8B/</link>
       <pubDate>Sun, 02 Feb 2020 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20200202cpp11%E5%A4%9A%E7%BA%BF%E7%A8%8B/</guid>
+      <guid>https://bzhou830.github.io/post/20200202cpp11%E5%A4%9A%E7%BA%BF%E7%A8%8B/</guid>
       <description>1. 线程的创建 C++11中提供了thread类可以直接用来创建线程，创建步骤： 包含thread所在的头文件 #include &amp;lt;thread&amp;gt; 在需要的地方直接创建一个thread对象，构造函数中传入一个线程入口函数（或者是一个可调对象）。（普通函数，lambda表达式，重载了()的类都可以传入，普通类成员函数也可</description>
     </item>
     
     <item>
       <title>双目测距2</title>
-      <link>https://bineanju.gitee.io/blog/post/20200103%E5%8F%8C%E7%9B%AE%E6%B5%8B%E8%B7%9D02/</link>
+      <link>https://bzhou830.github.io/post/20200103%E5%8F%8C%E7%9B%AE%E6%B5%8B%E8%B7%9D02/</link>
       <pubDate>Fri, 03 Jan 2020 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20200103%E5%8F%8C%E7%9B%AE%E6%B5%8B%E8%B7%9D02/</guid>
+      <guid>https://bzhou830.github.io/post/20200103%E5%8F%8C%E7%9B%AE%E6%B5%8B%E8%B7%9D02/</guid>
       <description>简介： 首先进行双目摄像头定标，获取双目摄像头内部的参数后，进行测距；本文的双目视觉测距是基于BM算法。注意：双目定标的效果会影响测距的精准度，建议大家在做双目定标时，做好一些（尽量让误差小）。 前言 首先进行双目摄像头定标，获取双目摄像头内部的参数后，进行测距；本文的双目视觉测距是基</description>
     </item>
     
     <item>
       <title>双目测距3</title>
-      <link>https://bineanju.gitee.io/blog/post/20200104%E5%8F%8C%E7%9B%AE%E6%B5%8B%E8%B7%9D03/</link>
+      <link>https://bzhou830.github.io/post/20200104%E5%8F%8C%E7%9B%AE%E6%B5%8B%E8%B7%9D03/</link>
       <pubDate>Fri, 03 Jan 2020 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20200104%E5%8F%8C%E7%9B%AE%E6%B5%8B%E8%B7%9D03/</guid>
+      <guid>https://bzhou830.github.io/post/20200104%E5%8F%8C%E7%9B%AE%E6%B5%8B%E8%B7%9D03/</guid>
       <description>在双目立体匹配中，有基于SAD算法的BM、SGBM、GC立体匹配技术，但是在OpenCv3.0以后，GC算法就从legacy中去除掉了。为了查看三种算法的匹配效果及运算性能，我在Windows10中安装了OpenCv2.4.9，并以VsCode为IDE进行程序编写。 一、VsCod</description>
     </item>
     
     <item>
       <title>双目测距1</title>
-      <link>https://bineanju.gitee.io/blog/post/20200101%E5%8F%8C%E7%9B%AE%E6%B5%8B%E8%B7%9D01/</link>
+      <link>https://bzhou830.github.io/post/20200101%E5%8F%8C%E7%9B%AE%E6%B5%8B%E8%B7%9D01/</link>
       <pubDate>Wed, 01 Jan 2020 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20200101%E5%8F%8C%E7%9B%AE%E6%B5%8B%E8%B7%9D01/</guid>
+      <guid>https://bzhou830.github.io/post/20200101%E5%8F%8C%E7%9B%AE%E6%B5%8B%E8%B7%9D01/</guid>
       <description>准备双目摄像头： 准备标定板 标定的开始阶段最需要用到的标定板，可以直接从opencv官网上能下载到： http://docs.opencv.org/2.4/_downloads/pattern.png 具体如下： 然后，建议固定到盒子上，方便等下拍照。 采集图片 建议左右摄像头，同时拍照，分别保存起来，可以参考 opencv 双目摄像头拍照 保存大约20到30张图片，MATLAB2016的这个工具十分</description>
     </item>
     
     <item>
       <title>Windows内核编程05|调试</title>
-      <link>https://bineanju.gitee.io/blog/post/20191231WindowsKernelPrograming05Debugging/</link>
+      <link>https://bzhou830.github.io/post/20191231WindowsKernelPrograming05Debugging/</link>
       <pubDate>Tue, 31 Dec 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20191231WindowsKernelPrograming05Debugging/</guid>
+      <guid>https://bzhou830.github.io/post/20191231WindowsKernelPrograming05Debugging/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Windows内核编程04|内核工作流程</title>
-      <link>https://bineanju.gitee.io/blog/post/20191230WindowsKernelPrograming04KernelFlow/</link>
+      <link>https://bzhou830.github.io/post/20191230WindowsKernelPrograming04KernelFlow/</link>
       <pubDate>Mon, 30 Dec 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20191230WindowsKernelPrograming04KernelFlow/</guid>
+      <guid>https://bzhou830.github.io/post/20191230WindowsKernelPrograming04KernelFlow/</guid>
       <description>1 简介 在应用层利用SetThreadPriority等API设置线程优先级是受到进程优先级限制的，所以本节就计划通过编写一个驱动程序和应用程序相结合突破这种限制。本节代码放在了Github上访问此链接 2 驱动程序初始化 先按照上一节的介绍来了解一下创建一个驱动程序的基本流程：入口函数</description>
     </item>
     
     <item>
       <title>Windows内核编程03|内核编程基础</title>
-      <link>https://bineanju.gitee.io/blog/post/20191229WindowsKernelPrograming03KernelBasic/</link>
+      <link>https://bzhou830.github.io/post/20191229WindowsKernelPrograming03KernelBasic/</link>
       <pubDate>Sun, 29 Dec 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20191229WindowsKernelPrograming03KernelBasic/</guid>
+      <guid>https://bzhou830.github.io/post/20191229WindowsKernelPrograming03KernelBasic/</guid>
       <description>1. 内核编程一般准则 用户编程和内核编程之间的差别 1.1 未处理的异常 在用户模式下如果程序出现未处理的异常，整个程序会直接中止；在内核模式下出现未处理的异常，会造成系统奔溃，出现BSOD（蓝屏）。所以内核代码得非常小心，编译时绝对不能跳过任何细节和错误检查。 1.2 终止 当用户进程终止时不管是否正</description>
     </item>
     
     <item>
       <title>Windows内核编程02|环境搭建和部署测试</title>
-      <link>https://bineanju.gitee.io/blog/post/20191228WindowsKernelPrograming02EnvSetup/</link>
+      <link>https://bzhou830.github.io/post/20191228WindowsKernelPrograming02EnvSetup/</link>
       <pubDate>Sat, 28 Dec 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20191228WindowsKernelPrograming02EnvSetup/</guid>
+      <guid>https://bzhou830.github.io/post/20191228WindowsKernelPrograming02EnvSetup/</guid>
       <description>1.安装VisualStudio2019 2.安装WindowsDriverKit 3.创建项目 4.添加代码 // driver.c #include &amp;lt;ntddk.h&amp;gt; // DriverEntry Routine DRIVER_INITIALIZE DriverEntry; // Unload Routine DRIVER_UNLOAD DriverUnload; // DriverEntry: 驱动程序的入口点 // DriverObject: 驱动程序对象 // RegistryPath: 注册表中的路径(驱动程序路径) NTSTATUS DriverEntry( _In_ PDRIVER_OBJECT DriverObject, _In_ PUNICODE_STRING RegistryPath ) { // 编译器默认的警告等级为 /W4， // 并且开启 /WX 将警告视为错误</description>
     </item>
     
     <item>
       <title>Windows内核编程01|Process</title>
-      <link>https://bineanju.gitee.io/blog/post/20191227WindowsKernelPrograming01Process/</link>
+      <link>https://bzhou830.github.io/post/20191227WindowsKernelPrograming01Process/</link>
       <pubDate>Fri, 27 Dec 2019 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20191227WindowsKernelPrograming01Process/</guid>
+      <guid>https://bzhou830.github.io/post/20191227WindowsKernelPrograming01Process/</guid>
       <description>1.1 进程 进程拥有的内容： 一个可执行程序。包含用来在进程中执行的原始的代码和数据（PE格式的文件）。 一段虚拟地址空间。进程中的代码不管出于何种目的要分配内存时，都从这里分配。 一个主令牌。它是一个保存进程默认安全上下文的对象，在进程内执行代码的线程会用到它，除非某个线程通过身份扮演（i</description>
     </item>
     
     <item>
       <title>Windows内核开发总结(二)</title>
-      <link>https://bineanju.gitee.io/blog/post/20191224WindowsKernelProgramingSummer02/</link>
+      <link>https://bzhou830.github.io/post/20191224WindowsKernelProgramingSummer02/</link>
       <pubDate>Tue, 24 Dec 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20191224WindowsKernelProgramingSummer02/</guid>
+      <guid>https://bzhou830.github.io/post/20191224WindowsKernelProgramingSummer02/</guid>
       <description>同步异步的两种用法 FILE_FLAG_OVERLAPPED异步打开参数 在CreateFile打开设备对象时 HANDLE CreateFile( LPCSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, //FILE_FLAG_OVERLAPPED HANDLE hTemplateFile ); 加入FILE_FLAG_OVERLAPPED参数就是以异步的方式打开驱动的设备对象 与驱动通讯时如下的调用界面及异步结构，需要设置一个OVE</description>
     </item>
     
     <item>
       <title>Windows内核开发总结(一)</title>
-      <link>https://bineanju.gitee.io/blog/post/20191223WindowsKernelProgramingSummer01/</link>
+      <link>https://bzhou830.github.io/post/20191223WindowsKernelProgramingSummer01/</link>
       <pubDate>Mon, 23 Dec 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20191223WindowsKernelProgramingSummer01/</guid>
+      <guid>https://bzhou830.github.io/post/20191223WindowsKernelProgramingSummer01/</guid>
       <description>1. windows内核对象 每个对象都有对象头和对象体组成。所有类型的对象头结构都是相同的，而结构体部分却各不相同的。下面是内核对象的结构图： 进程句柄表 dt nt!_EPROCESS +0x000 Pcb : _KPROCESS +0x06c ProcessLock : _EX_PUSH_LOCK +0x070 CreateTime : _LARGE_INTEGER +0x078 ExitTime : _LARGE_INTEGER +0x080 RundownProtect : _EX_RUNDOWN_REF +0x084 UniqueProcessId : Ptr32 Void +0x088 ActiveProcessLinks : _LIST_ENTRY +0x090 QuotaUsage : [3] Uint4B +0x09c QuotaPeak : [3] Uint4B +0x0a8 CommitCharge : Uint4B +0x0ac PeakVirtualSize : Uint4B +0x0b0 VirtualSize : Uint4B +0x0b4 SessionProcessLinks : _LIST_ENTRY +0x0bc DebugPort : Ptr32 Void +0x0c0 ExceptionPort : Ptr32</description>
     </item>
     
     <item>
       <title>IRP和派遣函数</title>
-      <link>https://bineanju.gitee.io/blog/post/20191220IRP%E6%B4%BE%E9%81%A3%E5%87%BD%E6%95%B0/</link>
+      <link>https://bzhou830.github.io/post/20191220IRP%E6%B4%BE%E9%81%A3%E5%87%BD%E6%95%B0/</link>
       <pubDate>Fri, 20 Dec 2019 13:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20191220IRP%E6%B4%BE%E9%81%A3%E5%87%BD%E6%95%B0/</guid>
+      <guid>https://bzhou830.github.io/post/20191220IRP%E6%B4%BE%E9%81%A3%E5%87%BD%E6%95%B0/</guid>
       <description>什么是派遣函数? 派遣函数是 WIndows 驱动程序中的重要概念。驱动程序的主要功能是负责处理I/O请求，其中大部分I/O请求是在派遣函数中处理的。也就是说，派遣函数是用来处理驱动程序提交过来的 I/O 请求。 那什么是 I/O 请求呢？ 上层程序与驱动程序之间通信时，上层会发出I/O请求，即输入输出请求包（I/O</description>
     </item>
     
     <item>
       <title>渲染管线之旅|14 索引页</title>
-      <link>https://bineanju.gitee.io/blog/post/20190830%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8514/</link>
+      <link>https://bzhou830.github.io/post/20190830%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8514/</link>
       <pubDate>Fri, 30 Aug 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20190830%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8514/</guid>
+      <guid>https://bzhou830.github.io/post/20190830%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8514/</guid>
       <description>A trip through the Graphics Pipeline 2011 是发布在博客 http://fgiesen.wordpress.com 上的系列文章。主要涉及图形流水线在GPU中实现的方方面面。包括D3D/OpenGL app, UMD Driver, KMD Driver, GPU 硬件流水线设计等等。是非常好的学习图形学应用，GPU驱动等相关领域的资料。翻译的目的一方面是对学习的总结；另一方面是为了分享，因为国内在图形学， GPU相关的资</description>
     </item>
     
     <item>
       <title>渲染管线之旅|13 计算着色器</title>
-      <link>https://bineanju.gitee.io/blog/post/20190825%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8513/</link>
+      <link>https://bzhou830.github.io/post/20190825%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8513/</link>
       <pubDate>Sun, 25 Aug 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20190825%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8513/</guid>
+      <guid>https://bzhou830.github.io/post/20190825%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8513/</guid>
       <description>欢迎回到&amp;quot;渲染管线之旅&amp;quot;系列，本篇是“渲染管线之旅”的最后部分。这个系列已经够长了，后面可能写更多与GPU相关的文章。 之前我们一直遨游在图形渲染管线的所有常规部分，以及不同层级的具体细节。这篇我们来看DX11中引入的一项重要新功能：计算着色器（Computer</description>
     </item>
     
     <item>
       <title>渲染管线之旅|12 曲面细分</title>
-      <link>https://bineanju.gitee.io/blog/post/20190820%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8512/</link>
+      <link>https://bzhou830.github.io/post/20190820%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8512/</link>
       <pubDate>Tue, 20 Aug 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20190820%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8512/</guid>
+      <guid>https://bzhou830.github.io/post/20190820%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8512/</guid>
       <description>欢迎回来！这次，我们将研究D3D11 / Shader 5.x硬件世代所引入的“海报男孩”功能：细分。这个很有趣，既因为它是一个有趣的话题，又因为它标志着很长一段时间以来的第一次，这是一个重要的用户可见的组件已被添加到不可编程的图形管道中。 与从概念上讲很简单的“几何着色器”（它是一个可以看到整个</description>
     </item>
     
     <item>
       <title>渲染管线之旅|11 流输出</title>
-      <link>https://bineanju.gitee.io/blog/post/20190815%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8511/</link>
+      <link>https://bzhou830.github.io/post/20190815%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8511/</link>
       <pubDate>Thu, 15 Aug 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20190815%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8511/</guid>
+      <guid>https://bzhou830.github.io/post/20190815%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8511/</guid>
       <description>欢迎回来！ 这次，重点将放在流出（SO）上。 这是一种用于将“几何着色器”阶段的输出存储到内存中，而不是将其沿管道的其余部分发送的功能。 这可以用于例如 在D3D10级别的硬件上使用D3D10 API缓存外观化的顶点数据，或作为穷人的Compute Shader（请注意，使用D3D11，即使</description>
     </item>
     
     <item>
       <title>渲染管线之旅|10 几何着色器</title>
-      <link>https://bineanju.gitee.io/blog/post/20190810%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8510/</link>
+      <link>https://bzhou830.github.io/post/20190810%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8510/</link>
       <pubDate>Sat, 10 Aug 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20190810%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8510/</guid>
+      <guid>https://bzhou830.github.io/post/20190810%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8510/</guid>
       <description>欢迎回来。 上一次，我们深入到像素管线的底端。 这次，我们将切换回管道的中间，以查看D3D10：几何着色器可能是最明显的附加功能。 但是首先，我要进一步讲解如何分解本系列中的图形管道，以及与API呈现给你的视图有何不同。 Welcome back. Last time, we dove into bottom end of the pixel pipeline. This time, we’ll switch back to the middle of the pipeline to look at what is</description>
     </item>
     
     <item>
       <title>渲染管线之旅|09 像素处理之联合</title>
-      <link>https://bineanju.gitee.io/blog/post/20190805%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8509/</link>
+      <link>https://bzhou830.github.io/post/20190805%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8509/</link>
       <pubDate>Mon, 05 Aug 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20190805%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8509/</guid>
+      <guid>https://bzhou830.github.io/post/20190805%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8509/</guid>
       <description>这篇文章介绍了像素处理的后半部分，即“连接阶段”。 上一阶段的工作是将少量输入流转换成着色器单元的许多独立任务。 现在，我们需要将大量独立的计算折叠到一个（正确排序的）内存操作流中。 就像我在光栅化和Z早期的文章中已经做过的那样，我将首先简要介绍需要在一般级别上完成的工作，然后再介绍如</description>
     </item>
     
     <item>
       <title>渲染管线之旅|08 像素处理之&#34;fork&#34;</title>
-      <link>https://bineanju.gitee.io/blog/post/20190801%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8508/</link>
+      <link>https://bzhou830.github.io/post/20190801%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8508/</link>
       <pubDate>Thu, 01 Aug 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20190801%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8508/</guid>
+      <guid>https://bzhou830.github.io/post/20190801%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8508/</guid>
       <description>在这一部分中，我们来谈谈像素处理的前半部分:dispatch和实际的像素着色。事实上，这部分是大多数图形开发者在谈到PS stage时所关心的内容。有关alpha blend和Late-Z的内容放到下一篇文章中去探讨。后面我们会看到，硬件上PS stage的设计相是对比较复杂的。这也是</description>
     </item>
     
     <item>
       <title>渲染管线之旅|07 深度处理、模板处理</title>
-      <link>https://bineanju.gitee.io/blog/post/20190730%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8507/</link>
+      <link>https://bzhou830.github.io/post/20190730%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8507/</link>
       <pubDate>Tue, 30 Jul 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20190730%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8507/</guid>
+      <guid>https://bzhou830.github.io/post/20190730%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8507/</guid>
       <description>在这一篇中，我们来讨论Z-pipline的前端部分(简称它为early-Z), 以及它是在光栅化中怎么起作用的。和上一篇一样，本篇也不会按实际的管道顺序进行讨论；我将首先描述基础算法，然后再补充管线中的各个阶段（以相反的顺序可以更简单的解释这些内容）。 1.插值 Z通过三角形进行插值，</description>
     </item>
     
     <item>
       <title>渲染管线之旅|06 三角形的生成和建立</title>
-      <link>https://bineanju.gitee.io/blog/post/20190725%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8506/</link>
+      <link>https://bzhou830.github.io/post/20190725%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8506/</link>
       <pubDate>Thu, 25 Jul 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20190725%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8506/</guid>
+      <guid>https://bzhou830.github.io/post/20190725%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8506/</guid>
       <description>欢迎回来。这次我们去看看三角形的光栅化。但在光栅化三角形之前，我们需要执行三角形设置，并且在设置三角形之前，我还要解释一下我们做的准备是为了什么，最后我们来聊聊三角形硬件光栅化算法。 1.如何画一个三角形 首先，给很熟悉这部分并自己写过软纹理映射的人一点小提示：三角形光栅器一次要处理</description>
     </item>
     
     <item>
       <title>渲染管线之旅|05 图元处理、Clip/Cull, 投影和视图变换</title>
-      <link>https://bineanju.gitee.io/blog/post/20190720%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8505/</link>
+      <link>https://bzhou830.github.io/post/20190720%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8505/</link>
       <pubDate>Sat, 20 Jul 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20190720%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8505/</guid>
+      <guid>https://bzhou830.github.io/post/20190720%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8505/</guid>
       <description>上一篇中我们讨论了关于“纹理和采样”，这一篇我们回到3D管线的前端。在执行完顶点着色之后，就可以实际的渲染东西了，对吗？暂时还不行， 因为在我们实际开始光栅化图元之前，仍然还有很多事要做。所以在本篇里我们不会看到任何光栅化内容——还得等到下次再讲。 1. 图元装载 当我们离开顶点处理流水线</description>
     </item>
     
     <item>
       <title>渲染管线之旅|04 纹理和采样</title>
-      <link>https://bineanju.gitee.io/blog/post/20190715%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8504/</link>
+      <link>https://bzhou830.github.io/post/20190715%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8504/</link>
       <pubDate>Mon, 15 Jul 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20190715%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8504/</guid>
+      <guid>https://bzhou830.github.io/post/20190715%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8504/</guid>
       <description>上一篇讨论了顶点着色器,涵盖了GPU通用着色器处理单元的一些内容。它们都仅仅是向量处理单元, 但是当我们在访问Resource的时候,通常都不是这种向量的形式,所以GPU中还需要另一个专门用来在Pipeline中处理整数的单元：Texture Sampler. 这个单元内部相对比较复杂,复杂(也很有</description>
     </item>
     
     <item>
       <title>渲染管线之旅|03 图形管线概览及GPU中顶点处理</title>
-      <link>https://bineanju.gitee.io/blog/post/20190710%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8503/</link>
+      <link>https://bzhou830.github.io/post/20190710%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8503/</link>
       <pubDate>Wed, 10 Jul 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20190710%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8503/</guid>
+      <guid>https://bzhou830.github.io/post/20190710%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8503/</guid>
       <description>通过前面几篇的内容，我们知道，应用程序中的Draw API调用会经过D3D Runtime, 用户态驱动等等各个层级，最终将命令传到GPU的命令解释器，GPU就会根据命令的内容来进行图形的计算和处理。那么这一篇我们就来看看顶点的处理流程。 1. 开胃菜 在介绍GPU的顶点处理之前，我们先看看3D渲染管线。3</description>
     </item>
     
     <item>
       <title>渲染管线之旅|02 GPU存储架构和命令处理器</title>
-      <link>https://bineanju.gitee.io/blog/post/20190705%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8502/</link>
+      <link>https://bzhou830.github.io/post/20190705%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8502/</link>
       <pubDate>Fri, 05 Jul 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20190705%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8502/</guid>
+      <guid>https://bzhou830.github.io/post/20190705%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8502/</guid>
       <description>上一篇中主要介绍了3D渲染命令到达GPU之前经历过的各个阶段。用下图可以概括上一篇中所讲的内容，当然其中很多细节没有出现在图中。之前我们说KMD将命令送给了硬件，这个简单的“送”的过程实际上并不是那么简单的。我们知道显卡都是通过信号线连在主板上的，所以我们送命令都是需要走这些信号</description>
     </item>
     
     <item>
       <title>渲染管线之旅|01 软件调用栈</title>
-      <link>https://bineanju.gitee.io/blog/post/20190703%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8501/</link>
+      <link>https://bzhou830.github.io/post/20190703%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8501/</link>
       <pubDate>Wed, 03 Jul 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20190703%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8501/</guid>
+      <guid>https://bzhou830.github.io/post/20190703%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8501/</guid>
       <description>简介 通常我们可以很容易的找到我们的个人电脑中显卡驱动软件调用栈的相关内容（attache到进程上，查看进程调用的dll。），但是这些调用关系是如何工作？它们又是为什么要这样做呢？这些问题就不那么容易找到答案了。我会尽量填补空白，而不会对特定的硬件进行具体的描述。我将主要讨论在Wi</description>
     </item>
     
     <item>
       <title>Git快速入门手册</title>
-      <link>https://bineanju.gitee.io/blog/post/20190620Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</link>
+      <link>https://bzhou830.github.io/post/20190620Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</link>
       <pubDate>Sat, 29 Jun 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20190620Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</guid>
+      <guid>https://bzhou830.github.io/post/20190620Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</guid>
       <description>本文作为版本控制软件git的入门指导和常用命令整理。 首先用一张图来总结基本的使用的流程，后文中都有详细的解释。 1.git的安装 自诞生于 2005 年以来，Git 日臻成熟完善，在高度易用的同时，仍然保留着初期设定的目标。它的速度飞快，极其适合管理大项目 。Git可以在windows、Mac、L</description>
     </item>
     
     <item>
       <title>B站缓存视频和压缩</title>
-      <link>https://bineanju.gitee.io/blog/post/20190611B%E7%AB%99%E7%BC%93%E5%AD%98%E8%A7%86%E9%A2%91%E5%92%8C%E5%8E%8B%E7%BC%A9/</link>
+      <link>https://bzhou830.github.io/post/20190611B%E7%AB%99%E7%BC%93%E5%AD%98%E8%A7%86%E9%A2%91%E5%92%8C%E5%8E%8B%E7%BC%A9/</link>
       <pubDate>Tue, 11 Jun 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20190611B%E7%AB%99%E7%BC%93%E5%AD%98%E8%A7%86%E9%A2%91%E5%92%8C%E5%8E%8B%E7%BC%A9/</guid>
+      <guid>https://bzhou830.github.io/post/20190611B%E7%AB%99%E7%BC%93%E5%AD%98%E8%A7%86%E9%A2%91%E5%92%8C%E5%8E%8B%E7%BC%A9/</guid>
       <description>手机上Bilibili缓存的视频存在于Android/data/tv.danmaku.bili/download下面。然后可以拷贝出来到PC上，因为视频和音频是分开保存的，所以要进行合并的操作。根据自己缓存时候选择的分辨率修改下合并的代码中的路径（16，64这些数字代表的就是路径</description>
     </item>
     
     <item>
       <title>Python读写Excel</title>
-      <link>https://bineanju.gitee.io/blog/post/20190610Python%E8%AF%BB%E5%86%99Excel/</link>
+      <link>https://bzhou830.github.io/post/20190610Python%E8%AF%BB%E5%86%99Excel/</link>
       <pubDate>Mon, 10 Jun 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20190610Python%E8%AF%BB%E5%86%99Excel/</guid>
+      <guid>https://bzhou830.github.io/post/20190610Python%E8%AF%BB%E5%86%99Excel/</guid>
       <description>Python3使用xlrd，xlwt, xlutils进行Excel文件的读写操作 操作之前，需要先理解excel的结构。 首先需要安装几个库。 xlrd, 这个是用于读取excel xlwt, 这个是用于写入excel xlutils, 里面有一些对excel操作的东西 pip install xlrd pip install xlwt pip install xlutils 1. 读取excel # 读取excel中的内</description>
     </item>
     
     <item>
       <title>VC中获取模块路径</title>
-      <link>https://bineanju.gitee.io/blog/post/20190610VC%E4%B8%AD%E8%8E%B7%E5%8F%96%E6%A8%A1%E5%9D%97%E8%B7%AF%E5%BE%84/</link>
+      <link>https://bzhou830.github.io/post/20190610VC%E4%B8%AD%E8%8E%B7%E5%8F%96%E6%A8%A1%E5%9D%97%E8%B7%AF%E5%BE%84/</link>
       <pubDate>Mon, 10 Jun 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20190610VC%E4%B8%AD%E8%8E%B7%E5%8F%96%E6%A8%A1%E5%9D%97%E8%B7%AF%E5%BE%84/</guid>
+      <guid>https://bzhou830.github.io/post/20190610VC%E4%B8%AD%E8%8E%B7%E5%8F%96%E6%A8%A1%E5%9D%97%E8%B7%AF%E5%BE%84/</guid>
       <description>进程加载DLL，或者加载OCX控件等模块。在开发这些模块的时候不可避免要使用一些外部的配置文件，最简单的方式就是存放在固定的一个路径下面，但是这样对于安装配置的时候就不是很友好，所以往往把这些配置文件和.dll放在一起，然后由dll/ocx它们告诉进程它们所在的路径，然后进程就到</description>
     </item>
     
     <item>
       <title>集装箱OCR：使用EAST和Tesseract</title>
-      <link>https://bineanju.gitee.io/blog/post/20190601%E9%9B%86%E8%A3%85%E7%AE%B1OCR%E4%BD%BF%E7%94%A8EAST%E5%92%8Ctesseract/</link>
+      <link>https://bzhou830.github.io/post/20190601%E9%9B%86%E8%A3%85%E7%AE%B1OCR%E4%BD%BF%E7%94%A8EAST%E5%92%8Ctesseract/</link>
       <pubDate>Sat, 01 Jun 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20190601%E9%9B%86%E8%A3%85%E7%AE%B1OCR%E4%BD%BF%E7%94%A8EAST%E5%92%8Ctesseract/</guid>
+      <guid>https://bzhou830.github.io/post/20190601%E9%9B%86%E8%A3%85%E7%AE%B1OCR%E4%BD%BF%E7%94%A8EAST%E5%92%8Ctesseract/</guid>
       <description>本篇文章主要记录下使用EAST和Tesseract做自然场景中集装箱上字符OCR的一个简单的实现。 在看具体问题之前先来谈谈自然场景中文本检测这个领域。自然场景的文本检测和识别一直以来都是一个比较难的问题，在深度学习走红之前，都是绞尽脑汁的变着法子提取有用的特征，然后做定位检测。得</description>
     </item>
     
     <item>
       <title>Windows常用Tips</title>
-      <link>https://bineanju.gitee.io/blog/post/20190506Windows%E5%B8%B8%E7%94%A8Tips/</link>
+      <link>https://bzhou830.github.io/post/20190506Windows%E5%B8%B8%E7%94%A8Tips/</link>
       <pubDate>Mon, 06 May 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20190506Windows%E5%B8%B8%E7%94%A8Tips/</guid>
+      <guid>https://bzhou830.github.io/post/20190506Windows%E5%B8%B8%E7%94%A8Tips/</guid>
       <description>1. 常用快捷键 win10自带输入法切换简体繁体快捷键: Ctrl+Shift+F Win10自带的截图工具: Win+Shift+S 快速关闭窗口和计算机：Alt + F4 快速回到桌面 Win + D 快速打开运行 Win + R 切换窗口：Alt + Tab 任务视图：Win + Tab(松开键盘界面不会消失) 任务管理器： Ctrl + Alt + Del 查看win10激活信息：slmgr.vb</description>
     </item>
     
     <item>
       <title>树莓派推流</title>
-      <link>https://bineanju.gitee.io/blog/post/20190104%E6%A0%91%E8%8E%93%E6%B4%BE%E6%8E%A8%E6%B5%81/</link>
+      <link>https://bzhou830.github.io/post/20190104%E6%A0%91%E8%8E%93%E6%B4%BE%E6%8E%A8%E6%B5%81/</link>
       <pubDate>Fri, 04 Jan 2019 10:13:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20190104%E6%A0%91%E8%8E%93%E6%B4%BE%E6%8E%A8%E6%B5%81/</guid>
+      <guid>https://bzhou830.github.io/post/20190104%E6%A0%91%E8%8E%93%E6%B4%BE%E6%8E%A8%E6%B5%81/</guid>
       <description>1.检查USB摄像头 主要检查摄像头是否被树莓派检测到（同博主上一篇树莓派的博客） 如果没有你的摄像头的信息，那么有可能你的树莓派的电源无法供应足够的电力给你的摄像头。这时你可以给你的摄像头用独立的电源线，比如有源USB hub，并重新输入lsusb命令查看。如果摄像头还是不能被识别，</description>
     </item>
     
     <item>
       <title>树莓派Camera的使用</title>
-      <link>https://bineanju.gitee.io/blog/post/20190104PiCamera/</link>
+      <link>https://bzhou830.github.io/post/20190104PiCamera/</link>
       <pubDate>Fri, 04 Jan 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20190104PiCamera/</guid>
+      <guid>https://bzhou830.github.io/post/20190104PiCamera/</guid>
       <description>参考： Raspberry Pi：https://www.raspberrypi.org/ Index of Packages：https://pypi.python.org/pypi/picamera 最新版本是 picamera 1.13：http://picamera.readthedocs.io/en/release-1.13</description>
     </item>
     
     <item>
       <title>Android平台使用JNI方式调用OpenCV配置</title>
-      <link>https://bineanju.gitee.io/blog/post/20190103Android%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8JNI%E6%96%B9%E5%BC%8F%E8%B0%83%E7%94%A8OpenCV%E9%85%8D%E7%BD%AE/</link>
+      <link>https://bzhou830.github.io/post/20190103Android%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8JNI%E6%96%B9%E5%BC%8F%E8%B0%83%E7%94%A8OpenCV%E9%85%8D%E7%BD%AE/</link>
       <pubDate>Thu, 03 Jan 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20190103Android%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8JNI%E6%96%B9%E5%BC%8F%E8%B0%83%E7%94%A8OpenCV%E9%85%8D%E7%BD%AE/</guid>
+      <guid>https://bzhou830.github.io/post/20190103Android%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8JNI%E6%96%B9%E5%BC%8F%E8%B0%83%E7%94%A8OpenCV%E9%85%8D%E7%BD%AE/</guid>
       <description>本文主要介绍 OpenCV3.4.2 在 android studio2.3 中的配置，并使用 JNI 方式调用 OpenCV 中 C/C++ 层函数。 Android Studio在2.2版本更新之后加入了CMAKE方式配置NDK的方法，这大大简化了之前通过Android.mk和Application.mk两个本地配置文件进行NDK开发的方式。这种方法在后续更新的版本中不断增强，越来</description>
     </item>
     
     <item>
       <title>树莓派环境配置汇总</title>
-      <link>https://bineanju.gitee.io/blog/post/20190103%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9B%B8%E5%85%B3/</link>
+      <link>https://bzhou830.github.io/post/20190103%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9B%B8%E5%85%B3/</link>
       <pubDate>Thu, 03 Jan 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20190103%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9B%B8%E5%85%B3/</guid>
+      <guid>https://bzhou830.github.io/post/20190103%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9B%B8%E5%85%B3/</guid>
       <description>本文主要记录使用树莓派过程的一些问题和解决方案。系统是基于官方的Raspbian Stretch with desktop系统。 1.安装使用OpenCV 推荐使用16G或以上的卡，最好是class10以上，因为8G class6卡安装到35%就爆满了，推算安装完成要4.6G左右的空间。 OpenCV的安装可不</description>
     </item>
     
     <item>
       <title>Hexo博客搭建</title>
-      <link>https://bineanju.gitee.io/blog/post/20190101Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</link>
+      <link>https://bzhou830.github.io/post/20190101Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</link>
       <pubDate>Tue, 01 Jan 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20190101Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</guid>
+      <guid>https://bzhou830.github.io/post/20190101Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</guid>
       <description>本文用来记录我使用Hexo进行静态博客搭建的过程，博客是托管在Github Page上的。 1.下载安装node.js和git两个工具 因为需要使用npm和git进行博客的生成，搭建和上传部署。 npm install hexo-cli -g hexo init blog cd blog npm install hexo server 运行完成上面的命令之后就可以看到cmd窗口提示已经将blog发布到</description>
     </item>
     
     <item>
       <title>Python获取屏幕截图</title>
-      <link>https://bineanju.gitee.io/blog/post/20180618Python_GrabScreen/</link>
+      <link>https://bzhou830.github.io/post/20180618Python_GrabScreen/</link>
       <pubDate>Mon, 18 Jun 2018 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20180618Python_GrabScreen/</guid>
+      <guid>https://bzhou830.github.io/post/20180618Python_GrabScreen/</guid>
       <description>Python获取电脑截图有多种方式，具体如下： PIL中的ImageGrab模块 windows API PyQt pyautogui 1.PIL中的ImageGrab模块 使用PIL中的ImageGrab模块简单，但是效率有点低，截屏一次需0.5s。 import time import numpy as np from PIL import ImageGrab img = ImageGrab.grab(bbox=(100, 161, 1141, 610)) img = np.array(img.getdata(), np.uint8).reshape(img.size[1], img.size[0], 3) 2.windows API 调用windows API，速度快</description>
     </item>
     
     <item>
       <title>Golang|10 http及其他标准库</title>
-      <link>https://bineanju.gitee.io/blog/post/20180511Gohttp%E5%8F%8A%E5%85%B6%E4%BB%96%E6%A0%87%E5%87%86%E5%BA%93/</link>
+      <link>https://bzhou830.github.io/post/20180511Gohttp%E5%8F%8A%E5%85%B6%E4%BB%96%E6%A0%87%E5%87%86%E5%BA%93/</link>
       <pubDate>Fri, 11 May 2018 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20180511Gohttp%E5%8F%8A%E5%85%B6%E4%BB%96%E6%A0%87%E5%87%86%E5%BA%93/</guid>
+      <guid>https://bzhou830.github.io/post/20180511Gohttp%E5%8F%8A%E5%85%B6%E4%BB%96%E6%A0%87%E5%87%86%E5%BA%93/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Golang|09 Channel</title>
-      <link>https://bineanju.gitee.io/blog/post/20180510GoChannel/</link>
+      <link>https://bzhou830.github.io/post/20180510GoChannel/</link>
       <pubDate>Thu, 10 May 2018 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20180510GoChannel/</guid>
+      <guid>https://bzhou830.github.io/post/20180510GoChannel/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Golang|08 Goroutine</title>
-      <link>https://bineanju.gitee.io/blog/post/20180509GoGoroutine/</link>
+      <link>https://bzhou830.github.io/post/20180509GoGoroutine/</link>
       <pubDate>Wed, 09 May 2018 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20180509GoGoroutine/</guid>
+      <guid>https://bzhou830.github.io/post/20180509GoGoroutine/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Golang|07 测试与性能调优</title>
-      <link>https://bineanju.gitee.io/blog/post/20180508Go%E6%B5%8B%E8%AF%95%E4%B8%8E%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/</link>
+      <link>https://bzhou830.github.io/post/20180508Go%E6%B5%8B%E8%AF%95%E4%B8%8E%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/</link>
       <pubDate>Tue, 08 May 2018 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20180508Go%E6%B5%8B%E8%AF%95%E4%B8%8E%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/</guid>
+      <guid>https://bzhou830.github.io/post/20180508Go%E6%B5%8B%E8%AF%95%E4%B8%8E%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Golang|06 错误处理和资源管理</title>
-      <link>https://bineanju.gitee.io/blog/post/20180507Go%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E5%92%8C%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/</link>
+      <link>https://bzhou830.github.io/post/20180507Go%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E5%92%8C%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/</link>
       <pubDate>Mon, 07 May 2018 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20180507Go%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E5%92%8C%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/</guid>
+      <guid>https://bzhou830.github.io/post/20180507Go%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E5%92%8C%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Golang|05 函数式编程</title>
-      <link>https://bineanju.gitee.io/blog/post/20180506Go%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/</link>
+      <link>https://bzhou830.github.io/post/20180506Go%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/</link>
       <pubDate>Sun, 06 May 2018 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20180506Go%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/</guid>
+      <guid>https://bzhou830.github.io/post/20180506Go%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Golang|04 面向接口</title>
-      <link>https://bineanju.gitee.io/blog/post/20180505Go%E9%9D%A2%E5%90%91%E6%8E%A5%E5%8F%A3/</link>
+      <link>https://bzhou830.github.io/post/20180505Go%E9%9D%A2%E5%90%91%E6%8E%A5%E5%8F%A3/</link>
       <pubDate>Sat, 05 May 2018 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20180505Go%E9%9D%A2%E5%90%91%E6%8E%A5%E5%8F%A3/</guid>
+      <guid>https://bzhou830.github.io/post/20180505Go%E9%9D%A2%E5%90%91%E6%8E%A5%E5%8F%A3/</guid>
       <description>golang中没有继承和多态，只支持封装，那些在C/C++/Java中使用继承和多态实现的方式，在golang中就可以使用接口来进行实现，golang的接口比其他语言就灵活很多。 如下就是一个使用接口的例子： type Traversal interface { Traverse() } func main() { traversal := getTraversal() traversal.Traverse() } 1. duck typing的概念 1.1 大黄鸭是鸭子吗？ 传统类</description>
     </item>
     
     <item>
       <title>Golang|03 面向对象</title>
-      <link>https://bineanju.gitee.io/blog/post/20180504Go%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</link>
+      <link>https://bzhou830.github.io/post/20180504Go%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</link>
       <pubDate>Fri, 04 May 2018 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20180504Go%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</guid>
+      <guid>https://bzhou830.github.io/post/20180504Go%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</guid>
       <description>1.结构体和方法 go 语言仅支持封装，不支持继承和多态 go语言没有 class，只有 struct 1.1 结构的创建 root.left = &amp;amp;treeNode{} root.right = &amp;amp;treeNode{5, nil, nil} root.right.left = new(treeNode) 不论地址还是结构本身，一律使用.来访问成员 func createNode(value int) *treeNode { return &amp;amp;treeNode{value: value} } root.left.right = createNode(2) //使用自定义工厂函数 注意上述代码中，createNode返回了局部变量的地址, 这种方式在C/C++</description>
     </item>
     
     <item>
       <title>Golang|02 内建容器</title>
-      <link>https://bineanju.gitee.io/blog/post/20180503Go%E5%86%85%E5%BB%BA%E5%AE%B9%E5%99%A8/</link>
+      <link>https://bzhou830.github.io/post/20180503Go%E5%86%85%E5%BB%BA%E5%AE%B9%E5%99%A8/</link>
       <pubDate>Thu, 03 May 2018 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20180503Go%E5%86%85%E5%BB%BA%E5%AE%B9%E5%99%A8/</guid>
+      <guid>https://bzhou830.github.io/post/20180503Go%E5%86%85%E5%BB%BA%E5%AE%B9%E5%99%A8/</guid>
       <description>1.数组 var arr1 [5]int // 声明数组 arr2 := [3]int{1, 3, 5} // 声明数组并赋值 arr3 := [...]int{2, 4, 6, 8, 10} // 不输入数组长度，让编译器来计算长度 var grid [4][5]int // 二维数组 数量写在类型前 可通过 _ 来省略变量，不仅仅是 range，任何地方都可通过 _ 来省略变量 sum := 0 for _, v := range numbers { sum += v } 如果只要下标 i，可写成for i := range numbers 为人么要用 range? 因为意</description>
     </item>
     
     <item>
       <title>Golang|01 基础语法</title>
-      <link>https://bineanju.gitee.io/blog/post/20180502Go%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</link>
+      <link>https://bzhou830.github.io/post/20180502Go%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</link>
       <pubDate>Wed, 02 May 2018 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20180502Go%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</guid>
+      <guid>https://bzhou830.github.io/post/20180502Go%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</guid>
       <description>1. 变量和常量 golang中变量的定义结构是：var 变量名 类型。golang中内建变量类型有： bool, string (u)int, (u)int8, (u)int16, (u)int32, (u)int64, uintptr（指针）未指定长度时根据操作系统是多少位来决定 byte, rune（长度32位，相当于 char，解决多国语言问题） float32, float64, complex64, complex128 可以看到golang中没有char, 只有rune</description>
     </item>
     
     <item>
       <title>C&#43;&#43;内存管理|05 各平台下std::allocator概览</title>
-      <link>https://bineanju.gitee.io/blog/post/20180116C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8605/</link>
+      <link>https://bzhou830.github.io/post/20180116C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8605/</link>
       <pubDate>Tue, 16 Jan 2018 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20180116C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8605/</guid>
+      <guid>https://bzhou830.github.io/post/20180116C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8605/</guid>
       <description>1. VC6中的std::allocator VC6中的std::allocator源码实现如下图： 从图中可以发现，VC6中的std::allocator并没有进行memory pool这类的处理，直接在里面调用operator new()，进而调用::operator new，然后mall</description>
     </item>
     
     <item>
       <title>C&#43;&#43;内存管理|04 内存池</title>
-      <link>https://bineanju.gitee.io/blog/post/20180114C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8604/</link>
+      <link>https://bzhou830.github.io/post/20180114C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8604/</link>
       <pubDate>Sun, 14 Jan 2018 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20180114C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8604/</guid>
+      <guid>https://bzhou830.github.io/post/20180114C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8604/</guid>
       <description>1. per-class allocator (ver 1.0) 前面几篇内存管理介绍了在C++中进行内存管理的接口，有了这些接口就可以开始使用这些工具管理内存。首先来看一个来自&amp;lt;&amp;lt;C++ Primer&amp;gt;&amp;gt; 3ed, p765的一个例子： #include &amp;lt;cstddef&amp;gt; #include &amp;lt;iostream&amp;gt; using namespace std; class Screen { public: Screen(int x) :i(x) {}; int geti() { return i; }; void* operator new(size_t size) { Screen *p; if (!freeStore) { size_t chunk = screenChunk * size; freeStore = p = reinterpret_cast&amp;lt;Screen*&amp;gt;(new char[chunk]); for (; p != &amp;amp;freeStore[screenChunk - 1]; ++p) { p-&amp;gt;next = p +</description>
     </item>
     
     <item>
       <title>C&#43;&#43;内存管理|03 重载</title>
-      <link>https://bineanju.gitee.io/blog/post/20180112C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8603/</link>
+      <link>https://bzhou830.github.io/post/20180112C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8603/</link>
       <pubDate>Fri, 12 Jan 2018 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20180112C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8603/</guid>
+      <guid>https://bzhou830.github.io/post/20180112C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8603/</guid>
       <description>前面两篇【C++内存管理】从整体上来看了系统中四个调用层面上的内存分配和释放，然后详细的介绍了这四个层面中的操作符/函数的使用以及背后的调用关系。在这一篇我们就从内存管理实现的基本点重载开始，看看C++给我们提供了哪些可供用户使用的内存管理接口。 应用程序的设计中，我们所说的内存管</description>
     </item>
     
     <item>
       <title>C&#43;&#43;内存管理|02 内存操作相关函数</title>
-      <link>https://bineanju.gitee.io/blog/post/20180110C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8602/</link>
+      <link>https://bzhou830.github.io/post/20180110C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8602/</link>
       <pubDate>Wed, 10 Jan 2018 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20180110C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8602/</guid>
+      <guid>https://bzhou830.github.io/post/20180110C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8602/</guid>
       <description>上一篇中从整体上来看系统中四个层面上内存的分配和释放，这样我们就对内存分配有了一个整体的认识。这一节则详细的来写写这四个层面中的操作符或函数的使用方法，以及他们背后的调用关系。首先我们从我们使用最多的new和delete来说起。 1. new 和 delete new 操作符有时候也有地方称他为new opera</description>
     </item>
     
     <item>
       <title>C&#43;&#43;内存管理|01 分配和释放的四个层面</title>
-      <link>https://bineanju.gitee.io/blog/post/20180106C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8601/</link>
+      <link>https://bzhou830.github.io/post/20180106C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8601/</link>
       <pubDate>Sat, 06 Jan 2018 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20180106C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8601/</guid>
+      <guid>https://bzhou830.github.io/post/20180106C&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%8601/</guid>
       <description>内存的使用是稍底层一些的程序，或者性能要求严格的程序都是非常有讲究的一块。从程序的分层设计的角度来看，一般有四个层面上内存的分配和释放可以共给我们开发人员使用。本篇就介绍这这个层面上内存分配相关的一些函数接口。 1. 站在高处思考 从一个比较高的角度来看，内存管理说到底就是使用OS提供的</description>
     </item>
     
     <item>
       <title>WDDM时序调用流程图</title>
-      <link>https://bineanju.gitee.io/blog/post/20171217WDDM%E5%B7%A5%E4%BD%9C%E6%B5%81/</link>
+      <link>https://bzhou830.github.io/post/20171217WDDM%E5%B7%A5%E4%BD%9C%E6%B5%81/</link>
       <pubDate>Sun, 17 Dec 2017 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20171217WDDM%E5%B7%A5%E4%BD%9C%E6%B5%81/</guid>
+      <guid>https://bzhou830.github.io/post/20171217WDDM%E5%B7%A5%E4%BD%9C%E6%B5%81/</guid>
       <description>首先从WDDM驱动的框架图中来看看Driver是需要做什么事情的。下图中的带有灰色背景的就是GPU厂商提供的Driver需要实现的内容。 以一个简单的例子来看他们具体是怎么工作的： 1. Rendering Device 的创建 1、APPlication申请创建渲染设备时，display minport driver会接收到Dxgk</description>
     </item>
     
     <item>
       <title>一个电子发烧友的程序员成长之路</title>
-      <link>https://bineanju.gitee.io/blog/post/20170620%E4%B8%80%E4%B8%AA%E7%94%B5%E5%AD%90%E5%8F%91%E7%83%A7%E5%8F%8B%E7%9A%84%E7%A8%8B%E5%BA%8F%E5%91%98%E6%88%90%E9%95%BF%E4%B9%8B%E8%B7%AF/</link>
+      <link>https://bzhou830.github.io/post/20170620%E4%B8%80%E4%B8%AA%E7%94%B5%E5%AD%90%E5%8F%91%E7%83%A7%E5%8F%8B%E7%9A%84%E7%A8%8B%E5%BA%8F%E5%91%98%E6%88%90%E9%95%BF%E4%B9%8B%E8%B7%AF/</link>
       <pubDate>Tue, 20 Jun 2017 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20170620%E4%B8%80%E4%B8%AA%E7%94%B5%E5%AD%90%E5%8F%91%E7%83%A7%E5%8F%8B%E7%9A%84%E7%A8%8B%E5%BA%8F%E5%91%98%E6%88%90%E9%95%BF%E4%B9%8B%E8%B7%AF/</guid>
+      <guid>https://bzhou830.github.io/post/20170620%E4%B8%80%E4%B8%AA%E7%94%B5%E5%AD%90%E5%8F%91%E7%83%A7%E5%8F%8B%E7%9A%84%E7%A8%8B%E5%BA%8F%E5%91%98%E6%88%90%E9%95%BF%E4%B9%8B%E8%B7%AF/</guid>
       <description>这是参与CSDN博客征文大赛的文章，征文主题是“入坑”的那些事。有幸这个文章获得了征文大赛的二等奖。以下是文章的原文. 回想起高考已经是7年前的事情了，一直想在毕业之际记忆记录一下7年的历程，懒惰始终占据着我的整个身躯。看到这个征文活动，让我有点想提笔记录的冲动了。 1.邂逅 一直在想</description>
     </item>
     
     <item>
       <title>设计模式</title>
-      <link>https://bineanju.gitee.io/blog/post/20170503DesignPatten01/</link>
+      <link>https://bzhou830.github.io/post/20170503DesignPatten01/</link>
       <pubDate>Wed, 03 May 2017 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20170503DesignPatten01/</guid>
+      <guid>https://bzhou830.github.io/post/20170503DesignPatten01/</guid>
       <description>OOP的目标 理解松耦合的设计思想 掌握面向对象的设计原则（设计原则比模式更为重要） 掌握重构的技法，改善设计 掌握GOF核心设计模式 向下：深入理解三大面向对象机制 • 封装，隐藏内部实现 • 继承，复用现有代码 • 多态，改写对象行为 向上：深刻把握面向对象机制所带来的抽象意义，理解如何使用这些机制</description>
     </item>
     
     <item>
       <title>排序算法</title>
-      <link>https://bineanju.gitee.io/blog/post/20170312SortAlgo/</link>
+      <link>https://bzhou830.github.io/post/20170312SortAlgo/</link>
       <pubDate>Sun, 12 Mar 2017 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20170312SortAlgo/</guid>
+      <guid>https://bzhou830.github.io/post/20170312SortAlgo/</guid>
       <description>1. 选择排序 选择排序的思想： 每次循环中从待排序的序列中选取一个最小值（按照升序排序），将这个最小值放到合适的位置 /// 选择排序 /// \param arr， 待排序的数组 /// \param n， 数组元素的个数 void selectionSort(int arr[], int n){ for (int i = 0; i &amp;lt; n; ++i) { int curMinIndex = i; for (int j = i+1; j &amp;lt; n; ++j) { if(arr[curMinIndex] &amp;gt; arr[j]){ curMinIndex = j; } } std::swap(arr[i], arr[curMinIndex]); } } 2. 冒泡排序 冒泡排序中每一次循环把</description>
     </item>
     
     <item>
       <title>关于与致谢</title>
-      <link>https://bineanju.gitee.io/blog/about/</link>
+      <link>https://bzhou830.github.io/about/</link>
       <pubDate>Fri, 10 Mar 2017 00:13:27 +0000</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/about/</guid>
+      <guid>https://bzhou830.github.io/about/</guid>
       <description>关于本博客 [2020.04.16更新] 购买的阿里云服务器到期了，考虑在云服务器费用问题，而且访问量好像也很低，所以不打算续费了。目前直接搭载到gitee page上，域名binean.top还在有效期内。 [2018.08.06更新] 写博客的初衷是记录学习笔记方便以后查找，以及记录自</description>
     </item>
     
     <item>
       <title>OpenCV with Python</title>
-      <link>https://bineanju.gitee.io/blog/post/20170306opencv_python/</link>
+      <link>https://bzhou830.github.io/post/20170306opencv_python/</link>
       <pubDate>Mon, 06 Mar 2017 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20170306opencv_python/</guid>
+      <guid>https://bzhou830.github.io/post/20170306opencv_python/</guid>
       <description>一、Python OpenCV 入门 欢迎阅读系列教程，内容涵盖 OpenCV，它是一个图像和视频处理库，包含 C++，C，Python 和 Java 的版本。 OpenCV 用于各种图像和视频分析，如面部识别和检测，车牌识别，照片编辑，高级机器人视觉，光学字符识别等等。 你将需要两个主要的库，第三个可选：python-Ope</description>
     </item>
     
     <item>
       <title>MathJax语法参考</title>
-      <link>https://bineanju.gitee.io/blog/post/20170206%E5%A6%82%E4%BD%95%E6%8F%92%E5%85%A5%E5%85%AC%E5%BC%8F/</link>
+      <link>https://bzhou830.github.io/post/20170206%E5%A6%82%E4%BD%95%E6%8F%92%E5%85%A5%E5%85%AC%E5%BC%8F/</link>
       <pubDate>Mon, 06 Feb 2017 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20170206%E5%A6%82%E4%BD%95%E6%8F%92%E5%85%A5%E5%85%AC%E5%BC%8F/</guid>
+      <guid>https://bzhou830.github.io/post/20170206%E5%A6%82%E4%BD%95%E6%8F%92%E5%85%A5%E5%85%AC%E5%BC%8F/</guid>
       <description>如何插入公式 LaTeX的数学公式有两种：行中公式和独立公式。行中公式放在文中与其它文字混编，独立公式单独成行。 例子: ＼$[J_\alpha(x) = \sum_{m=0}^\infty \frac{(-1)^m}{m! \Gamma (m + \alpha + 1)} {\left({ \frac{x}{2} }\right)}^{2m + \alpha}＼]$ 显示： $$ [Jα(x)=∑m=0∞(−1)mm!Γ(m+α+1)(x2)2m+α] $$ 如何插入</description>
     </item>
     
     <item>
       <title>C&#43;&#43;对象模型</title>
-      <link>https://bineanju.gitee.io/blog/post/20170120Cpp%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B/</link>
+      <link>https://bzhou830.github.io/post/20170120Cpp%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B/</link>
       <pubDate>Fri, 20 Jan 2017 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20170120Cpp%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B/</guid>
+      <guid>https://bzhou830.github.io/post/20170120Cpp%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B/</guid>
       <description>1. 类对象多占的空间 sizeof(空类) = ? 静态成员变量/函数，不占用类对象的空间 有虚函数时，类对象会多一个指针大小的空间（指向虚函数表vftbl） 对齐？ 2. 对象结构的演化和发展 3. this指针的调整 4. 分析obj文件 5. 拷贝构造函数 6. 程序转化语义 7. 程序的优化 class Value{ public: };</description>
     </item>
     
     <item>
       <title>图论算法笔记|12网络流算法</title>
-      <link>https://bineanju.gitee.io/blog/post/20170112%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9512/</link>
+      <link>https://bzhou830.github.io/post/20170112%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9512/</link>
       <pubDate>Thu, 12 Jan 2017 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20170112%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9512/</guid>
+      <guid>https://bzhou830.github.io/post/20170112%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9512/</guid>
       <description></description>
     </item>
     
     <item>
       <title>图论算法笔记|11有向图算法</title>
-      <link>https://bineanju.gitee.io/blog/post/20170111%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9511/</link>
+      <link>https://bzhou830.github.io/post/20170111%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9511/</link>
       <pubDate>Wed, 11 Jan 2017 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20170111%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9511/</guid>
+      <guid>https://bzhou830.github.io/post/20170111%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9511/</guid>
       <description></description>
     </item>
     
     <item>
       <title>图论算法笔记|10最短路径</title>
-      <link>https://bineanju.gitee.io/blog/post/20170110%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9510/</link>
+      <link>https://bzhou830.github.io/post/20170110%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9510/</link>
       <pubDate>Tue, 10 Jan 2017 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20170110%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9510/</guid>
+      <guid>https://bzhou830.github.io/post/20170110%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9510/</guid>
       <description></description>
     </item>
     
     <item>
       <title>图论算法笔记|09最小生成树</title>
-      <link>https://bineanju.gitee.io/blog/post/20170109%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9509/</link>
+      <link>https://bzhou830.github.io/post/20170109%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9509/</link>
       <pubDate>Mon, 09 Jan 2017 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20170109%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9509/</guid>
+      <guid>https://bzhou830.github.io/post/20170109%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9509/</guid>
       <description></description>
     </item>
     
     <item>
       <title>图论算法笔记|08欧拉回路和欧拉路径</title>
-      <link>https://bineanju.gitee.io/blog/post/20170108%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9508/</link>
+      <link>https://bzhou830.github.io/post/20170108%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9508/</link>
       <pubDate>Sun, 08 Jan 2017 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20170108%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9508/</guid>
+      <guid>https://bzhou830.github.io/post/20170108%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9508/</guid>
       <description></description>
     </item>
     
     <item>
       <title>图论算法笔记|07哈密顿回路和路径</title>
-      <link>https://bineanju.gitee.io/blog/post/20170107%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9507/</link>
+      <link>https://bzhou830.github.io/post/20170107%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9507/</link>
       <pubDate>Sat, 07 Jan 2017 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20170107%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9507/</guid>
+      <guid>https://bzhou830.github.io/post/20170107%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9507/</guid>
       <description></description>
     </item>
     
     <item>
       <title>图论算法笔记|06桥和割点</title>
-      <link>https://bineanju.gitee.io/blog/post/20170106%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9506/</link>
+      <link>https://bzhou830.github.io/post/20170106%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9506/</link>
       <pubDate>Fri, 06 Jan 2017 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20170106%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9506/</guid>
+      <guid>https://bzhou830.github.io/post/20170106%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9506/</guid>
       <description>1. 什么是桥 对于无向图，如果删除了一条边，整个图的联通分量的数量发生了变化，那么删除的这条边就成为桥（Bridge）,桥也叫割边。桥意味着图中最脆弱的关系。例如在交通设计中各个地点表示顶点，之间的道路表示边，那么桥就是联通城市群的交通要道，如果桥断了就形成了隔离的城市群。 2. 割点 对于</description>
     </item>
     
     <item>
       <title>图论算法笔记|05图论搜索和人工智能</title>
-      <link>https://bineanju.gitee.io/blog/post/20170105%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9505/</link>
+      <link>https://bzhou830.github.io/post/20170105%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9505/</link>
       <pubDate>Thu, 05 Jan 2017 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20170105%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9505/</guid>
+      <guid>https://bzhou830.github.io/post/20170105%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9505/</guid>
       <description>Leetcode 1091 状态表达 leetcode 752 一个5L的桶和一个3L的桶，装出4L的水 农夫过河问题 leetcode 773 华容道</description>
     </item>
     
     <item>
       <title>图论算法笔记|04图论建模和Floodfill</title>
-      <link>https://bineanju.gitee.io/blog/post/20170104%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9504/</link>
+      <link>https://bzhou830.github.io/post/20170104%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9504/</link>
       <pubDate>Wed, 04 Jan 2017 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20170104%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9504/</guid>
+      <guid>https://bzhou830.github.io/post/20170104%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9504/</guid>
       <description>1. 图论建模 大多数的时候我们遇到的问题都不会直接说明这是一个图论的问题，然后你需要使用什么方法来解决。大多数的时候是需要我们自己对问题进行抽象，然后将问题建模成一个图论的问题，然后求解。图论的问题求解过程绝大多数还是使用的dfs或者是bfs。不同的是对于不同的问题，我们需要在遍历的</description>
     </item>
     
     <item>
       <title>图论算法笔记|03广度优先遍历</title>
-      <link>https://bineanju.gitee.io/blog/post/20170103%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9503/</link>
+      <link>https://bzhou830.github.io/post/20170103%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9503/</link>
       <pubDate>Tue, 03 Jan 2017 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20170103%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9503/</guid>
+      <guid>https://bzhou830.github.io/post/20170103%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9503/</guid>
       <description>1. 广度优先遍历 在深度优先遍历中，从一个节点出发然后一直递归的去遍历和它相连的节点，也就是说我们是依次遍历完成一个节点的子图。 广度优先遍历不同于深度优先遍历，我们从一个节点出发遍历完和它相连的节点，然后再去遍历和它相连的这些节点相连的节点，就好像是一层层的去遍历完整个图（和二叉树的</description>
     </item>
     
     <item>
       <title>图论算法笔记|02深度优先遍历</title>
-      <link>https://bineanju.gitee.io/blog/post/20170102%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9502/</link>
+      <link>https://bzhou830.github.io/post/20170102%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9502/</link>
       <pubDate>Mon, 02 Jan 2017 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20170102%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9502/</guid>
+      <guid>https://bzhou830.github.io/post/20170102%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9502/</guid>
       <description>1. 遍历的意义 图是一种数据结构，数据结构的作用就是用来将数据进行结构化的存储。然而存储的目的为的是后续高效率的查找。查找这个动作就是需要在数据结构里面进行遍历，所以从这个角度上来看任何的数据结构都应该存在遍历的方式。 对于“图”这种数据结构来说，它可以有深度优先遍历和广度优先遍历两种</description>
     </item>
     
     <item>
       <title>图论算法笔记|01图的存储结构</title>
-      <link>https://bineanju.gitee.io/blog/post/20170101%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9501/</link>
+      <link>https://bzhou830.github.io/post/20170101%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9501/</link>
       <pubDate>Sun, 01 Jan 2017 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20170101%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9501/</guid>
+      <guid>https://bzhou830.github.io/post/20170101%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%9501/</guid>
       <description>图是一种表示多对多关系的结构，表示图的数据结构一般有两种形式，一种是邻接矩阵，另一种是邻接表。 1. 邻接矩阵 邻接矩阵，顾名思义，是一个矩阵，它是存储着边信息的矩阵，顶点用矩阵的下标表示。对于一个邻接矩阵M，如果$M(i,j)=1$，则说明顶点$i$和顶点$j$之间存在一条边。 对于无向</description>
     </item>
     
     <item>
       <title>我的2016</title>
-      <link>https://bineanju.gitee.io/blog/post/20161230%E6%88%91%E7%9A%842016/</link>
+      <link>https://bzhou830.github.io/post/20161230%E6%88%91%E7%9A%842016/</link>
       <pubDate>Fri, 30 Dec 2016 09:29:11 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20161230%E6%88%91%E7%9A%842016/</guid>
+      <guid>https://bzhou830.github.io/post/20161230%E6%88%91%E7%9A%842016/</guid>
       <description>0.题外话 回想自己主动写年终总结还是在2012年，果然是人越来越懒了。2016年对我来说应该是比较有转折性的一年。首先对于一个研二到研三的学生来说最重要的恐怕就是秋季校招了。其次在导师公司从2016年3月到2016年6月这段时间基本就是在交接工作（比较消极的话来说就是接手烂摊子(</description>
     </item>
     
     <item>
       <title>DICOM影像中的窗宽窗位</title>
-      <link>https://bineanju.gitee.io/blog/post/20161117DICOM%E5%BD%B1%E5%83%8F%E4%B8%AD%E7%9A%84%E7%AA%97%E5%AE%BD%E7%AA%97%E4%BD%8D/</link>
+      <link>https://bzhou830.github.io/post/20161117DICOM%E5%BD%B1%E5%83%8F%E4%B8%AD%E7%9A%84%E7%AA%97%E5%AE%BD%E7%AA%97%E4%BD%8D/</link>
       <pubDate>Thu, 17 Nov 2016 09:29:11 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20161117DICOM%E5%BD%B1%E5%83%8F%E4%B8%AD%E7%9A%84%E7%AA%97%E5%AE%BD%E7%AA%97%E4%BD%8D/</guid>
+      <guid>https://bzhou830.github.io/post/20161117DICOM%E5%BD%B1%E5%83%8F%E4%B8%AD%E7%9A%84%E7%AA%97%E5%AE%BD%E7%AA%97%E4%BD%8D/</guid>
       <description>1.为什么有窗宽窗位? 医学图像领域的关键技术窗技术，是CT检查中用以观察不同密度的正常组织或病变的一种显示技术，包括窗宽(window width)和窗位(window level)。由于各种组织结构或病变具有不同的CT值，因此想要显示某一组织结构细节时，应该选择适合观察该组织或病变</description>
     </item>
     
     <item>
       <title>DICOM通信|PDU数据包（2）</title>
-      <link>https://bineanju.gitee.io/blog/post/20161008DICOM%E9%80%9A%E4%BF%A1PDU%E6%95%B0%E6%8D%AE%E5%8C%852/</link>
+      <link>https://bzhou830.github.io/post/20161008DICOM%E9%80%9A%E4%BF%A1PDU%E6%95%B0%E6%8D%AE%E5%8C%852/</link>
       <pubDate>Sat, 08 Oct 2016 09:29:11 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20161008DICOM%E9%80%9A%E4%BF%A1PDU%E6%95%B0%E6%8D%AE%E5%8C%852/</guid>
+      <guid>https://bzhou830.github.io/post/20161008DICOM%E9%80%9A%E4%BF%A1PDU%E6%95%B0%E6%8D%AE%E5%8C%852/</guid>
       <description>DICOM通信-PDU数据包(1)中主要分析了DICOM通信协议的连接协商请求和连接协商应答。 在7个PDU数据包中还有5个数据包，从结构上来看，他们比协议的协商过程要简单明了一些。 这篇博客就来分析下剩下的5种数据包。 博客中使用的是WireShark抓包工具获取到的通信传输数据。 1</description>
     </item>
     
     <item>
       <title>DICOM通信|PDU数据包（1）</title>
-      <link>https://bineanju.gitee.io/blog/post/20161007DICOM%E9%80%9A%E4%BF%A1PDU%E6%95%B0%E6%8D%AE%E5%8C%851/</link>
+      <link>https://bzhou830.github.io/post/20161007DICOM%E9%80%9A%E4%BF%A1PDU%E6%95%B0%E6%8D%AE%E5%8C%851/</link>
       <pubDate>Fri, 07 Oct 2016 09:29:11 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20161007DICOM%E9%80%9A%E4%BF%A1PDU%E6%95%B0%E6%8D%AE%E5%8C%851/</guid>
+      <guid>https://bzhou830.github.io/post/20161007DICOM%E9%80%9A%E4%BF%A1PDU%E6%95%B0%E6%8D%AE%E5%8C%851/</guid>
       <description>DICOM上层协议为DIMSE提供透明的网络数据传输服务，即以上层协议规定的协议数据单元传送接收DIMSE的命令流与数据流。上层协议中制定了上层服务以及协议数据单元(Protocol Data Unit，PDU)。 PDU是处在同一层的对等体用来交换的信息格式，DICOM根据上层服务定义了以</description>
     </item>
     
     <item>
       <title>DCMTK读取DICOM文件</title>
-      <link>https://bineanju.gitee.io/blog/post/20160915DCMTK%E8%AF%BB%E5%8F%96DICOM%E6%96%87%E4%BB%B6/</link>
+      <link>https://bzhou830.github.io/post/20160915DCMTK%E8%AF%BB%E5%8F%96DICOM%E6%96%87%E4%BB%B6/</link>
       <pubDate>Thu, 15 Sep 2016 08:29:11 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20160915DCMTK%E8%AF%BB%E5%8F%96DICOM%E6%96%87%E4%BB%B6/</guid>
+      <guid>https://bzhou830.github.io/post/20160915DCMTK%E8%AF%BB%E5%8F%96DICOM%E6%96%87%E4%BB%B6/</guid>
       <description>//.h文件 #pragma once class dicomRead { public: dicomRead(void); ~dicomRead(void); private: const char* PatientName; const char* PatientSex; long PatientAge; long Width; long Height; long Depth; long WindowsLevel; long WindowsWidth; double space[2]; double spaceZ; double ImagePosition[3]; double ImageOrientation[6]; unsigned short* buffer; public: const char* GetPatientName(); const char* GetPatientSex(); long GetPatientAge(); long GetWidth(); long GetHeight(); long GetDepth(); long GetWindowsLevel(); long GetWindowsWidth(); double* GetSpace(); double GetSpaceZ(double orientation[6],double position1[3],double position2[3]); double* GetImagePosition(); double* GetImageOrientation(); unsigned short* GetBuffer(); void DicomRead(const char* path); void compressionDicom(const char* path,int repType); void decompressionDicom(const char* path); void readDICOMInfo(const char* path); }; #include &amp;quot;dicomRead.h&amp;quot; #include &amp;lt;map&amp;gt; #include &amp;lt;math.h&amp;gt; #include &amp;lt;iostream&amp;gt; #include &amp;lt;string&amp;gt; #include &amp;quot;dcmtk\config\osconfig.h&amp;quot; #include &amp;quot;dcmtk\dcmdata\dctk.h&amp;quot; #include &amp;quot;dcmtk\dcmdata\dcxfer.h&amp;quot; #include &amp;quot;dcmtk\dcmdata\dctag.h&amp;quot; #include &amp;quot;dcmtk\dcmdata\dctagkey.h&amp;quot; #include &amp;quot;dcmtk\dcmdata\dcpxitem.h&amp;quot; #include &amp;quot;dcmtk\oflog\config.h&amp;quot; #include &amp;quot;dcmtk\dcmimgle\dcmimage.h&amp;quot; #include &amp;quot;dcmtk\dcmjpeg\djdecode.h&amp;quot; #include &amp;quot;dcmtk\dcmjpeg\djdijg12.h&amp;quot; #include &amp;quot;dcmtk\dcmjpeg\djdijg8.h&amp;quot; #include &amp;quot;dcmtk\dcmjpeg\djdijg16.h&amp;quot; #include &amp;quot;dcmtk\dcmjpeg\djencode.h&amp;quot; #include &amp;quot;dcmtk\dcmjpeg\djrploss.h&amp;quot; #include &amp;quot;dcmtk\dcmjpeg\djrplol.h&amp;quot; #include &amp;quot;dcmtk\dcmdata\dcrleerg.h&amp;quot; #include &amp;quot;dcmtk\dcmdata\dcrledrg.h&amp;quot; using</description>
     </item>
     
     <item>
       <title>Flask 学习笔记|11 Python与Flask的结合应用</title>
-      <link>https://bineanju.gitee.io/blog/post/20160511flask11/</link>
+      <link>https://bzhou830.github.io/post/20160511flask11/</link>
       <pubDate>Wed, 11 May 2016 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20160511flask11/</guid>
+      <guid>https://bzhou830.github.io/post/20160511flask11/</guid>
       <description>11.1 重置密码流程分析 重置密码主要流程如下： 其中，发送重置密码邮件后的流程如下： 11.2 first_or_404和可调用对象 1.first_or_404 视图函数接受用户填写的email账号，如果不存在应该跳转到404界面，这个逻辑flask-sqlalchemy为我们提供了良好的封装，不需要手动去处理,只需要调用Q</description>
     </item>
     
     <item>
       <title>Flask 学习笔记|10 鱼书业务处理</title>
-      <link>https://bineanju.gitee.io/blog/post/20160510flask10/</link>
+      <link>https://bzhou830.github.io/post/20160510flask10/</link>
       <pubDate>Tue, 10 May 2016 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20160510flask10/</guid>
+      <guid>https://bzhou830.github.io/post/20160510flask10/</guid>
       <description>10.1 最近的礼物 我们的首页会显示最近的赠送书籍列表。这个列表有三个限制条件： 1.数量不超过30 2.按照时间倒序排列，最新的排在最前面 3.去重，同一本书籍的礼物不重复出现 1.首先编写复杂SQL对应的ORM代码 由于是最近的礼物，所以应该编写在models/gift.py中 @classmethod def recent(cls): # 链式调用</description>
     </item>
     
     <item>
       <title>Flask 学习笔记|09 书籍交易模型（数据库事务、重写Flask中的对象）</title>
-      <link>https://bineanju.gitee.io/blog/post/20160509flask09/</link>
+      <link>https://bzhou830.github.io/post/20160509flask09/</link>
       <pubDate>Mon, 09 May 2016 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20160509flask09/</guid>
+      <guid>https://bzhou830.github.io/post/20160509flask09/</guid>
       <description>本章是一个综合应用章节。我们将看到如何使用多个Python的知识点综合解决问题。我们将进一步的使用@contextmanager来改善前面所学到的上下文管理器，并结合yield来优化数据库事务。此外，我们还将重写Flask中的一些对象的方法，来实现我们自己的业务逻辑 9.1 鱼豆 我们的鱼</description>
     </item>
     
     <item>
       <title>Flask 学习笔记|08 用户登录与注册</title>
-      <link>https://bineanju.gitee.io/blog/post/20160508flask08/</link>
+      <link>https://bzhou830.github.io/post/20160508flask08/</link>
       <pubDate>Sun, 08 May 2016 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20160508flask08/</guid>
+      <guid>https://bzhou830.github.io/post/20160508flask08/</guid>
       <description>8.1 viewmodel意义的体现与filter函数的巧妙应用 在搜索书籍页面里，需要将每一条结果的作者，出版社，价格在一行展示，并以”/“分割。由于这三个属性还有可能为空，所以在html模板里处理不太方便。我们选择将这些数据处理的工作放在viewmodel中。 简单粗暴一点的方法是写一</description>
     </item>
     
     <item>
       <title>Flask 学习笔记|07 静态文件、模板、消息闪现与Jinja2</title>
-      <link>https://bineanju.gitee.io/blog/post/20160507flask07/</link>
+      <link>https://bzhou830.github.io/post/20160507flask07/</link>
       <pubDate>Sat, 07 May 2016 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20160507flask07/</guid>
+      <guid>https://bzhou830.github.io/post/20160507flask07/</guid>
       <description>本章，我们将通过借助学习flask的模板来间接学习：列表推导式的应用、三元表达式的应用、@Property属性描述符、filter函数的应用、管道过滤器 7.1 静态文件访问原理 1.默认访问方法 Flask访问静态文件非常简单，只需要在项目根目录建立static文件夹。将静态资源文件放入s</description>
     </item>
     
     <item>
       <title>Flask 学习笔记|06 书籍详情页面的构建</title>
-      <link>https://bineanju.gitee.io/blog/post/20160506flask06/</link>
+      <link>https://bzhou830.github.io/post/20160506flask06/</link>
       <pubDate>Fri, 06 May 2016 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20160506flask06/</guid>
+      <guid>https://bzhou830.github.io/post/20160506flask06/</guid>
       <description>本章我们提出一个概念ViewModel，并详细解释ViewModel的意义。此外面向对象虽然是老生常谈，但你真的理解面向对象吗？我们将在本章中通过重构来一步步揭示到底什么才是对象，如何写出面向对象的代码来。思维的训练，永远比业务要重要 6.1 ViewModel的基本概念 大多时候，我们从</description>
     </item>
     
     <item>
       <title>Flask 学习笔记|05 Flask中的多线程与线程隔离技术</title>
-      <link>https://bineanju.gitee.io/blog/post/20160505flask05/</link>
+      <link>https://bzhou830.github.io/post/20160505flask05/</link>
       <pubDate>Thu, 05 May 2016 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20160505flask05/</guid>
+      <guid>https://bzhou830.github.io/post/20160505flask05/</guid>
       <description>5.1 线程进程与多线程 1.进程 资源是稀缺的，进程是竞争计算机资源的基本单位。 一台计算机至少要有一个进程。 单核CPU用眼只能执行一个应用程序吗？No，他可以在不同的应用程序直接进行切换。由于切换的时间非常短，短到人类无法感知到，所以造成了一种假象，一个进程可以同时执行多个进程。 多核CP</description>
     </item>
     
     <item>
       <title>Flask 学习笔记|04 flask核心机制</title>
-      <link>https://bineanju.gitee.io/blog/post/20160504flask04/</link>
+      <link>https://bzhou830.github.io/post/20160504flask04/</link>
       <pubDate>Wed, 04 May 2016 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20160504flask04/</guid>
+      <guid>https://bzhou830.github.io/post/20160504flask04/</guid>
       <description>flask最核心的是两个上下文，而这两个上下中包含大量的Python高级编程应用。我们需要理解上下文的意义，并且通过借鉴flask的下文机制，学习Python的上下文管理器（With）、栈结构的应用。我们还将学习，到底如何通过阅读源码来解决问题 4.1 flask中经典错误 working outside application context 在 3.</description>
     </item>
     
     <item>
       <title>Flask 学习笔记|03 蓝图、模型与CodeFirst</title>
-      <link>https://bineanju.gitee.io/blog/post/20160503flask03/</link>
+      <link>https://bzhou830.github.io/post/20160503flask03/</link>
       <pubDate>Tue, 03 May 2016 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20160503flask03/</guid>
+      <guid>https://bzhou830.github.io/post/20160503flask03/</guid>
       <description>3.蓝图、模型与CodeFirst 本章我们尝试把单文件的flask重构为具有模块意义的分文件模型，接着我们会探讨如何使用CodeFirst的思想来创建数据库表。 3.1 应用、蓝图与视图函数 1.Flask的层级关系 Flask最上层是app核心对象 在这个核心对象上可以插入很多蓝图，这个蓝图</description>
     </item>
     
     <item>
       <title>Flask 学习笔记|02 数据和路由</title>
-      <link>https://bineanju.gitee.io/blog/post/20160502flask02/</link>
+      <link>https://bzhou830.github.io/post/20160502flask02/</link>
       <pubDate>Mon, 02 May 2016 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20160502flask02/</guid>
+      <guid>https://bzhou830.github.io/post/20160502flask02/</guid>
       <description>2.数据和路由 鱼书项目中的图书数据并不是使用自己构建的数据库的，构建这么多的图书数据需要花费很大的力气。当然可以通过数据爬取的方式来构建，但是这和课程的核心内容就有点冲突了。课程中使用调用web api的方式获取数据，下面的api中其中yushu的api都是课程老师七月构建的，个人</description>
     </item>
     
     <item>
       <title>Flask 学习笔记|01 Flask入门基础</title>
-      <link>https://bineanju.gitee.io/blog/post/20160501flask01/</link>
+      <link>https://bzhou830.github.io/post/20160501flask01/</link>
       <pubDate>Sun, 01 May 2016 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20160501flask01/</guid>
+      <guid>https://bzhou830.github.io/post/20160501flask01/</guid>
       <description>1.0 pipenv 的安装与使用 # 安装pipenv pip install pipenv # 进入虚拟环境（需要在项目目录上执行，如果当前目录没有虚拟环境，则会新建虚拟环境，如果有则启用该虚拟环境） pipenv shell # 退出虚拟环境 exit # 使用pipenv安装Python包 pipenv install #{package} # 卸载Python包 pipenv uninstall #{package} # 查看按照包的依赖关系 pipenv graph # 查看虚拟环境执行文</description>
     </item>
     
     <item>
       <title>C&#43;&#43;面试题</title>
-      <link>https://bineanju.gitee.io/blog/post/20160406Cpp%E9%9D%A2%E8%AF%95%E9%A2%98/</link>
+      <link>https://bzhou830.github.io/post/20160406Cpp%E9%9D%A2%E8%AF%95%E9%A2%98/</link>
       <pubDate>Wed, 06 Apr 2016 09:29:11 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20160406Cpp%E9%9D%A2%E8%AF%95%E9%A2%98/</guid>
+      <guid>https://bzhou830.github.io/post/20160406Cpp%E9%9D%A2%E8%AF%95%E9%A2%98/</guid>
       <description>一.static关键字的作用 1.修饰普通变量，修改变量的存储区域和生命周期，使变量存储在静态区，在 main 函数运行前就分配了空间，如果有初始值就用初始值初始化它，如果没有初始值系统用默认值初始化它。 2.修饰普通函数，表明函数的作用范围，仅在定义该函数的文件内才能使用。在多人开发项目时，</description>
     </item>
     
     <item>
       <title>STL中的算法</title>
-      <link>https://bineanju.gitee.io/blog/post/20160306STL%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E7%AE%97%E6%B3%95/</link>
+      <link>https://bzhou830.github.io/post/20160306STL%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E7%AE%97%E6%B3%95/</link>
       <pubDate>Sun, 06 Mar 2016 09:29:11 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20160306STL%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E7%AE%97%E6%B3%95/</guid>
+      <guid>https://bzhou830.github.io/post/20160306STL%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E7%AE%97%E6%B3%95/</guid>
       <description>STL算法部分主要由头文件,,组成。要使用 STL中的算法函数必须包含头文件，对于数值算法须包含，中则定义了一些模板类，用来声明函数对象。 STL中算法大致分为四类： 1、非可变序列算法：指不直接修改其所操作的容器内容的算法。 2、可变序列算法：指可以修改它们所操作的容器内容的算法。 3、</description>
     </item>
     
     <item>
       <title>hugo静态网站相关</title>
-      <link>https://bineanju.gitee.io/blog/post/20160103Hugo_and_markdown/</link>
+      <link>https://bzhou830.github.io/post/20160103Hugo_and_markdown/</link>
       <pubDate>Sun, 03 Jan 2016 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20160103Hugo_and_markdown/</guid>
+      <guid>https://bzhou830.github.io/post/20160103Hugo_and_markdown/</guid>
       <description>1. hugo使用内嵌HTML的方法 hugo在默认的情况下无法显示markdown中内嵌的html，在生成的网页中可以看到html的内容被&amp;lt;!--raw HTML omitted--&amp;gt;替代了。原因是在2019年11月的hugo更新中，使用了goldmark作为了默认库，那么想要内嵌</description>
     </item>
     
     <item>
       <title>OpenCV最大熵分割</title>
-      <link>https://bineanju.gitee.io/blog/post/20151130OpenCV%E6%9C%80%E5%A4%A7%E7%86%B5%E5%88%86%E5%89%B2/</link>
+      <link>https://bzhou830.github.io/post/20151130OpenCV%E6%9C%80%E5%A4%A7%E7%86%B5%E5%88%86%E5%89%B2/</link>
       <pubDate>Mon, 30 Nov 2015 12:55:00 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20151130OpenCV%E6%9C%80%E5%A4%A7%E7%86%B5%E5%88%86%E5%89%B2/</guid>
+      <guid>https://bzhou830.github.io/post/20151130OpenCV%E6%9C%80%E5%A4%A7%E7%86%B5%E5%88%86%E5%89%B2/</guid>
       <description>1. 最大熵是什么？ 这里所说的熵是指信息熵，信息熵是来自于信息论的一个词，它是对系统所含信息的一种度量。通俗的讲，系统的不确定性越大，那么系统的信息熵就越大。反之，一个系统如果确定性高（系统越有序），那么整个系统的信息熵就越小。其数学定义表述如下： $$ H = -\int_{\-\infty}^{+\infty}p(x)log[p(x)]dx $$ 上式中，$p(x)$ 表示灰</description>
     </item>
     
     <item>
       <title>OpenCV最大间方差分割</title>
-      <link>https://bineanju.gitee.io/blog/post/20151129OpenCV%E6%9C%80%E5%A4%A7%E9%97%B4%E6%96%B9%E5%B7%AE%E5%88%86%E5%89%B2/</link>
+      <link>https://bzhou830.github.io/post/20151129OpenCV%E6%9C%80%E5%A4%A7%E9%97%B4%E6%96%B9%E5%B7%AE%E5%88%86%E5%89%B2/</link>
       <pubDate>Sun, 29 Nov 2015 12:55:00 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20151129OpenCV%E6%9C%80%E5%A4%A7%E9%97%B4%E6%96%B9%E5%B7%AE%E5%88%86%E5%89%B2/</guid>
+      <guid>https://bzhou830.github.io/post/20151129OpenCV%E6%9C%80%E5%A4%A7%E9%97%B4%E6%96%B9%E5%B7%AE%E5%88%86%E5%89%B2/</guid>
       <description>OpenCV中其实有对OTUS算法的实现，threhold()函数最后一个参数可以指定使用OTUS算法。 1、最大间方差(OTUS)算法的描述 和均值迭代算法相似，OTUS算法也是利用图像的直方图进行的。OTUS算法的思想是选取一个阈值$T， T \in [0,m-1]$,$m$为图像的灰度级</description>
     </item>
     
     <item>
       <title>OpenCV均值迭代分割</title>
-      <link>https://bineanju.gitee.io/blog/post/20151128OpenCV%E5%9D%87%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%88%86%E5%89%B2/</link>
+      <link>https://bzhou830.github.io/post/20151128OpenCV%E5%9D%87%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%88%86%E5%89%B2/</link>
       <pubDate>Sat, 28 Nov 2015 12:55:00 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20151128OpenCV%E5%9D%87%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%88%86%E5%89%B2/</guid>
+      <guid>https://bzhou830.github.io/post/20151128OpenCV%E5%9D%87%E5%80%BC%E8%BF%AD%E4%BB%A3%E5%88%86%E5%89%B2/</guid>
       <description>【题外话】:之前在博客中写过一篇“区域生长”的博客，区域生长在平时经常用到，也比较容易理解和代码实现，所以在很多情况下大家会选择这种方法。但是区域生长有一个最致命的点就是需要选取一个生长的种子点。 为了交流学习，同时也为了后面查阅方便，准备陆续将基于直方图的几种分割算法加以总结。 1</description>
     </item>
     
     <item>
       <title>OpenCV区域生长算法</title>
-      <link>https://bineanju.gitee.io/blog/post/20151127OpenCV%E5%8C%BA%E5%9F%9F%E7%94%9F%E9%95%BF%E7%AE%97%E6%B3%95/</link>
+      <link>https://bzhou830.github.io/post/20151127OpenCV%E5%8C%BA%E5%9F%9F%E7%94%9F%E9%95%BF%E7%AE%97%E6%B3%95/</link>
       <pubDate>Fri, 27 Nov 2015 12:55:00 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20151127OpenCV%E5%8C%BA%E5%9F%9F%E7%94%9F%E9%95%BF%E7%AE%97%E6%B3%95/</guid>
+      <guid>https://bzhou830.github.io/post/20151127OpenCV%E5%8C%BA%E5%9F%9F%E7%94%9F%E9%95%BF%E7%AE%97%E6%B3%95/</guid>
       <description>1.理论基础 区域生长算法的基本思想是将有相似性质的像素点合并到一起。对每一个区域要先指定一个种子点作为生长的起点，然后将种子点周围领域的像素点和种子点进行对比，将具有相似性质的点合并起来继续向外生长，直到没有满足条件的像素被包括进来为止。这样一个区域的生长就完成了。这个过程中有几</description>
     </item>
     
     <item>
       <title>图像插值运算总结</title>
-      <link>https://bineanju.gitee.io/blog/post/20150324%E5%9B%BE%E5%83%8F%E6%8F%92%E5%80%BC%E8%BF%90%E7%AE%97%E6%80%BB%E7%BB%93/</link>
+      <link>https://bzhou830.github.io/post/20150324%E5%9B%BE%E5%83%8F%E6%8F%92%E5%80%BC%E8%BF%90%E7%AE%97%E6%80%BB%E7%BB%93/</link>
       <pubDate>Tue, 24 Mar 2015 09:29:11 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20150324%E5%9B%BE%E5%83%8F%E6%8F%92%E5%80%BC%E8%BF%90%E7%AE%97%E6%80%BB%E7%BB%93/</guid>
+      <guid>https://bzhou830.github.io/post/20150324%E5%9B%BE%E5%83%8F%E6%8F%92%E5%80%BC%E8%BF%90%E7%AE%97%E6%80%BB%E7%BB%93/</guid>
       <description>图像插值就是利用已知邻近像素点的灰度值（或RGB图像中的三色值）来产生未知像素点的灰度值，以便由原始图像再生出具有更高分辨率的图像。图像插值常常用在图像的放缩，旋转等变换中。常用的插值运算有三种：最邻近插值、双线性插值和立方卷积插值（cubic运算）。假设变换（放缩，旋转等等）前</description>
     </item>
     
     <item>
       <title>BMP图像编码格式</title>
-      <link>https://bineanju.gitee.io/blog/post/20140906bmp%E7%BC%96%E7%A0%81/</link>
+      <link>https://bzhou830.github.io/post/20140906bmp%E7%BC%96%E7%A0%81/</link>
       <pubDate>Sat, 06 Sep 2014 09:29:11 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20140906bmp%E7%BC%96%E7%A0%81/</guid>
+      <guid>https://bzhou830.github.io/post/20140906bmp%E7%BC%96%E7%A0%81/</guid>
       <description>BMP文件由文件头、位图信息头、颜色信息和图形数据四部分组成。 1、文件头 BMP文件头数据结构含有BMP文件的类型、文件大小和位图起始位置等信息，一共包含14个字节。 例如：下图是个一个位图文件的二进制编码： 1-2字节：文件类型，必须是BM，十六进制中则是0x4d42； 3-6字节：位</description>
     </item>
     
     <item>
       <title>C# 串口操作系列(5)</title>
-      <link>https://bineanju.gitee.io/blog/post/20130618%E4%B8%B2%E5%8F%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E5%88%975/</link>
+      <link>https://bzhou830.github.io/post/20130618%E4%B8%B2%E5%8F%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E5%88%975/</link>
       <pubDate>Fri, 26 Apr 2013 09:29:11 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20130618%E4%B8%B2%E5%8F%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E5%88%975/</guid>
+      <guid>https://bzhou830.github.io/post/20130618%E4%B8%B2%E5%8F%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E5%88%975/</guid>
       <description>串口是很简单的，编写基于串口的程序也很容易。新手们除了要面对一堆的生僻概念，以及跨线程访问的细节，还有一个需要跨越的难题，就是协议解析，上一篇已经说明了: 一个二进制格式的协议一般包含： 协议头 + 数据段长度 + 数据 + 校验 一个Ascii格式的文本协议，一般包含： 数据头 + 正文 + 数据结束标识</description>
     </item>
     
     <item>
       <title>C# 串口操作系列(4)</title>
-      <link>https://bineanju.gitee.io/blog/post/20130617%E4%B8%B2%E5%8F%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E5%88%974/</link>
+      <link>https://bzhou830.github.io/post/20130617%E4%B8%B2%E5%8F%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E5%88%974/</link>
       <pubDate>Wed, 24 Apr 2013 09:29:11 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20130617%E4%B8%B2%E5%8F%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E5%88%974/</guid>
+      <guid>https://bzhou830.github.io/post/20130617%E4%B8%B2%E5%8F%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E5%88%974/</guid>
       <description>上一篇已经介绍了协议的组成，一个协议，一般具有 ：协议头+长度+数据+校验 ， 文本格式可以直观的定义回车换行是协议的结尾，所以我们可以省略数据长度，增加协议尾。即： 协议头 + 数据 + 校验 + 数据尾 。 文本方式的数据比较容易分析。如果数据缓存，可以考虑用StringBuilder。或是不缓存也</description>
     </item>
     
     <item>
       <title>C# 串口操作系列(3)</title>
-      <link>https://bineanju.gitee.io/blog/post/20130615%E4%B8%B2%E5%8F%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E5%88%973/</link>
+      <link>https://bzhou830.github.io/post/20130615%E4%B8%B2%E5%8F%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E5%88%973/</link>
       <pubDate>Tue, 23 Apr 2013 09:29:11 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20130615%E4%B8%B2%E5%8F%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E5%88%973/</guid>
+      <guid>https://bzhou830.github.io/post/20130615%E4%B8%B2%E5%8F%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E5%88%973/</guid>
       <description>我们的串口程序，除了通用的，进行串口监听收发的简单工具，大多都和下位机有关，这就需要关心我们的通讯协议如何缓存，分析，以及通知界面。 我们先说一下通讯协议。通讯协议就是通讯双方共同遵循的一套规则，定义协议的原则是尽可能的简单以提高传输率，尽可能的具有安全性保证数据传输完整正确。基于</description>
     </item>
     
     <item>
       <title>C# 串口操作系列(2)</title>
-      <link>https://bineanju.gitee.io/blog/post/20130614%E4%B8%B2%E5%8F%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E5%88%972/</link>
+      <link>https://bzhou830.github.io/post/20130614%E4%B8%B2%E5%8F%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E5%88%972/</link>
       <pubDate>Sun, 21 Apr 2013 09:29:11 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20130614%E4%B8%B2%E5%8F%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E5%88%972/</guid>
+      <guid>https://bzhou830.github.io/post/20130614%E4%B8%B2%E5%8F%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E5%88%972/</guid>
       <description>第一篇文章我相信很多人不看都能做的出来，但是，用过微软SerialPort类的人，都遇到过这个尴尬，关闭串口的时候会让软件死锁。天哪，我可不是武断，算了。不要太绝对了。99.9%的人吧，都遇到过这个问题。我想只有一半的人真的解决了。另外一半的人就睁只眼闭只眼阿弥佗佛希望不要在客户</description>
     </item>
     
     <item>
       <title>C# 串口操作系列(1)</title>
-      <link>https://bineanju.gitee.io/blog/post/20130612%E4%B8%B2%E5%8F%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E5%88%971/</link>
+      <link>https://bzhou830.github.io/post/20130612%E4%B8%B2%E5%8F%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E5%88%971/</link>
       <pubDate>Thu, 18 Apr 2013 09:29:11 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20130612%E4%B8%B2%E5%8F%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E5%88%971/</guid>
+      <guid>https://bzhou830.github.io/post/20130612%E4%B8%B2%E5%8F%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E5%88%971/</guid>
       <description>我假设读者已经了解c#的语法，本文是针对刚打算接触串口编程的朋友阅读的，作为串口编程的入门范例，也是我这个系列的基础。 一个基本的串口程序，既然是个程序了。我们就先从功能说起，包含： 串口选择 波特率选择 打开 关闭 接受数据显示 发送数据输入 发送数据 数据量提示以及归零 好吧，有了这些功能，我们</description>
     </item>
     
     <item>
       <title>GPU</title>
-      <link>https://bineanju.gitee.io/blog/GPU/</link>
+      <link>https://bzhou830.github.io/GPU/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/GPU/</guid>
+      <guid>https://bzhou830.github.io/GPU/</guid>
       <description></description>
     </item>
     
     <item>
       <title>USB集合</title>
-      <link>https://bineanju.gitee.io/blog/USB/</link>
+      <link>https://bzhou830.github.io/USB/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/USB/</guid>
+      <guid>https://bzhou830.github.io/USB/</guid>
       <description>打包和解包 tar -zcvf etc.gz /etc/ z：gzip压缩文件； c：创建tar包； v：显示tar执行过程； f：指定压缩文件名 tar -zxf network.gz z：通过gzip支持压缩或解压缩。 x：解压缩。c是压缩。 v: 在压缩或解压缩过程中显示正在处理的文件名。 f：f后面必须跟上要处理的文件名。也就是说你不能写成这样tar -zxfv aab.t</description>
     </item>
     
     <item>
       <title>归档</title>
-      <link>https://bineanju.gitee.io/blog/archives/</link>
+      <link>https://bzhou830.github.io/archives/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/archives/</guid>
+      <guid>https://bzhou830.github.io/archives/</guid>
       <description></description>
     </item>
     
     <item>
       <title>搜索</title>
-      <link>https://bineanju.gitee.io/blog/search/</link>
+      <link>https://bzhou830.github.io/search/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/search/</guid>
+      <guid>https://bzhou830.github.io/search/</guid>
       <description></description>
     </item>
     
     <item>
       <title>树莓派</title>
-      <link>https://bineanju.gitee.io/blog/raspberrypi/</link>
+      <link>https://bzhou830.github.io/raspberrypi/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/raspberrypi/</guid>
+      <guid>https://bzhou830.github.io/raspberrypi/</guid>
       <description>打包和解包 tar -zcvf etc.gz /etc/ z：gzip压缩文件； c：创建tar包； v：显示tar执行过程； f：指定压缩文件名 tar -zxf network.gz z：通过gzip支持压缩或解压缩。 x：解压缩。c是压缩。 v: 在压缩或解压缩过程中显示正在处理的文件名。 f：f后面必须跟上要处理的文件名。也就是说你不能写成这样tar -zxfv aab.t</description>
     </item>
     

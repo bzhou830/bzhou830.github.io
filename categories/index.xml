@@ -2,165 +2,165 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on 菠萝蜜</title>
-    <link>https://bineanju.gitee.io/blog/categories/</link>
+    <link>https://bzhou830.github.io/categories/</link>
     <description>Recent content in Categories on 菠萝蜜</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Fri, 05 Aug 2022 19:16:34 +0800</lastBuildDate>
     
-	<atom:link href="https://bineanju.gitee.io/blog/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://bzhou830.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>GPU</title>
-      <link>https://bineanju.gitee.io/blog/categories/GPU/</link>
+      <link>https://bzhou830.github.io/categories/GPU/</link>
       <pubDate>Fri, 05 Aug 2022 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/categories/GPU/</guid>
+      <guid>https://bzhou830.github.io/categories/GPU/</guid>
       <description></description>
     </item>
     
     <item>
       <title>PiCo</title>
-      <link>https://bineanju.gitee.io/blog/categories/PiCo/</link>
+      <link>https://bzhou830.github.io/categories/PiCo/</link>
       <pubDate>Mon, 20 Jun 2022 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/categories/PiCo/</guid>
+      <guid>https://bzhou830.github.io/categories/PiCo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>USB</title>
-      <link>https://bineanju.gitee.io/blog/categories/USB/</link>
+      <link>https://bzhou830.github.io/categories/USB/</link>
       <pubDate>Wed, 20 Apr 2022 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/categories/USB/</guid>
+      <guid>https://bzhou830.github.io/categories/USB/</guid>
       <description></description>
     </item>
     
     <item>
       <title>成长</title>
-      <link>https://bineanju.gitee.io/blog/categories/%E6%88%90%E9%95%BF/</link>
+      <link>https://bzhou830.github.io/categories/%E6%88%90%E9%95%BF/</link>
       <pubDate>Sat, 25 Dec 2021 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/categories/%E6%88%90%E9%95%BF/</guid>
+      <guid>https://bzhou830.github.io/categories/%E6%88%90%E9%95%BF/</guid>
       <description></description>
     </item>
     
     <item>
       <title>WindowsKernel</title>
-      <link>https://bineanju.gitee.io/blog/categories/WindowsKernel/</link>
+      <link>https://bzhou830.github.io/categories/WindowsKernel/</link>
       <pubDate>Mon, 06 Dec 2021 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/categories/WindowsKernel/</guid>
+      <guid>https://bzhou830.github.io/categories/WindowsKernel/</guid>
       <description></description>
     </item>
     
     <item>
       <title>MCU</title>
-      <link>https://bineanju.gitee.io/blog/categories/MCU/</link>
+      <link>https://bzhou830.github.io/categories/MCU/</link>
       <pubDate>Sat, 20 Nov 2021 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/categories/MCU/</guid>
+      <guid>https://bzhou830.github.io/categories/MCU/</guid>
       <description></description>
     </item>
     
     <item>
       <title>C/C&#43;&#43;</title>
-      <link>https://bineanju.gitee.io/blog/categories/C/C&#43;&#43;/</link>
+      <link>https://bzhou830.github.io/categories/C/C&#43;&#43;/</link>
       <pubDate>Tue, 12 Jan 2021 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/categories/C/C&#43;&#43;/</guid>
+      <guid>https://bzhou830.github.io/categories/C/C&#43;&#43;/</guid>
       <description></description>
     </item>
     
     <item>
       <title>图像处理</title>
-      <link>https://bineanju.gitee.io/blog/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</link>
+      <link>https://bzhou830.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</link>
       <pubDate>Mon, 08 Jun 2020 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</guid>
+      <guid>https://bzhou830.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</guid>
       <description></description>
     </item>
     
     <item>
       <title>图形学</title>
-      <link>https://bineanju.gitee.io/blog/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/</link>
+      <link>https://bzhou830.github.io/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/</link>
       <pubDate>Mon, 02 Mar 2020 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/</guid>
+      <guid>https://bzhou830.github.io/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Misc</title>
-      <link>https://bineanju.gitee.io/blog/categories/Misc/</link>
+      <link>https://bzhou830.github.io/categories/Misc/</link>
       <pubDate>Fri, 03 Jan 2020 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/categories/Misc/</guid>
+      <guid>https://bzhou830.github.io/categories/Misc/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Python</title>
-      <link>https://bineanju.gitee.io/blog/categories/Python/</link>
+      <link>https://bzhou830.github.io/categories/Python/</link>
       <pubDate>Mon, 18 Jun 2018 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/categories/Python/</guid>
+      <guid>https://bzhou830.github.io/categories/Python/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Golang</title>
-      <link>https://bineanju.gitee.io/blog/categories/Golang/</link>
+      <link>https://bzhou830.github.io/categories/Golang/</link>
       <pubDate>Fri, 11 May 2018 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/categories/Golang/</guid>
+      <guid>https://bzhou830.github.io/categories/Golang/</guid>
       <description></description>
     </item>
     
     <item>
       <title>设计模式</title>
-      <link>https://bineanju.gitee.io/blog/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+      <link>https://bzhou830.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
       <pubDate>Wed, 03 May 2017 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid>
+      <guid>https://bzhou830.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid>
       <description></description>
     </item>
     
     <item>
       <title>OpenCV</title>
-      <link>https://bineanju.gitee.io/blog/categories/OpenCV/</link>
+      <link>https://bzhou830.github.io/categories/OpenCV/</link>
       <pubDate>Mon, 06 Mar 2017 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/categories/OpenCV/</guid>
+      <guid>https://bzhou830.github.io/categories/OpenCV/</guid>
       <description></description>
     </item>
     
     <item>
       <title>图论</title>
-      <link>https://bineanju.gitee.io/blog/categories/%E5%9B%BE%E8%AE%BA/</link>
+      <link>https://bzhou830.github.io/categories/%E5%9B%BE%E8%AE%BA/</link>
       <pubDate>Thu, 12 Jan 2017 19:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/categories/%E5%9B%BE%E8%AE%BA/</guid>
+      <guid>https://bzhou830.github.io/categories/%E5%9B%BE%E8%AE%BA/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Flask</title>
-      <link>https://bineanju.gitee.io/blog/categories/Flask/</link>
+      <link>https://bzhou830.github.io/categories/Flask/</link>
       <pubDate>Wed, 11 May 2016 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/categories/Flask/</guid>
+      <guid>https://bzhou830.github.io/categories/Flask/</guid>
       <description></description>
     </item>
     
     <item>
       <title>串口</title>
-      <link>https://bineanju.gitee.io/blog/categories/%E4%B8%B2%E5%8F%A3/</link>
+      <link>https://bzhou830.github.io/categories/%E4%B8%B2%E5%8F%A3/</link>
       <pubDate>Fri, 26 Apr 2013 09:29:11 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/categories/%E4%B8%B2%E5%8F%A3/</guid>
+      <guid>https://bzhou830.github.io/categories/%E4%B8%B2%E5%8F%A3/</guid>
       <description></description>
     </item>
     

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>设计模式 on 菠萝蜜</title>
-    <link>https://bineanju.gitee.io/blog/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+    <link>https://bzhou830.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
     <description>Recent content in 设计模式 on 菠萝蜜</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Wed, 03 May 2017 09:16:34 +0800</lastBuildDate>
     
-	<atom:link href="https://bineanju.gitee.io/blog/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://bzhou830.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>设计模式</title>
-      <link>https://bineanju.gitee.io/blog/post/20170503DesignPatten01/</link>
+      <link>https://bzhou830.github.io/post/20170503DesignPatten01/</link>
       <pubDate>Wed, 03 May 2017 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20170503DesignPatten01/</guid>
+      <guid>https://bzhou830.github.io/post/20170503DesignPatten01/</guid>
       <description>OOP的目标 理解松耦合的设计思想 掌握面向对象的设计原则（设计原则比模式更为重要） 掌握重构的技法，改善设计 掌握GOF核心设计模式 向下：深入理解三大面向对象机制 • 封装，隐藏内部实现 • 继承，复用现有代码 • 多态，改写对象行为 向上：深刻把握面向对象机制所带来的抽象意义，理解如何使用这些机制</description>
     </item>
     

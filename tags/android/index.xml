@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>android on 菠萝蜜</title>
-    <link>https://bineanju.gitee.io/blog/tags/android/</link>
+    <link>https://bzhou830.github.io/tags/android/</link>
     <description>Recent content in android on 菠萝蜜</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Thu, 03 Jan 2019 09:16:34 +0800</lastBuildDate>
     
-	<atom:link href="https://bineanju.gitee.io/blog/tags/android/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://bzhou830.github.io/tags/android/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Android平台使用JNI方式调用OpenCV配置</title>
-      <link>https://bineanju.gitee.io/blog/post/20190103Android%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8JNI%E6%96%B9%E5%BC%8F%E8%B0%83%E7%94%A8OpenCV%E9%85%8D%E7%BD%AE/</link>
+      <link>https://bzhou830.github.io/post/20190103Android%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8JNI%E6%96%B9%E5%BC%8F%E8%B0%83%E7%94%A8OpenCV%E9%85%8D%E7%BD%AE/</link>
       <pubDate>Thu, 03 Jan 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bineanju.gitee.io/blog/post/20190103Android%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8JNI%E6%96%B9%E5%BC%8F%E8%B0%83%E7%94%A8OpenCV%E9%85%8D%E7%BD%AE/</guid>
+      <guid>https://bzhou830.github.io/post/20190103Android%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8JNI%E6%96%B9%E5%BC%8F%E8%B0%83%E7%94%A8OpenCV%E9%85%8D%E7%BD%AE/</guid>
       <description>本文主要介绍 OpenCV3.4.2 在 android studio2.3 中的配置，并使用 JNI 方式调用 OpenCV 中 C/C++ 层函数。 Android Studio在2.2版本更新之后加入了CMAKE方式配置NDK的方法，这大大简化了之前通过Android.mk和Application.mk两个本地配置文件进行NDK开发的方式。这种方法在后续更新的版本中不断增强，越来</description>
     </item>
     
