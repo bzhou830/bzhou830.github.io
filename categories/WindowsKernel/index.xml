@@ -2,93 +2,93 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>WindowsKernel on 菠萝蜜</title>
-    <link>https://bzhou830.github.io/categories/WindowsKernel/</link>
+    <link>https://bineanju.gitee.io/blog/categories/WindowsKernel/</link>
     <description>Recent content in WindowsKernel on 菠萝蜜</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Mon, 06 Dec 2021 19:16:34 +0800</lastBuildDate>
     
-	<atom:link href="https://bzhou830.github.io/categories/WindowsKernel/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://bineanju.gitee.io/blog/categories/WindowsKernel/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Windbg扩展|01入活</title>
-      <link>https://bzhou830.github.io/post/20211207Windbg%E6%89%A9%E5%B1%95%E5%85%A5%E6%B4%BB/</link>
+      <link>https://bineanju.gitee.io/blog/post/20211207Windbg%E6%89%A9%E5%B1%95%E5%85%A5%E6%B4%BB/</link>
       <pubDate>Mon, 06 Dec 2021 19:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/post/20211207Windbg%E6%89%A9%E5%B1%95%E5%85%A5%E6%B4%BB/</guid>
+      <guid>https://bineanju.gitee.io/blog/post/20211207Windbg%E6%89%A9%E5%B1%95%E5%85%A5%E6%B4%BB/</guid>
       <description>1. WinDbg扩展有哪些用处？ 在使用WinDbg进行设备驱动调试时，有时候如果存在某些特定的工具那么会让我们的调试过程变得更加的顺畅。比如对于PCI设备，我们想去读取设备物理地址某一段的值然后把它保存下来。我们当然可以使用!dd这个命令来做，读取少量的数据当然也还没啥问题，如果读</description>
     </item>
     
     <item>
       <title>Windows内核编程05|调试</title>
-      <link>https://bzhou830.github.io/post/20191231WindowsKernelPrograming05Debugging/</link>
+      <link>https://bineanju.gitee.io/blog/post/20191231WindowsKernelPrograming05Debugging/</link>
       <pubDate>Tue, 31 Dec 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/post/20191231WindowsKernelPrograming05Debugging/</guid>
+      <guid>https://bineanju.gitee.io/blog/post/20191231WindowsKernelPrograming05Debugging/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Windows内核编程04|内核工作流程</title>
-      <link>https://bzhou830.github.io/post/20191230WindowsKernelPrograming04KernelFlow/</link>
+      <link>https://bineanju.gitee.io/blog/post/20191230WindowsKernelPrograming04KernelFlow/</link>
       <pubDate>Mon, 30 Dec 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/post/20191230WindowsKernelPrograming04KernelFlow/</guid>
+      <guid>https://bineanju.gitee.io/blog/post/20191230WindowsKernelPrograming04KernelFlow/</guid>
       <description>1 简介 在应用层利用SetThreadPriority等API设置线程优先级是受到进程优先级限制的，所以本节就计划通过编写一个驱动程序和应用程序相结合突破这种限制。本节代码放在了Github上访问此链接 2 驱动程序初始化 先按照上一节的介绍来了解一下创建一个驱动程序的基本流程：入口函数</description>
     </item>
     
     <item>
       <title>Windows内核编程03|内核编程基础</title>
-      <link>https://bzhou830.github.io/post/20191229WindowsKernelPrograming03KernelBasic/</link>
+      <link>https://bineanju.gitee.io/blog/post/20191229WindowsKernelPrograming03KernelBasic/</link>
       <pubDate>Sun, 29 Dec 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/post/20191229WindowsKernelPrograming03KernelBasic/</guid>
+      <guid>https://bineanju.gitee.io/blog/post/20191229WindowsKernelPrograming03KernelBasic/</guid>
       <description>1. 内核编程一般准则 用户编程和内核编程之间的差别 1.1 未处理的异常 在用户模式下如果程序出现未处理的异常，整个程序会直接中止；在内核模式下出现未处理的异常，会造成系统奔溃，出现BSOD（蓝屏）。所以内核代码得非常小心，编译时绝对不能跳过任何细节和错误检查。 1.2 终止 当用户进程终止时不管是否正</description>
     </item>
     
     <item>
       <title>Windows内核编程02|环境搭建和部署测试</title>
-      <link>https://bzhou830.github.io/post/20191228WindowsKernelPrograming02EnvSetup/</link>
+      <link>https://bineanju.gitee.io/blog/post/20191228WindowsKernelPrograming02EnvSetup/</link>
       <pubDate>Sat, 28 Dec 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/post/20191228WindowsKernelPrograming02EnvSetup/</guid>
+      <guid>https://bineanju.gitee.io/blog/post/20191228WindowsKernelPrograming02EnvSetup/</guid>
       <description>1.安装VisualStudio2019 2.安装WindowsDriverKit 3.创建项目 4.添加代码 // driver.c #include &amp;lt;ntddk.h&amp;gt; // DriverEntry Routine DRIVER_INITIALIZE DriverEntry; // Unload Routine DRIVER_UNLOAD DriverUnload; // DriverEntry: 驱动程序的入口点 // DriverObject: 驱动程序对象 // RegistryPath: 注册表中的路径(驱动程序路径) NTSTATUS DriverEntry( _In_ PDRIVER_OBJECT DriverObject, _In_ PUNICODE_STRING RegistryPath ) { // 编译器默认的警告等级为 /W4， // 并且开启 /WX 将警告视为错误</description>
     </item>
     
     <item>
       <title>Windows内核编程01|Process</title>
-      <link>https://bzhou830.github.io/post/20191227WindowsKernelPrograming01Process/</link>
+      <link>https://bineanju.gitee.io/blog/post/20191227WindowsKernelPrograming01Process/</link>
       <pubDate>Fri, 27 Dec 2019 19:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/post/20191227WindowsKernelPrograming01Process/</guid>
+      <guid>https://bineanju.gitee.io/blog/post/20191227WindowsKernelPrograming01Process/</guid>
       <description>1.1 进程 进程拥有的内容： 一个可执行程序。包含用来在进程中执行的原始的代码和数据（PE格式的文件）。 一段虚拟地址空间。进程中的代码不管出于何种目的要分配内存时，都从这里分配。 一个主令牌。它是一个保存进程默认安全上下文的对象，在进程内执行代码的线程会用到它，除非某个线程通过身份扮演（i</description>
     </item>
     
     <item>
       <title>Windows内核开发总结(二)</title>
-      <link>https://bzhou830.github.io/post/20191224WindowsKernelProgramingSummer02/</link>
+      <link>https://bineanju.gitee.io/blog/post/20191224WindowsKernelProgramingSummer02/</link>
       <pubDate>Tue, 24 Dec 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/post/20191224WindowsKernelProgramingSummer02/</guid>
+      <guid>https://bineanju.gitee.io/blog/post/20191224WindowsKernelProgramingSummer02/</guid>
       <description>同步异步的两种用法 FILE_FLAG_OVERLAPPED异步打开参数 在CreateFile打开设备对象时 HANDLE CreateFile( LPCSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, //FILE_FLAG_OVERLAPPED HANDLE hTemplateFile ); 加入FILE_FLAG_OVERLAPPED参数就是以异步的方式打开驱动的设备对象 与驱动通讯时如下的调用界面及异步结构，需要设置一个OVE</description>
     </item>
     
     <item>
       <title>Windows内核开发总结(一)</title>
-      <link>https://bzhou830.github.io/post/20191223WindowsKernelProgramingSummer01/</link>
+      <link>https://bineanju.gitee.io/blog/post/20191223WindowsKernelProgramingSummer01/</link>
       <pubDate>Mon, 23 Dec 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/post/20191223WindowsKernelProgramingSummer01/</guid>
+      <guid>https://bineanju.gitee.io/blog/post/20191223WindowsKernelProgramingSummer01/</guid>
       <description>1. windows内核对象 每个对象都有对象头和对象体组成。所有类型的对象头结构都是相同的，而结构体部分却各不相同的。下面是内核对象的结构图： 进程句柄表 dt nt!_EPROCESS +0x000 Pcb : _KPROCESS +0x06c ProcessLock : _EX_PUSH_LOCK +0x070 CreateTime : _LARGE_INTEGER +0x078 ExitTime : _LARGE_INTEGER +0x080 RundownProtect : _EX_RUNDOWN_REF +0x084 UniqueProcessId : Ptr32 Void +0x088 ActiveProcessLinks : _LIST_ENTRY +0x090 QuotaUsage : [3] Uint4B +0x09c QuotaPeak : [3] Uint4B +0x0a8 CommitCharge : Uint4B +0x0ac PeakVirtualSize : Uint4B +0x0b0 VirtualSize : Uint4B +0x0b4 SessionProcessLinks : _LIST_ENTRY +0x0bc DebugPort : Ptr32 Void +0x0c0 ExceptionPort : Ptr32</description>
     </item>
     
     <item>
       <title>IRP和派遣函数</title>
-      <link>https://bzhou830.github.io/post/20191220IRP%E6%B4%BE%E9%81%A3%E5%87%BD%E6%95%B0/</link>
+      <link>https://bineanju.gitee.io/blog/post/20191220IRP%E6%B4%BE%E9%81%A3%E5%87%BD%E6%95%B0/</link>
       <pubDate>Fri, 20 Dec 2019 13:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/post/20191220IRP%E6%B4%BE%E9%81%A3%E5%87%BD%E6%95%B0/</guid>
+      <guid>https://bineanju.gitee.io/blog/post/20191220IRP%E6%B4%BE%E9%81%A3%E5%87%BD%E6%95%B0/</guid>
       <description>什么是派遣函数? 派遣函数是 WIndows 驱动程序中的重要概念。驱动程序的主要功能是负责处理I/O请求，其中大部分I/O请求是在派遣函数中处理的。也就是说，派遣函数是用来处理驱动程序提交过来的 I/O 请求。 那什么是 I/O 请求呢？ 上层程序与驱动程序之间通信时，上层会发出I/O请求，即输入输出请求包（I/O</description>
     </item>
     

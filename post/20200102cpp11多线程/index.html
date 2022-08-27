@@ -1,0 +1,1160 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>C&#43;&#43;11中的多线程库 | 十面埋伏的博客</title>
+    <meta property="og:title" content="C&#43;&#43;11中的多线程库 - 十面埋伏的博客">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content='2020-01-02T19:16:34&#43;08:00'>
+        
+        
+    <meta property="article:modified_time" content='2020-01-02T19:16:34&#43;08:00'>
+        
+    <meta name="Keywords" content="C/C&#43;&#43;, GPU, Windows驱动开发, OpenCV, 图像处理">
+    <meta name="description" content="C&#43;&#43;11中的多线程库">
+        
+    <meta name="author" content="Binean">
+    <meta property="og:url" content="https://bineanju.gitee.io/blog/post/20200102cpp11%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
+    <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href='/blog/css/normalize.css'>
+    
+    <link rel="stylesheet" href="/blog/css/prism.css">
+    
+    <link rel="stylesheet" href='/blog/css/style.css'>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+
+<body>
+    <header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://bineanju.gitee.io/blog/">
+                        十面埋伏的博客
+                    </a>
+                
+                <p class="description">选择去发光，而不是被照亮</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://bineanju.gitee.io/blog/">首页</a>
+                    
+                    <a  href="https://bineanju.gitee.io/blog/archives/" title="归档">归档</a>
+                    
+                    <a  href="https://bineanju.gitee.io/blog/GPU/" title="GPU">GPU</a>
+                    
+                    <a  href="https://bineanju.gitee.io/blog/raspberrypi/" title="树莓派">树莓派</a>
+                    
+                    <a  href="https://bineanju.gitee.io/blog/about/" title="关于">关于</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <div id="body">
+        <div class="container">
+            <div class="col-group">
+
+                <div class="col-8" id="main">
+                    
+<div class="res-cons">
+    <style type="text/css">
+    .post-toc {
+        position: fixed;
+        width: 200px;
+        margin-left: -210px;
+        padding: 5px 10px;
+        font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+        font-size: 12px;
+        border: 1px solid rgba(0, 0, 0, .07);
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.98);
+        background-clip: padding-box;
+        -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .125);
+        word-wrap: break-word;
+        white-space: nowrap;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        z-index: 999;
+        cursor: pointer;
+        max-height: 70%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .post-toc .post-toc-title {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 20px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .post-toc .post-toc-content {
+        font-size: 15px;
+    }
+
+    .post-toc .post-toc-content>nav>ul {
+        margin: 10px 0;
+    }
+
+    .post-toc .post-toc-content ul {
+        padding-left: 20px;
+        list-style: square;
+        margin: 0.5em;
+        line-height: 1.8em;
+    }
+
+    .post-toc .post-toc-content ul ul {
+        padding-left: 15px;
+        display: none;
+    }
+
+    @media print,
+    screen and (max-width:1057px) {
+        .post-toc {
+            display: none;
+        }
+    }
+</style>
+<div class="post-toc" style="position: absolute; top: 188px;">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-线程的创建">1. 线程的创建</a></li>
+    <li><a href="#2-线程的管理">2. 线程的管理</a></li>
+    <li><a href="#3-data-race和mutex">3. data race和mutex</a></li>
+    <li><a href="#4-死锁">4. 死锁</a></li>
+    <li><a href="#5-unique_lock和lazy_initialization">5. unique_lock和lazy_initialization</a></li>
+    <li><a href="#6-条件变量">6. 条件变量</a></li>
+    <li><a href="#7-future--promise">7. Future & Promise</a></li>
+    <li><a href="#8">8.</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var postToc = $(".post-toc");
+        if (postToc.length) {
+            var leftPos = $("#main").offset().left;
+            if(leftPos<220){
+                postToc.css({"width":leftPos-10,"margin-left":(0-leftPos)})
+            }
+
+            var t = postToc.offset().top - 20,
+                a = {
+                    start: {
+                        position: "absolute",
+                        top: t
+                    },
+                    process: {
+                        position: "fixed",
+                        top: 20
+                    },
+                };
+            $(window).scroll(function () {
+                var e = $(window).scrollTop();
+                e < t ? postToc.css(a.start) : postToc.css(a.process)
+            })
+        }
+    })
+</script>
+    <article class="post">
+        <header>
+            <h1 class="post-title">C&#43;&#43;11中的多线程库</h1>
+        </header>
+        <date class="post-meta meta-date">
+            2020年1月2日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://bineanju.gitee.io/categories/C/C&#43;&#43;'>C/C&#43;&#43;</a></span>
+            
+        </div>
+        
+        
+        <div class="post-meta">
+            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span>
+                    阅读</span></span>
+        </div>
+        
+        
+        <div class="post-content">
+            <h2 id="1-线程的创建">1. 线程的创建</h2>
+<p>C++11中提供了thread类可以直接用来创建线程，创建步骤：</p>
+<ol>
+<li>包含thread所在的头文件  <code>#include &lt;thread&gt;</code></li>
+<li>在需要的地方直接创建一个thread对象，构造函数中传入一个线程入口函数（或者是一个可调对象）。（普通函数，lambda表达式，重载了()的类都可以传入，普通类成员函数也可以传入）</li>
+<li>选择使用join或者detach的方式对创建的子线程进行管理。</li>
+</ol>
+<p>调用join后主线程就会等待子线程 执行完成后汇合。</p>
+<pre><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;thread&gt;
+using namespace std;
+
+//普通函数作为子线程的入口函数
+void childThread(const char* str){
+    cout &lt;&lt; &quot;this is child thread, &quot; &lt;&lt; str &lt;&lt; endl;
+}
+
+//重载()运算符, 类对象可以作为线程入口
+class classThread{
+public:
+    //重载()运算符，变成一个可调用对象
+    void operator()(const char* str){
+        cout&lt;&lt;&quot;this is class thread, &quot; &lt;&lt; str &lt;&lt; endl;
+    }
+
+    //普通的成员函数也可以作为线程的入口函数
+    void func(const char* str){
+        cout&lt;&lt;&quot;this is normal class member thread, &quot; &lt;&lt; str &lt;&lt; endl;
+    }
+};
+
+
+int main() {
+    thread demo1(childThread, &quot;hello!&quot;);
+    demo1.join();
+
+    classThread classthread;
+    thread demo2(classthread, &quot;hello!&quot;);
+    demo2.join();
+
+    //lambda表达式作为线程入口函数
+    auto func = [](const char* str){
+        cout&lt;&lt;&quot;this is lambda thread, &quot;&lt;&lt; str &lt;&lt; endl;
+    };
+    thread demo3(func, &quot;hello!&quot;);
+    demo3.join();
+    
+    //普通类成员函数作为线程的入口函数，需要特别注意传入参数！！
+    thread demo4(&amp;classThread::func, &amp;classthread, &quot;hello!&quot;);
+    demo4.join();
+    return 0;
+}
+</code></pre>
+<h2 id="2-线程的管理">2. 线程的管理</h2>
+<p>线程在创建之后，就会被系统调度，为了能够控制线程的状态，有两个函数会在线程创建之后调用。一个是join, 另一个是detach。join比较好理解，调用join之后，主线程就处于阻塞状态，等待子线程执行完成后汇合，join的位置就像是线程的汇合点。</p>
+<p>detach相对使用的场合会少一些，相对也比较容易出问题。在调用detach之后，主线程继续执行自己的内容，子线程也去执行自己的东西，两个线程之间没有什么关联。这时候子线程的状态就是“守护线程”，子线程何时结束呢？最简单的情形就是子线程里面的内容执行完成后自动退出（前提是主线程还没有执行完成），另一种情形就是主线程执行完成了，子线程的内容还没有执行完，这时候子线程还是会退出，<strong>线程是在进程空间中的，主线程完成，意味着进程的退出，所以整个进程空间中的所有线程都将退出</strong>。</p>
+<p>下面这个例子中我们创建一个子线程，在子线程中我们不断读取系统当前时间，然后把这个时间写到文件里面。如果说主线程退出子线程还在执行的话，文件里面的内容肯定还是在写的。反之主线程退出，就说明子线程退出了。</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;thread&gt;
+#include &lt;fstream&gt;
+#include &lt;ctime&gt;
+#include &lt;cstdio&gt;
+using namespace std;
+
+template&lt;typename ... Args&gt;
+string string_format(const string&amp; format, Args ... args){
+    size_t size = 1 + snprintf(nullptr, 0, format.c_str(), args ...);  // Extra space for \0
+    char bytes[size];
+    snprintf(bytes, size, format.c_str(), args ...);
+    return string(bytes);
+}
+
+void getTime(string &amp;str){
+    time_t i;
+    struct tm *pTimeInfo;
+    time(&amp;i);
+    pTimeInfo = localtime(&amp;i);
+    str = string_format(&quot;%02d-%02d-%02d %02d:%02d:%02d&quot;,
+            pTimeInfo-&gt;tm_year + 1900, pTimeInfo-&gt;tm_mon + 1, pTimeInfo-&gt;tm_mday,
+            pTimeInfo-&gt;tm_hour, pTimeInfo-&gt;tm_min, pTimeInfo-&gt;tm_sec);
+}
+
+//普通函数作为子线程的入口函数
+void childThread(const char* str){
+    ofstream f(&quot;child.txt&quot;);
+    string strTime;
+    for(;;){
+        getTime(strTime);
+        f &lt;&lt; strTime &lt;&lt; endl;
+        this_thread::sleep_for(chrono::seconds(5));
+    }
+}
+
+int main() {
+    thread demo1(childThread, &quot;hello!&quot;);
+
+    //使用try catch，防止在join之前程序出现异常导致子线程没有join造成问题
+    try 
+    {
+        for (size_t i = 0; i &lt; 100; ++i) {
+            this_thread::sleep_for(chrono::milliseconds(10));
+            cout &lt;&lt; &quot;from main&quot; &lt;&lt; endl;
+        }
+    } catch (...) {
+        demo1.detach();
+        throw;
+    }
+    string strTime;
+    getTime(strTime);
+    cout &lt;&lt; strTime &lt;&lt; endl;
+    demo1.join();
+    return 0;
+}
+</code></pre>
+<p>在创建了线程之后，还没有调用join或者detach，中间的内容可能会出现异常而退出，从而导致没有调用join或者detach, 所以可以使用try catch把中间的内容包起来，然后处理异常情况。（其实也可以设计一个类，在类的析构函数里面调用join或者detach, 类似lock_guard类。）</p>
+<pre><code class="language-cpp">//使用try catch处理异常情况。
+#include &lt;iostream&gt;
+#include &lt;thread&gt;
+using namespace std;
+
+//普通函数作为子线程的入口函数
+void childThread(const char* str){
+    cout &lt;&lt; &quot;this is child thread, &quot; &lt;&lt; str &lt;&lt; endl;
+}
+
+int main() {
+    thread demo1(childThread, &quot;hello!&quot;);
+
+    //使用try catch，防止在join之前程序出现异常导致子线程没有join造成问题
+    try {
+        for (int i = 0; i &lt; 100; ++i) {
+            cout &lt;&lt; &quot;form main&quot; &lt;&lt; endl;
+        }
+    } catch (...) {
+        demo1.join();
+        throw;
+    }
+    demo1.join();
+    return 0;
+}
+</code></pre>
+<h2 id="3-data-race和mutex">3. data race和mutex</h2>
+<p>data race就是在多个线程读写同一个数据对象的时候出现一种结果随机的现象。所以造成这个现象必须是在两个或者两个以上的线程存在的情况下。</p>
+<p>下面用一个例子来说明一下，对于同一个银行账户，假设原先里面有金额为2000， 现在有两个终端对银行账户进行操作，一个终端向里面每次存1块钱，操作1000次，同时另外一个终端不断的从里面取钱，每次取1块钱，操作1000次。所以等他们执行完成后应该里面还剩下2000就是没有问题的。</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;thread&gt;
+using namespace std;
+int g_money = 2000;
+
+void deposit(){
+    for (int i = 0; i &lt; 1000; ++i) {
+        g_money += 1;
+        cout&lt;&lt;&quot;deposit: &quot;&lt;&lt; g_money &lt;&lt; endl;
+    }
+}
+
+void withdraw(){
+    for (int i = 0; i &lt; 1000; ++i) {
+        g_money -= 1;
+        cout&lt;&lt;&quot;withdraw: &quot;&lt;&lt; g_money &lt;&lt; endl;
+    }
+}
+
+int main() {
+    thread t1(deposit);
+    thread t2(withdraw);
+    t1.join(); //等待线程执行完成
+    t2.join();
+    cout&lt;&lt;&quot;finally: &quot;&lt;&lt; g_money&lt;&lt;endl;//运行到最后的结果是随机的，因为前面存在共享数据在两个线程中进行写操作
+    return 0;
+}
+</code></pre>
+<p>上面的例子中，我们每次运行的结果基本上很少出现一致，因为出现了data race。类似的问题还有很多，比如火车票的售票窗口的售票。为了解决data race，C++11的thread中引入了mutex(对于Windows系统或者Unix系统，提供了更多的锁来对各种不同的情况进行更为精细的处理)。C++11中的mutex的使用相当方便。下面例子中的注释了new的就是新添加的地方。经过修改，下面的代码无论多少次执行都是得到的确定的结果。</p>
+<p>mutex的lock和unlock中包含的就是线程间共享读写的数据对象的操作，当一个线程lock成功，其他的线程就只能在lock的位置等待lock成功的那个线程操作完成后unlock。</p>
+<pre><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;thread&gt;
+#include &lt;mutex&gt;                                     //new
+using namespace std;
+int g_money = 2000;
+
+mutex g_mutex;                                       //new
+
+void deposit(){
+    for (int i = 0; i &lt; 1000; ++i) {
+        g_mutex.lock();                              //new
+        g_money += 1;
+        g_mutex.unlock();                            //new
+        cout&lt;&lt;&quot;deposit: &quot;&lt;&lt; g_money &lt;&lt; endl;
+    }
+}
+
+void withdraw(){
+    for (int i = 0; i &lt; 1000; ++i) {
+        g_mutex.lock();                             //new
+        g_money -= 1;
+        g_mutex.unlock();                           //new
+        cout&lt;&lt;&quot;withdraw: &quot;&lt;&lt; g_money &lt;&lt; endl;
+    }
+}
+
+int main() {
+    thread t1(deposit);
+    thread t2(withdraw);
+    t1.join(); //等待线程执行完成
+    t2.join();
+    cout&lt;&lt;&quot;finally: &quot;&lt;&lt; g_money&lt;&lt;endl;
+    return 0;
+}
+</code></pre>
+<p>lock之后操作完就必须要unlock, 那么如果一个线程lock之后执行的内容出现了异常导致线程退出，那么其他的线程就永远没有办法执行了？显然，这种调用lock和unlock的方式和前面我们说创建线程后join/detach之前异常退出一样存在风险，所以我们可以使用try catch进行包裹起来，但是这个写法不够优雅。</p>
+<p>C++11为我们提供了一个lock_guard模板类，在这个类构造的时候调用lock，析构的时候调用unlock，这样在线程函数出现异常的退出的时候在lock_guard模板类中还是调用了unlock，这样就解决了这种异常导致其他线程死锁的情况发生。</p>
+<pre><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;thread&gt;
+#include &lt;mutex&gt;
+using namespace std;
+int g_money = 2000;
+
+mutex g_mutex;
+
+void deposit(){
+    for (int i = 0; i &lt; 1000; ++i) {
+        lock_guard&lt;mutex&gt; lg(g_mutex);
+        g_money += 1;
+        cout&lt;&lt;&quot;deposit: &quot;&lt;&lt; g_money &lt;&lt; endl;
+    }
+}
+
+void withdraw(){
+    for (int i = 0; i &lt; 1000; ++i) {
+        lock_guard&lt;mutex&gt; lg(g_mutex);
+        g_money -= 1;
+        cout&lt;&lt;&quot;withdraw: &quot;&lt;&lt; g_money &lt;&lt; endl;
+    }
+}
+
+int main() {
+    thread t1(deposit);
+    thread t2(withdraw);
+    t1.join(); //等待线程执行完成
+    t2.join();
+    cout&lt;&lt;&quot;finally: &quot;&lt;&lt; g_money&lt;&lt;endl;
+    return 0;
+}
+</code></pre>
+<h2 id="4-死锁">4. 死锁</h2>
+<p>死锁是多个线程之前，使用多个锁的时候，线程之间分别获取了一些锁而等待其他线程释放某些锁，而其他线程又在等待当前线程获取的这些锁。这样就造成了线程之间的相互阻塞，这种现象就叫做死锁。</p>
+<p>下面的例子是演示了死锁的出现。线程deposit中g_mutex1.lock()成功，如果这个时候withdraw正好g_mutex2.lock()成功，那么这两个线程就进入了相互等待的死锁状态了。哲学家就餐问题就是一个典型的死锁问题。</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;thread&gt;
+#include &lt;mutex&gt;
+using namespace std;
+int g_money = 2000;
+
+mutex g_mutex1, g_mutex2;
+
+void deposit(){
+    for (int i = 0; i &lt; 1000; ++i) {
+        g_mutex1.lock();
+        g_mutex2.lock();
+        g_money += 1;
+        g_mutex2.unlock();
+        g_mutex1.unlock();
+        cout&lt;&lt;&quot;deposit: &quot;&lt;&lt; g_money &lt;&lt; endl;
+    }
+}
+
+void withdraw(){
+    for (int i = 0; i &lt; 1000; ++i) {
+        g_mutex2.lock();
+        g_mutex1.lock();
+        g_money -= 1;
+        g_mutex1.unlock();
+        g_mutex2.unlock();
+        cout&lt;&lt;&quot;withdraw: &quot;&lt;&lt; g_money &lt;&lt; endl;
+    }
+}
+
+int main() {
+    thread t1(deposit);
+    thread t2(withdraw);
+    t1.join(); //等待线程执行完成
+    t2.join();
+    cout&lt;&lt;&quot;finally: &quot;&lt;&lt; g_money&lt;&lt;endl;
+    return 0;
+}
+</code></pre>
+<p>那么该如何解决上面出现的问题呢？</p>
+<ol>
+<li>一个办法就是我们可以把这些锁的lock的顺序改成一致的，也就是说mutex1写在lock区间的最外层，然后才是mutex2的lock，这样就不会出现相互等待的情形了。</li>
+<li>在实际的使用当中，我们lock的范围一定要最小化，对一个数据进行操作就不会出现两把锁的情况，自然也就不会出现死锁了。</li>
+<li>使用C++11提供的lock函数，lock函数一次可以lock住多个锁，如果有一些lock失败，就会全部unlock。</li>
+</ol>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;thread&gt;
+#include &lt;mutex&gt;
+using namespace std;
+int g_money = 2000;
+
+mutex g_mutex1, g_mutex2;
+
+void deposit(){
+    for (int i = 0; i &lt; 1000; ++i) {
+        lock(g_mutex1, g_mutex2);
+        g_money += 1;
+        g_mutex2.unlock();
+        g_mutex1.unlock();
+        cout&lt;&lt;&quot;deposit: &quot;&lt;&lt; g_money &lt;&lt; endl;
+    }
+}
+
+void withdraw(){
+    for (int i = 0; i &lt; 1000; ++i) {
+        lock(g_mutex1, g_mutex2);
+        g_money -= 1;
+        g_mutex1.unlock();
+        g_mutex2.unlock();
+        cout&lt;&lt;&quot;withdraw: &quot;&lt;&lt; g_money &lt;&lt; endl;
+    }
+}
+
+int main() {
+    thread t1(deposit);
+    thread t2(withdraw);
+    t1.join(); //等待线程执行完成
+    t2.join();
+    cout&lt;&lt;&quot;finally: &quot;&lt;&lt; g_money&lt;&lt;endl;
+    return 0;
+}
+</code></pre>
+<p>上述的代码中我们又使用了lock, unlock。前面我们分析的使用lock_guard解决线程异常退出没有unlock的问题，这里我们还能使用lock_guard吗？好在lock_guard提供了一个adopt_lock参数，填入了这个参数之后在lock_guard的构造函数里面就不再去进行lock了，这个lock_guard就只用负责在析构的时候unlock了。那么下列的例子就是这样：</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;thread&gt;
+#include &lt;mutex&gt;
+using namespace std;
+int g_money = 2000;
+
+mutex g_mutex1, g_mutex2;
+
+void deposit(){
+    for (int i = 0; i &lt; 1000; ++i) {
+        lock(g_mutex1, g_mutex2);
+        lock_guard&lt;mutex&gt; g1(g_mutex1, adopt_lock), g2(g_mutex2, adopt_lock);
+        g_money += 1;
+        cout&lt;&lt;&quot;deposit: &quot;&lt;&lt; g_money &lt;&lt; endl;
+    }
+}
+
+void withdraw(){
+    for (int i = 0; i &lt; 1000; ++i) {
+        lock(g_mutex1, g_mutex2);
+        lock_guard&lt;mutex&gt; g1(g_mutex1, adopt_lock), g2(g_mutex2, adopt_lock);
+        g_money -= 1;
+        cout&lt;&lt;&quot;withdraw: &quot;&lt;&lt; g_money &lt;&lt; endl;
+    }
+}
+
+int main() {
+    thread t1(deposit);
+    thread t2(withdraw);
+    t1.join(); //等待线程执行完成
+    t2.join();
+    cout&lt;&lt;&quot;finally: &quot;&lt;&lt; g_money&lt;&lt;endl;
+    return 0;
+}
+</code></pre>
+<h2 id="5-unique_lock和lazy_initialization">5. unique_lock和lazy_initialization</h2>
+<p>在解决data race和死锁的问题上，前面我们使用的是lock_guard。lock_guard使用起来非常简单，就是因为太过于简单所以给用户的灵活度非常有限。</p>
+<p>互斥锁保证了线程间的同步，但是却将并行操作变成了串行操作，这对性能有很大的影响，所以我们要尽可能的减小锁定的区域，也就是使用<strong>细粒度锁</strong>。</p>
+<p>这一点lock_guard做的不好，不够灵活，lock_guard只能保证在析构的时候执行解锁操作，lock_guard本身并没有提供加锁和解锁的接口，但是有些时候会有这种需求。看下面的例子。</p>
+<pre><code class="language-cpp">class LogFile {
+    std::mutex _mu;
+    ofstream f;
+public:
+    LogFile() {
+        f.open(&quot;log.txt&quot;);
+    }
+    ~LogFile() {
+        f.close();
+    }
+    void shared_print(string msg, int id) {
+        {
+            std::lock_guard&lt;std::mutex&gt; guard(_mu);
+            //do something 1
+        }
+        //do something 2
+        {
+            std::lock_guard&lt;std::mutex&gt; guard(_mu);
+            // do something 3
+            f &lt;&lt; msg &lt;&lt; id &lt;&lt; endl;
+            cout &lt;&lt; msg &lt;&lt; id &lt;&lt; endl;
+        }
+    }
+ 
+};
+</code></pre>
+<p>上面的代码中，一个函数内部有两段代码需要进行保护，这个时候使用lock_guard就需要创建两个局部对象来管理同一个互斥锁（其实也可以只创建一个，但是锁的力度太大，效率不行），修改方法是使用unique_lock。它提供了lock()和unlock()接口，能记录现在处于上锁还是没上锁状态，在析构的时候，会根据当前状态来决定是否要进行解锁（lock_guard就一定会解锁）。上面的代码修改如下：</p>
+<pre><code class="language-cpp">class LogFile {
+    std::mutex _mu;
+    ofstream f;
+public:
+    LogFile() {
+        f.open(&quot;log.txt&quot;);
+    }
+    ~LogFile() {
+        f.close();
+    }
+    void shared_print(string msg, int id) {
+        std::unique_lock&lt;std::mutex&gt; guard(_mu);
+        //do something 1
+        guard.unlock(); //临时解锁
+        //do something 2
+        guard.lock(); //继续上锁
+        // do something 3
+        f &lt;&lt; msg &lt;&lt; id &lt;&lt; endl;
+        cout &lt;&lt; msg &lt;&lt; id &lt;&lt; endl;
+        // 结束时析构guard会临时解锁
+        // 这句话可要可不要，不写，析构的时候也会自动执行
+        // guard.ulock();
+    }
+ 
+};
+</code></pre>
+<p>上面的代码可以看到，在无需加锁的操作时，可以先临时释放锁，然后需要继续保护的时候，可以继续上锁，这样就无需重复的实例化lock_guard对象，还能减少锁的区域。同样，可以使用std::defer_lock设置初始化的时候不进行默认的上锁操作：</p>
+<pre><code class="language-cpp">void shared_print(string msg, int id) {
+    std::unique_lock&lt;std::mutex&gt; guard(_mu, std::defer_lock);
+    //do something 1
+ 
+    guard.lock();
+    // do something protected
+    guard.unlock(); //临时解锁
+ 
+    //do something 2
+ 
+    guard.lock(); //继续上锁
+    // do something 3
+    f &lt;&lt; msg &lt;&lt; id &lt;&lt; endl;
+    cout &lt;&lt; msg &lt;&lt; id &lt;&lt; endl;
+    // 结束时析构guard会临时解锁
+}
+</code></pre>
+<p>这样使用起来就比lock_guard更加灵活！然后这也是有代价的，因为它内部需要维护锁的状态，所以效率要比lock_guard低一点，在lock_guard能解决问题的时候，就是用lock_guard，反之，使用unique_lock。</p>
+<p>后面在学习条件变量的时候，还会有unique_lock的用武之地。</p>
+<p>另外，请注意，unique_lock和lock_guard都不能复制，lock_guard不能移动，但是unique_lock可以！</p>
+<pre><code class="language-cpp">// unique_lock 可以移动，不能复制
+std::unique_lock&lt;std::mutex&gt; guard1(_mu);
+std::unique_lock&lt;std::mutex&gt; guard2 = guard1;  // error
+std::unique_lock&lt;std::mutex&gt; guard2 = std::move(guard1); // ok
+ 
+// lock_guard 不能移动，不能复制
+std::lock_guard&lt;std::mutex&gt; guard1(_mu);
+std::lock_guard&lt;std::mutex&gt; guard2 = guard1;  // error
+std::lock_guard&lt;std::mutex&gt; guard2 = std::move(guard1); // error
+</code></pre>
+<p>上面的例子中，<code>Client</code> 端总是在初始化的时候构造一个<code>LogFile</code>对象，在构造函数里面需要进行open file操作。试想这样的情况，如果在程序运行过程中一直都不调用<code>shared_print</code>那么我们开始的进行的open file的这个操作岂不是很多余吗？特别是在有大量的初始化构造的对象的时候，这对性能有不小的影响。所以就出现了lazy_initialization的概念，lazy_initialization就是在使用到它的时候才去创建它。就像下面的代码那样：</p>
+<pre><code class="language-cpp">class LogFile {
+    std::mutex _mu;
+    ofstream f;
+public:
+    LogFile() {}
+    ~LogFile() {
+        f.close();
+    }
+    void shared_print(string msg, int id) {
+        if(!f.isopen()){
+            f.open(&quot;log.txt&quot;);
+        }
+        std::lock_guard&lt;std::mutex&gt; guard(_mu);
+        f &lt;&lt; msg &lt;&lt; id &lt;&lt; endl;
+        cout &lt;&lt; msg &lt;&lt; id &lt;&lt; endl;
+    }
+};
+</code></pre>
+<p>上述的代码很明显暴漏了一个问题，在多线程的情形下，<code>f.isopen()</code>可能会调用多次。使用<code>The Double-Checked Locking Pattern </code>来解决这个问题：</p>
+<pre><code class="language-cpp">class LogFile {
+    std::mutex _mu, _mu2;
+    ofstream f;
+public:
+    LogFile() {}
+    ~LogFile() {
+        f.close();
+    }
+    void shared_print(string msg, int id) {
+        if(!f.isopen()){
+        	std::lock_guard&lt;std::mutex&gt; guard1(_mu2);
+        	if(!f.isopen()){
+        		f.open(&quot;log.txt&quot;);
+        	}
+        }
+        std::lock_guard&lt;std::mutex&gt; guard(_mu);
+        f &lt;&lt; msg &lt;&lt; id &lt;&lt; endl;
+        cout &lt;&lt; msg &lt;&lt; id &lt;&lt; endl;
+    }
+};
+</code></pre>
+<p>但是即使是这样也是存在有风险的，论文<a href="http://www.aristeia.com/Papers/DDJ_Jul_Aug_2004_revised.pdf">C++ and the Perils of Double-Checked Locking</a>就这个问题进行了分析。</p>
+<p>然而在C++11中引入了std::call_once对这个情况进行了更为优雅的处理方式:</p>
+<pre><code class="language-c++">class LogFile {
+    std::mutex _mu;
+    std::once_flag m_fopenOnce;
+    ofstream f;
+public:
+    LogFile() {}
+    ~LogFile() {
+        f.close();
+    }
+    void shared_print(string msg, int id) {
+        std::call_once(m_fopenOnce,[&amp;](){m_file.open(&quot;log.txt&quot;);});
+        std::lock_guard&lt;std::mutex&gt; guard(_mu);
+        f &lt;&lt; msg &lt;&lt; id &lt;&lt; endl;
+    }
+};
+</code></pre>
+<h2 id="6-条件变量">6. 条件变量</h2>
+<p>首先还是从下面的一个小程序开始看起：</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;thread&gt;
+#include &lt;mutex&gt;
+#include &lt;deque&gt;
+using namespace std;
+
+mutex g_mutex;
+deque&lt;int&gt; q;
+
+void function1(){
+    int count = 10;
+    while(count &gt; 0){
+        unique_lock&lt;mutex&gt; locker(g_mutex);
+        q.push_front(count);
+        locker.unlock();
+        std::this_thread::sleep_for(chrono::second(1));
+        count--;
+    }
+}
+
+void function2(){
+    int data = 0;
+    while(data != 1){
+        unique_lock&lt;mutex&gt; locker(g_mutex);
+        if(!q.empty()){
+            data = q.back();
+            q.pop_back();
+            locker.unlock();
+
+            count&lt;&lt;&quot;t2 get data;&quot;&lt;&lt; data &lt;&lt;endl;
+        }
+        else{
+            locker.unlock();
+        }
+
+    }
+}
+
+int main() {
+    thread t1(function1);
+    thread t2(function2);
+    t1.join(); //等待线程执行完成
+    t2.join();
+    return 0;
+}
+</code></pre>
+<p>上面的程序中有两个线程，一个向队列中添加数据，另一个则从队列中取出数据。添加数据的线程中有一个sleep的操作，这导致了取数据的线程一直在循环检查队列中是否有数据。这种空轮循的方式是不太好的，占用cpu cycle但是也没有做实际的工作。一个小小的trick就是在读取数据线程函数中如果没有获取到数据就进行短暂的sleep, 但这个sleep的时间是比较难控制的，时间太短还是和没有sleep强不到哪里去，如果sleep的时间太长的话那么队列中的数据又会积压的太多。这时候条件变量就派上用场了。</p>
+<pre><code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;thread&gt;
+#include &lt;mutex&gt;
+#include &lt;deque&gt;
+using namespace std;
+
+mutex g_mutex;
+condition_variable cond;
+deque&lt;int&gt; q;
+
+void function1(){
+    int count = 10;
+    while(count &gt; 0){
+        unique_lock&lt;mutex&gt; locker(g_mutex);
+        q.push_front(count);
+        locker.unlock();
+        cond.notify_one();
+        std::this_thread::sleep_for(chrono::second(1));
+        count--;
+    }
+}
+
+void function2(){
+    int data = 0;
+    while(data != 1){
+        unique_lock&lt;mutex&gt; locker(g_mutex);
+        cond.wait(locker, [](){return !q.empty();}); //spurious wake 
+        data = q.back();
+        q.pop_back();
+        locker.unlock();
+    }
+}
+
+int main() {
+    thread t1(function1);
+    thread t2(function2);
+    t1.join(); //等待线程执行完成
+    t2.join();
+    return 0;
+}
+</code></pre>
+<h2 id="7-future--promise">7. Future &amp; Promise</h2>
+<h2 id="8">8.</h2>
+
+        </div>
+
+        
+<div class="post-archive">
+    <ul class="post-copyright">
+        <li><strong>原文作者：</strong><a rel="author" href="https://bineanju.gitee.io/blog/">Binean</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="https://bineanju.gitee.io/blog/post/20200102cpp11%E5%A4%9A%E7%BA%BF%E7%A8%8B/">https://bineanju.gitee.io/blog/post/20200102cpp11%E5%A4%9A%E7%BA%BF%E7%A8%8B/</a></li>
+        <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
+    </ul>
+    <center><image src= "https://bineanju.gitee.io/blog//about/wx.png" ></image></center>
+</div>
+<br/>
+
+
+
+        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/blog/post/20191230WindowsKernelPrograming04KernelFlow/">Windows内核编程04|内核工作流程</a></li>
+        
+        <li><a href="/blog/post/20191229WindowsKernelPrograming03KernelBasic/">Windows内核编程03|内核编程基础</a></li>
+        
+        <li><a href="/blog/post/20191228WindowsKernelPrograming02EnvSetup/">Windows内核编程02|环境搭建和部署测试</a></li>
+        
+        <li><a href="/blog/post/20191224WindowsKernelProgramingSummer02/">Windows内核开发总结(二)</a></li>
+        
+        <li><a href="/blog/post/20191223WindowsKernelProgramingSummer01/">Windows内核开发总结(一)</a></li>
+        
+    </ul>
+</div>
+
+
+        <div class="post-meta meta-tags">
+            
+            <ul class="clearfix">
+                
+                <li><a href='https://bineanju.gitee.io/tags/C/C&#43;&#43;'>C/C&#43;&#43;</a></li>
+                
+            </ul>
+            
+        </div>
+    </article>
+    
+    
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "bzhou830/Blog"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+</div>
+
+                </div>
+
+                <div id="secondary">
+    
+<section class="widget">
+    
+    <ul class="widget-list">
+        
+        <li>
+            <a href="https://bineanju.gitee.io/blog/" title="简介" target="_blank">
+                
+                
+                    <div>
+                        <div style="width: 200px; height: 200px; border-radius:100%; overflow:hidden;">
+                            <img src=https://bineanju.gitee.io/blog/about/touxiang.jpg >
+                        </div>
+                    </div>
+
+                    <div>
+                        <h2>Binean</h2>
+                    </div>
+                    
+                    <div>
+                        <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path><path fill="currentColor" d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V18c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-1.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05.02.01.03.03.04.04 1.14.83 1.93 1.94 1.93 3.41V18c0 .35-.07.69-.18 1H22c.55 0 1-.45 1-1v-1.5c0-2.33-4.67-3.5-7-3.5z"></path></svg>
+                            ****
+                        </div>
+                    </div>
+
+                    <div>
+                        <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path><path fill="currentColor" d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm8.94 3c-.46-4.17-3.77-7.48-7.94-7.94V2c0-.55-.45-1-1-1s-1 .45-1 1v1.06C6.83 3.52 3.52 6.83 3.06 11H2c-.55 0-1 .45-1 1s.45 1 1 1h1.06c.46 4.17 3.77 7.48 7.94 7.94V22c0 .55.45 1 1 1s1-.45 1-1v-1.06c4.17-.46 7.48-3.77 7.94-7.94H22c.55 0 1-.45 1-1s-.45-1-1-1h-1.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"></path></svg>
+                        武汉
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div>      
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path><path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-.4 4.25l-7.07 4.42c-.32.2-.74.2-1.06 0L4.4 8.25c-.25-.16-.4-.43-.4-.72 0-.67.73-1.07 1.3-.72L12 11l6.7-4.19c.57-.35 1.3.05 1.3.72 0 .29-.15.56-.4.72z"></path></svg>
+                        <a href="mailto:bzhou830@qq.com">bzhou830@qq.com</a> 
+                        </div>
+                    </div>
+                
+            </a>
+        </li>
+        
+        <li>
+            <a href="https://bineanju.gitee.io/blog/about/" title="欢迎关注微信公众号" target="_blank">
+                
+                    <h3 class="widget-title">欢迎关注微信公众号</h3>
+                    <img src="https://bineanju.gitee.io/blog/about/qrcode.jpg" >
+                
+            </a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <form id="search" action='https://bineanju.gitee.io/blog/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://bineanju.gitee.io/blog/">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li><a href="https://bineanju.gitee.io/blog/categories/">Categories (2)</a></li>
+    
+    <li><a href="https://bineanju.gitee.io/blog/categories/C/C&#43;&#43;/">C/C&#43;&#43; (12)</a></li>
+    
+    <li><a href="https://bineanju.gitee.io/blog/categories/Flask/">Flask (11)</a></li>
+    
+    <li><a href="https://bineanju.gitee.io/blog/categories/GPU/">GPU (18)</a></li>
+    
+    <li><a href="https://bineanju.gitee.io/blog/categories/Golang/">Golang (10)</a></li>
+    
+    <li><a href="https://bineanju.gitee.io/blog/categories/MCU/">MCU (1)</a></li>
+    
+    <li><a href="https://bineanju.gitee.io/blog/categories/Misc/">Misc (9)</a></li>
+    
+    <li><a href="https://bineanju.gitee.io/blog/categories/OpenCV/">OpenCV (1)</a></li>
+    
+    <li><a href="https://bineanju.gitee.io/blog/categories/Python/">Python (12)</a></li>
+    
+    <li><a href="https://bineanju.gitee.io/blog/categories/WindowsKernel/">WindowsKernel (8)</a></li>
+    
+    <li><a href="https://bineanju.gitee.io/blog/categories/%E4%B8%B2%E5%8F%A3/">串口 (5)</a></li>
+    
+    <li><a href="https://bineanju.gitee.io/blog/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理 (14)</a></li>
+    
+    <li><a href="https://bineanju.gitee.io/blog/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学 (6)</a></li>
+    
+    <li><a href="https://bineanju.gitee.io/blog/categories/%E5%9B%BE%E8%AE%BA/">图论 (12)</a></li>
+    
+    <li><a href="https://bineanju.gitee.io/blog/categories/%E6%88%90%E9%95%BF/">成长 (5)</a></li>
+    
+    <li><a href="https://bineanju.gitee.io/blog/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式 (1)</a></li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://bineanju.gitee.io/blog/post/20211225%E4%BA%8C%E9%9B%B6%E4%BA%8C%E4%B8%80%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2021年终总结">2021年终总结</a>
+    </li>
+    
+    <li>
+        <a href="https://bineanju.gitee.io/blog/post/20211207Windbg%E6%89%A9%E5%B1%95%E5%85%A5%E6%B4%BB/" title="Windbg扩展|01入活">Windbg扩展|01入活</a>
+    </li>
+    
+    <li>
+        <a href="https://bineanju.gitee.io/blog/post/20211121%E8%BF%9C%E7%A8%8B%E9%87%8D%E5%90%AF%E5%B0%8F%E5%B7%A5%E5%85%B7/" title="远程重启小工具">远程重启小工具</a>
+    </li>
+    
+    <li>
+        <a href="https://bineanju.gitee.io/blog/post/20211024GPU-Tile-Based-Immediate/" title="GPU topic：Tile-Based Rendering vs. Immediate Mode Rendering">GPU topic：Tile-Based Rendering vs. Immediate Mode Rendering</a>
+    </li>
+    
+    <li>
+        <a href="https://bineanju.gitee.io/blog/post/20210710imgui%E7%9A%84%E4%BD%BF%E7%94%A8/" title="imgui的使用">imgui的使用</a>
+    </li>
+    
+    <li>
+        <a href="https://bineanju.gitee.io/blog/post/20210523GPU-%E5%BB%B6%E8%BF%9F-%E5%B8%A6%E5%AE%BD-%E5%90%9E%E5%90%90%E9%87%8F/" title="GPU topic：延迟 vs. 带宽 vs. 吞吐量">GPU topic：延迟 vs. 带宽 vs. 吞吐量</a>
+    </li>
+    
+    <li>
+        <a href="https://bineanju.gitee.io/blog/post/20210503DrawIo%E6%90%AD%E5%BB%BA/" title="Draw.io部署教程">Draw.io部署教程</a>
+    </li>
+    
+    <li>
+        <a href="https://bineanju.gitee.io/blog/post/20210215GPUShader/" title="Shader在GPU中是如何执行的？">Shader在GPU中是如何执行的？</a>
+    </li>
+    
+    <li>
+        <a href="https://bineanju.gitee.io/blog/post/20210112NES%E6%A8%A1%E6%8B%9F%E5%99%A8/" title="NES模拟器">NES模拟器</a>
+    </li>
+    
+    <li>
+        <a href="https://bineanju.gitee.io/blog/post/20201226%E5%9C%A8%E6%AD%A6%E6%B1%89%E7%9A%842020/" title="2020，我在武汉的这一年的故事">2020，我在武汉的这一年的故事</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://bineanju.gitee.io/blog/" title="Binean’s">Binean’s</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://bineanju.gitee.io/blog/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://bineanju.gitee.io/blog/tags/">Tags</a>
+    
+    <a href="https://bineanju.gitee.io/blog/tags/C&#43;&#43;/">C&#43;&#43;</a>
+    
+    <a href="https://bineanju.gitee.io/blog/tags/C/C&#43;&#43;/">C/C&#43;&#43;</a>
+    
+    <a href="https://bineanju.gitee.io/blog/tags/DICOM/">DICOM</a>
+    
+    <a href="https://bineanju.gitee.io/blog/tags/Excel/">Excel</a>
+    
+    <a href="https://bineanju.gitee.io/blog/tags/Flask/">Flask</a>
+    
+    <a href="https://bineanju.gitee.io/blog/tags/GPU/">GPU</a>
+    
+    <a href="https://bineanju.gitee.io/blog/tags/Golang/">Golang</a>
+    
+    <a href="https://bineanju.gitee.io/blog/tags/OCR/">OCR</a>
+    
+    <a href="">OpenCV</a>
+    
+    <a href="https://bineanju.gitee.io/blog/tags/Python/">Python</a>
+    
+    <a href="https://bineanju.gitee.io/blog/tags/android/">android</a>
+    
+    <a href="https://bineanju.gitee.io/blog/tags/git/">git</a>
+    
+    <a href="https://bineanju.gitee.io/blog/tags/github/">github</a>
+    
+    <a href="https://bineanju.gitee.io/blog/tags/hexo/">hexo</a>
+    
+    <a href="https://bineanju.gitee.io/blog/tags/hugo/">hugo</a>
+    
+    <a href="https://bineanju.gitee.io/blog/tags/jni/">jni</a>
+    
+    <a href="https://bineanju.gitee.io/blog/tags/opencv/">opencv</a>
+    
+    <a href="https://bineanju.gitee.io/blog/tags/%E4%B8%B2%E5%8F%A3/">串口</a>
+    
+    <a href="https://bineanju.gitee.io/blog/tags/%E5%85%AC%E5%BC%8F/">公式</a>
+    
+    <a href="https://bineanju.gitee.io/blog/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">内存管理</a>
+    
+    <a href="https://bineanju.gitee.io/blog/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理</a>
+    
+    <a href="https://bineanju.gitee.io/blog/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学</a>
+    
+    <a href="https://bineanju.gitee.io/blog/tags/%E6%96%87%E6%9C%AC%E6%A3%80%E6%B5%8B/">文本检测</a>
+    
+    <a href="https://bineanju.gitee.io/blog/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a>
+    
+    <a href="https://bineanju.gitee.io/blog/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+    
+    <a href="https://bineanju.gitee.io/blog/tags/%E7%AE%97%E6%B3%95/">算法</a>
+    
+    <a href="https://bineanju.gitee.io/blog/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    
+    <a href="https://bineanju.gitee.io/blog/tags/%E9%A9%B1%E5%8A%A8/">驱动</a>
+    
+    <a href="https://bineanju.gitee.io/blog/tags/%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B/">驱动编程</a>
+    
+</div>
+    </section>
+
+</div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+    <div class="container">
+        &copy; 2022 <a href="https://bineanju.gitee.io/blog/">十面埋伏的博客 By Binean</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
+        <br><a href="http://www.beian.miit.gov.cn/" target="_blank">鄂ICP备20004395号</a>. 
+        
+    </div>
+</footer>
+
+
+    
+    <script type="text/javascript">
+        
+        (function(){
+            $("pre code").parent().addClass("line-numbers")
+        }())
+    
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [ ['$','$'] ],
+                processEscapes: true
+            }
+        };
+    </script>
+    <script type="text/javascript" src="/blog/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+    
+    <script type="text/javascript" color="0,205,205" opacity="0.8" zIndex='-3' count='80' src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+    
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src='/blog/js/totop.js?v=0.0.0' async=""></script>
+
+
+
+    <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+
+</body>
+
+</html>

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>hexo on 菠萝蜜</title>
-    <link>https://bzhou830.github.io/tags/hexo/</link>
+    <link>https://bineanju.gitee.io/blog/tags/hexo/</link>
     <description>Recent content in hexo on 菠萝蜜</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Tue, 01 Jan 2019 09:16:34 +0800</lastBuildDate>
     
-	<atom:link href="https://bzhou830.github.io/tags/hexo/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://bineanju.gitee.io/blog/tags/hexo/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Hexo博客搭建</title>
-      <link>https://bzhou830.github.io/post/20190101Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</link>
+      <link>https://bineanju.gitee.io/blog/post/20190101Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</link>
       <pubDate>Tue, 01 Jan 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/post/20190101Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</guid>
+      <guid>https://bineanju.gitee.io/blog/post/20190101Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</guid>
       <description>本文用来记录我使用Hexo进行静态博客搭建的过程，博客是托管在Github Page上的。 1.下载安装node.js和git两个工具 因为需要使用npm和git进行博客的生成，搭建和上传部署。 npm install hexo-cli -g hexo init blog cd blog npm install hexo server 运行完成上面的命令之后就可以看到cmd窗口提示已经将blog发布到</description>
     </item>
     

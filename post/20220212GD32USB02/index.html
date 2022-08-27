@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>USB探索|1.USB协议基础 | 菠萝蜜</title>
-    <meta property="og:title" content="USB探索|1.USB协议基础 - 菠萝蜜">
+    <title>USB探索|1.认识USB协议 | 菠萝蜜</title>
+    <meta property="og:title" content="USB探索|1.认识USB协议 - 菠萝蜜">
     <meta property="og:type" content="article">
         
     <meta property="article:published_time" content='2022-02-11T19:16:34&#43;08:00'>
@@ -16,16 +16,16 @@
     <meta property="article:modified_time" content='2022-02-11T19:16:34&#43;08:00'>
         
     <meta name="Keywords" content="C/C&#43;&#43;, GPU, Windows驱动开发, OpenCV, 图像处理">
-    <meta name="description" content="USB探索|1.USB协议基础">
+    <meta name="description" content="USB探索|1.认识USB协议">
         
     <meta name="author" content="Binean">
-    <meta property="og:url" content="https://bzhou830.github.io/post/20220212GD32USB02/">
+    <meta property="og:url" content="https://bineanju.gitee.io/blog/post/20220212GD32USB02/">
     <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href='/css/normalize.css'>
+    <link rel="stylesheet" href='/blog/css/normalize.css'>
     
-    <link rel="stylesheet" href="/css/prism.css">
+    <link rel="stylesheet" href="/blog/css/prism.css">
     
-    <link rel="stylesheet" href='/css/style.css'>
+    <link rel="stylesheet" href='/blog/css/style.css'>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     
@@ -42,7 +42,7 @@
         <div class="col-group">
             <div class="site-name ">
                 
-                    <a id="logo" href="https://bzhou830.github.io/">
+                    <a id="logo" href="https://bineanju.gitee.io/blog/">
                         菠萝蜜
                     </a>
                 
@@ -50,17 +50,17 @@
             </div>
             <div>
                 <nav id="nav-menu" class="clearfix">
-                    <a class="current" href="https://bzhou830.github.io/">首页</a>
+                    <a class="current" href="https://bineanju.gitee.io/blog/">首页</a>
                     
-                    <a  href="https://bzhou830.github.io/GPU/" title="GPU">GPU</a>
+                    <a  href="https://bineanju.gitee.io/blog/GPU/" title="GPU">GPU</a>
                     
-                    <a  href="https://bzhou830.github.io/USB/" title="USB">USB</a>
+                    <a  href="https://bineanju.gitee.io/blog/USB/" title="USB">USB</a>
                     
-                    <a  href="https://bzhou830.github.io/raspberrypi/" title="树莓派">树莓派</a>
+                    <a  href="https://bineanju.gitee.io/blog/raspberrypi/" title="树莓派">树莓派</a>
                     
-                    <a  href="https://bzhou830.github.io/archives/" title="归档">归档</a>
+                    <a  href="https://bineanju.gitee.io/blog/archives/" title="归档">归档</a>
                     
-                    <a  href="https://bzhou830.github.io/about/" title="关于">关于</a>
+                    <a  href="https://bineanju.gitee.io/blog/about/" title="关于">关于</a>
                     
                 </nav>
             </div>
@@ -139,7 +139,14 @@
 <div class="post-toc" style="position: absolute; top: 188px;">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-        <nav id="TableOfContents"></nav>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-usb接口特点">1. USB接口特点</a></li>
+    <li><a href="#2-usb的发展史">2. USB的发展史</a></li>
+    <li><a href="#3-usb物理接口">3. USB物理接口</a></li>
+    <li><a href="#4-基本概念和术语">4. 基本概念和术语</a></li>
+  </ul>
+</nav>
     </div>
 </div>
 <script type="text/javascript">
@@ -171,7 +178,7 @@
 </script>
     <article class="post">
         <header>
-            <h1 class="post-title">USB探索|1.USB协议基础</h1>
+            <h1 class="post-title">USB探索|1.认识USB协议</h1>
         </header>
         <date class="post-meta meta-date">
             2022年2月11日
@@ -180,7 +187,7 @@
         <div class="post-meta">
             <span>|</span>
             
-            <span class="meta-category"><a href='https://bzhou830.github.io/categories/USB'>USB</a></span>
+            <span class="meta-category"><a href='https://bineanju.gitee.io/categories/USB'>USB</a></span>
             
         </div>
         
@@ -192,33 +199,77 @@
         
         
         <div class="post-content">
-            <p>在说枚举之前，先介绍一下USB的一种传输模式一一控制传输。这种传输在USB中是非常重要的，它要保证数据的正确性，在设备的枚举过程中都是使用控传输。控制传输分为三个过程：建立过程、可选的数掘过程及状态过程。建立（setup）过程都是由USB主机发起的。它开始于一个SETUP令牌包．后面紧跟一个DATA0数掘包，接着就是数据过程。如果是控制读传输．那么数据过程就是输人数据；如果是控制写传输，那么数是输出数据．如果在建立过程中．指定了数据过程的长度为0，则没有数据过程．数据过程之后是状态过程。状态过程刚好与数据过程的数据传输方向相反：如果是控制读传输，则状态过程是一个输出数据包：如果是控制写传输．则状态过程是一个输人数包。状态过程用来确认所有的数据是否都已正确传输完成。</p>
-<p>下面介绍枚举的详细过程。</p>
-<ol>
+            <h2 id="1-usb接口特点">1. USB接口特点</h2>
+<ul>
 <li>
-<p>(USB主机检测到USB设备插入后，就会先对设备复位。USB设备在总线复位后其地址为0，这样主机就可以通过地址0和那些刚刚插入的设备通信。USB主机往地址为0的设备的端点0发送获取没备描述符的标准请求（这是个控传输的建立过程）。设备收到该请求后，会按照主机请求的参数，在数据过程将设备描述符返回给主机。主机在成功获取到一个数据包的设备描述符并且确认没有错误后，就会返回一个0长度的确认数据包（状态过程）给设备，从而进入到接下来的设置地址阶段。这里需要注意的是．第一次主机只会读取一个数锯包的设备描述符，而标准的设备描述有18字节，有些USB设备的端点0大小不足18字节（但至少具有8字节），在这种情况下，USB主机也是只发送一次数据输入请求，多余的数据将不会再次请求。因此，如果当设备端点0大小不足18字节时，就需要注意到这个问题。也就是说在第一次获取设备描述符时，只需要返回一次数据即可，不要再等主机继续获取剩余数掘（如果还有），因为主机不会这么干的。当主机成功获取到设备描述符的前8字节之后（USB协议规定端点0最大包长至少要有8字节），它就知道端点0的最大包长度了，因为端点0最大包长度刚好在没备描述符的第8字节处。</p>
+<p>简单易用</p>
+<p>使用统一制式电缆和连接进行外设扩展，即插即用，支持热插拔</p>
 </li>
 <li>
-<p>主机对设备又一次复位。这时就进入到了设置地址阶段。USB主机往地址为0的设备的端点0发出一个设置地址的请求（控制传输的建立过程），新的设备地址包含在建立过程的数据包中。具体的地址由USB主机负责管理，主机会分配一个唯一的地址给刚接入的设备。USB设备在收到这个建立过程之后，就直接进入到状态过程，因为这个控制传输没有数据过程。设备等待主机请求状态返回（一个输人令牌包），收到输人令牌包后，设备就返回0长度的状态数据包。如果主机确认该状态包已经正确收到，就会发送应答包ACK给设备，设备在收到这个ACK之后，就要启用新的设备地址了。这样设备就分配到了一个唯一的设备地址，以后主机就通过它来访问该设备。</p>
+<p>稳定性佳</p>
+<p>使用差分信号传输，较强的纠错能力，多种差错管理和恢复机制</p>
 </li>
 <li>
-<p>主机再次获取设备描述符。这次跟第一次有点不一样，首先是主机不再使用地址0来访问设备，而是新的设备地址；另外，这次需要获取全部的18字节的设备描述符。如果你的端点0最大包长小于18字节那就会有多次请求数据输入（即发送多个IN令牌包）。</p>
+<p>速度选择</p>
+<p>1.5Mbps/ 12Mbps/ 480Mbps/ 5Gbps/ 10Gbps/ 20Gbps多种等级</p>
 </li>
 <li>
-<p>主机获取配置描述符。配置描述符总共为9字节。主机在获取到配置描述符后，根据配置描述符中所描述的配置集合总长度，获取配置集合。获取配置描述符和获取配置描述符集合的请求是差不多的，只是指定的长度不一样。有些主机干脆不单独获取配置描述符，而是直接使用最大长度来获取配置描述符集合，因为设备实际返回的数据可以少于指定的字节数。配置集合包括配置描述符、接口描述符、类特殊描述符（如果有）、端点描述符等。接口描述符、类特殊描述符、端点描述符是不能单独获取的，必须跟随配置描述符以一个集合的方式一并返回。如果有字符串描述符，还要获取字符串描述符。另外，像HID设备还有报告描述符等，它们是单独获取的。</p>
+<p>使用灵活</p>
+<p>提供了适合各种应用的传输类型、协议</p>
 </li>
-</ol>
+<li>
+<p>应用广泛</p>
+<p>协议标准向下兼容，系统集成驱动，扩展性强，连接支持127个外部设备，拓扑结构，复合设备等。</p>
+</li>
+</ul>
+<h2 id="2-usb的发展史">2. USB的发展史</h2>
+<p>USB发展(1996年)至今已经23多年了，其规范从1.0-3.2</p>
+<p>(1.0-1996/1.1-1998/2.0-2000/3.0-2008年发布/3.1-2013年发布/3.2-2017)</p>
+<ul>
+<li>USB1.1-全速/低速,1.5/12Mbps</li>
+<li>USB2.0-4线，48OMbps，速度提升40倍。</li>
+<li>USB3.0-接口上增加了2对超高速数据差分信号线，变成全双工通讯，9线通讯。速度提升10倍，使用8b10b编码，频宽有20%损耗，5V/O.9A.</li>
+<li>USB3.1-速度、供电能力提升。使用128b/132b编码，损耗3%.20V/5A供电10Ow，电力供应提高。增加USB AV影音传输标准，兼容USB3.0</li>
+<li>USB3.2:增加一对超高速传输通道，速度再次翻倍，只能在C型接口上运行</li>
+<li>USB优势:向下兼容:定义的协议全面，每个类型产品都有对应的USB类规范。</li>
+</ul>
+<p><img src="image-20220823064658493.png" alt="image-20220823064658493"></p>
+<p><img src="image-20220823065119632.png" alt="image-20220823065119632"></p>
+<h2 id="3-usb物理接口">3. USB物理接口</h2>
+<p>使用可靠屏蔽、且带磁环的通讯电缆，放置电磁或噪声干扰。避免在通信时插拔USB电缆，且插拔时避免手直接触碰USB口上的金属面，防止静电
+USB插头里面:4个触电，2长2短，为了支持热插拔而专门设计的硬件结构。
+放置信号电压比电源电压高,造成latch up现象一股选购短而粗的电缆。低速模式可以不使用屏蔽和双绞。
+线纯:差分阻抗在76.5-103.5ohm间，共模阻抗在21.0-39之间。
+绘制USB走线:1.差分线路最短优先,少过孔会增加寄生电感):对称平行走线:2.线长补偿，与其他网络及地距离&gt;20mil:3.电源线宽和走线电流关系</p>
+<p><img src="image-20220823065208990.png" alt="image-20220823065208990"></p>
+<h2 id="4-基本概念和术语">4. 基本概念和术语</h2>
+<p>USB编/解码方式是<strong>反向不归零(NRZI)</strong> :</p>
+<p><img src="image-20220823065451077.png" alt="image-20220823065451077"></p>
+<p>位填充:在数据进行NRZl编码前，每6个连续的1信号之后都会插入1个0信号，以免电平不能突变丢失同步。</p>
+<p><img src="image-20220823065715064.png" alt="image-20220823065715064"></p>
+<p>帧的概念:一个时间单位，固定为1ms(低/全速)，高速-微帧125us.</p>
+<p>通讯过程划分:</p>
+<p>多个域-&gt;包; 多个包-&gt;事务; 多个事务-&gt;传输</p>
+<p><img src="image-20220823065821574.png" alt="image-20220823065821574"></p>
+<p>四种传输</p>
+<ul>
+<li>控制传输： 主机获取设备信息、状态，选择设备配置等的一系列命令式工作</li>
+<li>中断传输：收发数据量少、周期性传输</li>
+<li>批量传输：利用任何可获得的总线带宽进行数据传输</li>
+<li>等时传输：恒定速率、没有差错控制的传输</li>
+</ul>
+<p><img src="image-20220823070231463.png" alt="image-20220823070231463"></p>
 
         </div>
 
         
 <div class="post-archive">
     <ul class="post-copyright">
-        <li><strong>原文作者：</strong><a rel="author" href="https://bzhou830.github.io/">Binean</a></li>
-        <li style="word-break:break-all"><strong>原文链接：</strong><a href="https://bzhou830.github.io/post/20220212GD32USB02/">https://bzhou830.github.io/post/20220212GD32USB02/</a></li>
+        <li><strong>原文作者：</strong><a rel="author" href="https://bineanju.gitee.io/blog/">Binean</a></li>
+        <li style="word-break:break-all"><strong>原文链接：</strong><a href="https://bineanju.gitee.io/blog/post/20220212GD32USB02/">https://bineanju.gitee.io/blog/post/20220212GD32USB02/</a></li>
         <li><strong>版权声明：</strong>本作品采用<a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>进行许可，非商业转载请注明出处（作者，原文链接），商业转载请联系作者获得授权。</li>
     </ul>
-    <center><image src= "https://bzhou830.github.io//about/wx.png" ></image></center>
+    <center><image src= "https://bineanju.gitee.io/blog//about/wx.png" ></image></center>
 </div>
 <br/>
 
@@ -230,15 +281,15 @@
     <h2>See Also</h2>
     <ul class="listing">
         
-        <li><a href="/post/20220127GD32USB01/">USB探索|0.偶遇GD32L233</a></li>
+        <li><a href="/blog/post/20220127GD32USB01/">USB探索|0.偶遇GD32L233</a></li>
         
-        <li><a href="/post/20211225%E4%BA%8C%E9%9B%B6%E4%BA%8C%E4%B8%80%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">2021年终总结</a></li>
+        <li><a href="/blog/post/20211225%E4%BA%8C%E9%9B%B6%E4%BA%8C%E4%B8%80%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">2021年终总结</a></li>
         
-        <li><a href="/post/20211207Windbg%E6%89%A9%E5%B1%95%E5%85%A5%E6%B4%BB/">Windbg扩展|01入活</a></li>
+        <li><a href="/blog/post/20211207Windbg%E6%89%A9%E5%B1%95%E5%85%A5%E6%B4%BB/">Windbg扩展|01入活</a></li>
         
-        <li><a href="/post/20211121%E8%BF%9C%E7%A8%8B%E9%87%8D%E5%90%AF%E5%B0%8F%E5%B7%A5%E5%85%B7/">远程重启小工具</a></li>
+        <li><a href="/blog/post/20211121%E8%BF%9C%E7%A8%8B%E9%87%8D%E5%90%AF%E5%B0%8F%E5%B7%A5%E5%85%B7/">远程重启小工具</a></li>
         
-        <li><a href="/post/20211024GPU-Tile-Based-Immediate/">GPU topic：Tile-Based Rendering vs. Immediate Mode Rendering</a></li>
+        <li><a href="/blog/post/20211024GPU-Tile-Based-Immediate/">GPU topic：Tile-Based Rendering vs. Immediate Mode Rendering</a></li>
         
     </ul>
 </div>
@@ -248,9 +299,9 @@
             
             <ul class="clearfix">
                 
-                <li><a href='https://bzhou830.github.io/tags/'></a></li>
+                <li><a href='https://bineanju.gitee.io/tags/'></a></li>
                 
-                <li><a href='https://bzhou830.github.io/tags/'></a></li>
+                <li><a href='https://bineanju.gitee.io/tags/'></a></li>
                 
             </ul>
             
@@ -282,12 +333,12 @@
     <ul class="widget-list">
         
         <li>
-            <a href="https://bzhou830.github.io/" title="简介" target="_blank">
+            <a href="https://bineanju.gitee.io/blog/" title="简介" target="_blank">
                 
                 
                     <div>
                         <div style="width: 200px; height: 200px; border-radius:100%; overflow:hidden;">
-                            <img src=https://bzhou830.github.io/about/touxiang.jpg >
+                            <img src=https://bineanju.gitee.io/blog/about/touxiang.jpg >
                         </div>
                     </div>
 
@@ -320,10 +371,10 @@
         </li>
         
         <li>
-            <a href="https://bzhou830.github.io/about/" title="欢迎关注微信公众号" target="_blank">
+            <a href="https://bineanju.gitee.io/blog/about/" title="欢迎关注微信公众号" target="_blank">
                 
                     <h3 class="widget-title">欢迎关注微信公众号</h3>
-                    <img src="https://bzhou830.github.io/about/qrcode.jpg" >
+                    <img src="https://bineanju.gitee.io/blog/about/qrcode.jpg" >
                 
             </a>
         </li>
@@ -333,10 +384,10 @@
 
 
     <section class="widget">
-        <form id="search" action='https://bzhou830.github.io/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+        <form id="search" action='https://bineanju.gitee.io/blog/search/' method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
       
       <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="https://bzhou830.github.io/">
+      <input type="hidden" name="sitesearch" value="https://bineanju.gitee.io/blog/">
       <button type="submit" class="submit icon-search"></button>
 </form>
     </section>
@@ -345,41 +396,41 @@
         <h3 class="widget-title">分类</h3>
 <ul class="widget-list">
     
-    <li><a href="https://bzhou830.github.io/categories/">Categories (3)</a></li>
+    <li><a href="https://bineanju.gitee.io/blog/categories/">Categories (3)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/C/C&#43;&#43;/">C/C&#43;&#43; (12)</a></li>
+    <li><a href="https://bineanju.gitee.io/blog/categories/C/C&#43;&#43;/">C/C&#43;&#43; (12)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/Flask/">Flask (11)</a></li>
+    <li><a href="https://bineanju.gitee.io/blog/categories/Flask/">Flask (11)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/GPU/">GPU (18)</a></li>
+    <li><a href="https://bineanju.gitee.io/blog/categories/GPU/">GPU (20)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/Golang/">Golang (10)</a></li>
+    <li><a href="https://bineanju.gitee.io/blog/categories/Golang/">Golang (10)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/MCU/">MCU (1)</a></li>
+    <li><a href="https://bineanju.gitee.io/blog/categories/MCU/">MCU (1)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/Misc/">Misc (13)</a></li>
+    <li><a href="https://bineanju.gitee.io/blog/categories/Misc/">Misc (13)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/OpenCV/">OpenCV (1)</a></li>
+    <li><a href="https://bineanju.gitee.io/blog/categories/OpenCV/">OpenCV (1)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/PiCo/">PiCo (1)</a></li>
+    <li><a href="https://bineanju.gitee.io/blog/categories/PiCo/">PiCo (1)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/Python/">Python (12)</a></li>
+    <li><a href="https://bineanju.gitee.io/blog/categories/Python/">Python (12)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/USB/">USB (5)</a></li>
+    <li><a href="https://bineanju.gitee.io/blog/categories/USB/">USB (6)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/WindowsKernel/">WindowsKernel (9)</a></li>
+    <li><a href="https://bineanju.gitee.io/blog/categories/WindowsKernel/">WindowsKernel (9)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/%E4%B8%B2%E5%8F%A3/">串口 (5)</a></li>
+    <li><a href="https://bineanju.gitee.io/blog/categories/%E4%B8%B2%E5%8F%A3/">串口 (5)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理 (14)</a></li>
+    <li><a href="https://bineanju.gitee.io/blog/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理 (14)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学 (6)</a></li>
+    <li><a href="https://bineanju.gitee.io/blog/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学 (6)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E8%AE%BA/">图论 (12)</a></li>
+    <li><a href="https://bineanju.gitee.io/blog/categories/%E5%9B%BE%E8%AE%BA/">图论 (12)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/%E6%88%90%E9%95%BF/">成长 (5)</a></li>
+    <li><a href="https://bineanju.gitee.io/blog/categories/%E6%88%90%E9%95%BF/">成长 (5)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式 (1)</a></li>
+    <li><a href="https://bineanju.gitee.io/blog/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式 (1)</a></li>
     
 </ul>
     </section>
@@ -389,43 +440,43 @@
 <ul class="widget-list">
     
     <li>
-        <a href="https://bzhou830.github.io/post/20220705Pico%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="PiCo| 开发环境搭建">PiCo| 开发环境搭建</a>
+        <a href="https://bineanju.gitee.io/blog/post/20220805GPU%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E5%92%8C%E7%A1%AC%E4%BB%B6%E6%9E%B6%E6%9E%84%E6%B5%85%E8%B0%88/" title="【转载】GPU渲染管线和硬件架构浅谈">【转载】GPU渲染管线和硬件架构浅谈</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/post/20220420GD32USBEx/" title="USB探索| Flash 烧录器">USB探索| Flash 烧录器</a>
+        <a href="https://bineanju.gitee.io/blog/post/20220705Pico%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="PiCo| 开发环境搭建">PiCo| 开发环境搭建</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/post/20220220GD32USB04/" title="USB探索|3.从USB键盘改造成USB鼠标">USB探索|3.从USB键盘改造成USB鼠标</a>
+        <a href="https://bineanju.gitee.io/blog/post/20220501NV%E9%A9%B1%E5%8A%A8/" title="【转载】关于黑客泄漏nvidia Windows显卡驱动代码分析">【转载】关于黑客泄漏nvidia Windows显卡驱动代码分析</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/post/20220213GD32USB03/" title="USB探索|2.USB键盘的实现">USB探索|2.USB键盘的实现</a>
+        <a href="https://bineanju.gitee.io/blog/post/20220420GD32USBEx/" title="USB探索| Flash 烧录器">USB探索| Flash 烧录器</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/post/20220212GD32USB02/" title="USB探索|1.USB协议基础">USB探索|1.USB协议基础</a>
+        <a href="https://bineanju.gitee.io/blog/post/20220220GD32USB04/" title="USB探索|3.从USB键盘改造成USB鼠标">USB探索|3.从USB键盘改造成USB鼠标</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/post/20220127GD32USB01/" title="USB探索|0.偶遇GD32L233">USB探索|0.偶遇GD32L233</a>
+        <a href="https://bineanju.gitee.io/blog/post/20220213GD32USB03/" title="USB探索|3.USB键盘的实现">USB探索|3.USB键盘的实现</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/post/20211225%E4%BA%8C%E9%9B%B6%E4%BA%8C%E4%B8%80%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2021年终总结">2021年终总结</a>
+        <a href="https://bineanju.gitee.io/blog/post/20220212GD32USB03/" title="USB探索|2.设备的连接和枚举">USB探索|2.设备的连接和枚举</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/post/20211207Windbg%E6%89%A9%E5%B1%95%E5%85%A5%E6%B4%BB/" title="Windbg扩展|01入活">Windbg扩展|01入活</a>
+        <a href="https://bineanju.gitee.io/blog/post/20220212GD32USB02/" title="USB探索|1.认识USB协议">USB探索|1.认识USB协议</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/post/20211121%E8%BF%9C%E7%A8%8B%E9%87%8D%E5%90%AF%E5%B0%8F%E5%B7%A5%E5%85%B7/" title="远程重启小工具">远程重启小工具</a>
+        <a href="https://bineanju.gitee.io/blog/post/20220127GD32USB01/" title="USB探索|0.偶遇GD32L233">USB探索|0.偶遇GD32L233</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/post/20211024GPU-Tile-Based-Immediate/" title="GPU topic：Tile-Based Rendering vs. Immediate Mode Rendering">GPU topic：Tile-Based Rendering vs. Immediate Mode Rendering</a>
+        <a href="https://bineanju.gitee.io/blog/post/20211225%E4%BA%8C%E9%9B%B6%E4%BA%8C%E4%B8%80%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2021年终总结">2021年终总结</a>
     </li>
     
 </ul>
@@ -437,7 +488,7 @@
     <ul class="widget-list">
         
         <li>
-            <a target="_blank" href="https://bzhou830.github.io/" title="Binean’s">Binean’s</a>
+            <a target="_blank" href="https://bineanju.gitee.io/blog/" title="Binean’s">Binean’s</a>
         </li>
         
     </ul>
@@ -447,7 +498,7 @@
     <section class="widget">
         <h3 class="widget-title">其它</h3>
         <ul class="widget-list">
-            <li><a href="https://bzhou830.github.io/index.xml">文章 RSS</a></li>
+            <li><a href="https://bineanju.gitee.io/blog/index.xml">文章 RSS</a></li>
         </ul>
     </section>
 
@@ -455,65 +506,65 @@
         <h3 class="widget-title">标签</h3>
 <div class="tagcloud">
     
-    <a href="https://bzhou830.github.io/tags/">Tags</a>
+    <a href="https://bineanju.gitee.io/blog/tags/">Tags</a>
     
-    <a href="https://bzhou830.github.io/tags/C&#43;&#43;/">C&#43;&#43;</a>
+    <a href="https://bineanju.gitee.io/blog/tags/C&#43;&#43;/">C&#43;&#43;</a>
     
-    <a href="https://bzhou830.github.io/tags/C/C&#43;&#43;/">C/C&#43;&#43;</a>
+    <a href="https://bineanju.gitee.io/blog/tags/C/C&#43;&#43;/">C/C&#43;&#43;</a>
     
-    <a href="https://bzhou830.github.io/tags/DICOM/">DICOM</a>
+    <a href="https://bineanju.gitee.io/blog/tags/DICOM/">DICOM</a>
     
-    <a href="https://bzhou830.github.io/tags/Excel/">Excel</a>
+    <a href="https://bineanju.gitee.io/blog/tags/Excel/">Excel</a>
     
-    <a href="https://bzhou830.github.io/tags/Flask/">Flask</a>
+    <a href="https://bineanju.gitee.io/blog/tags/Flask/">Flask</a>
     
-    <a href="https://bzhou830.github.io/tags/GPU/">GPU</a>
+    <a href="https://bineanju.gitee.io/blog/tags/GPU/">GPU</a>
     
-    <a href="https://bzhou830.github.io/tags/Golang/">Golang</a>
+    <a href="https://bineanju.gitee.io/blog/tags/Golang/">Golang</a>
     
-    <a href="https://bzhou830.github.io/tags/OCR/">OCR</a>
+    <a href="https://bineanju.gitee.io/blog/tags/OCR/">OCR</a>
     
     <a href="">OpenCV</a>
     
-    <a href="https://bzhou830.github.io/tags/Python/">Python</a>
+    <a href="https://bineanju.gitee.io/blog/tags/Python/">Python</a>
     
-    <a href="https://bzhou830.github.io/tags/android/">android</a>
+    <a href="https://bineanju.gitee.io/blog/tags/android/">android</a>
     
-    <a href="https://bzhou830.github.io/tags/git/">git</a>
+    <a href="https://bineanju.gitee.io/blog/tags/git/">git</a>
     
-    <a href="https://bzhou830.github.io/tags/github/">github</a>
+    <a href="https://bineanju.gitee.io/blog/tags/github/">github</a>
     
-    <a href="https://bzhou830.github.io/tags/hexo/">hexo</a>
+    <a href="https://bineanju.gitee.io/blog/tags/hexo/">hexo</a>
     
-    <a href="https://bzhou830.github.io/tags/hugo/">hugo</a>
+    <a href="https://bineanju.gitee.io/blog/tags/hugo/">hugo</a>
     
-    <a href="https://bzhou830.github.io/tags/jni/">jni</a>
+    <a href="https://bineanju.gitee.io/blog/tags/jni/">jni</a>
     
-    <a href="https://bzhou830.github.io/tags/opencv/">opencv</a>
+    <a href="https://bineanju.gitee.io/blog/tags/opencv/">opencv</a>
     
-    <a href="https://bzhou830.github.io/tags/%E4%B8%B2%E5%8F%A3/">串口</a>
+    <a href="https://bineanju.gitee.io/blog/tags/%E4%B8%B2%E5%8F%A3/">串口</a>
     
-    <a href="https://bzhou830.github.io/tags/%E5%85%AC%E5%BC%8F/">公式</a>
+    <a href="https://bineanju.gitee.io/blog/tags/%E5%85%AC%E5%BC%8F/">公式</a>
     
-    <a href="https://bzhou830.github.io/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">内存管理</a>
+    <a href="https://bineanju.gitee.io/blog/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">内存管理</a>
     
-    <a href="https://bzhou830.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理</a>
+    <a href="https://bineanju.gitee.io/blog/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理</a>
     
-    <a href="https://bzhou830.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学</a>
+    <a href="https://bineanju.gitee.io/blog/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学</a>
     
-    <a href="https://bzhou830.github.io/tags/%E6%96%87%E6%9C%AC%E6%A3%80%E6%B5%8B/">文本检测</a>
+    <a href="https://bineanju.gitee.io/blog/tags/%E6%96%87%E6%9C%AC%E6%A3%80%E6%B5%8B/">文本检测</a>
     
-    <a href="https://bzhou830.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a>
+    <a href="https://bineanju.gitee.io/blog/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a>
     
-    <a href="https://bzhou830.github.io/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+    <a href="https://bineanju.gitee.io/blog/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
     
-    <a href="https://bzhou830.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
+    <a href="https://bineanju.gitee.io/blog/tags/%E7%AE%97%E6%B3%95/">算法</a>
     
-    <a href="https://bzhou830.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    <a href="https://bineanju.gitee.io/blog/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
     
-    <a href="https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8/">驱动</a>
+    <a href="https://bineanju.gitee.io/blog/tags/%E9%A9%B1%E5%8A%A8/">驱动</a>
     
-    <a href="https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B/">驱动编程</a>
+    <a href="https://bineanju.gitee.io/blog/tags/%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B/">驱动编程</a>
     
 </div>
     </section>
@@ -524,7 +575,7 @@
     </div>
     <footer id="footer">
     <div class="container">
-        &copy; 2022 <a href="https://bzhou830.github.io/">菠萝蜜 By Binean</a>.
+        &copy; 2022 <a href="https://bineanju.gitee.io/blog/">菠萝蜜 By Binean</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
         <br><a href="http://www.beian.miit.gov.cn/" target="_blank">鄂ICP备20004395号</a>. 
@@ -547,14 +598,14 @@
             }
         };
     </script>
-    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script type="text/javascript" src="/blog/js/prism.js" async="true"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
     
     
     
 
 <a id="rocket" href="#top"></a>
-<script type="text/javascript" src='/js/totop.js?v=0.0.0' async=""></script>
+<script type="text/javascript" src='/blog/js/totop.js?v=0.0.0' async=""></script>
 
 
 

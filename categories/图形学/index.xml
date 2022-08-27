@@ -2,66 +2,66 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>图形学 on 菠萝蜜</title>
-    <link>https://bzhou830.github.io/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/</link>
+    <link>https://bineanju.gitee.io/blog/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/</link>
     <description>Recent content in 图形学 on 菠萝蜜</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Mon, 02 Mar 2020 19:16:34 +0800</lastBuildDate>
     
-	<atom:link href="https://bzhou830.github.io/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://bineanju.gitee.io/blog/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Go语言实现RayTracing</title>
-      <link>https://bzhou830.github.io/post/20200302RayTracingInOneWeekend/</link>
+      <link>https://bineanju.gitee.io/blog/post/20200302RayTracingInOneWeekend/</link>
       <pubDate>Mon, 02 Mar 2020 19:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/post/20200302RayTracingInOneWeekend/</guid>
+      <guid>https://bineanju.gitee.io/blog/post/20200302RayTracingInOneWeekend/</guid>
       <description>Ray Tracing in one weekend是Peter Shirley ray tracing系列三部曲的第一本，也是学习ray tracing入门比较容易的一本书，原书中附带的有C++版本的code，最近在学习golang, golang中正好有image包，可以直接生成渲染好的jpg文件，那么就用golang来改写了一遍</description>
     </item>
     
     <item>
       <title>Games101笔记|Shading</title>
-      <link>https://bzhou830.github.io/post/20200229Games101_05/</link>
+      <link>https://bineanju.gitee.io/blog/post/20200229Games101_05/</link>
       <pubDate>Sat, 29 Feb 2020 19:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/post/20200229Games101_05/</guid>
+      <guid>https://bineanju.gitee.io/blog/post/20200229Games101_05/</guid>
       <description>当这些物体都变成三角形之后，变成屏幕上的一个个像素点之后，这些像素的值和颜色应该是什么呢？这个就是着色的功能。下一步操作为着色。 挪动一下光源后，物体并没有发生变化，但是物体的颜色却发生了变化。这个问题应该如何解决，就是着色的作用。 这门课中着色的定义：对不同的物体应用不同的材质这样</description>
     </item>
     
     <item>
       <title>Games101笔记|Z-Buffer(深度缓冲)</title>
-      <link>https://bzhou830.github.io/post/20200222Games101_04/</link>
+      <link>https://bineanju.gitee.io/blog/post/20200222Games101_04/</link>
       <pubDate>Sat, 22 Feb 2020 19:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/post/20200222Games101_04/</guid>
+      <guid>https://bineanju.gitee.io/blog/post/20200222Games101_04/</guid>
       <description>2 可见性与遮挡 2.1 画家算法 原理 先对远处的物体进行光栅化，后逐步对近处的物体进行光删化操作。（画近处的物体时会覆盖掉之前画的远处的一些物体）这样就可以正确地处理遮挡的问题了。 涉及到一个问题 这里涉及到一个问题：当某些物体在深度上存在互相遮挡的情况，此时没有办法定义顺序关系，这样就无法使</description>
     </item>
     
     <item>
       <title>Games101笔记|光栅化和反走样</title>
-      <link>https://bzhou830.github.io/post/20200216Games101_03/</link>
+      <link>https://bineanju.gitee.io/blog/post/20200216Games101_03/</link>
       <pubDate>Sun, 16 Feb 2020 19:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/post/20200216Games101_03/</guid>
+      <guid>https://bineanju.gitee.io/blog/post/20200216Games101_03/</guid>
       <description>在“MVP变换矩阵推导”中首先进行了Model transformation, 也就是摆放好物体（对象）；然后就是View transformation摆放好相机（位置，拍摄方向，视场角等）；最后就是Projection transformation, 这里面包含有正交投影（Orthogtaphic projection）它是将长方体(cuboi</description>
     </item>
     
     <item>
       <title>Games101笔记|MVP变换矩阵推导</title>
-      <link>https://bzhou830.github.io/post/20200215Games101_02/</link>
+      <link>https://bineanju.gitee.io/blog/post/20200215Games101_02/</link>
       <pubDate>Sat, 15 Feb 2020 19:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/post/20200215Games101_02/</guid>
+      <guid>https://bineanju.gitee.io/blog/post/20200215Games101_02/</guid>
       <description>本文是games101课程的第3，4课的相关笔记，这篇内容对于CG非常的重要！！！特别是推导的过程，非常有必要手推一遍！。所谓的MVP变换就是：model-view-project变换。本文中使用的向量均表示的是列向量，在公式推导的过程中要注意第一点。 首先我们回想下我们在拍班级毕</description>
     </item>
     
     <item>
       <title>Games101笔记|概述和线性代数</title>
-      <link>https://bzhou830.github.io/post/20200206Games101_01/</link>
+      <link>https://bineanju.gitee.io/blog/post/20200206Games101_01/</link>
       <pubDate>Thu, 06 Feb 2020 19:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/post/20200206Games101_01/</guid>
+      <guid>https://bineanju.gitee.io/blog/post/20200206Games101_01/</guid>
       <description>本文是games101课程的第1，2课的相关笔记。这两课的内容比较基础，大学中有线性代数的学习经验就相对非常容易理解。 1. 计算机图形学概述 计算机图形学（Computer Graphics，CG）是研究计算机在硬件和软件的帮助下创建计算机图形的学科，是计算机科学的一个分支领域，主要关注</description>
     </item>
     

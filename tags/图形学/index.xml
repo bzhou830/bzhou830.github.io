@@ -2,201 +2,219 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>图形学 on 菠萝蜜</title>
-    <link>https://bzhou830.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/</link>
+    <link>https://bineanju.gitee.io/blog/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/</link>
     <description>Recent content in 图形学 on 菠萝蜜</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 15 Feb 2021 19:16:34 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 05 Aug 2022 19:16:34 +0800</lastBuildDate>
     
-	<atom:link href="https://bzhou830.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://bineanju.gitee.io/blog/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>【转载】GPU渲染管线和硬件架构浅谈</title>
+      <link>https://bineanju.gitee.io/blog/post/20220805GPU%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E5%92%8C%E7%A1%AC%E4%BB%B6%E6%9E%B6%E6%9E%84%E6%B5%85%E8%B0%88/</link>
+      <pubDate>Fri, 05 Aug 2022 19:16:34 +0800</pubDate>
+      
+      <guid>https://bineanju.gitee.io/blog/post/20220805GPU%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E5%92%8C%E7%A1%AC%E4%BB%B6%E6%9E%B6%E6%9E%84%E6%B5%85%E8%B0%88/</guid>
+      <description>作者：landonwang，腾讯 IEG 客户端开发工程师 本文简述了 GPU 的渲染管线和硬件架构，对一些常见问题进行了讨论和分析。特此分享出来，与君共勉。当然，由于本人并未从事过硬件开发的工作，文中有错漏之处在所难免，欢迎批评指正。另外本文内容量很大，总结下来有以下几点核心内容：（1）移动平台</description>
+    </item>
+    
+    <item>
+      <title>【转载】关于黑客泄漏nvidia Windows显卡驱动代码分析</title>
+      <link>https://bineanju.gitee.io/blog/post/20220501NV%E9%A9%B1%E5%8A%A8/</link>
+      <pubDate>Sun, 01 May 2022 19:16:34 +0800</pubDate>
+      
+      <guid>https://bineanju.gitee.io/blog/post/20220501NV%E9%A9%B1%E5%8A%A8/</guid>
+      <description>BTC挖矿让英伟达飞起来了，当然也与英伟达在并行计算机领域的强大技术能力有关。这次国外黑客把英伟达的代码公开给大家。让中国人有机会一睹英伟达的显卡驱动的芳容。 此贴就重点来研究一下英伟达windows驱动代码。显卡驱动对许多人来说还是比较神密的。首先做PC显卡的就那三家：nvidi</description>
+    </item>
+    
+    <item>
       <title>Shader在GPU中是如何执行的？</title>
-      <link>https://bzhou830.github.io/post/20210215GPUShader/</link>
+      <link>https://bineanju.gitee.io/blog/post/20210215GPUShader/</link>
       <pubDate>Mon, 15 Feb 2021 19:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/post/20210215GPUShader/</guid>
+      <guid>https://bineanju.gitee.io/blog/post/20210215GPUShader/</guid>
       <description>首先，我想说明一下，虽然文章的标题是 How GPU Works，但是我无意再去重复GPU工作的各个stage，流水线这些概念。本文会深入到更底层一点：GPU是如何执行shader的。在本文中，我除了GPU执行shader的方式之外，还有稍微涉及一些多核心，SIMD，超线程这些过去大家看上去貌</description>
     </item>
     
     <item>
       <title>Go语言实现RayTracing</title>
-      <link>https://bzhou830.github.io/post/20200302RayTracingInOneWeekend/</link>
+      <link>https://bineanju.gitee.io/blog/post/20200302RayTracingInOneWeekend/</link>
       <pubDate>Mon, 02 Mar 2020 19:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/post/20200302RayTracingInOneWeekend/</guid>
+      <guid>https://bineanju.gitee.io/blog/post/20200302RayTracingInOneWeekend/</guid>
       <description>Ray Tracing in one weekend是Peter Shirley ray tracing系列三部曲的第一本，也是学习ray tracing入门比较容易的一本书，原书中附带的有C++版本的code，最近在学习golang, golang中正好有image包，可以直接生成渲染好的jpg文件，那么就用golang来改写了一遍</description>
     </item>
     
     <item>
       <title>Games101笔记|Shading</title>
-      <link>https://bzhou830.github.io/post/20200229Games101_05/</link>
+      <link>https://bineanju.gitee.io/blog/post/20200229Games101_05/</link>
       <pubDate>Sat, 29 Feb 2020 19:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/post/20200229Games101_05/</guid>
+      <guid>https://bineanju.gitee.io/blog/post/20200229Games101_05/</guid>
       <description>当这些物体都变成三角形之后，变成屏幕上的一个个像素点之后，这些像素的值和颜色应该是什么呢？这个就是着色的功能。下一步操作为着色。 挪动一下光源后，物体并没有发生变化，但是物体的颜色却发生了变化。这个问题应该如何解决，就是着色的作用。 这门课中着色的定义：对不同的物体应用不同的材质这样</description>
     </item>
     
     <item>
       <title>Games101笔记|Z-Buffer(深度缓冲)</title>
-      <link>https://bzhou830.github.io/post/20200222Games101_04/</link>
+      <link>https://bineanju.gitee.io/blog/post/20200222Games101_04/</link>
       <pubDate>Sat, 22 Feb 2020 19:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/post/20200222Games101_04/</guid>
+      <guid>https://bineanju.gitee.io/blog/post/20200222Games101_04/</guid>
       <description>2 可见性与遮挡 2.1 画家算法 原理 先对远处的物体进行光栅化，后逐步对近处的物体进行光删化操作。（画近处的物体时会覆盖掉之前画的远处的一些物体）这样就可以正确地处理遮挡的问题了。 涉及到一个问题 这里涉及到一个问题：当某些物体在深度上存在互相遮挡的情况，此时没有办法定义顺序关系，这样就无法使</description>
     </item>
     
     <item>
       <title>Games101笔记|光栅化和反走样</title>
-      <link>https://bzhou830.github.io/post/20200216Games101_03/</link>
+      <link>https://bineanju.gitee.io/blog/post/20200216Games101_03/</link>
       <pubDate>Sun, 16 Feb 2020 19:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/post/20200216Games101_03/</guid>
+      <guid>https://bineanju.gitee.io/blog/post/20200216Games101_03/</guid>
       <description>在“MVP变换矩阵推导”中首先进行了Model transformation, 也就是摆放好物体（对象）；然后就是View transformation摆放好相机（位置，拍摄方向，视场角等）；最后就是Projection transformation, 这里面包含有正交投影（Orthogtaphic projection）它是将长方体(cuboi</description>
     </item>
     
     <item>
       <title>Games101笔记|MVP变换矩阵推导</title>
-      <link>https://bzhou830.github.io/post/20200215Games101_02/</link>
+      <link>https://bineanju.gitee.io/blog/post/20200215Games101_02/</link>
       <pubDate>Sat, 15 Feb 2020 19:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/post/20200215Games101_02/</guid>
+      <guid>https://bineanju.gitee.io/blog/post/20200215Games101_02/</guid>
       <description>本文是games101课程的第3，4课的相关笔记，这篇内容对于CG非常的重要！！！特别是推导的过程，非常有必要手推一遍！。所谓的MVP变换就是：model-view-project变换。本文中使用的向量均表示的是列向量，在公式推导的过程中要注意第一点。 首先我们回想下我们在拍班级毕</description>
     </item>
     
     <item>
       <title>Games101笔记|概述和线性代数</title>
-      <link>https://bzhou830.github.io/post/20200206Games101_01/</link>
+      <link>https://bineanju.gitee.io/blog/post/20200206Games101_01/</link>
       <pubDate>Thu, 06 Feb 2020 19:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/post/20200206Games101_01/</guid>
+      <guid>https://bineanju.gitee.io/blog/post/20200206Games101_01/</guid>
       <description>本文是games101课程的第1，2课的相关笔记。这两课的内容比较基础，大学中有线性代数的学习经验就相对非常容易理解。 1. 计算机图形学概述 计算机图形学（Computer Graphics，CG）是研究计算机在硬件和软件的帮助下创建计算机图形的学科，是计算机科学的一个分支领域，主要关注</description>
     </item>
     
     <item>
       <title>渲染管线之旅|14 索引页</title>
-      <link>https://bzhou830.github.io/post/20190830%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8514/</link>
+      <link>https://bineanju.gitee.io/blog/post/20190830%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8514/</link>
       <pubDate>Fri, 30 Aug 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/post/20190830%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8514/</guid>
+      <guid>https://bineanju.gitee.io/blog/post/20190830%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8514/</guid>
       <description>A trip through the Graphics Pipeline 2011 是发布在博客 http://fgiesen.wordpress.com 上的系列文章。主要涉及图形流水线在GPU中实现的方方面面。包括D3D/OpenGL app, UMD Driver, KMD Driver, GPU 硬件流水线设计等等。是非常好的学习图形学应用，GPU驱动等相关领域的资料。翻译的目的一方面是对学习的总结；另一方面是为了分享，因为国内在图形学， GPU相关的资</description>
     </item>
     
     <item>
       <title>渲染管线之旅|13 计算着色器</title>
-      <link>https://bzhou830.github.io/post/20190825%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8513/</link>
+      <link>https://bineanju.gitee.io/blog/post/20190825%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8513/</link>
       <pubDate>Sun, 25 Aug 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/post/20190825%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8513/</guid>
+      <guid>https://bineanju.gitee.io/blog/post/20190825%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8513/</guid>
       <description>欢迎回到&amp;quot;渲染管线之旅&amp;quot;系列，本篇是“渲染管线之旅”的最后部分。这个系列已经够长了，后面可能写更多与GPU相关的文章。 之前我们一直遨游在图形渲染管线的所有常规部分，以及不同层级的具体细节。这篇我们来看DX11中引入的一项重要新功能：计算着色器（Computer</description>
     </item>
     
     <item>
       <title>渲染管线之旅|12 曲面细分</title>
-      <link>https://bzhou830.github.io/post/20190820%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8512/</link>
+      <link>https://bineanju.gitee.io/blog/post/20190820%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8512/</link>
       <pubDate>Tue, 20 Aug 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/post/20190820%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8512/</guid>
+      <guid>https://bineanju.gitee.io/blog/post/20190820%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8512/</guid>
       <description>欢迎回来！这次，我们将研究D3D11 / Shader 5.x硬件世代所引入的“海报男孩”功能：细分。这个很有趣，既因为它是一个有趣的话题，又因为它标志着很长一段时间以来的第一次，这是一个重要的用户可见的组件已被添加到不可编程的图形管道中。 与从概念上讲很简单的“几何着色器”（它是一个可以看到整个</description>
     </item>
     
     <item>
       <title>渲染管线之旅|11 流输出</title>
-      <link>https://bzhou830.github.io/post/20190815%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8511/</link>
+      <link>https://bineanju.gitee.io/blog/post/20190815%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8511/</link>
       <pubDate>Thu, 15 Aug 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/post/20190815%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8511/</guid>
+      <guid>https://bineanju.gitee.io/blog/post/20190815%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8511/</guid>
       <description>欢迎回来！ 这次，重点将放在流出（SO）上。 这是一种用于将“几何着色器”阶段的输出存储到内存中，而不是将其沿管道的其余部分发送的功能。 这可以用于例如 在D3D10级别的硬件上使用D3D10 API缓存外观化的顶点数据，或作为穷人的Compute Shader（请注意，使用D3D11，即使</description>
     </item>
     
     <item>
       <title>渲染管线之旅|10 几何着色器</title>
-      <link>https://bzhou830.github.io/post/20190810%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8510/</link>
+      <link>https://bineanju.gitee.io/blog/post/20190810%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8510/</link>
       <pubDate>Sat, 10 Aug 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/post/20190810%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8510/</guid>
+      <guid>https://bineanju.gitee.io/blog/post/20190810%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8510/</guid>
       <description>欢迎回来。 上一次，我们深入到像素管线的底端。 这次，我们将切换回管道的中间，以查看D3D10：几何着色器可能是最明显的附加功能。 但是首先，我要进一步讲解如何分解本系列中的图形管道，以及与API呈现给你的视图有何不同。 Welcome back. Last time, we dove into bottom end of the pixel pipeline. This time, we’ll switch back to the middle of the pipeline to look at what is</description>
     </item>
     
     <item>
       <title>渲染管线之旅|09 像素处理之联合</title>
-      <link>https://bzhou830.github.io/post/20190805%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8509/</link>
+      <link>https://bineanju.gitee.io/blog/post/20190805%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8509/</link>
       <pubDate>Mon, 05 Aug 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/post/20190805%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8509/</guid>
+      <guid>https://bineanju.gitee.io/blog/post/20190805%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8509/</guid>
       <description>这篇文章介绍了像素处理的后半部分，即“连接阶段”。 上一阶段的工作是将少量输入流转换成着色器单元的许多独立任务。 现在，我们需要将大量独立的计算折叠到一个（正确排序的）内存操作流中。 就像我在光栅化和Z早期的文章中已经做过的那样，我将首先简要介绍需要在一般级别上完成的工作，然后再介绍如</description>
     </item>
     
     <item>
       <title>渲染管线之旅|08 像素处理之&#34;fork&#34;</title>
-      <link>https://bzhou830.github.io/post/20190801%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8508/</link>
+      <link>https://bineanju.gitee.io/blog/post/20190801%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8508/</link>
       <pubDate>Thu, 01 Aug 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/post/20190801%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8508/</guid>
+      <guid>https://bineanju.gitee.io/blog/post/20190801%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8508/</guid>
       <description>在这一部分中，我们来谈谈像素处理的前半部分:dispatch和实际的像素着色。事实上，这部分是大多数图形开发者在谈到PS stage时所关心的内容。有关alpha blend和Late-Z的内容放到下一篇文章中去探讨。后面我们会看到，硬件上PS stage的设计相是对比较复杂的。这也是</description>
     </item>
     
     <item>
       <title>渲染管线之旅|07 深度处理、模板处理</title>
-      <link>https://bzhou830.github.io/post/20190730%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8507/</link>
+      <link>https://bineanju.gitee.io/blog/post/20190730%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8507/</link>
       <pubDate>Tue, 30 Jul 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/post/20190730%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8507/</guid>
+      <guid>https://bineanju.gitee.io/blog/post/20190730%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8507/</guid>
       <description>在这一篇中，我们来讨论Z-pipline的前端部分(简称它为early-Z), 以及它是在光栅化中怎么起作用的。和上一篇一样，本篇也不会按实际的管道顺序进行讨论；我将首先描述基础算法，然后再补充管线中的各个阶段（以相反的顺序可以更简单的解释这些内容）。 1.插值 Z通过三角形进行插值，</description>
     </item>
     
     <item>
       <title>渲染管线之旅|06 三角形的生成和建立</title>
-      <link>https://bzhou830.github.io/post/20190725%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8506/</link>
+      <link>https://bineanju.gitee.io/blog/post/20190725%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8506/</link>
       <pubDate>Thu, 25 Jul 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/post/20190725%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8506/</guid>
+      <guid>https://bineanju.gitee.io/blog/post/20190725%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8506/</guid>
       <description>欢迎回来。这次我们去看看三角形的光栅化。但在光栅化三角形之前，我们需要执行三角形设置，并且在设置三角形之前，我还要解释一下我们做的准备是为了什么，最后我们来聊聊三角形硬件光栅化算法。 1.如何画一个三角形 首先，给很熟悉这部分并自己写过软纹理映射的人一点小提示：三角形光栅器一次要处理</description>
     </item>
     
     <item>
       <title>渲染管线之旅|05 图元处理、Clip/Cull, 投影和视图变换</title>
-      <link>https://bzhou830.github.io/post/20190720%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8505/</link>
+      <link>https://bineanju.gitee.io/blog/post/20190720%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8505/</link>
       <pubDate>Sat, 20 Jul 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/post/20190720%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8505/</guid>
+      <guid>https://bineanju.gitee.io/blog/post/20190720%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8505/</guid>
       <description>上一篇中我们讨论了关于“纹理和采样”，这一篇我们回到3D管线的前端。在执行完顶点着色之后，就可以实际的渲染东西了，对吗？暂时还不行， 因为在我们实际开始光栅化图元之前，仍然还有很多事要做。所以在本篇里我们不会看到任何光栅化内容——还得等到下次再讲。 1. 图元装载 当我们离开顶点处理流水线</description>
     </item>
     
     <item>
       <title>渲染管线之旅|04 纹理和采样</title>
-      <link>https://bzhou830.github.io/post/20190715%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8504/</link>
+      <link>https://bineanju.gitee.io/blog/post/20190715%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8504/</link>
       <pubDate>Mon, 15 Jul 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/post/20190715%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8504/</guid>
+      <guid>https://bineanju.gitee.io/blog/post/20190715%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8504/</guid>
       <description>上一篇讨论了顶点着色器,涵盖了GPU通用着色器处理单元的一些内容。它们都仅仅是向量处理单元, 但是当我们在访问Resource的时候,通常都不是这种向量的形式,所以GPU中还需要另一个专门用来在Pipeline中处理整数的单元：Texture Sampler. 这个单元内部相对比较复杂,复杂(也很有</description>
     </item>
     
     <item>
       <title>渲染管线之旅|03 图形管线概览及GPU中顶点处理</title>
-      <link>https://bzhou830.github.io/post/20190710%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8503/</link>
+      <link>https://bineanju.gitee.io/blog/post/20190710%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8503/</link>
       <pubDate>Wed, 10 Jul 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/post/20190710%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8503/</guid>
+      <guid>https://bineanju.gitee.io/blog/post/20190710%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8503/</guid>
       <description>通过前面几篇的内容，我们知道，应用程序中的Draw API调用会经过D3D Runtime, 用户态驱动等等各个层级，最终将命令传到GPU的命令解释器，GPU就会根据命令的内容来进行图形的计算和处理。那么这一篇我们就来看看顶点的处理流程。 1. 开胃菜 在介绍GPU的顶点处理之前，我们先看看3D渲染管线。3</description>
     </item>
     
     <item>
       <title>渲染管线之旅|02 GPU存储架构和命令处理器</title>
-      <link>https://bzhou830.github.io/post/20190705%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8502/</link>
+      <link>https://bineanju.gitee.io/blog/post/20190705%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8502/</link>
       <pubDate>Fri, 05 Jul 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/post/20190705%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8502/</guid>
+      <guid>https://bineanju.gitee.io/blog/post/20190705%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8502/</guid>
       <description>上一篇中主要介绍了3D渲染命令到达GPU之前经历过的各个阶段。用下图可以概括上一篇中所讲的内容，当然其中很多细节没有出现在图中。之前我们说KMD将命令送给了硬件，这个简单的“送”的过程实际上并不是那么简单的。我们知道显卡都是通过信号线连在主板上的，所以我们送命令都是需要走这些信号</description>
     </item>
     
     <item>
       <title>渲染管线之旅|01 软件调用栈</title>
-      <link>https://bzhou830.github.io/post/20190703%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8501/</link>
+      <link>https://bineanju.gitee.io/blog/post/20190703%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8501/</link>
       <pubDate>Wed, 03 Jul 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/post/20190703%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8501/</guid>
+      <guid>https://bineanju.gitee.io/blog/post/20190703%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8501/</guid>
       <description>简介 通常我们可以很容易的找到我们的个人电脑中显卡驱动软件调用栈的相关内容（attache到进程上，查看进程调用的dll。），但是这些调用关系是如何工作？它们又是为什么要这样做呢？这些问题就不那么容易找到答案了。我会尽量填补空白，而不会对特定的硬件进行具体的描述。我将主要讨论在Wi</description>
     </item>
     

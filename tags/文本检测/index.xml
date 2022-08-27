@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>文本检测 on 菠萝蜜</title>
-    <link>https://bzhou830.github.io/tags/%E6%96%87%E6%9C%AC%E6%A3%80%E6%B5%8B/</link>
+    <link>https://bineanju.gitee.io/blog/tags/%E6%96%87%E6%9C%AC%E6%A3%80%E6%B5%8B/</link>
     <description>Recent content in 文本检测 on 菠萝蜜</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sat, 01 Jun 2019 09:16:34 +0800</lastBuildDate>
     
-	<atom:link href="https://bzhou830.github.io/tags/%E6%96%87%E6%9C%AC%E6%A3%80%E6%B5%8B/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://bineanju.gitee.io/blog/tags/%E6%96%87%E6%9C%AC%E6%A3%80%E6%B5%8B/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>集装箱OCR：使用EAST和Tesseract</title>
-      <link>https://bzhou830.github.io/post/20190601%E9%9B%86%E8%A3%85%E7%AE%B1OCR%E4%BD%BF%E7%94%A8EAST%E5%92%8Ctesseract/</link>
+      <link>https://bineanju.gitee.io/blog/post/20190601%E9%9B%86%E8%A3%85%E7%AE%B1OCR%E4%BD%BF%E7%94%A8EAST%E5%92%8Ctesseract/</link>
       <pubDate>Sat, 01 Jun 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/post/20190601%E9%9B%86%E8%A3%85%E7%AE%B1OCR%E4%BD%BF%E7%94%A8EAST%E5%92%8Ctesseract/</guid>
+      <guid>https://bineanju.gitee.io/blog/post/20190601%E9%9B%86%E8%A3%85%E7%AE%B1OCR%E4%BD%BF%E7%94%A8EAST%E5%92%8Ctesseract/</guid>
       <description>本篇文章主要记录下使用EAST和Tesseract做自然场景中集装箱上字符OCR的一个简单的实现。 在看具体问题之前先来谈谈自然场景中文本检测这个领域。自然场景的文本检测和识别一直以来都是一个比较难的问题，在深度学习走红之前，都是绞尽脑汁的变着法子提取有用的特征，然后做定位检测。得</description>
     </item>
     

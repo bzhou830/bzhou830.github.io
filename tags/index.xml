@@ -2,30 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on 菠萝蜜</title>
-    <link>https://bzhou830.github.io/tags/</link>
+    <link>https://bineanju.gitee.io/blog/tags/</link>
     <description>Recent content in Tags on 菠萝蜜</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 20 Jun 2022 19:16:34 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 05 Aug 2022 19:16:34 +0800</lastBuildDate>
     
-	<atom:link href="https://bzhou830.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://bineanju.gitee.io/blog/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>GPU</title>
-      <link>https://bzhou830.github.io/tags/GPU/</link>
-      <pubDate>Mon, 15 Feb 2021 19:16:34 +0800</pubDate>
+      <link>https://bineanju.gitee.io/blog/tags/GPU/</link>
+      <pubDate>Fri, 05 Aug 2022 19:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/tags/GPU/</guid>
+      <guid>https://bineanju.gitee.io/blog/tags/GPU/</guid>
       <description></description>
     </item>
     
     <item>
       <title>图形学</title>
-      <link>https://bzhou830.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/</link>
-      <pubDate>Mon, 15 Feb 2021 19:16:34 +0800</pubDate>
+      <link>https://bineanju.gitee.io/blog/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/</link>
+      <pubDate>Fri, 05 Aug 2022 19:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/</guid>
+      <guid>https://bineanju.gitee.io/blog/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>驱动</title>
+      <link>https://bineanju.gitee.io/blog/tags/%E9%A9%B1%E5%8A%A8/</link>
+      <pubDate>Fri, 05 Aug 2022 19:16:34 +0800</pubDate>
+      
+      <guid>https://bineanju.gitee.io/blog/tags/%E9%A9%B1%E5%8A%A8/</guid>
       <description></description>
     </item>
     
@@ -40,235 +49,226 @@
     
     <item>
       <title>图像处理</title>
-      <link>https://bzhou830.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</link>
+      <link>https://bineanju.gitee.io/blog/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</link>
       <pubDate>Mon, 08 Jun 2020 19:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</guid>
+      <guid>https://bineanju.gitee.io/blog/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/</guid>
       <description></description>
     </item>
     
     <item>
       <title>笔记</title>
-      <link>https://bzhou830.github.io/tags/%E7%AC%94%E8%AE%B0/</link>
+      <link>https://bineanju.gitee.io/blog/tags/%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Sat, 29 Feb 2020 19:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/tags/%E7%AC%94%E8%AE%B0/</guid>
+      <guid>https://bineanju.gitee.io/blog/tags/%E7%AC%94%E8%AE%B0/</guid>
       <description></description>
     </item>
     
     <item>
       <title>C/C&#43;&#43;</title>
-      <link>https://bzhou830.github.io/tags/C/C&#43;&#43;/</link>
+      <link>https://bineanju.gitee.io/blog/tags/C/C&#43;&#43;/</link>
       <pubDate>Wed, 05 Feb 2020 19:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/tags/C/C&#43;&#43;/</guid>
+      <guid>https://bineanju.gitee.io/blog/tags/C/C&#43;&#43;/</guid>
       <description></description>
     </item>
     
     <item>
       <title>树莓派</title>
-      <link>https://bzhou830.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/</link>
+      <link>https://bineanju.gitee.io/blog/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/</link>
       <pubDate>Fri, 03 Jan 2020 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/</guid>
+      <guid>https://bineanju.gitee.io/blog/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/</guid>
       <description></description>
     </item>
     
     <item>
       <title>驱动编程</title>
-      <link>https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B/</link>
+      <link>https://bineanju.gitee.io/blog/tags/%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B/</link>
       <pubDate>Tue, 31 Dec 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>驱动</title>
-      <link>https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8/</link>
-      <pubDate>Fri, 30 Aug 2019 09:16:34 +0800</pubDate>
-      
-      <guid>https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8/</guid>
+      <guid>https://bineanju.gitee.io/blog/tags/%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B/</guid>
       <description></description>
     </item>
     
     <item>
       <title>git</title>
-      <link>https://bzhou830.github.io/tags/git/</link>
+      <link>https://bineanju.gitee.io/blog/tags/git/</link>
       <pubDate>Sat, 29 Jun 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/tags/git/</guid>
+      <guid>https://bineanju.gitee.io/blog/tags/git/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Python</title>
-      <link>https://bzhou830.github.io/tags/Python/</link>
+      <link>https://bineanju.gitee.io/blog/tags/Python/</link>
       <pubDate>Tue, 11 Jun 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/tags/Python/</guid>
+      <guid>https://bineanju.gitee.io/blog/tags/Python/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Excel</title>
-      <link>https://bzhou830.github.io/tags/Excel/</link>
+      <link>https://bineanju.gitee.io/blog/tags/Excel/</link>
       <pubDate>Mon, 10 Jun 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/tags/Excel/</guid>
+      <guid>https://bineanju.gitee.io/blog/tags/Excel/</guid>
       <description></description>
     </item>
     
     <item>
       <title>OCR</title>
-      <link>https://bzhou830.github.io/tags/OCR/</link>
+      <link>https://bineanju.gitee.io/blog/tags/OCR/</link>
       <pubDate>Sat, 01 Jun 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/tags/OCR/</guid>
+      <guid>https://bineanju.gitee.io/blog/tags/OCR/</guid>
       <description></description>
     </item>
     
     <item>
       <title>文本检测</title>
-      <link>https://bzhou830.github.io/tags/%E6%96%87%E6%9C%AC%E6%A3%80%E6%B5%8B/</link>
+      <link>https://bineanju.gitee.io/blog/tags/%E6%96%87%E6%9C%AC%E6%A3%80%E6%B5%8B/</link>
       <pubDate>Sat, 01 Jun 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/tags/%E6%96%87%E6%9C%AC%E6%A3%80%E6%B5%8B/</guid>
+      <guid>https://bineanju.gitee.io/blog/tags/%E6%96%87%E6%9C%AC%E6%A3%80%E6%B5%8B/</guid>
       <description></description>
     </item>
     
     <item>
       <title>android</title>
-      <link>https://bzhou830.github.io/tags/android/</link>
+      <link>https://bineanju.gitee.io/blog/tags/android/</link>
       <pubDate>Thu, 03 Jan 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/tags/android/</guid>
+      <guid>https://bineanju.gitee.io/blog/tags/android/</guid>
       <description></description>
     </item>
     
     <item>
       <title>jni</title>
-      <link>https://bzhou830.github.io/tags/jni/</link>
+      <link>https://bineanju.gitee.io/blog/tags/jni/</link>
       <pubDate>Thu, 03 Jan 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/tags/jni/</guid>
+      <guid>https://bineanju.gitee.io/blog/tags/jni/</guid>
       <description></description>
     </item>
     
     <item>
       <title>opencv</title>
-      <link>https://bzhou830.github.io/tags/opencv/</link>
+      <link>https://bineanju.gitee.io/blog/tags/opencv/</link>
       <pubDate>Thu, 03 Jan 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/tags/opencv/</guid>
+      <guid>https://bineanju.gitee.io/blog/tags/opencv/</guid>
       <description></description>
     </item>
     
     <item>
       <title>github</title>
-      <link>https://bzhou830.github.io/tags/github/</link>
+      <link>https://bineanju.gitee.io/blog/tags/github/</link>
       <pubDate>Tue, 01 Jan 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/tags/github/</guid>
+      <guid>https://bineanju.gitee.io/blog/tags/github/</guid>
       <description></description>
     </item>
     
     <item>
       <title>hexo</title>
-      <link>https://bzhou830.github.io/tags/hexo/</link>
+      <link>https://bineanju.gitee.io/blog/tags/hexo/</link>
       <pubDate>Tue, 01 Jan 2019 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/tags/hexo/</guid>
+      <guid>https://bineanju.gitee.io/blog/tags/hexo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Golang</title>
-      <link>https://bzhou830.github.io/tags/Golang/</link>
+      <link>https://bineanju.gitee.io/blog/tags/Golang/</link>
       <pubDate>Fri, 11 May 2018 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/tags/Golang/</guid>
+      <guid>https://bineanju.gitee.io/blog/tags/Golang/</guid>
       <description></description>
     </item>
     
     <item>
       <title>内存管理</title>
-      <link>https://bzhou830.github.io/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
+      <link>https://bineanju.gitee.io/blog/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
       <pubDate>Tue, 16 Jan 2018 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
+      <guid>https://bineanju.gitee.io/blog/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
       <description></description>
     </item>
     
     <item>
       <title>C&#43;&#43;</title>
-      <link>https://bzhou830.github.io/tags/C&#43;&#43;/</link>
+      <link>https://bineanju.gitee.io/blog/tags/C&#43;&#43;/</link>
       <pubDate>Wed, 03 May 2017 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/tags/C&#43;&#43;/</guid>
+      <guid>https://bineanju.gitee.io/blog/tags/C&#43;&#43;/</guid>
       <description></description>
     </item>
     
     <item>
       <title>设计模式</title>
-      <link>https://bzhou830.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+      <link>https://bineanju.gitee.io/blog/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
       <pubDate>Wed, 03 May 2017 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid>
+      <guid>https://bineanju.gitee.io/blog/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid>
       <description></description>
     </item>
     
     <item>
       <title>公式</title>
-      <link>https://bzhou830.github.io/tags/%E5%85%AC%E5%BC%8F/</link>
+      <link>https://bineanju.gitee.io/blog/tags/%E5%85%AC%E5%BC%8F/</link>
       <pubDate>Mon, 06 Feb 2017 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/tags/%E5%85%AC%E5%BC%8F/</guid>
+      <guid>https://bineanju.gitee.io/blog/tags/%E5%85%AC%E5%BC%8F/</guid>
       <description></description>
     </item>
     
     <item>
       <title>算法</title>
-      <link>https://bzhou830.github.io/tags/%E7%AE%97%E6%B3%95/</link>
+      <link>https://bineanju.gitee.io/blog/tags/%E7%AE%97%E6%B3%95/</link>
       <pubDate>Thu, 12 Jan 2017 19:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/tags/%E7%AE%97%E6%B3%95/</guid>
+      <guid>https://bineanju.gitee.io/blog/tags/%E7%AE%97%E6%B3%95/</guid>
       <description></description>
     </item>
     
     <item>
       <title>DICOM</title>
-      <link>https://bzhou830.github.io/tags/DICOM/</link>
+      <link>https://bineanju.gitee.io/blog/tags/DICOM/</link>
       <pubDate>Thu, 17 Nov 2016 09:29:11 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/tags/DICOM/</guid>
+      <guid>https://bineanju.gitee.io/blog/tags/DICOM/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Flask</title>
-      <link>https://bzhou830.github.io/tags/Flask/</link>
+      <link>https://bineanju.gitee.io/blog/tags/Flask/</link>
       <pubDate>Wed, 11 May 2016 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/tags/Flask/</guid>
+      <guid>https://bineanju.gitee.io/blog/tags/Flask/</guid>
       <description></description>
     </item>
     
     <item>
       <title>hugo</title>
-      <link>https://bzhou830.github.io/tags/hugo/</link>
+      <link>https://bineanju.gitee.io/blog/tags/hugo/</link>
       <pubDate>Sun, 03 Jan 2016 09:16:34 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/tags/hugo/</guid>
+      <guid>https://bineanju.gitee.io/blog/tags/hugo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>串口</title>
-      <link>https://bzhou830.github.io/tags/%E4%B8%B2%E5%8F%A3/</link>
+      <link>https://bineanju.gitee.io/blog/tags/%E4%B8%B2%E5%8F%A3/</link>
       <pubDate>Fri, 26 Apr 2013 09:29:11 +0800</pubDate>
       
-      <guid>https://bzhou830.github.io/tags/%E4%B8%B2%E5%8F%A3/</guid>
+      <guid>https://bineanju.gitee.io/blog/tags/%E4%B8%B2%E5%8F%A3/</guid>
       <description></description>
     </item>
     
