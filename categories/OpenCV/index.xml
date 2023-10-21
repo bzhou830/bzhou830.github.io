@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OpenCV on 菠萝蜜</title>
+    <link>https://bzhou830.github.io/categories/OpenCV/</link>
+    <description>Recent content in OpenCV on 菠萝蜜</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 06 Mar 2017 09:16:34 +0800</lastBuildDate>
+    
+	<atom:link href="https://bzhou830.github.io/categories/OpenCV/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>OpenCV with Python</title>
+      <link>https://bzhou830.github.io/post/20170306opencv_python/</link>
+      <pubDate>Mon, 06 Mar 2017 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/post/20170306opencv_python/</guid>
+      <description>一、Python OpenCV 入门 欢迎阅读系列教程，内容涵盖 OpenCV，它是一个图像和视频处理库，包含 C++，C，Python 和 Java 的版本。 OpenCV 用于各种图像和视频分析，如面部识别和检测，车牌识别，照片编辑，高级机器人视觉，光学字符识别等等。 你将需要两个主要的库，第三个可选：python-Ope</description>
+    </item>
+    
+  </channel>
+</rss>

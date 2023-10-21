@@ -6,19 +6,12 @@
     <description>Recent content in Posts on 菠萝蜜</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-<<<<<<< Updated upstream
-    <lastBuildDate>Fri, 05 Aug 2022 19:16:34 +0800</lastBuildDate>
-=======
     <lastBuildDate>Thu, 19 Oct 2023 19:16:34 +0800</lastBuildDate>
->>>>>>> Stashed changes
     
 	<atom:link href="https://bzhou830.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-<<<<<<< Updated upstream
-      <title>【转载】GPU渲染管线和硬件架构浅谈</title>
-=======
       <title>玄铁杯|01 开箱&#43;系统烧录&#43;环境搭建</title>
       <link>https://bzhou830.github.io/post/20231019%E7%8E%84%E9%93%81%E6%9D%AF01/</link>
       <pubDate>Thu, 19 Oct 2023 19:16:34 +0800</pubDate>
@@ -110,7 +103,6 @@
     
     <item>
       <title>GPU渲染管线和硬件架构浅谈</title>
->>>>>>> Stashed changes
       <link>https://bzhou830.github.io/post/20220805GPU%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E5%92%8C%E7%A1%AC%E4%BB%B6%E6%9E%B6%E6%9E%84%E6%B5%85%E8%B0%88/</link>
       <pubDate>Fri, 05 Aug 2022 19:16:34 +0800</pubDate>
       
@@ -119,8 +111,6 @@
     </item>
     
     <item>
-<<<<<<< Updated upstream
-=======
       <title>Windows驱动自签名</title>
       <link>https://bzhou830.github.io/post/20220802Windows%E9%A9%B1%E5%8A%A8%E8%87%AA%E7%AD%BE%E5%90%8D/</link>
       <pubDate>Tue, 02 Aug 2022 19:16:34 +0800</pubDate>
@@ -130,7 +120,6 @@
     </item>
     
     <item>
->>>>>>> Stashed changes
       <title>PiCo| 开发环境搭建</title>
       <link>https://bzhou830.github.io/post/20220705Pico%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</link>
       <pubDate>Mon, 20 Jun 2022 19:16:34 +0800</pubDate>
@@ -140,9 +129,6 @@
     </item>
     
     <item>
-<<<<<<< Updated upstream
-      <title>【转载】关于黑客泄漏nvidia Windows显卡驱动代码分析</title>
-=======
       <title>USB-HID鼠标、键盘通讯格式</title>
       <link>https://bzhou830.github.io/post/20220601GD32USB05/</link>
       <pubDate>Wed, 01 Jun 2022 19:16:34 +0800</pubDate>
@@ -153,7 +139,6 @@
     
     <item>
       <title>nvidia Windows显卡驱动代码分析</title>
->>>>>>> Stashed changes
       <link>https://bzhou830.github.io/post/20220501NV%E9%A9%B1%E5%8A%A8/</link>
       <pubDate>Sun, 01 May 2022 19:16:34 +0800</pubDate>
       
@@ -185,11 +170,7 @@
       <pubDate>Sun, 13 Feb 2022 19:16:34 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/post/20220213GD32USB03/</guid>
-<<<<<<< Updated upstream
-      <description>1. 实现思路 在GD32L233C-start板子的官方例程中有一个USB CDC的案例，此外就没有任何USB相关的案例了。但是，从GD32L233R_EVAL_Demo_Suites里面找到了有USB键盘的案例，所以最简单的实现方式就是将这个Demo移植过来到GD32L233C-st</description>
-=======
       <description>1. 实现思路 在GD32L233C-Start板子的官方例程中有一个USB CDC的例程，此外就没有任何USB相关的例程了。从这个例程中我也是可以了解USB设备的枚举过程。有了枚举过程那么剩下的就是设备描述符，HID描述符之类的了。正好有本书中对这些描述符有很好的介绍，那么我们就按照这</description>
->>>>>>> Stashed changes
     </item>
     
     <item>
@@ -1255,8 +1236,6 @@
     </item>
     
     <item>
-<<<<<<< Updated upstream
-=======
       <title>C#中结构体定义并转换字节数组</title>
       <link>https://bzhou830.github.io/post/20150805Csharp%E4%B8%AD%E7%9A%84%E7%BB%93%E6%9E%84%E4%BD%93%E5%AE%9A%E4%B9%89/</link>
       <pubDate>Wed, 05 Aug 2015 09:29:11 +0800</pubDate>
@@ -1266,7 +1245,6 @@
     </item>
     
     <item>
->>>>>>> Stashed changes
       <title>图像插值运算总结</title>
       <link>https://bzhou830.github.io/post/20150324%E5%9B%BE%E5%83%8F%E6%8F%92%E5%80%BC%E8%BF%90%E7%AE%97%E6%80%BB%E7%BB%93/</link>
       <pubDate>Tue, 24 Mar 2015 09:29:11 +0800</pubDate>

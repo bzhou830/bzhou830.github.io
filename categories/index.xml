@@ -6,55 +6,30 @@
     <description>Recent content in Categories on 菠萝蜜</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-<<<<<<< Updated upstream
-    <lastBuildDate>Fri, 05 Aug 2022 19:16:34 +0800</lastBuildDate>
-=======
     <lastBuildDate>Thu, 19 Oct 2023 19:16:34 +0800</lastBuildDate>
->>>>>>> Stashed changes
     
 	<atom:link href="https://bzhou830.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-<<<<<<< Updated upstream
-      <title>GPU</title>
-      <link>https://bzhou830.github.io/categories/GPU/</link>
-      <pubDate>Fri, 05 Aug 2022 19:16:34 +0800</pubDate>
-      
-      <guid>https://bzhou830.github.io/categories/GPU/</guid>
-=======
       <title>玄铁杯</title>
       <link>https://bzhou830.github.io/categories/%E7%8E%84%E9%93%81%E6%9D%AF/</link>
       <pubDate>Thu, 19 Oct 2023 19:16:34 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/categories/%E7%8E%84%E9%93%81%E6%9D%AF/</guid>
->>>>>>> Stashed changes
       <description></description>
     </item>
     
     <item>
-<<<<<<< Updated upstream
-      <title>PiCo</title>
-      <link>https://bzhou830.github.io/categories/PiCo/</link>
-      <pubDate>Mon, 20 Jun 2022 19:16:34 +0800</pubDate>
-      
-      <guid>https://bzhou830.github.io/categories/PiCo/</guid>
-=======
       <title>小安派</title>
       <link>https://bzhou830.github.io/categories/%E5%B0%8F%E5%AE%89%E6%B4%BE/</link>
       <pubDate>Fri, 08 Sep 2023 19:16:34 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/categories/%E5%B0%8F%E5%AE%89%E6%B4%BE/</guid>
->>>>>>> Stashed changes
       <description></description>
     </item>
     
     <item>
-<<<<<<< Updated upstream
-      <title>USB</title>
-      <link>https://bzhou830.github.io/categories/USB/</link>
-      <pubDate>Wed, 20 Apr 2022 19:16:34 +0800</pubDate>
-=======
       <title>Linux</title>
       <link>https://bzhou830.github.io/categories/Linux/</link>
       <pubDate>Tue, 01 Aug 2023 19:16:34 +0800</pubDate>
@@ -76,7 +51,6 @@
       <title>USB</title>
       <link>https://bzhou830.github.io/categories/USB/</link>
       <pubDate>Sun, 05 Feb 2023 19:16:34 +0800</pubDate>
->>>>>>> Stashed changes
       
       <guid>https://bzhou830.github.io/categories/USB/</guid>
       <description></description>
@@ -85,40 +59,22 @@
     <item>
       <title>成长</title>
       <link>https://bzhou830.github.io/categories/%E6%88%90%E9%95%BF/</link>
-<<<<<<< Updated upstream
-      <pubDate>Sat, 25 Dec 2021 19:16:34 +0800</pubDate>
-=======
       <pubDate>Sat, 31 Dec 2022 19:16:34 +0800</pubDate>
->>>>>>> Stashed changes
       
       <guid>https://bzhou830.github.io/categories/%E6%88%90%E9%95%BF/</guid>
       <description></description>
     </item>
     
     <item>
-<<<<<<< Updated upstream
-      <title>WindowsKernel</title>
-      <link>https://bzhou830.github.io/categories/WindowsKernel/</link>
-      <pubDate>Mon, 06 Dec 2021 19:16:34 +0800</pubDate>
-      
-      <guid>https://bzhou830.github.io/categories/WindowsKernel/</guid>
-=======
       <title>GPU</title>
       <link>https://bzhou830.github.io/categories/GPU/</link>
       <pubDate>Fri, 05 Aug 2022 19:16:34 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/categories/GPU/</guid>
->>>>>>> Stashed changes
       <description></description>
     </item>
     
     <item>
-<<<<<<< Updated upstream
-      <title>MCU</title>
-      <link>https://bzhou830.github.io/categories/MCU/</link>
-      <pubDate>Sat, 20 Nov 2021 19:16:34 +0800</pubDate>
-      
-=======
       <title>PiCo</title>
       <link>https://bzhou830.github.io/categories/PiCo/</link>
       <pubDate>Mon, 20 Jun 2022 19:16:34 +0800</pubDate>
@@ -132,7 +88,6 @@
       <link>https://bzhou830.github.io/categories/MCU/</link>
       <pubDate>Sat, 20 Nov 2021 19:16:34 +0800</pubDate>
       
->>>>>>> Stashed changes
       <guid>https://bzhou830.github.io/categories/MCU/</guid>
       <description></description>
     </item>

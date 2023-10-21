@@ -6,18 +6,12 @@
     <description>Recent content in WindowsKernel on 菠萝蜜</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-<<<<<<< Updated upstream
-    <lastBuildDate>Mon, 06 Dec 2021 19:16:34 +0800</lastBuildDate>
-=======
     <lastBuildDate>Mon, 06 Feb 2023 19:16:34 +0800</lastBuildDate>
->>>>>>> Stashed changes
     
 	<atom:link href="https://bzhou830.github.io/categories/WindowsKernel/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-<<<<<<< Updated upstream
-=======
       <title>ETW机制</title>
       <link>https://bzhou830.github.io/post/20230106Etw/</link>
       <pubDate>Mon, 06 Feb 2023 19:16:34 +0800</pubDate>
@@ -36,7 +30,6 @@
     </item>
     
     <item>
->>>>>>> Stashed changes
       <title>Windbg扩展|01入活</title>
       <link>https://bzhou830.github.io/post/20211207Windbg%E6%89%A9%E5%B1%95%E5%85%A5%E6%B4%BB/</link>
       <pubDate>Mon, 06 Dec 2021 19:16:34 +0800</pubDate>
