@@ -6,13 +6,111 @@
     <description>Recent content on 菠萝蜜</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
+<<<<<<< Updated upstream
     <lastBuildDate>Fri, 05 Aug 2022 19:16:34 +0800</lastBuildDate>
+=======
+    <lastBuildDate>Thu, 19 Oct 2023 19:16:34 +0800</lastBuildDate>
+>>>>>>> Stashed changes
     
 	<atom:link href="https://bzhou830.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+<<<<<<< Updated upstream
       <title>【转载】GPU渲染管线和硬件架构浅谈</title>
+=======
+      <title>玄铁杯|01 开箱&#43;系统烧录&#43;环境搭建</title>
+      <link>https://bzhou830.github.io/post/20231019%E7%8E%84%E9%93%81%E6%9D%AF01/</link>
+      <pubDate>Thu, 19 Oct 2023 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/post/20231019%E7%8E%84%E9%93%81%E6%9D%AF01/</guid>
+      <description>很幸运能入围这次的玄铁杯大赛中。因为是第二批入围的，有了第一批大佬们的经验，拿到板子的第一时间就开箱并顺利点亮了。这篇就来分享下开箱，烧录系统到搭建环境的这个过程。 1. 开箱 包装的严严实实的，还配个充气袋子。快递包装很专业。 看之前宣传中说的，荔枝派 4A对标的是树莓派4B。所以还以为荔</description>
+    </item>
+    
+    <item>
+      <title>小安派|04 GPIO</title>
+      <link>https://bzhou830.github.io/post/20230908%E5%B0%8F%E5%AE%89%E6%B4%BE04/</link>
+      <pubDate>Fri, 08 Sep 2023 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/post/20230908%E5%B0%8F%E5%AE%89%E6%B4%BE04/</guid>
+      <description>本文首先介绍LHAL库的概念，继而使用小安排的GPIO外设。并使用raspberry pi pico作为逻辑分析仪来对GPIO的输出做采样捕获验证。 1. LHAL库外设 博流的LHAL库驱动外设进行了统一的封装。下列表格则是从SDK文档中摘取出来，列举出来小安排使用的BL616芯片外设的在L</description>
+    </item>
+    
+    <item>
+      <title>小安派|03屏幕触摸功能</title>
+      <link>https://bzhou830.github.io/post/20230906%E5%B0%8F%E5%AE%89%E6%B4%BE03/</link>
+      <pubDate>Wed, 06 Sep 2023 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/post/20230906%E5%B0%8F%E5%AE%89%E6%B4%BE03/</guid>
+      <description>液晶显示和触摸的驱动都是存在于AiPi-Open-Kits\AiPi-Open-Kits\aithinker_Ai-M6X_SDK\bsp目录下的。硬件的驱动都已经写好了，我们使用他的时候只需要配置io就可以使用了。 和lcd的显示一样，配置是由用户写一个touch_conf_us</description>
+    </item>
+    
+    <item>
+      <title>小安派|02番外篇DSL_Dashboard bug分析</title>
+      <link>https://bzhou830.github.io/post/20230902%E5%B0%8F%E5%AE%89%E6%B4%BE02/</link>
+      <pubDate>Sun, 03 Sep 2023 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/post/20230902%E5%B0%8F%E5%AE%89%E6%B4%BE02/</guid>
+      <description>首先来看看这个bug出现的现象： 如上图所示，小安派上显示的时间是30点，这个显示的时间显然是有问题的。那么我们就来打开源码来挖一挖这个bug. AiPi-DSL_Dashboard的源码在/AiPi-Open-Kits/AiPi-DSL_Dashboard路径下的。 考虑到这个显示的</description>
+    </item>
+    
+    <item>
+      <title>小安派|01开发环境搭建</title>
+      <link>https://bzhou830.github.io/post/20230901%E5%B0%8F%E5%AE%89%E6%B4%BE01/</link>
+      <pubDate>Fri, 01 Sep 2023 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/post/20230901%E5%B0%8F%E5%AE%89%E6%B4%BE01/</guid>
+      <description>1. 开箱 开箱视频已发布到B站上，欢迎一件三联。 2. 开发环境搭建 论坛上已经有比较多的开发环境搭建文章了。可选windows和linux。且官方已经提供了虚拟机镜像。原本想着使用开箱即用的，结果打开百度网盘就😵了。镜像太大了，下载速度几十k。算了，还是自己安装一个吧。 首先是安装一个ubu</description>
+    </item>
+    
+    <item>
+      <title>小安派| 系列计划</title>
+      <link>https://bzhou830.github.io/post/20230900%E5%B0%8F%E5%AE%89%E6%B4%BEMenu/</link>
+      <pubDate>Fri, 01 Sep 2023 15:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/post/20230900%E5%B0%8F%E5%AE%89%E6%B4%BEMenu/</guid>
+      <description>序号 主题 内容 1 ✔ 开发环境搭建 1 ✔ nes 2 ✔ touch_pad 3 ✔ gpio 使用rp2040的逻辑分析仪进行io pwm测量 4 uart 5 adc 6 i2s 7 rtc 8 lcd 9 lvgl 10 rtos 11 ble 12 ble_keyboard</description>
+    </item>
+    
+    <item>
+      <title>Linux环境变量</title>
+      <link>https://bzhou830.github.io/post/20230801Linux%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/</link>
+      <pubDate>Tue, 01 Aug 2023 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/post/20230801Linux%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/</guid>
+      <description>1. 查看环境变量 查看环境变量有三个命令： env：env命令是environment的缩写，用于列出所有的环境变量； export：单独使用export命令也可以像env列出所有的环境变量，不过export命令还有其他额外的功能； echo $PATH： echo $PATH用于列出变量PATH的值，里面</description>
+    </item>
+    
+    <item>
+      <title>ETW机制</title>
+      <link>https://bzhou830.github.io/post/20230106Etw/</link>
+      <pubDate>Mon, 06 Feb 2023 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/post/20230106Etw/</guid>
+      <description>通过ETW获取的信息非常丰富，可以通过ETW获取到的信息有： 文件类信息，包括文件创建、删除、读写等信息。 注册表信息，包括注册表的创建、删除、读写等信息。 进程线程信息，包括进程创建退出、线程创建退出、模块加载等。 网络信息，TCP、UDP协议的发送，接收ip地址以及数据长度等。 CPU</description>
+    </item>
+    
+    <item>
+      <title>WPP Tracing</title>
+      <link>https://bzhou830.github.io/post/20230105Tracing/</link>
+      <pubDate>Sun, 05 Feb 2023 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/post/20230105Tracing/</guid>
+      <description>1. Advantages over KdPrint  It can be enabled, disabled and filtered during runtime with minimal overhead by logging in real-time binary messages Traces are are automatically included in the crash dumps Logs can be easily collected using a script Can be very useful for automating manual tests which use log&#39;s output Time Stamps, Function names and some other useful data can be easily included into log  2.Viewing the WPP trace messages in real-time  Copy the driver&#39;s PDB file from the build folder to the target machine. Copy traceview.exe from WDK install location on the build machine (C:\Program Files (x86)\Windows Kits\8.1\Tools\x64\traceview.exe) to the target machine. Start traceview as an Administrator. On the File menu, click Create New Log Session. Click Add Provider. Click PDB (Debug Information) File, and then choose the .pdb file which came with the driver&#39;s build, in the build&#39;s folder.</description>
+    </item>
+    
+    <item>
+      <title>2022总结与2023计划</title>
+      <link>https://bzhou830.github.io/post/20221231%E4%BA%8C%E9%9B%B6%E4%BA%8C%E4%BA%8C%E6%80%BB%E7%BB%93-%E5%92%8C%E4%BA%8C%E9%9B%B6%E4%BA%8C%E4%B8%89%E8%AE%A1%E5%88%92/</link>
+      <pubDate>Sat, 31 Dec 2022 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/post/20221231%E4%BA%8C%E9%9B%B6%E4%BA%8C%E4%BA%8C%E6%80%BB%E7%BB%93-%E5%92%8C%E4%BA%8C%E9%9B%B6%E4%BA%8C%E4%B8%89%E8%AE%A1%E5%88%92/</guid>
+      <description>每年年终最忐忑和惊奇的就是总结这一年的成长了。忐忑的是上一年的计划是否又落空了，惊奇的是回顾这一年发掘自己在一些领域又有了神奇的进步。</description>
+    </item>
+    
+    <item>
+      <title>GPU渲染管线和硬件架构浅谈</title>
+>>>>>>> Stashed changes
       <link>https://bzhou830.github.io/post/20220805GPU%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E5%92%8C%E7%A1%AC%E4%BB%B6%E6%9E%B6%E6%9E%84%E6%B5%85%E8%B0%88/</link>
       <pubDate>Fri, 05 Aug 2022 19:16:34 +0800</pubDate>
       
@@ -21,6 +119,18 @@
     </item>
     
     <item>
+<<<<<<< Updated upstream
+=======
+      <title>Windows驱动自签名</title>
+      <link>https://bzhou830.github.io/post/20220802Windows%E9%A9%B1%E5%8A%A8%E8%87%AA%E7%AD%BE%E5%90%8D/</link>
+      <pubDate>Tue, 02 Aug 2022 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/post/20220802Windows%E9%A9%B1%E5%8A%A8%E8%87%AA%E7%AD%BE%E5%90%8D/</guid>
+      <description>需要makecert.exe和signtool.exe这两个开发工具。这两个工具在WDK的安装包中就有的。例如我本地安装的WDK10.0.22000.0，那么在安装目录下即可看到这两个可执行文件。 先来介绍下这两个工具： makecert.exe 是用来生成证书文件的，也就是用它来生成一个后缀位.cer的文</description>
+    </item>
+    
+    <item>
+>>>>>>> Stashed changes
       <title>PiCo| 开发环境搭建</title>
       <link>https://bzhou830.github.io/post/20220705Pico%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</link>
       <pubDate>Mon, 20 Jun 2022 19:16:34 +0800</pubDate>
@@ -30,7 +140,20 @@
     </item>
     
     <item>
+<<<<<<< Updated upstream
       <title>【转载】关于黑客泄漏nvidia Windows显卡驱动代码分析</title>
+=======
+      <title>USB-HID鼠标、键盘通讯格式</title>
+      <link>https://bzhou830.github.io/post/20220601GD32USB05/</link>
+      <pubDate>Wed, 01 Jun 2022 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/post/20220601GD32USB05/</guid>
+      <description>1. 鼠标的通讯数据格式 鼠标发送给PC的数据每次4个字节 BYTE1 BYTE2 BYTE3 BYTE4 定义分别是： BYTE1 -- |--bit7: 1 表示 Y 坐标的变化量超出－256 ~ 255的范围,0表示没有溢出 |--bit6: 1 表示 X 坐标的变化量超出－256 ~ 255的范围，0表示没有溢出 |--bit5: Y 坐标变化的符号位，1表示负数，即鼠标向下移动 |--bit4: X 坐标变化的符号位，1表示</description>
+    </item>
+    
+    <item>
+      <title>nvidia Windows显卡驱动代码分析</title>
+>>>>>>> Stashed changes
       <link>https://bzhou830.github.io/post/20220501NV%E9%A9%B1%E5%8A%A8/</link>
       <pubDate>Sun, 01 May 2022 19:16:34 +0800</pubDate>
       
@@ -62,7 +185,11 @@
       <pubDate>Sun, 13 Feb 2022 19:16:34 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/post/20220213GD32USB03/</guid>
+<<<<<<< Updated upstream
       <description>1. 实现思路 在GD32L233C-start板子的官方例程中有一个USB CDC的案例，此外就没有任何USB相关的案例了。但是，从GD32L233R_EVAL_Demo_Suites里面找到了有USB键盘的案例，所以最简单的实现方式就是将这个Demo移植过来到GD32L233C-st</description>
+=======
+      <description>1. 实现思路 在GD32L233C-Start板子的官方例程中有一个USB CDC的例程，此外就没有任何USB相关的例程了。从这个例程中我也是可以了解USB设备的枚举过程。有了枚举过程那么剩下的就是设备描述符，HID描述符之类的了。正好有本书中对这些描述符有很好的介绍，那么我们就按照这</description>
+>>>>>>> Stashed changes
     </item>
     
     <item>
@@ -791,7 +918,7 @@
       <pubDate>Fri, 10 Mar 2017 00:13:27 +0000</pubDate>
       
       <guid>https://bzhou830.github.io/about/</guid>
-      <description>关于本博客 [2020.04.16更新] 购买的阿里云服务器到期了，考虑在云服务器费用问题，而且访问量好像也很低，所以不打算续费了。目前直接搭载到gitee page上，域名binean.top还在有效期内。 [2018.08.06更新] 写博客的初衷是记录学习笔记方便以后查找，以及记录自</description>
+      <description>关于本博客 [2022.09.26更新] [2020.04.16更新] 购买的阿里云服务器到期了，考虑在云服务器费用问题，而且访问量好像也很低，所以不打算续费了。目前直接搭载到gitee page上。 [2018.08.06更新] 写博客的初衷是记录学习笔记方便以后查找，以及记录自己在工作和</description>
     </item>
     
     <item>
@@ -1134,6 +1261,15 @@
       
       <guid>https://bzhou830.github.io/post/20151127OpenCV%E5%8C%BA%E5%9F%9F%E7%94%9F%E9%95%BF%E7%AE%97%E6%B3%95/</guid>
       <description>1.理论基础 区域生长算法的基本思想是将有相似性质的像素点合并到一起。对每一个区域要先指定一个种子点作为生长的起点，然后将种子点周围领域的像素点和种子点进行对比，将具有相似性质的点合并起来继续向外生长，直到没有满足条件的像素被包括进来为止。这样一个区域的生长就完成了。这个过程中有几</description>
+    </item>
+    
+    <item>
+      <title>C#中结构体定义并转换字节数组</title>
+      <link>https://bzhou830.github.io/post/20150805Csharp%E4%B8%AD%E7%9A%84%E7%BB%93%E6%9E%84%E4%BD%93%E5%AE%9A%E4%B9%89/</link>
+      <pubDate>Wed, 05 Aug 2015 09:29:11 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/post/20150805Csharp%E4%B8%AD%E7%9A%84%E7%BB%93%E6%9E%84%E4%BD%93%E5%AE%9A%E4%B9%89/</guid>
+      <description>最近的项目在做socket通信报文解析的时候，用到了结构体与字节数组的转换；由于客户端采用C++开发，服务端采用C#开发，所以双方必须保证各自定义结构体成员类型和长度一致才能保证报文解析的正确性，这一点非常重要。 ​ 首先是结构体定义，一些基本的数据类型，C#与C++都是可以匹配的：</description>
     </item>
     
     <item>

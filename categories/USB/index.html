@@ -21,7 +21,13 @@
     
     <link rel="stylesheet" href='/css/style.css'>
     <link rel="alternate" type="application/rss+xml+xml" href="https://bzhou830.github.io/categories/USB/index.xml" title="菠萝蜜" />
+<<<<<<< Updated upstream
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+=======
+    
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+
+>>>>>>> Stashed changes
 
     
 
@@ -82,6 +88,55 @@
     <article class="post">
         <header>
             <h1 class="post-title">
+<<<<<<< Updated upstream
+=======
+                <a href="https://bzhou830.github.io/post/20230105Tracing/">WPP Tracing</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2023年2月5日
+        </date>
+        
+        <div class="post-meta meta-category">
+            |
+            
+            <a href='https://bzhou830.github.io/categories/USB'>USB</a>
+            
+        </div>
+        
+        <div class="post-content">
+            1. Advantages over KdPrint  It can be enabled, disabled and filtered during runtime with minimal overhead by logging in real-time binary messages Traces are are automatically included in the crash dumps Logs can be easily collected using a script Can be very useful for automating manual tests which use log's output Time Stamps, Function names and some other useful data can be easily included into log  2.Viewing the WPP trace messages in real-time  Copy the driver's PDB file from the build folder to the target machine. Copy traceview.exe from WDK install location on the build machine (C:\Program Files (x86)\Windows Kits\8.1\Tools\x64\traceview.exe) to the target machine. Start traceview as an Administrator. On the File menu, click Create New Log Session. Click Add Provider. Click PDB (Debug Information) File, and then choose the .pdb file which came with the driver's build, in the build's folder.……
+            <p class="readmore"><a href="https://bzhou830.github.io/post/20230105Tracing/">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://bzhou830.github.io/post/20220601GD32USB05/">USB-HID鼠标、键盘通讯格式</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2022年6月1日
+        </date>
+        
+        <div class="post-meta meta-category">
+            |
+            
+            <a href='https://bzhou830.github.io/categories/USB'>USB</a>
+            
+        </div>
+        
+        <div class="post-content">
+            1. 鼠标的通讯数据格式 鼠标发送给PC的数据每次4个字节 BYTE1 BYTE2 BYTE3 BYTE4 定义分别是： BYTE1 -- |--bit7: 1 表示 Y 坐标的变化量超出－256 ~ 255的范围,0表示没有溢出 |--bit6: 1 表示 X 坐标的变化量超出－256 ~ 255的范围，0表示没有溢出 |--bit5: Y 坐标变化的符号位，1表示负数，即鼠标向下移动 |--bit4: X 坐标变化的符号位，1表示……
+            <p class="readmore"><a href="https://bzhou830.github.io/post/20220601GD32USB05/">阅读全文</a></p>
+        </div>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+>>>>>>> Stashed changes
                 <a href="https://bzhou830.github.io/post/20220420GD32USBEx/">USB探索| Flash 烧录器</a>
             </h1>
         </header>
@@ -143,7 +198,11 @@
         </div>
         
         <div class="post-content">
+<<<<<<< Updated upstream
             1. 实现思路 在GD32L233C-start板子的官方例程中有一个USB CDC的案例，此外就没有任何USB相关的案例了。但是，从GD32L233R_EVAL_Demo_Suites里面找到了有USB键盘的案例，所以最简单的实现方式就是将这个Demo移植过来到GD32L233C-st……
+=======
+            1. 实现思路 在GD32L233C-Start板子的官方例程中有一个USB CDC的例程，此外就没有任何USB相关的例程了。从这个例程中我也是可以了解USB设备的枚举过程。有了枚举过程那么剩下的就是设备描述符，HID描述符之类的了。正好有本书中对这些描述符有很好的介绍，那么我们就按照这……
+>>>>>>> Stashed changes
             <p class="readmore"><a href="https://bzhou830.github.io/post/20220213GD32USB03/">阅读全文</a></p>
         </div>
     </article>
@@ -240,7 +299,11 @@
                 
                     <div>
                         <div style="width: 200px; height: 200px; border-radius:100%; overflow:hidden;">
+<<<<<<< Updated upstream
                             <img src=https://bzhou830.github.io/about/touxiang.jpg >
+=======
+                            <img src=http://localhost:1313/about/touxiang.jpg >
+>>>>>>> Stashed changes
                         </div>
                     </div>
 
@@ -276,7 +339,11 @@
             <a href="https://bzhou830.github.io/about/" title="欢迎关注微信公众号" target="_blank">
                 
                     <h3 class="widget-title">欢迎关注微信公众号</h3>
+<<<<<<< Updated upstream
                     <img src="https://bzhou830.github.io/about/qrcode.jpg" >
+=======
+                    <img src="http://localhost:1313/about/qrcode.jpg" >
+>>>>>>> Stashed changes
                 
             </a>
         </li>
@@ -308,6 +375,11 @@
     
     <li><a href="https://bzhou830.github.io/categories/Golang/">Golang (10)</a></li>
     
+<<<<<<< Updated upstream
+=======
+    <li><a href="https://bzhou830.github.io/categories/Linux/">Linux (1)</a></li>
+    
+>>>>>>> Stashed changes
     <li><a href="https://bzhou830.github.io/categories/MCU/">MCU (1)</a></li>
     
     <li><a href="https://bzhou830.github.io/categories/Misc/">Misc (13)</a></li>
@@ -318,11 +390,19 @@
     
     <li><a href="https://bzhou830.github.io/categories/Python/">Python (12)</a></li>
     
+<<<<<<< Updated upstream
     <li><a href="https://bzhou830.github.io/categories/USB/">USB (6)</a></li>
     
     <li><a href="https://bzhou830.github.io/categories/WindowsKernel/">WindowsKernel (9)</a></li>
     
     <li><a href="https://bzhou830.github.io/categories/%E4%B8%B2%E5%8F%A3/">串口 (5)</a></li>
+=======
+    <li><a href="https://bzhou830.github.io/categories/USB/">USB (8)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/WindowsKernel/">WindowsKernel (11)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E4%B8%B2%E5%8F%A3/">串口 (6)</a></li>
+>>>>>>> Stashed changes
     
     <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">图像处理 (14)</a></li>
     
@@ -330,7 +410,15 @@
     
     <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E8%AE%BA/">图论 (12)</a></li>
     
+<<<<<<< Updated upstream
     <li><a href="https://bzhou830.github.io/categories/%E6%88%90%E9%95%BF/">成长 (5)</a></li>
+=======
+    <li><a href="https://bzhou830.github.io/categories/%E5%B0%8F%E5%AE%89%E6%B4%BE/">小安派 (5)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E6%88%90%E9%95%BF/">成长 (6)</a></li>
+    
+    <li><a href="https://bzhou830.github.io/categories/%E7%8E%84%E9%93%81%E6%9D%AF/">玄铁杯 (1)</a></li>
+>>>>>>> Stashed changes
     
     <li><a href="https://bzhou830.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式 (1)</a></li>
     
@@ -342,6 +430,7 @@
 <ul class="widget-list">
     
     <li>
+<<<<<<< Updated upstream
         <a href="https://bzhou830.github.io/post/20220805GPU%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E5%92%8C%E7%A1%AC%E4%BB%B6%E6%9E%B6%E6%9E%84%E6%B5%85%E8%B0%88/" title="【转载】GPU渲染管线和硬件架构浅谈">【转载】GPU渲染管线和硬件架构浅谈</a>
     </li>
     
@@ -379,6 +468,45 @@
     
     <li>
         <a href="https://bzhou830.github.io/post/20211225%E4%BA%8C%E9%9B%B6%E4%BA%8C%E4%B8%80%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" title="2021年终总结">2021年终总结</a>
+=======
+        <a href="https://bzhou830.github.io/post/20231019%E7%8E%84%E9%93%81%E6%9D%AF01/" title="玄铁杯|01 开箱&#43;系统烧录&#43;环境搭建">玄铁杯|01 开箱&#43;系统烧录&#43;环境搭建</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20230908%E5%B0%8F%E5%AE%89%E6%B4%BE04/" title="小安派|04 GPIO">小安派|04 GPIO</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20230906%E5%B0%8F%E5%AE%89%E6%B4%BE03/" title="小安派|03屏幕触摸功能">小安派|03屏幕触摸功能</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20230902%E5%B0%8F%E5%AE%89%E6%B4%BE02/" title="小安派|02番外篇DSL_Dashboard bug分析">小安派|02番外篇DSL_Dashboard bug分析</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20230901%E5%B0%8F%E5%AE%89%E6%B4%BE01/" title="小安派|01开发环境搭建">小安派|01开发环境搭建</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20230900%E5%B0%8F%E5%AE%89%E6%B4%BEMenu/" title="小安派| 系列计划">小安派| 系列计划</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20230801Linux%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" title="Linux环境变量">Linux环境变量</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20230106Etw/" title="ETW机制">ETW机制</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20230105Tracing/" title="WPP Tracing">WPP Tracing</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20221231%E4%BA%8C%E9%9B%B6%E4%BA%8C%E4%BA%8C%E6%80%BB%E7%BB%93-%E5%92%8C%E4%BA%8C%E9%9B%B6%E4%BA%8C%E4%B8%89%E8%AE%A1%E5%88%92/" title="2022总结与2023计划">2022总结与2023计划</a>
+>>>>>>> Stashed changes
     </li>
     
 </ul>
@@ -424,6 +552,11 @@
     
     <a href="https://bzhou830.github.io/tags/Golang/">Golang</a>
     
+<<<<<<< Updated upstream
+=======
+    <a href="https://bzhou830.github.io/tags/Linux/">Linux</a>
+    
+>>>>>>> Stashed changes
     <a href="https://bzhou830.github.io/tags/OCR/">OCR</a>
     
     <a href="">OpenCV</a>
@@ -454,10 +587,20 @@
     
     <a href="https://bzhou830.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学</a>
     
+<<<<<<< Updated upstream
+=======
+    <a href="https://bzhou830.github.io/tags/%E5%B0%8F%E5%AE%89%E6%B4%BE/">小安派</a>
+    
+>>>>>>> Stashed changes
     <a href="https://bzhou830.github.io/tags/%E6%96%87%E6%9C%AC%E6%A3%80%E6%B5%8B/">文本检测</a>
     
     <a href="https://bzhou830.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a>
     
+<<<<<<< Updated upstream
+=======
+    <a href="https://bzhou830.github.io/tags/%E7%8E%84%E9%93%81%E6%9D%AF/">玄铁杯</a>
+    
+>>>>>>> Stashed changes
     <a href="https://bzhou830.github.io/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
     
     <a href="https://bzhou830.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a>
@@ -477,7 +620,11 @@
     </div>
     <footer id="footer">
     <div class="container">
+<<<<<<< Updated upstream
         &copy; 2022 <a href="https://bzhou830.github.io/">菠萝蜜 By Binean</a>.
+=======
+        &copy; 2023 <a href="https://bzhou830.github.io/">菠萝蜜 By Binean</a>.
+>>>>>>> Stashed changes
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
         <br><a href="http://www.beian.miit.gov.cn/" target="_blank">鄂ICP备20004395号</a>. 
@@ -492,7 +639,12 @@
 
 
 
+<<<<<<< Updated upstream
     <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+=======
+    
+    <script type="text/javascript" src='/js/busuanzi.pure.mini.js' async></script>
+>>>>>>> Stashed changes
 
 
 

@@ -6,10 +6,23 @@
     <description>Recent content in C/C&#43;&#43; on 菠萝蜜</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
+<<<<<<< Updated upstream
     <lastBuildDate>Wed, 05 Feb 2020 19:16:34 +0800</lastBuildDate>
+=======
+    <lastBuildDate>Tue, 02 Aug 2022 19:16:34 +0800</lastBuildDate>
+>>>>>>> Stashed changes
     
 	<atom:link href="https://bzhou830.github.io/tags/C/C++/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Windows驱动自签名</title>
+      <link>https://bzhou830.github.io/post/20220802Windows%E9%A9%B1%E5%8A%A8%E8%87%AA%E7%AD%BE%E5%90%8D/</link>
+      <pubDate>Tue, 02 Aug 2022 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/post/20220802Windows%E9%A9%B1%E5%8A%A8%E8%87%AA%E7%AD%BE%E5%90%8D/</guid>
+      <description>需要makecert.exe和signtool.exe这两个开发工具。这两个工具在WDK的安装包中就有的。例如我本地安装的WDK10.0.22000.0，那么在安装目录下即可看到这两个可执行文件。 先来介绍下这两个工具： makecert.exe 是用来生成证书文件的，也就是用它来生成一个后缀位.cer的文</description>
+    </item>
     
     <item>
       <title>C&#43;&#43;中的字符串split</title>
@@ -33,6 +46,7 @@
       <title>Windows内核编程05|调试</title>
       <link>https://bzhou830.github.io/post/20191231WindowsKernelPrograming05Debugging/</link>
       <pubDate>Tue, 31 Dec 2019 09:16:34 +0800</pubDate>
+<<<<<<< Updated upstream
       
       <guid>https://bzhou830.github.io/post/20191231WindowsKernelPrograming05Debugging/</guid>
       <description></description>
@@ -70,6 +84,45 @@
       <link>https://bzhou830.github.io/post/20191224WindowsKernelProgramingSummer02/</link>
       <pubDate>Tue, 24 Dec 2019 09:16:34 +0800</pubDate>
       
+=======
+      
+      <guid>https://bzhou830.github.io/post/20191231WindowsKernelPrograming05Debugging/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Windows内核编程04|内核工作流程</title>
+      <link>https://bzhou830.github.io/post/20191230WindowsKernelPrograming04KernelFlow/</link>
+      <pubDate>Mon, 30 Dec 2019 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/post/20191230WindowsKernelPrograming04KernelFlow/</guid>
+      <description>1 简介 在应用层利用SetThreadPriority等API设置线程优先级是受到进程优先级限制的，所以本节就计划通过编写一个驱动程序和应用程序相结合突破这种限制。本节代码放在了Github上访问此链接 2 驱动程序初始化 先按照上一节的介绍来了解一下创建一个驱动程序的基本流程：入口函数</description>
+    </item>
+    
+    <item>
+      <title>Windows内核编程03|内核编程基础</title>
+      <link>https://bzhou830.github.io/post/20191229WindowsKernelPrograming03KernelBasic/</link>
+      <pubDate>Sun, 29 Dec 2019 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/post/20191229WindowsKernelPrograming03KernelBasic/</guid>
+      <description>1. 内核编程一般准则 用户编程和内核编程之间的差别 1.1 未处理的异常 在用户模式下如果程序出现未处理的异常，整个程序会直接中止；在内核模式下出现未处理的异常，会造成系统奔溃，出现BSOD（蓝屏）。所以内核代码得非常小心，编译时绝对不能跳过任何细节和错误检查。 1.2 终止 当用户进程终止时不管是否正</description>
+    </item>
+    
+    <item>
+      <title>Windows内核编程02|环境搭建和部署测试</title>
+      <link>https://bzhou830.github.io/post/20191228WindowsKernelPrograming02EnvSetup/</link>
+      <pubDate>Sat, 28 Dec 2019 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/post/20191228WindowsKernelPrograming02EnvSetup/</guid>
+      <description>1.安装VisualStudio2019 2.安装WindowsDriverKit 3.创建项目 4.添加代码 // driver.c #include &amp;lt;ntddk.h&amp;gt; // DriverEntry Routine DRIVER_INITIALIZE DriverEntry; // Unload Routine DRIVER_UNLOAD DriverUnload; // DriverEntry: 驱动程序的入口点 // DriverObject: 驱动程序对象 // RegistryPath: 注册表中的路径(驱动程序路径) NTSTATUS DriverEntry( _In_ PDRIVER_OBJECT DriverObject, _In_ PUNICODE_STRING RegistryPath ) { // 编译器默认的警告等级为 /W4， // 并且开启 /WX 将警告视为错误</description>
+    </item>
+    
+    <item>
+      <title>Windows内核开发总结(二)</title>
+      <link>https://bzhou830.github.io/post/20191224WindowsKernelProgramingSummer02/</link>
+      <pubDate>Tue, 24 Dec 2019 09:16:34 +0800</pubDate>
+      
+>>>>>>> Stashed changes
       <guid>https://bzhou830.github.io/post/20191224WindowsKernelProgramingSummer02/</guid>
       <description>同步异步的两种用法 FILE_FLAG_OVERLAPPED异步打开参数 在CreateFile打开设备对象时 HANDLE CreateFile( LPCSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, //FILE_FLAG_OVERLAPPED HANDLE hTemplateFile ); 加入FILE_FLAG_OVERLAPPED参数就是以异步的方式打开驱动的设备对象 与驱动通讯时如下的调用界面及异步结构，需要设置一个OVE</description>
     </item>

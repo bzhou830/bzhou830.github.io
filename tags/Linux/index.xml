@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on 菠萝蜜</title>
+    <link>https://bzhou830.github.io/tags/Linux/</link>
+    <description>Recent content in Linux on 菠萝蜜</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 01 Aug 2023 19:16:34 +0800</lastBuildDate>
+    
+	<atom:link href="https://bzhou830.github.io/tags/Linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Linux环境变量</title>
+      <link>https://bzhou830.github.io/post/20230801Linux%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/</link>
+      <pubDate>Tue, 01 Aug 2023 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/post/20230801Linux%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/</guid>
+      <description>1. 查看环境变量 查看环境变量有三个命令： env：env命令是environment的缩写，用于列出所有的环境变量； export：单独使用export命令也可以像env列出所有的环境变量，不过export命令还有其他额外的功能； echo $PATH： echo $PATH用于列出变量PATH的值，里面</description>
+    </item>
+    
+  </channel>
+</rss>

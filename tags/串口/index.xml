@@ -6,10 +6,19 @@
     <description>Recent content in 串口 on 菠萝蜜</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 26 Apr 2013 09:29:11 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 05 Aug 2015 09:29:11 +0800</lastBuildDate>
     
 	<atom:link href="https://bzhou830.github.io/tags/%E4%B8%B2%E5%8F%A3/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>C#中结构体定义并转换字节数组</title>
+      <link>https://bzhou830.github.io/post/20150805Csharp%E4%B8%AD%E7%9A%84%E7%BB%93%E6%9E%84%E4%BD%93%E5%AE%9A%E4%B9%89/</link>
+      <pubDate>Wed, 05 Aug 2015 09:29:11 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/post/20150805Csharp%E4%B8%AD%E7%9A%84%E7%BB%93%E6%9E%84%E4%BD%93%E5%AE%9A%E4%B9%89/</guid>
+      <description>最近的项目在做socket通信报文解析的时候，用到了结构体与字节数组的转换；由于客户端采用C++开发，服务端采用C#开发，所以双方必须保证各自定义结构体成员类型和长度一致才能保证报文解析的正确性，这一点非常重要。 ​ 首先是结构体定义，一些基本的数据类型，C#与C++都是可以匹配的：</description>
+    </item>
     
     <item>
       <title>C# 串口操作系列(5)</title>

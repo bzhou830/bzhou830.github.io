@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>玄铁杯 on 菠萝蜜</title>
+    <link>https://bzhou830.github.io/tags/%E7%8E%84%E9%93%81%E6%9D%AF/</link>
+    <description>Recent content in 玄铁杯 on 菠萝蜜</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 19 Oct 2023 19:16:34 +0800</lastBuildDate>
+    
+	<atom:link href="https://bzhou830.github.io/tags/%E7%8E%84%E9%93%81%E6%9D%AF/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>玄铁杯|01 开箱&#43;系统烧录&#43;环境搭建</title>
+      <link>https://bzhou830.github.io/post/20231019%E7%8E%84%E9%93%81%E6%9D%AF01/</link>
+      <pubDate>Thu, 19 Oct 2023 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/post/20231019%E7%8E%84%E9%93%81%E6%9D%AF01/</guid>
+      <description>很幸运能入围这次的玄铁杯大赛中。因为是第二批入围的，有了第一批大佬们的经验，拿到板子的第一时间就开箱并顺利点亮了。这篇就来分享下开箱，烧录系统到搭建环境的这个过程。 1. 开箱 包装的严严实实的，还配个充气袋子。快递包装很专业。 看之前宣传中说的，荔枝派 4A对标的是树莓派4B。所以还以为荔</description>
+    </item>
+    
+  </channel>
+</rss>

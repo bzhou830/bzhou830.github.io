@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>小安派 on 菠萝蜜</title>
+    <link>https://bzhou830.github.io/tags/%E5%B0%8F%E5%AE%89%E6%B4%BE/</link>
+    <description>Recent content in 小安派 on 菠萝蜜</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Fri, 08 Sep 2023 19:16:34 +0800</lastBuildDate>
+    
+	<atom:link href="https://bzhou830.github.io/tags/%E5%B0%8F%E5%AE%89%E6%B4%BE/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>小安派|04 GPIO</title>
+      <link>https://bzhou830.github.io/post/20230908%E5%B0%8F%E5%AE%89%E6%B4%BE04/</link>
+      <pubDate>Fri, 08 Sep 2023 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/post/20230908%E5%B0%8F%E5%AE%89%E6%B4%BE04/</guid>
+      <description>本文首先介绍LHAL库的概念，继而使用小安排的GPIO外设。并使用raspberry pi pico作为逻辑分析仪来对GPIO的输出做采样捕获验证。 1. LHAL库外设 博流的LHAL库驱动外设进行了统一的封装。下列表格则是从SDK文档中摘取出来，列举出来小安排使用的BL616芯片外设的在L</description>
+    </item>
+    
+    <item>
+      <title>小安派|03屏幕触摸功能</title>
+      <link>https://bzhou830.github.io/post/20230906%E5%B0%8F%E5%AE%89%E6%B4%BE03/</link>
+      <pubDate>Wed, 06 Sep 2023 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/post/20230906%E5%B0%8F%E5%AE%89%E6%B4%BE03/</guid>
+      <description>液晶显示和触摸的驱动都是存在于AiPi-Open-Kits\AiPi-Open-Kits\aithinker_Ai-M6X_SDK\bsp目录下的。硬件的驱动都已经写好了，我们使用他的时候只需要配置io就可以使用了。 和lcd的显示一样，配置是由用户写一个touch_conf_us</description>
+    </item>
+    
+    <item>
+      <title>小安派|02番外篇DSL_Dashboard bug分析</title>
+      <link>https://bzhou830.github.io/post/20230902%E5%B0%8F%E5%AE%89%E6%B4%BE02/</link>
+      <pubDate>Sun, 03 Sep 2023 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/post/20230902%E5%B0%8F%E5%AE%89%E6%B4%BE02/</guid>
+      <description>首先来看看这个bug出现的现象： 如上图所示，小安派上显示的时间是30点，这个显示的时间显然是有问题的。那么我们就来打开源码来挖一挖这个bug. AiPi-DSL_Dashboard的源码在/AiPi-Open-Kits/AiPi-DSL_Dashboard路径下的。 考虑到这个显示的</description>
+    </item>
+    
+    <item>
+      <title>小安派|01开发环境搭建</title>
+      <link>https://bzhou830.github.io/post/20230901%E5%B0%8F%E5%AE%89%E6%B4%BE01/</link>
+      <pubDate>Fri, 01 Sep 2023 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/post/20230901%E5%B0%8F%E5%AE%89%E6%B4%BE01/</guid>
+      <description>1. 开箱 开箱视频已发布到B站上，欢迎一件三联。 2. 开发环境搭建 论坛上已经有比较多的开发环境搭建文章了。可选windows和linux。且官方已经提供了虚拟机镜像。原本想着使用开箱即用的，结果打开百度网盘就😵了。镜像太大了，下载速度几十k。算了，还是自己安装一个吧。 首先是安装一个ubu</description>
+    </item>
+    
+    <item>
+      <title>小安派| 系列计划</title>
+      <link>https://bzhou830.github.io/post/20230900%E5%B0%8F%E5%AE%89%E6%B4%BEMenu/</link>
+      <pubDate>Fri, 01 Sep 2023 15:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/post/20230900%E5%B0%8F%E5%AE%89%E6%B4%BEMenu/</guid>
+      <description>序号 主题 内容 1 ✔ 开发环境搭建 1 ✔ nes 2 ✔ touch_pad 3 ✔ gpio 使用rp2040的逻辑分析仪进行io pwm测量 4 uart 5 adc 6 i2s 7 rtc 8 lcd 9 lvgl 10 rtos 11 ble 12 ble_keyboard</description>
+    </item>
+    
+  </channel>
+</rss>
