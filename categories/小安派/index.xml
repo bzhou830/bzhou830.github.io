@@ -6,10 +6,19 @@
     <description>Recent content in 小安派 on 菠萝蜜</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 08 Sep 2023 19:16:34 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 10 Sep 2023 19:16:34 +0800</lastBuildDate>
     
 	<atom:link href="https://bzhou830.github.io/categories/%E5%B0%8F%E5%AE%89%E6%B4%BE/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>小安派|04 DIY作品 小霸王游戏机</title>
+      <link>https://bzhou830.github.io/post/20230910%E5%B0%8F%E5%AE%89%E6%B4%BE05/</link>
+      <pubDate>Sun, 10 Sep 2023 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/post/20230910%E5%B0%8F%E5%AE%89%E6%B4%BE05/</guid>
+      <description>1.作品展示 作品功能可见以下B站视频 https://www.bilibili.com/video/BV1WG411C7iM/ 外壳可以使用灰太狼大佬提供的外壳STL文件。在嘉立创三维猴上打印（外壳12元+快递6元）。 外壳从以下的帖子中获取： 模型分享 2.作品说明 2.1 硬件部分 硬件上使用到了AiPi-Eye-S1开发板以及3.5寸 240*320像素的电容触摸屏，使用时可以使</description>
+    </item>
     
     <item>
       <title>小安派|04 GPIO</title>
