@@ -1,18 +1,36 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>小安派 on 菠萝蜜</title>
+    <title>小安派 on 拿了桔子跑呃</title>
     <link>https://bzhou830.github.io/categories/%E5%B0%8F%E5%AE%89%E6%B4%BE/</link>
-    <description>Recent content in 小安派 on 菠萝蜜</description>
+    <description>Recent content in 小安派 on 拿了桔子跑呃</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 10 Sep 2023 19:16:34 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 15 Sep 2023 06:16:34 +0800</lastBuildDate>
     
 	<atom:link href="https://bzhou830.github.io/categories/%E5%B0%8F%E5%AE%89%E6%B4%BE/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>小安派|04 DIY作品 小霸王游戏机</title>
+      <title>小安派|07 DIY作品 CC表</title>
+      <link>https://bzhou830.github.io/post/20230915%E5%B0%8F%E5%AE%89%E6%B4%BE07CC%E8%A1%A8/</link>
+      <pubDate>Fri, 15 Sep 2023 06:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/post/20230915%E5%B0%8F%E5%AE%89%E6%B4%BE07CC%E8%A1%A8/</guid>
+      <description>上一篇中我们分析了硬件的可行性。然后使用lvgl在小安派s1上做了一个简单的ui界面。这篇我们来研究下INA226这个IC的使用。 1.INA226模块 INA226是一款集成了高精度电流和电压测量功能的数字电流/功率监测芯片。它可以通过I2C接口与微控制器或其他设备通信，用于实时监</description>
+    </item>
+    
+    <item>
+      <title>小安派|06 DIY作品 CC表</title>
+      <link>https://bzhou830.github.io/post/20230912%E5%B0%8F%E5%AE%89%E6%B4%BE06CC%E8%A1%A8/</link>
+      <pubDate>Tue, 12 Sep 2023 06:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/post/20230912%E5%B0%8F%E5%AE%89%E6%B4%BE06CC%E8%A1%A8/</guid>
+      <description>1.硬件分析 Power-Z上使用的是INA226，正好手上有这个芯片。那么搭配小安派惊艳的屏幕应该能实现出来一个高颜值的CC表。打开原理图可以看到S1正好预留了一个I2C的接口，完美！ 这个接口对应于PCB的这个位置： 看完控制板，我们再来看看INA226的接口电路原理图. 对应PCB</description>
+    </item>
+    
+    <item>
+      <title>小安派|05 DIY作品 小霸王游戏机</title>
       <link>https://bzhou830.github.io/post/20230910%E5%B0%8F%E5%AE%89%E6%B4%BE05/</link>
       <pubDate>Sun, 10 Sep 2023 19:16:34 +0800</pubDate>
       
@@ -35,7 +53,7 @@
       <pubDate>Wed, 06 Sep 2023 19:16:34 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/post/20230906%E5%B0%8F%E5%AE%89%E6%B4%BE03/</guid>
-      <description>液晶显示和触摸的驱动都是存在于AiPi-Open-Kits\AiPi-Open-Kits\aithinker_Ai-M6X_SDK\bsp目录下的。硬件的驱动都已经写好了，我们使用他的时候只需要配置io就可以使用了。 和lcd的显示一样，配置是由用户写一个touch_conf_us</description>
+      <description>&amp;laquo;&amp;laquo;&amp;laquo;&amp;lt; Updated upstream 液晶显示和触摸的驱动都是存在于AiPi-Open-Kits\AiPi-Open-Kits\aithinker_Ai-M6X_SDK\bsp目录下的。硬件的驱动都已经写好了，我们使用他的时候只需要配置io就可以使用了。 和lcd的显示一样，配置是由用户写一个touch_conf</description>
     </item>
     
     <item>
@@ -62,7 +80,7 @@
       <pubDate>Fri, 01 Sep 2023 15:16:34 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/post/20230900%E5%B0%8F%E5%AE%89%E6%B4%BEMenu/</guid>
-      <description>序号 主题 内容 1 ✔ 开发环境搭建 1 ✔ nes 2 ✔ touch_pad 3 ✔ gpio 使用rp2040的逻辑分析仪进行io pwm测量 4 uart 5 adc 6 i2s 7 rtc 8 lcd 9 lvgl 10 rtos 11 ble 12 ble_keyboard</description>
+      <description>序号 主题 内容 1 ✔ 开发环境搭建 1 ✔ nes 2 ✔ touch_pad &amp;laquo;&amp;laquo;&amp;laquo;&amp;lt; Updated upstream 3 ✔ gpio 使用rp2040的逻辑分析仪进行io pwm测量 ======= | 3 | gpio | 使用rp2040的逻辑分析仪进行io pwm测量 | Stashed changes | 4 | uart | | | 5 | adc | | | 6 | i2s | | | 7 | rtc | | | 8 | lcd | | | 9 | lvgl | | | 10 | rtos | | | 11 | ble | | | 12 | ble_keyboard | |</description>
     </item>
     
   </channel>

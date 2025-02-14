@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>环境部署 on 拿了桔子跑呃</title>
+    <link>https://bzhou830.github.io/tags/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/</link>
+    <description>Recent content in 环境部署 on 拿了桔子跑呃</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 04 Feb 2025 09:16:34 +0800</lastBuildDate>
+    
+	<atom:link href="https://bzhou830.github.io/tags/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>DeepSeek R1本地化环境部署</title>
+      <link>https://bzhou830.github.io/post/20250204DeepSeek%E6%9C%AC%E5%9C%B0%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</link>
+      <pubDate>Tue, 04 Feb 2025 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/post/20250204DeepSeek%E6%9C%AC%E5%9C%B0%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</guid>
+      <description>首先下载安装 Ollama（https://ollama.com/），它可以在本地运行和管理大模型。这里是在windows环境下搭建的，所以直接就是下载windows下的Ollama安装包。 下载后直接双击安装 安装完成后我们就可以去拉取模型了。 可以进入Ollama官网左上方的 “Mod</description>
+    </item>
+    
+  </channel>
+</rss>

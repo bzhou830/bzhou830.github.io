@@ -1,15 +1,87 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on 菠萝蜜</title>
+    <title>Tags on 拿了桔子跑呃</title>
     <link>https://bzhou830.github.io/tags/</link>
-    <description>Recent content in Tags on 菠萝蜜</description>
+    <description>Recent content in Tags on 拿了桔子跑呃</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 19 Oct 2023 19:16:34 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 04 Feb 2025 09:16:34 +0800</lastBuildDate>
     
 	<atom:link href="https://bzhou830.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>DeepSeek</title>
+      <link>https://bzhou830.github.io/tags/DeepSeek/</link>
+      <pubDate>Tue, 04 Feb 2025 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/tags/DeepSeek/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>大模型</title>
+      <link>https://bzhou830.github.io/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/</link>
+      <pubDate>Tue, 04 Feb 2025 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>环境部署</title>
+      <link>https://bzhou830.github.io/tags/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/</link>
+      <pubDate>Tue, 04 Feb 2025 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/tags/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DIY</title>
+      <link>https://bzhou830.github.io/tags/DIY/</link>
+      <pubDate>Wed, 20 Nov 2024 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/tags/DIY/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ESP32</title>
+      <link>https://bzhou830.github.io/tags/ESP32/</link>
+      <pubDate>Wed, 20 Nov 2024 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/tags/ESP32/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>驱动</title>
+      <link>https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8/</link>
+      <pubDate>Wed, 20 Nov 2024 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>C/C&#43;&#43;</title>
+      <link>https://bzhou830.github.io/tags/C/C&#43;&#43;/</link>
+      <pubDate>Thu, 01 Feb 2024 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/tags/C/C&#43;&#43;/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>驱动编程</title>
+      <link>https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B/</link>
+      <pubDate>Thu, 01 Feb 2024 19:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>玄铁杯</title>
@@ -23,7 +95,7 @@
     <item>
       <title>小安派</title>
       <link>https://bzhou830.github.io/tags/%E5%B0%8F%E5%AE%89%E6%B4%BE/</link>
-      <pubDate>Sun, 10 Sep 2023 19:16:34 +0800</pubDate>
+      <pubDate>Fri, 15 Sep 2023 06:16:34 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/tags/%E5%B0%8F%E5%AE%89%E6%B4%BE/</guid>
       <description></description>
@@ -53,33 +125,6 @@
       <pubDate>Fri, 05 Aug 2022 19:16:34 +0800</pubDate>
       
       <guid>https://bzhou830.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>驱动</title>
-      <link>https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8/</link>
-      <pubDate>Fri, 05 Aug 2022 19:16:34 +0800</pubDate>
-      
-      <guid>https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>C/C&#43;&#43;</title>
-      <link>https://bzhou830.github.io/tags/C/C&#43;&#43;/</link>
-      <pubDate>Tue, 02 Aug 2022 19:16:34 +0800</pubDate>
-      
-      <guid>https://bzhou830.github.io/tags/C/C&#43;&#43;/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>驱动编程</title>
-      <link>https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B/</link>
-      <pubDate>Tue, 02 Aug 2022 19:16:34 +0800</pubDate>
-      
-      <guid>https://bzhou830.github.io/tags/%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B/</guid>
       <description></description>
     </item>
     

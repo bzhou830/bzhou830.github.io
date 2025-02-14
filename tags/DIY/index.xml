@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DIY on 拿了桔子跑呃</title>
+    <link>https://bzhou830.github.io/tags/DIY/</link>
+    <description>Recent content in DIY on 拿了桔子跑呃</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 20 Nov 2024 09:16:34 +0800</lastBuildDate>
+    
+	<atom:link href="https://bzhou830.github.io/tags/DIY/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>机械轴桌面小时钟</title>
+      <link>https://bzhou830.github.io/post/20241120%E6%9C%BA%E6%A2%B0%E8%BD%B4%E6%A1%8C%E9%9D%A2%E5%B0%8F%E6%97%B6%E9%92%9F/</link>
+      <pubDate>Wed, 20 Nov 2024 09:16:34 +0800</pubDate>
+      
+      <guid>https://bzhou830.github.io/post/20241120%E6%9C%BA%E6%A2%B0%E8%BD%B4%E6%A1%8C%E9%9D%A2%E5%B0%8F%E6%97%B6%E9%92%9F/</guid>
+      <description>1. 使用说明 第一步 设备上电 上电后，在没有配置网络时显示如下画面： 第二步 连接设备 使用手机或电脑连接名为MuZi Clock的免密Wifi热点。 第三步 填写配置信息 打开浏览器，在网址输入框内输入： 192.168.1.1 确定访问。 在浏览器页面中填入信息，特别要注意的是 和风天气key， 这个到和风天气官网去注册得到</description>
+    </item>
+    
+  </channel>
+</rss>

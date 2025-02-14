@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>菠萝蜜 | 选择去发光，而不是被照亮</title>
-    <meta property="og:title" content="菠萝蜜 | 选择去发光，而不是被照亮">
+    <title>拿了桔子跑呃 | 选择去发光，而不是被照亮</title>
+    <meta property="og:title" content="拿了桔子跑呃 | 选择去发光，而不是被照亮">
     <meta property="og:type" content="website">
     <meta name="Keywords" content="C/C&#43;&#43;, GPU, Windows驱动开发, OpenCV, 图像处理">
     <meta name="description" content="专注于C/C&#43;&#43;, GPU, Windows驱动开发, OpenCV, 图像处理">
@@ -17,7 +17,7 @@
     <link rel="stylesheet" href='/css/normalize.css'>
     
     <link rel="stylesheet" href='/css/style.css'>
-    <link rel="alternate" type="application/rss+xml+xml" href="https://bzhou830.github.io/index.xml" title="菠萝蜜" />
+    <link rel="alternate" type="application/rss+xml+xml" href="https://bzhou830.github.io/index.xml" title="拿了桔子跑呃" />
     
     <script type="text/javascript" src="js/jquery.min.js"></script>
 
@@ -38,7 +38,7 @@
                 
                     
                         <a id="logo" href="https://bzhou830.github.io/">
-                            菠萝蜜
+                            拿了桔子跑呃
                         </a>
                     
                 
@@ -47,6 +47,8 @@
             <div>
                 <nav id="nav-menu" class="clearfix">
                     <a class="current" href="https://bzhou830.github.io/">首页</a>
+                    
+                    <a  href="https://bzhou830.github.io/DIY/" title="DIY">DIY</a>
                     
                     <a  href="https://bzhou830.github.io/GPU/" title="GPU">GPU</a>
                     
@@ -71,6 +73,121 @@
                 <div class="col-8" id="main">
                     
 <div class="res-cons">
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://bzhou830.github.io/post/20190710%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8503/" title="渲染管线之旅|03 图形管线概览及GPU中顶点处理">渲染管线之旅|03 图形管线概览及GPU中顶点处理</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2019年7月10日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/GPU'>GPU</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            通过前面几篇的内容，我们知道，应用程序中的Draw API调用会经过D3D Runtime, 用户态驱动等等各个层级，最终将命令传到GPU的命令解释器，GPU就会根据命令的内容来进行图形的计算和处理。那么这一篇我们就来看看顶点的处理流程。 1. 开胃菜 在介绍GPU的顶点处理之前，我们先看看3D渲染管线。3……
+        </div>
+        <p class="readmore"><a href="https://bzhou830.github.io/post/20190710%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8503/">阅读全文</a></p>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://bzhou830.github.io/post/20190705%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8502/" title="渲染管线之旅|02 GPU存储架构和命令处理器">渲染管线之旅|02 GPU存储架构和命令处理器</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2019年7月5日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/GPU'>GPU</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            上一篇中主要介绍了3D渲染命令到达GPU之前经历过的各个阶段。用下图可以概括上一篇中所讲的内容，当然其中很多细节没有出现在图中。之前我们说KMD将命令送给了硬件，这个简单的“送”的过程实际上并不是那么简单的。我们知道显卡都是通过信号线连在主板上的，所以我们送命令都是需要走这些信号……
+        </div>
+        <p class="readmore"><a href="https://bzhou830.github.io/post/20190705%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8502/">阅读全文</a></p>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://bzhou830.github.io/post/20190703%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8501/" title="渲染管线之旅|01 软件调用栈">渲染管线之旅|01 软件调用栈</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2019年7月3日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/GPU'>GPU</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            简介 通常我们可以很容易的找到我们的个人电脑中显卡驱动软件调用栈的相关内容（attache到进程上，查看进程调用的dll。），但是这些调用关系是如何工作？它们又是为什么要这样做呢？这些问题就不那么容易找到答案了。我会尽量填补空白，而不会对特定的硬件进行具体的描述。我将主要讨论在Wi……
+        </div>
+        <p class="readmore"><a href="https://bzhou830.github.io/post/20190703%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E4%B9%8B%E6%97%8501/">阅读全文</a></p>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://bzhou830.github.io/post/20190620Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" title="Git快速入门手册">Git快速入门手册</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2019年6月29日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/Misc'>Misc</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            本文作为版本控制软件git的入门指导和常用命令整理。 首先用一张图来总结基本的使用的流程，后文中都有详细的解释。 1.git的安装 自诞生于 2005 年以来，Git 日臻成熟完善，在高度易用的同时，仍然保留着初期设定的目标。它的速度飞快，极其适合管理大项目 。Git可以在windows、Mac、L……
+        </div>
+        <p class="readmore"><a href="https://bzhou830.github.io/post/20190620Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/">阅读全文</a></p>
+    </article>
+    
+    <article class="post">
+        <header>
+            <h1 class="post-title">
+                <a href="https://bzhou830.github.io/post/20190611B%E7%AB%99%E7%BC%93%E5%AD%98%E8%A7%86%E9%A2%91%E5%92%8C%E5%8E%8B%E7%BC%A9/" title="B站缓存视频和压缩">B站缓存视频和压缩</a>
+            </h1>
+        </header>
+        <date class="post-meta meta-date">
+            2019年6月11日
+        </date>
+        
+        <div class="post-meta">
+            <span>|</span>
+            
+            <span class="meta-category"><a href='https://bzhou830.github.io/categories/Misc'>Misc</a></span>
+            
+        </div>
+        
+        <div class="post-content">
+            手机上Bilibili缓存的视频存在于Android/data/tv.danmaku.bili/download下面。然后可以拷贝出来到PC上，因为视频和音频是分开保存的，所以要进行合并的操作。根据自己缓存时候选择的分辨率修改下合并的代码中的路径（16，64这些数字代表的就是路径……
+        </div>
+        <p class="readmore"><a href="https://bzhou830.github.io/post/20190611B%E7%AB%99%E7%BC%93%E5%AD%98%E8%A7%86%E9%A2%91%E5%92%8C%E5%8E%8B%E7%BC%A9/">阅读全文</a></p>
+    </article>
     
     <article class="post">
         <header>
@@ -187,121 +304,6 @@
         <p class="readmore"><a href="https://bzhou830.github.io/post/20190104%E6%A0%91%E8%8E%93%E6%B4%BE%E6%8E%A8%E6%B5%81/">阅读全文</a></p>
     </article>
     
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="https://bzhou830.github.io/post/20190104PiCamera/" title="树莓派Camera的使用">树莓派Camera的使用</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2019年1月4日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='https://bzhou830.github.io/categories/Misc'>Misc</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            参考： Raspberry Pi：https://www.raspberrypi.org/ Index of Packages：https://pypi.python.org/pypi/picamera 最新版本是 picamera 1.13：http://picamera.readthedocs.io/en/release-1.13……
-        </div>
-        <p class="readmore"><a href="https://bzhou830.github.io/post/20190104PiCamera/">阅读全文</a></p>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="https://bzhou830.github.io/post/20190103Android%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8JNI%E6%96%B9%E5%BC%8F%E8%B0%83%E7%94%A8OpenCV%E9%85%8D%E7%BD%AE/" title="Android平台使用JNI方式调用OpenCV配置">Android平台使用JNI方式调用OpenCV配置</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2019年1月3日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='https://bzhou830.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86'>图像处理</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            本文主要介绍 OpenCV3.4.2 在 android studio2.3 中的配置，并使用 JNI 方式调用 OpenCV 中 C/C++ 层函数。 Android Studio在2.2版本更新之后加入了CMAKE方式配置NDK的方法，这大大简化了之前通过Android.mk和Application.mk两个本地配置文件进行NDK开发的方式。这种方法在后续更新的版本中不断增强，越来……
-        </div>
-        <p class="readmore"><a href="https://bzhou830.github.io/post/20190103Android%E5%B9%B3%E5%8F%B0%E4%BD%BF%E7%94%A8JNI%E6%96%B9%E5%BC%8F%E8%B0%83%E7%94%A8OpenCV%E9%85%8D%E7%BD%AE/">阅读全文</a></p>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="https://bzhou830.github.io/post/20190103%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9B%B8%E5%85%B3/" title="树莓派环境配置汇总">树莓派环境配置汇总</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2019年1月3日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='https://bzhou830.github.io/categories/Misc'>Misc</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            本文主要记录使用树莓派过程的一些问题和解决方案。系统是基于官方的Raspbian Stretch with desktop系统。 1.安装使用OpenCV 推荐使用16G或以上的卡，最好是class10以上，因为8G class6卡安装到35%就爆满了，推算安装完成要4.6G左右的空间。 OpenCV的安装可不……
-        </div>
-        <p class="readmore"><a href="https://bzhou830.github.io/post/20190103%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9B%B8%E5%85%B3/">阅读全文</a></p>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="https://bzhou830.github.io/post/20190101Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" title="Hexo博客搭建">Hexo博客搭建</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2019年1月1日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='https://bzhou830.github.io/categories/Misc'>Misc</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            本文用来记录我使用Hexo进行静态博客搭建的过程，博客是托管在Github Page上的。 1.下载安装node.js和git两个工具 因为需要使用npm和git进行博客的生成，搭建和上传部署。 npm install hexo-cli -g hexo init blog cd blog npm install hexo server 运行完成上面的命令之后就可以看到cmd窗口提示已经将blog发布到……
-        </div>
-        <p class="readmore"><a href="https://bzhou830.github.io/post/20190101Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">阅读全文</a></p>
-    </article>
-    
-    <article class="post">
-        <header>
-            <h1 class="post-title">
-                <a href="https://bzhou830.github.io/post/20180618Python_GrabScreen/" title="Python获取屏幕截图">Python获取屏幕截图</a>
-            </h1>
-        </header>
-        <date class="post-meta meta-date">
-            2018年6月18日
-        </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='https://bzhou830.github.io/categories/Python'>Python</a></span>
-            
-        </div>
-        
-        <div class="post-content">
-            Python获取电脑截图有多种方式，具体如下： PIL中的ImageGrab模块 windows API PyQt pyautogui 1.PIL中的ImageGrab模块 使用PIL中的ImageGrab模块简单，但是效率有点低，截屏一次需0.5s。 import time import numpy as np from PIL import ImageGrab img = ImageGrab.grab(bbox=(100, 161, 1141, 610)) img = np.array(img.getdata(), np.uint8).reshape(img.size[1], img.size[0], 3) 2.windows API 调用windows API，速度快……
-        </div>
-        <p class="readmore"><a href="https://bzhou830.github.io/post/20180618Python_GrabScreen/">阅读全文</a></p>
-    </article>
-    
     
 
 
@@ -412,7 +414,7 @@
                 
                     <div>
                         <div style="width: 200px; height: 200px; border-radius:100%; overflow:hidden;">
-                            <img src=http://localhost:1313/about/touxiang.jpg >
+                            <img src=https://bzhou830.github.io/about/touxiang.jpg >
                         </div>
                     </div>
 
@@ -448,7 +450,7 @@
             <a href="https://bzhou830.github.io/about/" title="欢迎关注微信公众号" target="_blank">
                 
                     <h3 class="widget-title">欢迎关注微信公众号</h3>
-                    <img src="http://localhost:1313/about/qrcode.jpg" >
+                    <img src="https://bzhou830.github.io/about/qrcode.jpg" >
                 
             </a>
         </li>
@@ -474,6 +476,8 @@
     
     <li><a href="https://bzhou830.github.io/categories/C/C&#43;&#43;/">C/C&#43;&#43; (12)</a></li>
     
+    <li><a href="https://bzhou830.github.io/categories/DIY/">DIY (1)</a></li>
+    
     <li><a href="https://bzhou830.github.io/categories/Flask/">Flask (11)</a></li>
     
     <li><a href="https://bzhou830.github.io/categories/GPU/">GPU (20)</a></li>
@@ -484,7 +488,7 @@
     
     <li><a href="https://bzhou830.github.io/categories/MCU/">MCU (1)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/Misc/">Misc (13)</a></li>
+    <li><a href="https://bzhou830.github.io/categories/Misc/">Misc (14)</a></li>
     
     <li><a href="https://bzhou830.github.io/categories/OpenCV/">OpenCV (1)</a></li>
     
@@ -494,7 +498,7 @@
     
     <li><a href="https://bzhou830.github.io/categories/USB/">USB (8)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/WindowsKernel/">WindowsKernel (11)</a></li>
+    <li><a href="https://bzhou830.github.io/categories/WindowsKernel/">WindowsKernel (12)</a></li>
     
     <li><a href="https://bzhou830.github.io/categories/%E4%B8%B2%E5%8F%A3/">串口 (6)</a></li>
     
@@ -504,7 +508,7 @@
     
     <li><a href="https://bzhou830.github.io/categories/%E5%9B%BE%E8%AE%BA/">图论 (12)</a></li>
     
-    <li><a href="https://bzhou830.github.io/categories/%E5%B0%8F%E5%AE%89%E6%B4%BE/">小安派 (6)</a></li>
+    <li><a href="https://bzhou830.github.io/categories/%E5%B0%8F%E5%AE%89%E6%B4%BE/">小安派 (8)</a></li>
     
     <li><a href="https://bzhou830.github.io/categories/%E6%88%90%E9%95%BF/">成长 (6)</a></li>
     
@@ -520,11 +524,31 @@
 <ul class="widget-list">
     
     <li>
+        <a href="https://bzhou830.github.io/post/20250204DeepSeek%E6%9C%AC%E5%9C%B0%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="DeepSeek R1本地化环境部署">DeepSeek R1本地化环境部署</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20241120%E6%9C%BA%E6%A2%B0%E8%BD%B4%E6%A1%8C%E9%9D%A2%E5%B0%8F%E6%97%B6%E9%92%9F/" title="机械轴桌面小时钟">机械轴桌面小时钟</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20240201Qemu-DriverDev/" title="Ubuntu下使用Qemu安装Windows虚拟机">Ubuntu下使用Qemu安装Windows虚拟机</a>
+    </li>
+    
+    <li>
         <a href="https://bzhou830.github.io/post/20231019%E7%8E%84%E9%93%81%E6%9D%AF01/" title="玄铁杯|01 开箱&#43;系统烧录&#43;环境搭建">玄铁杯|01 开箱&#43;系统烧录&#43;环境搭建</a>
     </li>
     
     <li>
-        <a href="https://bzhou830.github.io/post/20230910%E5%B0%8F%E5%AE%89%E6%B4%BE05/" title="小安派|04 DIY作品 小霸王游戏机">小安派|04 DIY作品 小霸王游戏机</a>
+        <a href="https://bzhou830.github.io/post/20230915%E5%B0%8F%E5%AE%89%E6%B4%BE07CC%E8%A1%A8/" title="小安派|07 DIY作品 CC表">小安派|07 DIY作品 CC表</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20230912%E5%B0%8F%E5%AE%89%E6%B4%BE06CC%E8%A1%A8/" title="小安派|06 DIY作品 CC表">小安派|06 DIY作品 CC表</a>
+    </li>
+    
+    <li>
+        <a href="https://bzhou830.github.io/post/20230910%E5%B0%8F%E5%AE%89%E6%B4%BE05/" title="小安派|05 DIY作品 小霸王游戏机">小安派|05 DIY作品 小霸王游戏机</a>
     </li>
     
     <li>
@@ -537,26 +561,6 @@
     
     <li>
         <a href="https://bzhou830.github.io/post/20230902%E5%B0%8F%E5%AE%89%E6%B4%BE02/" title="小安派|02番外篇DSL_Dashboard bug分析">小安派|02番外篇DSL_Dashboard bug分析</a>
-    </li>
-    
-    <li>
-        <a href="https://bzhou830.github.io/post/20230901%E5%B0%8F%E5%AE%89%E6%B4%BE01/" title="小安派|01开发环境搭建">小安派|01开发环境搭建</a>
-    </li>
-    
-    <li>
-        <a href="https://bzhou830.github.io/post/20230900%E5%B0%8F%E5%AE%89%E6%B4%BEMenu/" title="小安派| 系列计划">小安派| 系列计划</a>
-    </li>
-    
-    <li>
-        <a href="https://bzhou830.github.io/post/20230801Linux%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" title="Linux环境变量">Linux环境变量</a>
-    </li>
-    
-    <li>
-        <a href="https://bzhou830.github.io/post/20230106Etw/" title="ETW机制">ETW机制</a>
-    </li>
-    
-    <li>
-        <a href="https://bzhou830.github.io/post/20230105Tracing/" title="WPP Tracing">WPP Tracing</a>
     </li>
     
 </ul>
@@ -593,6 +597,12 @@
     <a href="https://bzhou830.github.io/tags/C/C&#43;&#43;/">C/C&#43;&#43;</a>
     
     <a href="https://bzhou830.github.io/tags/DICOM/">DICOM</a>
+    
+    <a href="https://bzhou830.github.io/tags/DIY/">DIY</a>
+    
+    <a href="https://bzhou830.github.io/tags/DeepSeek/">DeepSeek</a>
+    
+    <a href="https://bzhou830.github.io/tags/ESP32/">ESP32</a>
     
     <a href="https://bzhou830.github.io/tags/Excel/">Excel</a>
     
@@ -634,6 +644,8 @@
     
     <a href="https://bzhou830.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/">图形学</a>
     
+    <a href="https://bzhou830.github.io/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/">大模型</a>
+    
     <a href="https://bzhou830.github.io/tags/%E5%B0%8F%E5%AE%89%E6%B4%BE/">小安派</a>
     
     <a href="https://bzhou830.github.io/tags/%E6%96%87%E6%9C%AC%E6%A3%80%E6%B5%8B/">文本检测</a>
@@ -641,6 +653,8 @@
     <a href="https://bzhou830.github.io/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a>
     
     <a href="https://bzhou830.github.io/tags/%E7%8E%84%E9%93%81%E6%9D%AF/">玄铁杯</a>
+    
+    <a href="https://bzhou830.github.io/tags/%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/">环境部署</a>
     
     <a href="https://bzhou830.github.io/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
     
@@ -661,7 +675,7 @@
     </div>
     <footer id="footer">
     <div class="container">
-        &copy; 2023 <a href="https://bzhou830.github.io/">菠萝蜜 By Binean</a>.
+        &copy; 2025 <a href="https://bzhou830.github.io/">拿了桔子跑呃 By Binean</a>.
         Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
         <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/flysnow-org/maupassant-hugo" target="_blank">maupassant</a>.
         <br><a href="http://www.beian.miit.gov.cn/" target="_blank">鄂ICP备20004395号</a>. 
